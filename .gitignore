@@ -1,0 +1,23 @@
+# .gitignore
+
+# Node.js
+node_modules/
+dist/
+*.log
+
+# Flutter / Dart
+.dart_tool/
+.packages
+build/
+pubspec.lock
+*.iml
+.idea/
+
+# VS Code
+.vscode/
+*.vsix
+vscode/vscode-theme-candi-*.vsix
+
+# OS
+.DS_Store
+Thumbs.db

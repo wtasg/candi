@@ -1,0 +1,94 @@
+/*
+ * Scandinavian Theme - Utility Classes
+ */
+
+/* Text colors */
+.candi-text-subtle {
+    color: var(--candi-text-subtle);
+}
+
+.candi-text-muted {
+    color: var(--candi-text-muted);
+}
+
+.candi-text-accent {
+    color: var(--candi-accent);
+}
+
+.candi-text-warm {
+    color: var(--candi-secondary);
+}
+
+/* Spacing - Lagom (generous but balanced) */
+.candi-p-cozy {
+    padding: 1.5rem;
+}
+
+.candi-p-relaxed {
+    padding: 2.5rem;
+}
+
+.candi-p-spacious {
+    padding: 4rem;
+}
+
+.candi-gap-cozy {
+    gap: 1.5rem;
+}
+
+.candi-gap-airy {
+    gap: 2.5rem;
+}
+
+/* Surfaces */
+.candi-surface {
+    background-color: var(--candi-surface);
+}
+
+.candi-elevated {
+    background-color: var(--candi-elevated);
+}
+
+.candi-bg {
+    background-color: var(--candi-bg);
+}
+
+/* Borders */
+.candi-border {
+    border: 1px solid var(--candi-border);
+}
+
+.candi-border-strong {
+    border: 1px solid var(--candi-border-strong);
+}
+
+/* Shadows */
+.candi-shadow {
+    box-shadow: var(--candi-shadow);
+}
+
+.candi-shadow-md {
+    box-shadow: var(--candi-shadow-md);
+}
+
+.candi-shadow-lg {
+    box-shadow: var(--candi-shadow-lg);
+}
+
+/* Border radius */
+.candi-rounded {
+    border-radius: 0.75rem;
+}
+
+.candi-rounded-lg {
+    border-radius: 1rem;
+}
+
+.candi-rounded-xl {
+    border-radius: 1.5rem;
+}
+
+/* Transition */
+.candi-transition {
+    transition: all 0.25s ease;
+}

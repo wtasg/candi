@@ -1,0 +1,143 @@
+{
+    "name": "Candi Light",
+    "type": "light",
+    "colors": {
+        "focusBorder": "#437085",
+        "foreground": "#232A30",
+        "widget.shadow": "#E0DED8",
+        "selection.background": "#43708540",
+        "descriptionForeground": "#5F6469",
+        "errorForeground": "#B75B55",
+        "button.background": "#437085",
+        "button.foreground": "#FFFFFF",
+        "button.hoverBackground": "#437085",
+        "editor.background": "#FBF8F2",
+        "editor.foreground": "#232A30",
+        "editorLineNumber.foreground": "#83878B",
+        "editorLineNumber.activeForeground": "#232A30",
+        "editorCursor.foreground": "#437085",
+        "editor.selectionBackground": "#43708530",
+        "editor.lineHighlightBackground": "#F4F0E7",
+        "editorIndentGuide.background": "#E0DED8",
+        "editorIndentGuide.activeBackground": "#C7C4BD",
+        "sideBar.background": "#F4F0E7",
+        "sideBar.foreground": "#5F6469",
+        "sideBar.border": "#E0DED8",
+        "sideBarTitle.foreground": "#232A30",
+        "sideBarSectionHeader.background": "#F4F0E7",
+        "sideBarSectionHeader.foreground": "#232A30",
+        "sideBarSectionHeader.border": "#E0DED8",
+        "activityBar.background": "#FBF8F2",
+        "activityBar.foreground": "#232A30",
+        "activityBar.inactiveForeground": "#83878B",
+        "activityBar.border": "#E0DED8",
+        "activityBar.activeBorder": "#437085",
+        "editorGroupHeader.tabsBackground": "#F4F0E7",
+        "tab.activeBackground": "#FBF8F2",
+        "tab.activeForeground": "#232A30",
+        "tab.inactiveBackground": "#F4F0E7",
+        "tab.inactiveForeground": "#83878B",
+        "tab.border": "#E0DED8",
+        "tab.activeBorderTop": "#437085",
+        "statusBar.background": "#FBF8F2",
+        "statusBar.foreground": "#5F6469",
+        "statusBar.border": "#E0DED8",
+        "titleBar.activeBackground": "#FBF8F2",
+        "titleBar.activeForeground": "#232A30",
+        "titleBar.inactiveBackground": "#FBF8F2",
+        "titleBar.inactiveForeground": "#83878B",
+        "titleBar.border": "#E0DED8",
+        "list.activeSelectionBackground": "#43708520",
+        "list.activeSelectionForeground": "#232A30",
+        "list.hoverBackground": "#F4F0E7",
+        "list.inactiveSelectionBackground": "#F4F0E7"
+    },
+    "tokenColors": [
+        {
+            "scope": [
+                "comment",
+                "punctuation.definition.comment"
+            ],
+            "settings": {
+                "foreground": "#83878B"
+            }
+        },
+        {
+            "scope": [
+                "string",
+                "punctuation.definition.string"
+            ],
+            "settings": {
+                "foreground": "#4A754C"
+            }
+        },
+        {
+            "scope": [
+                "keyword",
+                "storage.type",
+                "storage.modifier"
+            ],
+            "settings": {
+                "foreground": "#437085"
+            }
+        },
+        {
+            "scope": [
+                "constant.numeric",
+                "constant.language",
+                "constant.character",
+                "constant.other"
+            ],
+            "settings": {
+                "foreground": "#B0652A"
+            }
+        },
+        {
+            "scope": [
+                "variable",
+                "variable.other",
+                "variable.language"
+            ],
+            "settings": {
+                "foreground": "#232A30"
+            }
+        },
+        {
+            "scope": [
+                "entity.name.function",
+                "support.function"
+            ],
+            "settings": {
+                "foreground": "#437085"
+            }
+        },
+        {
+            "scope": [
+                "entity.name.type",
+                "entity.name.class",
+                "support.type",
+                "support.class"
+            ],
+            "settings": {
+                "foreground": "#B0652A"
+            }
+        },
+        {
+            "scope": [
+                "entity.name.tag",
+                "punctuation.definition.tag"
+            ],
+            "settings": {
+                "foreground": "#437085"
+            }
+        },
+        {
+            "scope": [
+                "entity.other.attribute-name"
+            ],
+            "settings": {
+                "foreground": "#B0652A"
+            }
+        }
+    ]
+}

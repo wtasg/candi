@@ -1,0 +1,203 @@
+/*
+ * Scandinavian Theme - Component Classes
+ */
+
+/* Cards */
+.candi-card {
+    background-color: var(--candi-surface);
+    border: 1px solid var(--candi-border);
+    border-radius: 1rem;
+    padding: 2.5rem;
+    box-shadow: var(--candi-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.candi-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--candi-shadow-md);
+}
+
+.candi-card-elevated {
+    background-color: var(--candi-elevated);
+    border: none;
+    border-radius: 1.25rem;
+    padding: 3rem;
+    box-shadow: var(--candi-shadow-md);
+}
+
+/* Buttons */
+.candi-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    padding: 1rem 2rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    border-radius: 0.75rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    min-height: 3.25rem;
+}
+
+.candi-btn-primary {
+    background-color: var(--candi-accent);
+    color: white;
+}
+
+.candi-btn-primary:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.candi-btn-secondary {
+    background-color: transparent;
+    color: var(--candi-text);
+    border: 1.5px solid var(--candi-border-strong);
+}
+
+.candi-btn-secondary:hover {
+    background-color: var(--candi-surface);
+}
+
+.candi-btn-warm {
+    background-color: var(--candi-secondary);
+    color: white;
+}
+
+.candi-btn-ghost {
+    background-color: transparent;
+    color: var(--candi-accent);
+}
+
+.candi-btn-ghost:hover {
+    background-color: var(--candi-accent-subtle);
+}
+
+/* Form Inputs */
+.candi-input {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    background-color: var(--candi-elevated);
+    border: 1.5px solid var(--candi-border-strong);
+    border-radius: 0.75rem;
+    color: var(--candi-text);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    min-height: 3.5rem;
+}
+
+.candi-input::placeholder {
+    color: var(--candi-text-muted);
+}
+
+.candi-input:hover {
+    border-color: var(--candi-text-muted);
+}
+
+.candi-input:focus {
+    outline: none;
+    border-color: var(--candi-accent);
+    box-shadow: 0 0 0 4px var(--candi-focus-ring);
+}
+
+.candi-label {
+    display: block;
+    margin-bottom: 0.625rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--candi-text-subtle);
+    letter-spacing: 0.02em;
+}
+
+.candi-input-group {
+    margin-bottom: 1.75rem;
+}
+
+/* Navigation */
+.candi-nav {
+    background-color: var(--candi-elevated);
+    border-bottom: 1px solid var(--candi-border);
+    padding: 1.25rem 2rem;
+}
+
+.candi-nav-link {
+    color: var(--candi-text-subtle);
+    font-size: 0.9375rem;
+    font-weight: 450;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.candi-nav-link:hover,
+.candi-nav-link.active {
+    color: var(--candi-text);
+    background-color: var(--candi-surface);
+}
+
+/* Badges */
+.candi-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    border-radius: 2rem;
+    background-color: var(--candi-surface);
+    color: var(--candi-text-subtle);
+}
+
+.candi-badge-accent {
+    background-color: var(--candi-accent-subtle);
+    color: var(--candi-accent);
+}
+
+.candi-badge-warm {
+    background-color: var(--candi-secondary-subtle);
+    color: var(--candi-secondary);
+}
+
+/* Divider */
+.candi-divider {
+    height: 1px;
+    background-color: var(--candi-border);
+    border: none;
+    margin: 2.5rem 0;
+}
+
+/* Theme Toggle */
+.candi-theme-toggle {
+    width: 3.5rem;
+    height: 2rem;
+    padding: 0.25rem;
+    background-color: var(--candi-surface);
+    border: 1.5px solid var(--candi-border-strong);
+    border-radius: 2rem;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.candi-theme-toggle::after {
+    content: '';
+    position: absolute;
+    width: 1.375rem;
+    height: 1.375rem;
+    background-color: var(--candi-elevated);
+    border-radius: 50%;
+    top: 50%;
+    left: 0.25rem;
+    transform: translateY(-50%);
+    transition: all 0.3s ease;
+    box-shadow: var(--candi-shadow);
+}
+
+.dark .candi-theme-toggle::after {
+    left: calc(100% - 1.625rem);
+    background-color: var(--candi-accent);
+}

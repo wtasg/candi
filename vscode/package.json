@@ -1,0 +1,31 @@
+{
+    "name": "vscode-theme-candi",
+    "displayName": "Candi Theme",
+    "description": "Scandinavian design theme.",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/wtasg/candi.git"
+    },
+    "version": "0.0.1",
+    "publisher": "wtasg",
+    "engines": {
+        "vscode": "^1.0.0"
+    },
+    "categories": [
+        "Themes"
+    ],
+    "contributes": {
+        "themes": [
+            {
+                "label": "Candi Light",
+                "uiTheme": "vs",
+                "path": "./themes/Candi Light-color-theme.json"
+            },
+            {
+                "label": "Candi Dark",
+                "uiTheme": "vs-dark",
+                "path": "./themes/Candi Dark-color-theme.json"
+            }
+        ]
+    }
+}

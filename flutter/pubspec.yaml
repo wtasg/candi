@@ -1,0 +1,19 @@
+name: candi_colors
+description: >-
+  A Flutter color palette inspired by Scandinavian design principles.
+  Hygge (warmth) and Lagom (balance).
+version: 0.1.0
+homepage: https://github.com/wtasg/candi
+repository: https://github.com/wtasg/candi/tree/main/flutter
+
+environment:
+  sdk: ^3.0.0
+  flutter: ">=3.10.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

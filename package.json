@@ -1,0 +1,73 @@
+{
+  "name": "@wtasnorg/candi",
+  "version": "0.0.1",
+  "description": "A Tailwind CSS theme inspired by Nordic/Scandinavian Hygge & Lagom design principles",
+  "keywords": [
+    "tailwindcss",
+    "theme",
+    "scandinavian",
+    "nordic",
+    "hygge",
+    "lagom",
+    "css",
+    "design-system"
+  ],
+  "author": "wtasg <5f87le8sh@mozmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wtasg/candi.git"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./theme": {
+      "import": "./dist/theme.mjs",
+      "require": "./dist/theme.js"
+    },
+    "./plugin": {
+      "import": "./dist/plugin.mjs",
+      "require": "./dist/plugin.js"
+    },
+    "./css": "./dist/scandinavian.css",
+    "./css/base": "./dist/base.css",
+    "./css/components": "./dist/components.css",
+    "./css/utilities": "./dist/utilities.css"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "node scripts/build.js",
+    "build:flutter": "node scripts/build-flutter.js",
+    "build:vscode": "node scripts/build-vscode.js",
+    "build:vim": "node scripts/build-vim.js",
+    "build:all": "npm run build && npm run build:flutter && npm run build:vscode && npm run build:vim",
+    "prepublishOnly": "npm run build:all",
+    "test:color": "node scripts/test-color.js",
+    "test:flutter": "cd flutter && flutter test",
+    "test:vscode": "node scripts/test-vscode.js",
+    "test:vim": "node scripts/test-vim.js",
+    "test:all": "npm run test:color && npm run test:flutter && npm run test:vscode && npm run test:vim",
+    "test": "npm run test:all",
+    "vscode:package": "cd vscode && npx -y @vscode/vsce package",
+    "flutter:pub": "cd flutter && flutter pub get",
+    "flutter:pub-upgrade": "cd flutter && flutter pub upgrade",
+    "flutter:pub-upgrade-dry-run": "cd flutter && flutter pub upgrade --dry-run",
+    "flutter:pub-publish": "cd flutter && flutter pub publish",
+    "flutter:pub-publish-dry-run": "cd flutter && flutter pub publish --dry-run"
+  },
+  "peerDependencies": {
+    "tailwindcss": ">=3.0.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  }
+}
