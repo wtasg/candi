@@ -1,0 +1,71 @@
+@import "tailwindcss";
+@import "../../dist/v4/theme.css";
+
+/* Website-specific overrides and additions */
+
+html {
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+}
+
+body {
+  background-color: var(--candi-bg);
+  color: var(--candi-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+::selection {
+  background-color: var(--candi-accent-subtle);
+  color: var(--candi-text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--candi-accent);
+  outline-offset: 2px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--candi-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--candi-border-strong);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--candi-accent);
+}
+
+/* Code blocks */
+pre,
+code {
+  font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+}
+
+pre {
+  background: var(--candi-elevated);
+  border: 1px solid var(--candi-border);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  overflow-x: auto;
+}
+
+code {
+  background: var(--candi-surface);
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.9em;
+}
+
+pre code {
+  background: transparent;
+  padding: 0;
+}

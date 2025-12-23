@@ -8,7 +8,52 @@ This guide covers integrating the Candi design system into a Tailwind CSS projec
 npm install @wtasnorg/candi
 ```
 
-## Quick Setup
+## Tailwind v4 (Recommended)
+
+Tailwind CSS v4 uses CSS-first configuration. Import the theme directly in your CSS:
+
+### 1. Install Tailwind v4
+
+```bash
+npm install tailwindcss@latest @tailwindcss/vite
+```
+
+### 2. Configure Vite
+
+```js
+// vite.config.js
+import { defineConfig } from 'vite';
+import tailwindcss from '@tailwindcss/vite';
+
+export default defineConfig({
+  plugins: [tailwindcss()],
+});
+```
+
+### 3. Import in CSS
+
+```css
+/* src/index.css */
+@import "tailwindcss";
+@import "@wtasnorg/candi/v4";
+```
+
+That's it! All Candi utilities are now available.
+
+### Usage
+
+```jsx
+<div className="bg-candi-surface text-candi-text rounded-soft shadow-hygge">
+  <h1 className="text-candi-accent">Hello Candi</h1>
+  <p className="text-candi-subtle">Nordic design system</p>
+</div>
+```
+
+---
+
+## Tailwind v3
+
+For Tailwind v3, use the JavaScript plugin and theme:
 
 ### 1. Configure `tailwind.config.js`
 
@@ -32,6 +77,8 @@ The theme uses the `.dark` class for switching:
 ```js
 document.documentElement.classList.toggle('dark');
 ```
+
+---
 
 ## Available Tokens
 
@@ -104,7 +151,7 @@ function Card({ title, children }) {
 
 ## Framework Guides
 
-### Next.js
+### Next.js (v3)
 
 ```js
 const { theme, plugin } = require('@wtasnorg/candi');
@@ -117,7 +164,7 @@ module.exports = {
 };
 ```
 
-### Vite / React
+### Vite / React (v3)
 
 ```js
 const { theme, plugin } = require('@wtasnorg/candi');
