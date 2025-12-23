@@ -118,7 +118,7 @@ function generateTheme(name, type, palette) {
         "tokenColors": [
             {
                 "scope": ["comment", "punctuation.definition.comment"],
-                "settings": { "foreground": palette['text-muted'] }
+                "settings": { "foreground": palette['text-muted'], "fontStyle": "italic" }
             },
             {
                 "scope": ["string", "punctuation.definition.string"],
@@ -126,7 +126,7 @@ function generateTheme(name, type, palette) {
             },
             {
                 "scope": ["keyword", "storage.type", "storage.modifier"],
-                "settings": { "foreground": palette['accent'] }
+                "settings": { "foreground": palette['accent'], "fontStyle": "bold" }
             },
             {
                 "scope": ["constant.numeric", "constant.language", "constant.character", "constant.other"],
@@ -135,6 +135,10 @@ function generateTheme(name, type, palette) {
             {
                 "scope": ["variable", "variable.other", "variable.language"],
                 "settings": { "foreground": palette['text'] }
+            },
+            {
+                "scope": ["variable.parameter", "meta.parameters"],
+                "settings": { "foreground": palette['text-subtle'] }
             },
             {
                 "scope": ["entity.name.function", "support.function"],
@@ -151,6 +155,162 @@ function generateTheme(name, type, palette) {
             {
                 "scope": ["entity.other.attribute-name"],
                 "settings": { "foreground": palette['secondary'] }
+            },
+            {
+                "scope": ["entity.name.namespace", "entity.name.module"],
+                "settings": { "foreground": palette['secondary'] }
+            },
+            {
+                "scope": ["punctuation.separator", "punctuation.terminator", "punctuation.accessor"],
+                "settings": { "foreground": palette['text-subtle'] }
+            },
+            {
+                "scope": ["markup.heading", "entity.name.section"],
+                "settings": { "foreground": palette['accent'], "fontStyle": "bold" }
+            },
+            {
+                "scope": ["markup.bold"],
+                "settings": { "foreground": palette['text'], "fontStyle": "bold" }
+            },
+            {
+                "scope": ["markup.italic"],
+                "settings": { "foreground": palette['text'], "fontStyle": "italic" }
+            },
+            {
+                "scope": ["markup.inline.raw", "markup.fenced_code"],
+                "settings": { "foreground": palette['success'] }
+            },
+            {
+                "scope": ["markup.quote"],
+                "settings": { "foreground": palette['text-subtle'], "fontStyle": "italic" }
+            },
+            {
+                "scope": ["markup.list"],
+                "settings": { "foreground": palette['accent'] }
+            },
+            {
+                "scope": ["markup.underline.link", "string.other.link"],
+                "settings": { "foreground": palette['accent'], "fontStyle": "underline" }
+            },
+            {
+                "scope": ["constant.character.escape", "constant.other.placeholder"],
+                "settings": { "foreground": palette['secondary'] }
+            },
+            {
+                "scope": ["string.regexp", "constant.regexp"],
+                "settings": { "foreground": palette['warning'] }
+            },
+            {
+                "scope": ["support.constant", "meta.property-name"],
+                "settings": { "foreground": palette['text'] }
+            },
+            {
+                "scope": ["entity.other.inherited-class"],
+                "settings": { "foreground": palette['secondary'], "fontStyle": "italic" }
+            },
+            {
+                "scope": ["storage", "storage.type.function"],
+                "settings": { "foreground": palette['accent'] }
+            },
+            {
+                "scope": ["support.variable", "variable.other.readwrite"],
+                "settings": { "foreground": palette['text'] }
+            },
+            {
+                "scope": ["support.module", "support.node"],
+                "settings": { "foreground": palette['secondary'] }
+            },
+            {
+                "scope": ["punctuation.definition.template-expression"],
+                "settings": { "foreground": palette['accent'] }
+            },
+            {
+                "scope": ["meta.embedded", "source.groovy.embedded"],
+                "settings": { "foreground": palette['text'] }
+            },
+            {
+                "scope": ["support.type.property-name", "meta.object-literal.key"],
+                "settings": { "foreground": palette['text'] }
+            },
+            {
+                "scope": ["entity.name.operator"],
+                "settings": { "foreground": palette['accent'] }
+            },
+            {
+                "scope": ["keyword.operator"],
+                "settings": { "foreground": palette['text-subtle'] }
+            },
+            {
+                "scope": ["invalid", "invalid.illegal"],
+                "settings": { "foreground": palette['error'] }
+            },
+            {
+                "scope": ["invalid.deprecated"],
+                "settings": { "foreground": palette['warning'] }
+            },
+            {
+                "scope": ["meta.diff", "meta.diff.header"],
+                "settings": { "foreground": palette['text-muted'], "fontStyle": "italic" }
+            },
+            {
+                "scope": ["markup.inserted"],
+                "settings": { "foreground": palette['success'] }
+            },
+            {
+                "scope": ["markup.deleted"],
+                "settings": { "foreground": palette['error'] }
+            },
+            {
+                "scope": ["markup.changed"],
+                "settings": { "foreground": palette['warning'] }
+            },
+            {
+                "scope": ["meta.selector", "entity.other.attribute-name.class.css", "entity.other.attribute-name.id.css"],
+                "settings": { "foreground": palette['accent'] }
+            },
+            {
+                "scope": ["support.type.property-name.css"],
+                "settings": { "foreground": palette['text'] }
+            },
+            {
+                "scope": ["constant.other.color"],
+                "settings": { "foreground": palette['secondary'] }
+            },
+            {
+                "scope": ["entity.other.attribute-name.html", "entity.other.attribute-name.xml"],
+                "settings": { "foreground": palette['secondary'] }
+            },
+            {
+                "scope": ["punctuation.definition.entity"],
+                "settings": { "foreground": palette['text-muted'] }
+            },
+            {
+                "scope": ["support.type.vendored.property-name"],
+                "settings": { "foreground": palette['text-subtle'] }
+            },
+            {
+                "scope": ["source.css support.type.property-name", "source.sass support.type.property-name", "source.scss support.type.property-name", "source.less support.type.property-name", "source.stylus support.type.property-name"],
+                "settings": { "foreground": palette['text'] }
+            },
+            {
+                "scope": ["support.constant.mathematical-symbols"],
+                "settings": { "foreground": palette['secondary'] }
+            },
+            {
+                "scope": ["token.info-token"],
+                "settings": { "foreground": palette['accent'] }
+            },
+            {
+                "scope": ["token.warn-token"],
+                "settings": { "foreground": palette['warning'] }
+            },
+            {
+                "scope": ["token.error-token"],
+                "settings": { "foreground": palette['error'] }
+            },
+            {
+                "scope": ["token.debug-token"],
+                "settings": { "foreground": palette['text-muted'] }
             }
         ]
     };

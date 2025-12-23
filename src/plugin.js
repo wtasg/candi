@@ -25,6 +25,11 @@ module.exports = plugin(function ({ addUtilities, addBase, theme, e }) {
             '--candi-success': 'oklch(52% 0.08 145)',
             '--candi-warning': 'oklch(68% 0.13 70)',
             '--candi-error': 'oklch(58% 0.12 25)',
+            '--candi-info': 'oklch(55% 0.1 240)',
+            '--candi-link': 'oklch(50% 0.08 230)',
+            '--candi-disabled': 'oklch(75% 0.005 250)',
+            '--candi-overlay': 'oklch(0% 0 0 / 0.5)',
+            '--candi-focus-ring': 'oklch(52% 0.06 230 / 0.4)',
             '--candi-shadow': '0 2px 8px rgba(45, 50, 57, 0.06)',
             '--candi-shadow-md': '0 4px 20px rgba(45, 50, 57, 0.1)',
             '--candi-shadow-lg': '0 8px 40px rgba(45, 50, 57, 0.15)',
@@ -45,6 +50,11 @@ module.exports = plugin(function ({ addUtilities, addBase, theme, e }) {
             '--candi-success': 'oklch(60% 0.1 145)',
             '--candi-warning': 'oklch(72% 0.13 70)',
             '--candi-error': 'oklch(65% 0.12 25)',
+            '--candi-info': 'oklch(65% 0.1 240)',
+            '--candi-link': 'oklch(60% 0.08 230)',
+            '--candi-disabled': 'oklch(45% 0.005 250)',
+            '--candi-overlay': 'oklch(0% 0 0 / 0.7)',
+            '--candi-focus-ring': 'oklch(62% 0.08 230 / 0.5)',
             '--candi-shadow': '0 2px 8px rgba(0, 0, 0, 0.25)',
             '--candi-shadow-md': '0 4px 20px rgba(0, 0, 0, 0.35)',
             '--candi-shadow-lg': '0 8px 40px rgba(0, 0, 0, 0.45)',
@@ -64,5 +74,5 @@ module.exports = plugin(function ({ addUtilities, addBase, theme, e }) {
         newUtilities[`.${e(`stroke-candi-${key}`)}`] = { stroke: colorValue };
     });
 
-    addUtilities(newUtilities, ['responsive', 'hover', 'dark']);
+    addUtilities(newUtilities);
 });
