@@ -66,7 +66,7 @@
         "flutter:pub-publish-dry-run": "cd flutter && flutter pub publish --dry-run"
     },
     "peerDependencies": {
-        "tailwindcss": ">=3.0.0 || >=4.0.0-alpha.0"
+        "tailwindcss": ">=3.0.0 || >=4.0.0"
     },
     "engines": {
         "node": ">=24.0.0"
