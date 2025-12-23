@@ -3,6 +3,7 @@
 This guide covers deploying the Candi documentation website to various hosting platforms.
 
 ## Table of Contents
+
 - [GitHub Pages (Recommended)](#github-pages)
 - [Custom Domain Setup](#custom-domain-setup)
 - [Alternative Hosting Options](#alternative-hosting-options)
@@ -48,7 +49,7 @@ To use a custom subdomain like `candi.wtasg.org`:
 
 Add a CNAME record in your DNS settings:
 
-```
+```text
 Type: CNAME
 Name: candi
 Value: [username].github.io
@@ -56,6 +57,7 @@ TTL: 3600 (or default)
 ```
 
 For example:
+
 - Name: `candi`
 - Value: `wtasg.github.io`
 
@@ -143,10 +145,12 @@ export default defineConfig({
 
 If you need to use environment variables:
 
-### GitHub Pages
+### GitHub Actions Secrets
+
 Add secrets in repository Settings → Secrets and variables → Actions
 
 ### Netlify/Vercel
+
 Add environment variables in their respective dashboards under project settings.
 
 ## Continuous Deployment
@@ -162,16 +166,21 @@ All mentioned platforms support automatic deployments:
 
 ### 404 Errors on Refresh
 
-If you get 404 errors when refreshing pages, add this file for SPA routing:
+If you get 404 errors when refreshing pages (common in Single Page Applications), you need to configure routing for your platform:
 
-**For GitHub Pages**: Create `website/public/_redirects` (note: may require additional configuration)
+**For GitHub Pages**: GitHub Pages does not support `_redirects` files. Instead, use a `404.html` file to handle routing. The repository currently includes a `website/public/404.html` that uses a script to redirect traffic to the main `index.html`.
 
-**For Netlify**: Create `website/public/_redirects`:
-```
+> [!NOTE]
+> GitHub Pages is a static hosting service and doesn't process server-side redirect rules like `_redirects`.
+
+**For Netlify**: Create `website/public/_redirects` (supported natively):
+
+```text
 /*    /index.html   200
 ```
 
 **For Vercel**: Create `website/vercel.json`:
+
 ```json
 {
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
@@ -195,12 +204,14 @@ If you get 404 errors when refreshing pages, add this file for SPA routing:
 ## Performance Optimization
 
 The website is already optimized with:
+
 - Code splitting
 - Minification
 - CSS optimization
 - Gzip compression
 
 For additional improvements:
+
 1. Enable HTTP/2
 2. Use a CDN (automatic on Netlify, Vercel, Cloudflare)
 3. Enable caching headers
@@ -209,6 +220,7 @@ For additional improvements:
 ## Monitoring
 
 Consider adding:
+
 - **Analytics**: Google Analytics, Plausible, or Fathom
 - **Error Tracking**: Sentry
 - **Uptime Monitoring**: UptimeRobot or Better Uptime
@@ -218,6 +230,7 @@ Add tracking codes in `website/index.html` before the closing `</head>` tag.
 ## Support
 
 For issues or questions:
+
 - Check the [website README](../website/README.md)
 - Open an issue on GitHub
 - Review hosting platform documentation

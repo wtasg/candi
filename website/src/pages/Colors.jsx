@@ -15,25 +15,23 @@ export default function Colors() {
         <p className="text-xl text-candi-subtle mb-6">
           Interactive explorer showcasing all Candi color tokens with OKLCH values, hex codes, and RGB values.
         </p>
-        
+
         <div className="flex gap-2">
           <button
             onClick={() => setMode('light')}
-            className={`px-6 py-3 rounded-soft font-medium transition-colors ${
-              mode === 'light'
+            className={`px-6 py-3 rounded-soft font-medium transition-colors ${mode === 'light'
                 ? 'bg-candi-accent text-white'
                 : 'bg-candi-surface text-candi-text hover:bg-candi-border'
-            }`}
+              }`}
           >
             Light Mode
           </button>
           <button
             onClick={() => setMode('dark')}
-            className={`px-6 py-3 rounded-soft font-medium transition-colors ${
-              mode === 'dark'
+            className={`px-6 py-3 rounded-soft font-medium transition-colors ${mode === 'dark'
                 ? 'bg-candi-accent text-white'
                 : 'bg-candi-surface text-candi-text hover:bg-candi-border'
-            }`}
+              }`}
           >
             Dark Mode
           </button>
@@ -45,7 +43,7 @@ export default function Colors() {
         {Object.entries(colors).map(([key, value]) => {
           const hex = oklchToHex(value.l, value.c, value.h);
           const rgb = oklchToRgb(value.l, value.c, value.h);
-          
+
           return (
             <div
               key={key}
@@ -59,7 +57,7 @@ export default function Colors() {
               <div className="p-6">
                 <h3 className="font-semibold text-lg mb-2">{colorNames[key]}</h3>
                 <p className="text-sm text-candi-subtle mb-4">{value.usage}</p>
-                
+
                 <div className="space-y-2 text-sm font-mono">
                   <div className="flex justify-between">
                     <span className="text-candi-muted">OKLCH:</span>
@@ -162,10 +160,10 @@ export default function Colors() {
                       <span className="text-candi-muted">Hue</span>
                       <span className="font-mono">{selectedColor.h}°</span>
                     </div>
-                    <div className="h-2 bg-gradient-to-r from-red-500 via-green-500 to-blue-500 rounded-full overflow-hidden">
+                    <div className="relative h-2 bg-gradient-to-r from-red-500 via-green-500 to-blue-500 rounded-full">
                       <div
-                        className="absolute w-1 h-2 bg-white border border-black"
-                        style={{ marginLeft: `${(selectedColor.h / 360) * 100}%` }}
+                        className="absolute w-1 h-2 bg-white border border-black rounded-sm"
+                        style={{ left: `${(selectedColor.h / 360) * 100}%`, transform: 'translateX(-50%)' }}
                       />
                     </div>
                   </div>
@@ -176,7 +174,7 @@ export default function Colors() {
             <div className="border-t border-candi-border pt-6">
               <h3 className="font-semibold mb-2">Usage</h3>
               <p className="text-candi-subtle mb-4">{selectedColor.usage}</p>
-              
+
               <h3 className="font-semibold mb-2">Code Examples</h3>
               <div className="space-y-2">
                 <div className="bg-candi-surface p-3 rounded-soft">
@@ -198,8 +196,8 @@ export default function Colors() {
         <h2 className="text-2xl font-bold mb-4">Why OKLCH?</h2>
         <div className="space-y-4 text-candi-subtle">
           <p>
-            OKLCH is a perceptually uniform color space that ensures consistent brightness and contrast 
-            across all hues. Unlike RGB or HSL, colors with the same lightness value in OKLCH appear 
+            OKLCH is a perceptually uniform color space that ensures consistent brightness and contrast
+            across all hues. Unlike RGB or HSL, colors with the same lightness value in OKLCH appear
             equally bright to the human eye.
           </p>
           <div className="grid md:grid-cols-3 gap-4 mt-6">

@@ -59,7 +59,26 @@ Candi is built with accessibility as a core requirement:
 npm install @wtasnorg/candi
 ```
 
-[Web Setup Guide](docs/use-with-tailwindcss.md)
+**Tailwind v4** (Recommended):
+
+```css
+/* In your CSS */
+@import "tailwindcss";
+@import "@wtasnorg/candi/v4";
+```
+
+**Tailwind v3**:
+
+```js
+// tailwind.config.js
+const { theme, plugin } = require('@wtasnorg/candi');
+module.exports = {
+  theme: { extend: theme },
+  plugins: [plugin],
+};
+```
+
+[Full Web Setup Guide](docs/use-with-tailwindcss.md)
 
 ### Flutter
 
@@ -84,6 +103,58 @@ npm install @wtasnorg/candi
 | `text` | Warm charcoal | Off-white | Primary text |
 | `accent` | Steel blue | Lighter steel | Primary actions |
 | `secondary` | Terracotta | Lighter terracotta | Secondary actions |
+
+---
+
+## Development
+
+### Prerequisites
+
+- Node.js 24+
+- npm
+
+### Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/wtasg/candi.git
+cd candi
+
+# Install dependencies
+npm install
+
+# Build all platforms
+npm run build:all
+```
+
+### Working on the Documentation Website
+
+The docs website lives in `website/` and uses the built theme from `dist/`:
+
+```bash
+cd website
+npm install
+npm run dev     # Starts dev server at http://localhost:3000
+```
+
+The `predev` and `prebuild` scripts automatically rebuild the parent package, so changes to `src/v4/theme.css` are reflected immediately.
+
+### Project Structure
+
+```text
+candi/
+├── src/           # Source files for npm package
+│   ├── css/       # Base CSS files
+│   ├── v4/        # Tailwind v4 theme
+│   ├── plugin.js  # Tailwind v3 plugin
+│   └── theme.js   # Tailwind v3 theme extension
+├── dist/          # Built output (git-ignored)
+├── website/       # Documentation site (Vite + React)
+├── flutter/       # Flutter package
+├── vscode/        # VS Code extension
+├── vim/           # Vim colorschemes
+└── scripts/       # Build scripts
+```
 
 ---
 

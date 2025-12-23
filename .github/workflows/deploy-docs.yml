@@ -2,10 +2,11 @@ name: Deploy Documentation Website
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
     paths:
-      - 'website/**'
-      - '.github/workflows/deploy-docs.yml'
+      - "website/**"
+      - "src/**"
+      - ".github/workflows/deploy-docs.yml"
   workflow_dispatch:
 
 permissions:
@@ -27,16 +28,17 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
-          cache: 'npm'
-          cache-dependency-path: website/package-lock.json
+          node-version: "24"
 
-      - name: Install dependencies
+      - name: Install root dependencies
+        run: npm ci
+
+      - name: Install website dependencies
         run: |
           cd website
           npm ci
 
-      - name: Build website
+      - name: Build website (includes parent build via prebuild)
         run: |
           cd website
           npm run build
