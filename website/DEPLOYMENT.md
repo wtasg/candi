@@ -69,9 +69,11 @@ For example:
 4. Wait for DNS check to complete
 5. Enable "Enforce HTTPS" (recommended)
 
-### Step 3: Update Base Path (if needed)
+### Step 3: Update Configuration for Custom Domain
 
-If using a custom domain at the root level, update `website/vite.config.js`:
+If using a custom domain at the root level (e.g., `candi.wtasg.org`), you need to update **two files**:
+
+**1. Update `website/vite.config.js`:**
 
 ```javascript
 export default defineConfig({
@@ -80,6 +82,19 @@ export default defineConfig({
   // ... rest of config
 })
 ```
+
+**2. Update `website/public/404.html`:**
+
+```javascript
+// Change from 1 to 0 for root-level deployment
+var pathSegmentsToKeep = 0;
+```
+
+> [!IMPORTANT]
+> Both changes are required for SPA routing to work correctly on a custom domain.
+>
+> - `base: '/'` tells Vite to generate root-relative paths
+> - `pathSegmentsToKeep = 0` tells the 404 handler not to preserve any path segments
 
 ## Alternative Hosting Options
 

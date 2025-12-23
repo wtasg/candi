@@ -87,16 +87,24 @@ This avoids `npm link` complexity and works in CI.
 
 **GitHub Pages**: Does NOT support `_redirects` files (that's Netlify-only)
 
-**Solution for GitHub Pages**: Use `404.html` with JavaScript redirect:
+**Solution for GitHub Pages**: Use `404.html` with JavaScript redirect (see [spa-github-pages](https://github.com/rafgraph/spa-github-pages))
 
-```html
-<script>
-  var l = window.location;
-  l.replace(l.protocol + '//' + l.hostname + '/?/' + l.pathname.slice(1));
-</script>
-```
+### pathSegmentsToKeep Configuration
 
-See `website/public/404.html` for full implementation.
+The `pathSegmentsToKeep` variable controls how many path segments are preserved during the redirect:
+
+| Deployment Type | Base Path | pathSegmentsToKeep |
+|-----------------|-----------|-------------------|
+| Subdirectory (`username.github.io/repo/`) | `/repo/` | `1` |
+| Custom domain (`example.com/`) | `/` | `0` |
+| Root user site (`username.github.io/`) | `/` | `0` |
+
+**Example**: For `https://wtasg.github.io/candi/colors`:
+
+- With `pathSegmentsToKeep = 1`: Preserves `/candi/`, redirects to `/candi/?/colors`
+- With `pathSegmentsToKeep = 0`: Would incorrectly lose the `/candi/` segment
+
+**Both must match**: If you change `base` in `vite.config.js`, you must also change `pathSegmentsToKeep` in `404.html`.
 
 ---
 
