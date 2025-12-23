@@ -29,6 +29,11 @@ module.exports = {
             success: 'var(--candi-success)',
             warning: 'var(--candi-warning)',
             error: 'var(--candi-error)',
+            info: 'var(--candi-info)',
+            link: 'var(--candi-link)',
+            disabled: 'var(--candi-disabled)',
+            overlay: 'var(--candi-overlay)',
+            'focus-ring': 'var(--candi-focus-ring)',
         },
     },
 

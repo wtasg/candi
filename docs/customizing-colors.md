@@ -45,6 +45,20 @@ Redefine CSS variables after importing Candi:
 - **160-240**: Blue/Cyan
 - **270-320**: Purple
 
+## Accessibility & Contrast
+
+Maintaining high accessibility is a priority in the Candi design system. When customizing colors, please keep the following WCAG 2.1 contrast ratios in mind:
+
+- **Primary Text**: We target a **4.5:1** ratio against the `bg` color (WCAG AA). This applies to the `text` token.
+- **Subtle / Muted Text**: These tokens (`text-subtle`, `text-muted`) may fall below 4.5:1 for decorative purposes but should remain legible.
+- **UI Components & Accents**: For focus rings, buttons, and state indicators (`accent`, `success`, `error`), we target a **3.0:1** ratio. This meets the WCAG requirement for user interface components and graphical objects.
+
+You can verify your custom colors by running the automated test suite:
+
+```bash
+npm run test:color
+```
+
 ## Tailwind Usage
 
 Variables are automatically mapped to Tailwind utilities:

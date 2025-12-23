@@ -24,6 +24,17 @@ Candi uses **OKLCH** as its primary color space instead of Hex codes. Benefits i
 - **Perceptual Uniformity**: Consistent contrast and brightness across the palette.
 - **Synchronized Themes**: Updates to `src/css/base.css` propagate to all platforms via `npm run build:all`.
 - **Shared Logic**: Centralized conversion in `scripts/color-conv.js` ensures color accuracy across Chrome, VS Code, and mobile.
+- **Automated Accessibility**: Integrated WCAG 2.1 contrast ratio validation in the build pipeline.
+
+---
+
+## Design & Accessibility
+
+Candi is built with accessibility as a core requirement:
+
+- **WCAG Standards**: Our color extraction pipeline automatically validates contrast ratios between text and backgrounds.
+- **Primary Text**: Aimed at **4.5:1** contrast (WCAG AA) for standard text.
+- **UI Elements**: Accents and status indicators (Success/Warning/Error) are tuned for **3.0:1** contrast (WCAG Graphical Objects) to maintain the soft Scandinavian aesthetic without sacrificing usability.
 
 ---
 
