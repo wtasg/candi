@@ -52,23 +52,23 @@ function hexToXterm256(hex) {
     const r = parseInt(hex.slice(1, 3), 16);
     const g = parseInt(hex.slice(3, 5), 16);
     const b = parseInt(hex.slice(5, 7), 16);
-    
+
     // Check for grayscale (approximate)
     const avg = (r + g + b) / 3;
     const isGray = Math.abs(r - avg) < 10 && Math.abs(g - avg) < 10 && Math.abs(b - avg) < 10;
-    
+
     if (isGray) {
         // Use grayscale ramp (232-255)
         if (avg < 8) return 16; // black
-        if (avg > 247) return 231; // white
-        return Math.round(232 + (avg - 8) / 10);
+        if (avg > 248) return 231; // white
+        return Math.min(255, Math.round(232 + (avg - 8) / 10));
     }
-    
+
     // Convert to 6x6x6 color cube (16-231)
     const rIndex = Math.round(r / 255 * 5);
     const gIndex = Math.round(g / 255 * 5);
     const bIndex = Math.round(b / 255 * 5);
-    
+
     return 16 + (36 * rIndex) + (6 * gIndex) + bIndex;
 }
 
@@ -78,7 +78,7 @@ function generateVimTheme(name, background, palette) {
         const fg = fgKey ? palette[fgKey] : null;
         const bg = bgKey ? palette[bgKey] : null;
         let line = `hi ${group.padEnd(18)}`;
-        
+
         if (fg) {
             line += ` guifg=${fg} ctermfg=${hexToXterm256(fg)}`;
         }
@@ -90,7 +90,7 @@ function generateVimTheme(name, background, palette) {
         }
         return line;
     };
-    
+
     return `" Candi ${name} Colorscheme
 " Generated from Candi Design System
 

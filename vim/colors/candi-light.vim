@@ -10,13 +10,13 @@ let g:colors_name = "candi-light"
 set background=light
 
 " UI Highlighting
-hi Normal             guifg=#232A30 ctermfg=235 guibg=#FBF8F2 ctermbg=256
+hi Normal             guifg=#232A30 ctermfg=235 guibg=#FBF8F2 ctermbg=255
 hi CursorLine         guibg=#F4F0E7 ctermbg=255
-hi LineNr             guifg=#83878B ctermfg=245 guibg=#FBF8F2 ctermbg=256
-hi CursorLineNr       guifg=#437085 ctermfg=67 guibg=#FBF8F2 ctermbg=256
+hi LineNr             guifg=#83878B ctermfg=245 guibg=#FBF8F2 ctermbg=255
+hi CursorLineNr       guifg=#437085 ctermfg=67 guibg=#FBF8F2 ctermbg=255
 hi Visual             guifg=#FFFFFF ctermfg=231 guibg=#437085 ctermbg=67
 hi Search             guifg=#FFFFFF ctermfg=231 guibg=#B0652A ctermbg=137
-hi VertSplit          guifg=#E0DED8 ctermfg=253 guibg=#FBF8F2 ctermbg=256
+hi VertSplit          guifg=#E0DED8 ctermfg=253 guibg=#FBF8F2 ctermbg=255
 hi StatusLine         guifg=#232A30 ctermfg=235 guibg=#F4F0E7 ctermbg=255
 hi StatusLineNC       guifg=#83878B ctermfg=245 guibg=#F4F0E7 ctermbg=255
 hi Pmenu              guifg=#232A30 ctermfg=235 guibg=#F4F0E7 ctermbg=255
