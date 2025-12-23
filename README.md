@@ -4,6 +4,8 @@ A Tailwind CSS design system based on Nordic design principles: Hygge (warmth) a
 
 Candi provides a single source of truth for colors using the OKLCH color space, synchronized across Web, Flutter, VS Code, and Vim.
 
+📚 **[View Documentation Website](https://wtasg.github.io/candi/)** - Interactive color explorer, component playground, and comprehensive guides.
+
 ---
 
 ## Multi-Platform Support
