@@ -97,3 +97,35 @@ This avoids `npm link` complexity and works in CI.
 ```
 
 See `website/public/404.html` for full implementation.
+
+---
+
+## OKLab/OKLCH Color Conversion
+
+**Problem**: OKLCH to RGB conversion produces incorrect colors for some values
+
+**Cause**: Clamping negative LMS values to zero before cubing:
+
+```javascript
+// ✗ Wrong - loses negative values
+const L = Math.pow(Math.max(0, l_), 3);
+```
+
+**Why it matters**: The OKLab color space uses LMS (cone response) values that can be negative for out-of-gamut or mathematically extended colors. Clamping before cubing corrupts the conversion.
+
+**Solution**: Use signed cube (preserves sign through multiplication):
+
+```javascript
+// ✓ Correct - preserves sign
+const L = l_ * l_ * l_;  // negative³ = negative
+const M = m_ * m_ * m_;
+const S = s_ * s_ * s_;
+```
+
+Then clamp at the **final RGB output stage**:
+
+```javascript
+r = Math.round(Math.min(1, Math.max(0, gamma(r))) * 255);
+```
+
+**Reference**: [bottosson.github.io/posts/oklab](https://bottosson.github.io/posts/oklab/)

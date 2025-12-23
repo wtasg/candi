@@ -31,26 +31,44 @@ export default function Components() {
             Error
           </button>
         </div>
-        
+
         <button
           onClick={() => toggleCode('button')}
           className="text-sm text-candi-accent hover:underline"
         >
           {showCode.button ? 'Hide Code' : 'Show Code'}
         </button>
-        
+
         {showCode.button && (
           <pre className="mt-4 text-sm">
-            <code>{`<button className="px-6 py-3 bg-candi-accent text-white rounded-soft font-medium hover:opacity-90 transition-opacity shadow-hygge">
+            <code>{`{/* Primary */}
+<button className="px-6 py-3 bg-candi-accent text-white rounded-soft font-medium hover:opacity-90 transition-opacity shadow-hygge">
   Primary Button
 </button>
 
+{/* Secondary */}
 <button className="px-6 py-3 bg-candi-secondary text-white rounded-soft font-medium hover:opacity-90 transition-opacity shadow-hygge">
   Secondary Button
 </button>
 
+{/* Outline */}
 <button className="px-6 py-3 border-2 border-candi-border-strong text-candi-text rounded-soft font-medium hover:bg-candi-surface transition-colors">
   Outline Button
+</button>
+
+{/* Ghost */}
+<button className="px-6 py-3 text-candi-text rounded-soft font-medium hover:bg-candi-surface transition-colors">
+  Ghost Button
+</button>
+
+{/* Success */}
+<button className="px-6 py-3 bg-candi-success text-white rounded-soft font-medium hover:opacity-90 transition-opacity shadow-hygge">
+  Success
+</button>
+
+{/* Error */}
+<button className="px-6 py-3 bg-candi-error text-white rounded-soft font-medium hover:opacity-90 transition-opacity shadow-hygge">
+  Error
 </button>`}</code>
           </pre>
         )}
@@ -84,7 +102,7 @@ export default function Components() {
           </div>
 
           <div className="bg-candi-elevated border border-candi-border rounded-softer p-6 shadow-hygge">
-            <div className="w-12 h-12 rounded-soft flex items-center justify-center mb-4" style={{backgroundColor: 'oklch(85% 0.04 145)'}}>
+            <div className="w-12 h-12 rounded-soft flex items-center justify-center mb-4" style={{ backgroundColor: 'oklch(85% 0.04 145)' }}>
               <svg className="w-6 h-6 text-candi-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
@@ -204,13 +222,13 @@ export default function Components() {
           <span className="px-3 py-1 bg-candi-secondary-subtle text-candi-secondary text-sm font-medium rounded-full">
             Secondary
           </span>
-          <span className="px-3 py-1 text-candi-success text-sm font-medium rounded-full" style={{backgroundColor: 'oklch(85% 0.04 145)'}}>
+          <span className="px-3 py-1 text-candi-success text-sm font-medium rounded-full" style={{ backgroundColor: 'oklch(85% 0.04 145)' }}>
             Success
           </span>
-          <span className="px-3 py-1 text-candi-warning text-sm font-medium rounded-full" style={{backgroundColor: 'oklch(95% 0.04 70)'}}>
+          <span className="px-3 py-1 text-candi-warning text-sm font-medium rounded-full" style={{ backgroundColor: 'oklch(95% 0.04 70)' }}>
             Warning
           </span>
-          <span className="px-3 py-1 text-candi-error text-sm font-medium rounded-full" style={{backgroundColor: 'oklch(95% 0.04 25)'}}>
+          <span className="px-3 py-1 text-candi-error text-sm font-medium rounded-full" style={{ backgroundColor: 'oklch(95% 0.04 25)' }}>
             Error
           </span>
         </div>
@@ -264,7 +282,7 @@ export default function Components() {
               </div>
             </div>
 
-            <div className="p-4 rounded-soft" style={{backgroundColor: 'oklch(85% 0.04 145)', borderColor: 'oklch(52% 0.08 145)', borderWidth: '1px'}}>
+            <div className="p-4 rounded-soft" style={{ backgroundColor: 'oklch(85% 0.04 145)', borderColor: 'oklch(52% 0.08 145)', borderWidth: '1px' }}>
               <div className="flex gap-3">
                 <svg className="w-5 h-5 text-candi-success flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -276,7 +294,7 @@ export default function Components() {
               </div>
             </div>
 
-            <div className="p-4 rounded-soft" style={{backgroundColor: 'oklch(95% 0.04 70)', borderColor: 'oklch(68% 0.13 70)', borderWidth: '1px'}}>
+            <div className="p-4 rounded-soft" style={{ backgroundColor: 'oklch(95% 0.04 70)', borderColor: 'oklch(68% 0.13 70)', borderWidth: '1px' }}>
               <div className="flex gap-3">
                 <svg className="w-5 h-5 text-candi-warning flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
@@ -288,7 +306,7 @@ export default function Components() {
               </div>
             </div>
 
-            <div className="p-4 rounded-soft" style={{backgroundColor: 'oklch(95% 0.04 25)', borderColor: 'oklch(58% 0.12 25)', borderWidth: '1px'}}>
+            <div className="p-4 rounded-soft" style={{ backgroundColor: 'oklch(95% 0.04 25)', borderColor: 'oklch(58% 0.12 25)', borderWidth: '1px' }}>
               <div className="flex gap-3">
                 <svg className="w-5 h-5 text-candi-error flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
