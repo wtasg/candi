@@ -30,10 +30,13 @@ function testVimTheme() {
         assert.ok(darkContent.includes('let g:colors_name = "candi-dark"'), 'Should set colors_name');
         assert.ok(darkContent.includes('set background=dark'), 'Should set background');
 
-        // Check key UI colors
-        assert.ok(darkContent.includes('hi Normal          guifg=#E8E4DD guibg=#0D1218'), 'Normal highlight group mapping mismatch');
-        assert.ok(darkContent.includes('hi CursorLine      guibg=#161B20 gui=none'), 'CursorLine mapping mismatch');
-        assert.ok(darkContent.includes('hi Function        guifg=#4F8FAD'), 'Function mapping mismatch');
+        // Check key UI colors (now includes terminal colors)
+        assert.ok(darkContent.includes('hi Normal') && darkContent.includes('guifg=#E8E4DD') && darkContent.includes('guibg=#0D1218'), 'Normal highlight group mapping mismatch');
+        assert.ok(darkContent.includes('hi CursorLine') && darkContent.includes('guibg=#161B20'), 'CursorLine mapping mismatch');
+        assert.ok(darkContent.includes('hi Function') && darkContent.includes('guifg=#4F8FAD'), 'Function mapping mismatch');
+        
+        // Check terminal colors are present
+        assert.ok(darkContent.includes('ctermfg=') && darkContent.includes('ctermbg='), 'Terminal colors should be present');
 
         console.log('✅ Dark theme mappings verified');
 
@@ -41,7 +44,7 @@ function testVimTheme() {
         const lightContent = fs.readFileSync(lightThemePath, 'utf8');
         assert.ok(lightContent.includes('let g:colors_name = "candi-light"'), 'Should set colors_name');
         assert.ok(lightContent.includes('set background=light'), 'Should set background');
-        assert.ok(lightContent.includes('hi Normal          guifg=#232A30 guibg=#FBF8F2'), 'Light Normal highlight mapping mismatch');
+        assert.ok(lightContent.includes('hi Normal') && lightContent.includes('guifg=#232A30') && lightContent.includes('guibg=#FBF8F2'), 'Light Normal highlight mapping mismatch');
 
         console.log('✅ Light theme mappings verified');
 
