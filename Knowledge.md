@@ -137,3 +137,27 @@ r = Math.round(Math.min(1, Math.max(0, gamma(r))) * 255);
 ```
 
 **Reference**: [bottosson.github.io/posts/oklab](https://bottosson.github.io/posts/oklab/)
+
+---
+
+## VS Code VSIX Packaging
+
+**Problem**: `.vsix` package size is unexpectedly large or contains unwanted files (like `node_modules`).
+
+**Cause**: `vsce package` includes everything by default unless excluded.
+
+**Solution**:
+
+1. Add `.vscodeignore` to exclude files.
+2. OR explicit use `"files"` array in `package.json` to include only necessary files.
+
+**Important**: `vsce` will warn if neither exists.
+
+```json
+// package.json in extension folder
+"files": [
+  "themes/*",
+  "package.json",
+  "icon.png"
+]
+```

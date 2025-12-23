@@ -63,7 +63,8 @@
         "flutter:pub-upgrade": "cd flutter && flutter pub upgrade",
         "flutter:pub-upgrade-dry-run": "cd flutter && flutter pub upgrade --dry-run",
         "flutter:pub-publish": "cd flutter && flutter pub publish",
-        "flutter:pub-publish-dry-run": "cd flutter && flutter pub publish --dry-run"
+        "flutter:pub-publish-dry-run": "cd flutter && flutter pub publish --dry-run",
+        "artifact": "node scripts/package-artifacts.js"
     },
     "peerDependencies": {
         "tailwindcss": ">=3.0.0 || >=4.0.0"

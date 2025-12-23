@@ -48,6 +48,12 @@ Candi is built with accessibility as a core requirement:
   - Validates color accuracy and platform-specific exports.
 - **Package VS Code**: `npm run vscode:package`
   - Generates a `.vsix` file.
+- **Generate Artifacts**: `npm run artifact`
+  - Builds all platforms and packages them into zip archives:
+    - `theme.zip` (CSS & JS distributions)
+    - `docs.zip` (Documentation website)
+    - `vim.zip` (Vim color schemes)
+    - `vscode/vscode-theme-candi-*.vsix` (VS Code extension)
 
 ---
 

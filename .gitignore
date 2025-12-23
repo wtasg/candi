@@ -21,3 +21,7 @@ vscode/vscode-theme-candi-*.vsix
 # OS
 .DS_Store
 Thumbs.db
+
+## artifacts
+*.zip
+*.vsix
