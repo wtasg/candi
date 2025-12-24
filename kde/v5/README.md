@@ -43,6 +43,6 @@ The color scheme files define colors for:
 
 All colors are derived from the Candi Design System's OKLCH color space and converted to RGB for KDE compatibility.
 
-## Notes
+## Compatibility
 
-The color scheme format is the same for KDE Plasma 5 and 6, so these files should work on both versions.
+While the color scheme format remains compatible across Plasma 5 and 6, color schemes should be updated to include new Plasma 6 color roles for optimal compatibility. These files will work on both versions, but may display visual regressions on Plasma 6 if they don't account for new color roles introduced in that version.

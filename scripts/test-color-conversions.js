@@ -40,7 +40,7 @@ function extractColors(content, mode) {
 if (rootMatch) extractColors(rootMatch[1], 'light');
 if (darkMatch) extractColors(darkMatch[1], 'dark');
 
-console.log(`✅ Extracted ${allColors.length} colors (${allColors.filter(c => c.mode === 'light').length} light, ${allColors.filter(c => c.mode === 'dark').length} dark)\n`);
+console.log(`[✓] Extracted ${allColors.length} colors (${allColors.filter(c => c.mode === 'light').length} light, ${allColors.filter(c => c.mode === 'dark').length} dark)\n`);
 
 // Test 2: All colors convert without errors
 console.log('[Test 2] Verifying all colors convert without errors...');
@@ -60,16 +60,16 @@ for (const color of allColors) {
             result
         });
     } catch (err) {
-        console.error(`❌ Failed to convert ${color.mode}:${color.name} (${color.oklch})`);
+        console.error(`[✗] Failed to convert ${color.mode}:${color.name} (${color.oklch})`);
         console.error(`   Error: ${err.message}`);
         errorCount++;
     }
 }
 
 if (errorCount === 0) {
-    console.log(`✅ All ${allColors.length} colors converted successfully\n`);
+    console.log(`[✓] All ${allColors.length} colors converted successfully\n`);
 } else {
-    console.error(`❌ ${errorCount} colors failed to convert\n`);
+    console.error(`[✗] ${errorCount} colors failed to convert\n`);
     process.exit(1);
 }
 
@@ -81,23 +81,23 @@ for (const conv of conversions) {
     const { r, g, b } = conv.result;
 
     if (r < 0 || r > 255) {
-        console.error(`❌ ${conv.mode}:${conv.name} - Red out of range: ${r}`);
+        console.error(`[✗] ${conv.mode}:${conv.name} - Red out of range: ${r}`);
         rangeErrors++;
     }
     if (g < 0 || g > 255) {
-        console.error(`❌ ${conv.mode}:${conv.name} - Green out of range: ${g}`);
+        console.error(`[✗] ${conv.mode}:${conv.name} - Green out of range: ${g}`);
         rangeErrors++;
     }
     if (b < 0 || b > 255) {
-        console.error(`❌ ${conv.mode}:${conv.name} - Blue out of range: ${b}`);
+        console.error(`[✗] ${conv.mode}:${conv.name} - Blue out of range: ${b}`);
         rangeErrors++;
     }
 }
 
 if (rangeErrors === 0) {
-    console.log(`✅ All RGB values within valid range\n`);
+    console.log(`[✓] All RGB values within valid range\n`);
 } else {
-    console.error(`❌ ${rangeErrors} RGB values out of range\n`);
+    console.error(`[✗] ${rangeErrors} RGB values out of range\n`);
     process.exit(1);
 }
 
@@ -142,7 +142,7 @@ for (const conv of conversions) {
     const clipping = detectClipping(l, c, h);
 
     if (clipping.clipped) {
-        console.log(`⚠️  ${conv.mode}:${conv.name} - Out of sRGB gamut (clipped)`);
+        console.log(`[WARN] ${conv.mode}:${conv.name} - Out of sRGB gamut (clipped)`);
         console.log(`   OKLCH: ${conv.oklch}`);
         console.log(`   Pre-clamp RGB: ${clipping.r.toFixed(4)}, ${clipping.g.toFixed(4)}, ${clipping.b.toFixed(4)}`);
         clippedCount++;
@@ -150,9 +150,9 @@ for (const conv of conversions) {
 }
 
 if (clippedCount === 0) {
-    console.log(`✅ All colors within sRGB gamut (no clipping)\n`);
+    console.log(`[✓] All colors within sRGB gamut (no clipping)\n`);
 } else {
-    console.log(`⚠️  ${clippedCount} colors required gamut clipping\n`);
+    console.log(`[WARN] ${clippedCount} colors required gamut clipping\n`);
 }
 
 // Test 5: Known reference conversions
@@ -172,9 +172,9 @@ for (const test of referenceTests) {
     const result = parseOklch(test.oklch);
 
     if (result.r === test.expected.r && result.g === test.expected.g && result.b === test.expected.b) {
-        console.log(`✅ ${test.name}: rgb(${result.r}, ${result.g}, ${result.b})`);
+        console.log(`[✓] ${test.name}: rgb(${result.r}, ${result.g}, ${result.b})`);
     } else {
-        console.error(`❌ ${test.name}:`);
+        console.error(`[✗] ${test.name}:`);
         console.error(`   Expected: rgb(${test.expected.r}, ${test.expected.g}, ${test.expected.b})`);
         console.error(`   Got:      rgb(${result.r}, ${result.g}, ${result.b})`);
         refErrors++;
@@ -182,7 +182,7 @@ for (const test of referenceTests) {
 }
 
 if (refErrors > 0) {
-    console.error(`\n❌ ${refErrors} reference tests failed`);
+    console.error(`\n[✗] ${refErrors} reference tests failed`);
     process.exit(1);
 }
 console.log();
@@ -243,17 +243,17 @@ for (const conv of conversions.slice(0, 10)) { // Test first 10 colors
     const bDiff = Math.abs(b - roundTrip.b);
 
     if (rDiff <= tolerance && gDiff <= tolerance && bDiff <= tolerance) {
-        console.log(`✅ ${conv.mode}:${conv.name} - Round-trip within tolerance`);
+        console.log(`[✓] ${conv.mode}:${conv.name} - Round-trip within tolerance`);
     } else {
-        console.log(`⚠️  ${conv.mode}:${conv.name} - Round-trip difference: ΔR=${rDiff}, ΔG=${gDiff}, ΔB=${bDiff}`);
+        console.log(`[WARN] ${conv.mode}:${conv.name} - Round-trip difference: ΔR=${rDiff}, ΔG=${gDiff}, ΔB=${bDiff}`);
         roundTripErrors++;
     }
 }
 
 if (roundTripErrors > 0) {
-    console.log(`\n⚠️  ${roundTripErrors} colors had round-trip differences > ±${tolerance}\n`);
+    console.log(`\n[WARN] ${roundTripErrors} colors had round-trip differences > \u00b1${tolerance}\n`);
 } else {
-    console.log(`\n✅ All tested colors round-trip within ±${tolerance} tolerance\n`);
+    console.log(`\n[✓] All tested colors round-trip within \u00b1${tolerance} tolerance\n`);
 }
 
 // Test 7: Hex formatting
@@ -264,8 +264,8 @@ const hex8 = toHex8(testColor);
 
 assert.strictEqual(hex6, '#437085', 'toHex6 should format correctly');
 assert.strictEqual(hex8, '0XFF437085', 'toHex8 should format correctly (Flutter format)');
-console.log(`✅ toHex6: ${hex6}`);
-console.log(`✅ toHex8: ${hex8}\n`);
+console.log(`[✓] toHex6: ${hex6}`);
+console.log(`[✓] toHex8: ${hex8}\n`);
 
 // Summary
 console.log('='.repeat(50));
@@ -277,4 +277,4 @@ console.log(`Range violations: 0`);
 console.log(`Colors clipped to sRGB gamut: ${clippedCount}`);
 console.log(`Reference test failures: 0`);
 console.log(`Round-trip tests: 10 (tolerance: ±${tolerance})`);
-console.log('\n✅ All color conversion tests passed!\n');
+console.log('\n[✓] All color conversion tests passed!\n');

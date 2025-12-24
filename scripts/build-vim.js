@@ -153,6 +153,6 @@ if (!fs.existsSync(colorsDir)) fs.mkdirSync(colorsDir);
 fs.writeFileSync(path.join(colorsDir, 'candi-light.vim'), generateVimTheme('Light', 'light', lightColors));
 fs.writeFileSync(path.join(colorsDir, 'candi-dark.vim'), generateVimTheme('Dark', 'dark', darkColors));
 
-console.log('✓ Build complete!');
+console.log('Build complete!');
 console.log('  - Generated vim/colors/candi-light.vim');
 console.log('  - Generated vim/colors/candi-dark.vim');

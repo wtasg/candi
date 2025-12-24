@@ -92,7 +92,7 @@ if (!fs.existsSync(v4Dir)) {
 const v4ThemeContent = fs.readFileSync(path.join(srcDir, 'v4', 'theme.css'), 'utf8');
 fs.writeFileSync(path.join(v4Dir, 'theme.css'), v4ThemeContent);
 
-console.log('✓ Build complete!');
+console.log('Build complete!');
 console.log('  - dist/index.js, dist/index.mjs');
 console.log('  - dist/theme.js, dist/theme.mjs');
 console.log('  - dist/plugin.js, dist/plugin.mjs');

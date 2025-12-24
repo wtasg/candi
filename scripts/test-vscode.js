@@ -22,14 +22,14 @@ function testExtension() {
         assert.ok(fs.existsSync(pkgPath), 'package.json should exist');
         assert.ok(fs.existsSync(lightThemePath), 'Light theme JSON should exist');
         assert.ok(fs.existsSync(darkThemePath), 'Dark theme JSON should exist');
-        console.log('✅ Structure verified');
+        console.log('[✓] Structure verified');
 
         // 2. Validate package.json
         const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
         assert.equal(pkg.name, 'vscode-theme-candi');
         assert.ok(pkg.contributes && pkg.contributes.themes, 'package.json should contribute themes');
         assert.equal(pkg.contributes.themes.length, 2);
-        console.log('✅ package.json contributions verified');
+        console.log('[✓] package.json contributions verified');
 
         // 3. Validate Theme Contents (Dark Theme example)
         const darkTheme = JSON.parse(fs.readFileSync(darkThemePath, 'utf8'));
@@ -45,12 +45,12 @@ function testExtension() {
         assert.ok(keywordToken, 'Theme should highlight keywords');
         assert.equal(keywordToken.settings.foreground, '#4F8FAD');
 
-        console.log('✅ Theme color mappings verified');
+        console.log('[✓] Theme color mappings verified');
 
         console.log('\nResult: All VS Code validation tests passed.');
         return true;
     } catch (err) {
-        console.error('\n❌ Validation failed:', err.message);
+        console.error('\n[✗] Validation failed:', err.message);
         process.exit(1);
     }
 }

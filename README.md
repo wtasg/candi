@@ -4,7 +4,7 @@ A Tailwind CSS design system based on Nordic design principles: Hygge (warmth) a
 
 Candi provides a single source of truth for colors using the OKLCH color space, synchronized across Web, Flutter, VS Code, and Vim.
 
-📚 **[View Documentation Website](https://wtasg.github.io/candi/)** - Interactive color explorer, component playground, and comprehensive guides.
+**[View Documentation Website](https://wtasg.github.io/candi/)** - Interactive color explorer, component playground, and comprehensive guides.
 
 ---
 
@@ -16,7 +16,7 @@ Candi provides a single source of truth for colors using the OKLCH color space, 
 | **Flutter** | Full | Type-safe `CandiColors` with OKLCH metadata |
 | **VS Code** | Full | Light & Dark themes with unified syntax highlighting |
 | **Vim** | Full | Standalone `.vim` colorschemes (GUI & Terminal) |
-| **KDE Plasma** | Full | Color schemes for KDE 4, 5 & 6 |
+| **KDE Plasma** | Full | Color schemes for KDE 4, 5 & 6 (Plasma 6 color roles recommended) |
 
 ---
 
@@ -29,7 +29,7 @@ Candi uses **OKLCH** as its primary color space instead of Hex codes. Benefits i
 - **Shared Logic**: Centralized conversion in `scripts/color-conv.js` ensures color accuracy across Chrome, VS Code, and mobile.
 - **Automated Accessibility**: Integrated WCAG 2.1 contrast ratio validation in the build pipeline.
 
-📖 **[Learn more about OKLCH color conversion](docs/color-conversion.md)** - Detailed explanation of the conversion pipeline and verification methods.
+**[Learn more about OKLCH color conversion](docs/color-conversion.md)** - Detailed explanation of the conversion pipeline and verification methods.
 
 ---
 
@@ -62,6 +62,8 @@ Candi is built with accessibility as a core requirement:
 ---
 
 ## Installation & Usage
+
+**[Using Prebuilt Releases](docs/using-release-artifacts.md)** - Download ready-to-use artifacts from GitHub releases (recommended for most users).
 
 ### Web (Tailwind CSS)
 
@@ -104,21 +106,7 @@ module.exports = {
 
 ### KDE Plasma
 
-**Installation:**
-
-1. Copy the color scheme files to your KDE color schemes directory:
-
-   ```bash
-   # For KDE Plasma 5/6
-   cp kde/v5/*.colors ~/.local/share/color-schemes/
-   
-   # For KDE Plasma 4
-   cp kde/v4/*.colors ~/.kde4/share/apps/color-schemes/
-   ```
-
-2. Apply via System Settings → Appearance → Colors
-
-See [kde/v5/README.md](kde/v5/README.md) and [kde/v4/README.md](kde/v4/README.md) for detailed instructions.
+[KDE Theme Guide](docs/kde-theme.md)
 
 ---
 

@@ -52,6 +52,49 @@ function formatRgb(color) {
     return `${color.r},${color.g},${color.b}`;
 }
 
+/**
+ * Validate that all required color palette keys exist
+ */
+function validatePalette(palette, themeName) {
+    const requiredKeys = [
+        'bg',
+        'surface',
+        'elevated',
+        'text',
+        'text-subtle',
+        'text-muted',
+        'border',
+        'accent',
+        'accent-subtle',
+        'secondary',
+        'success',
+        'warning',
+        'error',
+        'link',
+        'disabled'
+    ];
+
+    const missingKeys = requiredKeys.filter(key => !palette[key]);
+
+    if (missingKeys.length > 0) {
+        console.error(`\x1b[31mError: Missing required color keys in ${themeName} palette:\x1b[0m`);
+        missingKeys.forEach(key => {
+            console.error(`  - --candi-${key}`);
+        });
+        console.error('\nPlease ensure all required color variables are defined in src/css/base.css');
+        process.exit(1);
+    }
+
+    // Warn about any undefined RGB values
+    requiredKeys.forEach(key => {
+        const color = palette[key];
+        if (color && (color.r === undefined || color.g === undefined || color.b === undefined)) {
+            console.warn(`\x1b[33mWarning: Color '${key}' has undefined RGB values\x1b[0m`);
+        }
+    });
+}
+
+
 function generateKdeTheme(name, background, palette) {
     // KDE uses specific color roles for different UI elements
     const bgNormal = formatRgb(palette['bg']);
@@ -182,12 +225,49 @@ inactiveBlend=${surface}
 `;
 }
 
-// Ensure directories exist
-if (!fs.existsSync(kdeDir)) fs.mkdirSync(kdeDir);
-if (!fs.existsSync(v4Dir)) fs.mkdirSync(v4Dir);
-if (!fs.existsSync(v5Dir)) fs.mkdirSync(v5Dir);
+/**
+ * Ensure directory exists with proper error handling
+ */
+function ensureDir(dirPath) {
+    if (fs.existsSync(dirPath)) return;
 
-// 2. Generate Themes for both v4 and v5 (same format, different directories)
+    try {
+        fs.mkdirSync(dirPath, { recursive: true });
+    } catch (err) {
+        let message = `Failed to create directory: ${dirPath}`;
+
+        switch (err.code) {
+            case 'EACCES':
+                message += '\n  Cause: Permission denied. Check write permissions for the parent directory.';
+                break;
+            case 'ENOSPC':
+                message += '\n  Cause: No space left on device. Free up disk space and try again.';
+                break;
+            case 'EROFS':
+                message += '\n  Cause: Read-only file system. Cannot create directories here.';
+                break;
+            case 'ENOTDIR':
+                message += '\n  Cause: A component of the path is not a directory.';
+                break;
+            default:
+                message += `\n  Cause: ${err.message}`;
+        }
+
+        console.error(`\x1b[31mError: ${message}\x1b[0m`);
+        process.exit(1);
+    }
+}
+
+// Ensure directories exist
+ensureDir(kdeDir);
+ensureDir(v4Dir);
+ensureDir(v5Dir);
+
+// 2. Validate palettes before generating themes
+validatePalette(lightColors, 'Light');
+validatePalette(darkColors, 'Dark');
+
+// 3. Generate Themes for both v4 and v5 (same format, different directories)
 const lightTheme = generateKdeTheme('Light', 'light', lightColors);
 const darkTheme = generateKdeTheme('Dark', 'dark', darkColors);
 
@@ -196,7 +276,7 @@ fs.writeFileSync(path.join(v4Dir, 'CandiDark.colors'), darkTheme);
 fs.writeFileSync(path.join(v5Dir, 'CandiLight.colors'), lightTheme);
 fs.writeFileSync(path.join(v5Dir, 'CandiDark.colors'), darkTheme);
 
-console.log('✓ Build complete!');
+console.log('Build complete!');
 console.log('  - Generated kde/v4/CandiLight.colors');
 console.log('  - Generated kde/v4/CandiDark.colors');
 console.log('  - Generated kde/v5/CandiLight.colors');

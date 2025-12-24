@@ -20,7 +20,7 @@ function testVimTheme() {
         assert.ok(fs.existsSync(vimColorsDir), 'vim/colors directory should exist');
         assert.ok(fs.existsSync(lightThemePath), 'candi-light.vim should exist');
         assert.ok(fs.existsSync(darkThemePath), 'candi-dark.vim should exist');
-        console.log('✅ Structure verified');
+        console.log('[✓] Structure verified');
 
         // 2. Validate dark theme contents
         const darkContent = fs.readFileSync(darkThemePath, 'utf8');
@@ -34,11 +34,11 @@ function testVimTheme() {
         assert.ok(darkContent.includes('hi Normal') && darkContent.includes('guifg=#E8E4DD') && darkContent.includes('guibg=#0D1218'), 'Normal highlight group mapping mismatch');
         assert.ok(darkContent.includes('hi CursorLine') && darkContent.includes('guibg=#161B20'), 'CursorLine mapping mismatch');
         assert.ok(darkContent.includes('hi Function') && darkContent.includes('guifg=#4F8FAD'), 'Function mapping mismatch');
-        
+
         // Check terminal colors are present
         assert.ok(darkContent.includes('ctermfg=') && darkContent.includes('ctermbg='), 'Terminal colors should be present');
 
-        console.log('✅ Dark theme mappings verified');
+        console.log('[✓] Dark theme mappings verified');
 
         // 3. Validate light theme contents
         const lightContent = fs.readFileSync(lightThemePath, 'utf8');
@@ -46,12 +46,12 @@ function testVimTheme() {
         assert.ok(lightContent.includes('set background=light'), 'Should set background');
         assert.ok(lightContent.includes('hi Normal') && lightContent.includes('guifg=#232A30') && lightContent.includes('guibg=#FBF8F2'), 'Light Normal highlight mapping mismatch');
 
-        console.log('✅ Light theme mappings verified');
+        console.log('[✓] Light theme mappings verified');
 
         console.log('\nResult: All Vim validation tests passed.');
         return true;
     } catch (err) {
-        console.error('\n❌ Validation failed:', err.message);
+        console.error('\n[✗] Validation failed:', err.message);
         process.exit(1);
     }
 }

@@ -233,7 +233,7 @@ Enter `oklch(98% 0.008 85)` and compare RGB output.
 Due to rounding differences, expect ±1 variation in RGB values between implementations. For example:
 
 - Our converter: `rgb(251, 248, 242)`
-- External tool: `rgb(251, 248, 243)` ✅ Within tolerance
+- External tool: `rgb(251, 248, 243)` (within tolerance)
 
 ---
 
