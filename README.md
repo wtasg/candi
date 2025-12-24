@@ -121,6 +121,8 @@ This package is published to GitHub Packages. To install it, you need to authent
    @wtasg:registry=https://npm.pkg.github.com
    ```
 
+**[Using Prebuilt Releases](docs/using-release-artifacts.md)** - Download ready-to-use artifacts from GitHub releases (recommended for most users).
+
 ### Web (Tailwind CSS)
 
 ```bash
