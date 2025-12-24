@@ -1,0 +1,610 @@
+#!/usr/bin/env node
+/**
+ * Build script for GNOME themes from Candi colors.
+ *
+ * Extracts OKLCH colors from src/css/base.css, converts to RGB/CSS,
+ * and generates GTK3/GTK4 theme files in gnome/.
+ */
+
+const fs = require('fs');
+const path = require('path');
+
+const baseCssPath = path.join(__dirname, '..', 'src', 'css', 'base.css');
+const gnomeDir = path.join(__dirname, '..', 'gnome');
+const gtk3Dir = path.join(gnomeDir, 'gtk-3.0');
+const gtk4Dir = path.join(gnomeDir, 'gtk-4.0');
+
+const { parseOklch, oklchToRgb } = require('./color-conv');
+
+// 1. Read CSS
+const css = fs.readFileSync(baseCssPath, 'utf8');
+
+const lightColors = {};
+const darkColors = {};
+
+const rootMatch = css.match(/:root\s*{([^}]+)}/i);
+const darkMatch = css.match(/\.dark\s*{([^}]+)}/i);
+
+if (!rootMatch || !darkMatch) {
+    console.error('Failed to find :root or .dark blocks in CSS');
+    process.exit(1);
+}
+
+function extractColors(content, target) {
+    let match;
+    const regex = /--candi-([\w-]+):\s*(oklch\([^)]+\))/gi;
+    while ((match = regex.exec(content)) !== null) {
+        const key = match[1];
+        const data = parseOklch(match[2]);
+        if (data) {
+            target[key] = { r: data.r, g: data.g, b: data.b };
+        }
+    }
+}
+
+extractColors(rootMatch[1], lightColors);
+extractColors(darkMatch[1], darkColors);
+
+/**
+ * Format RGB values as CSS color (rgb(R, G, B))
+ */
+function formatRgb(color) {
+    return `rgb(${color.r}, ${color.g}, ${color.b})`;
+}
+
+/**
+ * Format RGB values as hex color (#RRGGBB)
+ */
+function toHex(color) {
+    const r = color.r.toString(16).padStart(2, '0');
+    const g = color.g.toString(16).padStart(2, '0');
+    const b = color.b.toString(16).padStart(2, '0');
+    return `#${r}${g}${b}`;
+}
+
+/**
+ * Validate that all required color palette keys exist
+ */
+function validatePalette(palette, themeName) {
+    const requiredKeys = [
+        'bg',
+        'surface',
+        'elevated',
+        'text',
+        'text-subtle',
+        'text-muted',
+        'border',
+        'accent',
+        'accent-subtle',
+        'secondary',
+        'success',
+        'warning',
+        'error',
+        'link',
+        'disabled'
+    ];
+
+    const missingKeys = requiredKeys.filter(key => !palette[key]);
+
+    if (missingKeys.length > 0) {
+        console.error(`\x1b[31mError: Missing required color keys in ${themeName} palette:\x1b[0m`);
+        missingKeys.forEach(key => {
+            console.error(`  - --candi-${key}`);
+        });
+        console.error('\nPlease ensure all required color variables are defined in src/css/base.css');
+        process.exit(1);
+    }
+
+    // Warn about any undefined RGB values
+    requiredKeys.forEach(key => {
+        const color = palette[key];
+        if (color && (color.r === undefined || color.g === undefined || color.b === undefined)) {
+            console.warn(`\x1b[33mWarning: Color '${key}' has undefined RGB values\x1b[0m`);
+        }
+    });
+}
+
+/**
+ * Generate GTK CSS theme with comprehensive widget styling
+ */
+function generateGtkCss(palette, isDark) {
+    const bg = formatRgb(palette['bg']);
+    const surface = formatRgb(palette['surface']);
+    const elevated = formatRgb(palette['elevated']);
+    const text = formatRgb(palette['text']);
+    const textSubtle = formatRgb(palette['text-subtle']);
+    const textMuted = formatRgb(palette['text-muted']);
+    const border = formatRgb(palette['border']);
+    const accent = formatRgb(palette['accent']);
+    const accentSubtle = formatRgb(palette['accent-subtle']);
+    const secondary = formatRgb(palette['secondary']);
+    const success = formatRgb(palette['success']);
+    const warning = formatRgb(palette['warning']);
+    const error = formatRgb(palette['error']);
+    const link = formatRgb(palette['link']);
+    const disabled = formatRgb(palette['disabled']);
+
+    return `/*
+ * Candi ${isDark ? 'Dark' : 'Light'} Theme for GTK
+ * Generated from OKLCH color space
+ */
+
+/* Color Definitions */
+@define-color theme_bg_color ${bg};
+@define-color theme_fg_color ${text};
+@define-color theme_base_color ${elevated};
+@define-color theme_text_color ${text};
+@define-color theme_selected_bg_color ${accent};
+@define-color theme_selected_fg_color ${elevated};
+
+@define-color borders ${border};
+@define-color warning_color ${warning};
+@define-color error_color ${error};
+@define-color success_color ${success};
+
+@define-color link_color ${link};
+@define-color theme_unfocused_fg_color ${textMuted};
+@define-color theme_unfocused_bg_color ${surface};
+@define-color theme_unfocused_base_color ${surface};
+@define-color theme_unfocused_text_color ${textSubtle};
+@define-color theme_unfocused_selected_bg_color ${accentSubtle};
+@define-color theme_unfocused_selected_fg_color ${textSubtle};
+
+@define-color insensitive_bg_color ${surface};
+@define-color insensitive_fg_color ${disabled};
+@define-color insensitive_base_color ${surface};
+
+/* Window and Base Styling */
+* {
+    background-clip: padding-box;
+    -gtk-outline-radius: 3px;
+}
+
+window,
+.background {
+    background-color: ${bg};
+    color: ${text};
+}
+
+.view,
+textview text,
+iconview {
+    background-color: ${elevated};
+    color: ${text};
+}
+
+.view:selected,
+.view:selected:focus,
+textview text:selected,
+textview text:selected:focus,
+iconview:selected,
+iconview:selected:focus {
+    background-color: ${accent};
+    color: ${elevated};
+}
+
+/* Headers and Titlebars */
+headerbar,
+.titlebar {
+    background-color: ${surface};
+    color: ${text};
+    border-bottom: 1px solid ${border};
+}
+
+headerbar:backdrop,
+.titlebar:backdrop {
+    background-color: ${surface};
+    color: ${textMuted};
+}
+
+/* Buttons */
+button {
+    background-color: ${elevated};
+    color: ${text};
+    border: 1px solid ${border};
+    border-radius: 3px;
+    padding: 6px 12px;
+}
+
+button:hover {
+    background-color: ${surface};
+    border-color: ${accent};
+}
+
+button:active,
+button:checked {
+    background-color: ${accent};
+    color: ${elevated};
+    border-color: ${accent};
+}
+
+button:disabled {
+    background-color: ${surface};
+    color: ${disabled};
+    border-color: ${border};
+}
+
+button.suggested-action {
+    background-color: ${accent};
+    color: ${elevated};
+    border-color: ${accent};
+}
+
+button.suggested-action:hover {
+    background-color: ${accentSubtle};
+}
+
+button.destructive-action {
+    background-color: ${error};
+    color: ${elevated};
+    border-color: ${error};
+}
+
+button.destructive-action:hover {
+    opacity: 0.9;
+}
+
+/* Entry Fields */
+entry {
+    background-color: ${elevated};
+    color: ${text};
+    border: 1px solid ${border};
+    border-radius: 3px;
+    padding: 6px;
+}
+
+entry:focus {
+    border-color: ${accent};
+    box-shadow: 0 0 0 2px ${accentSubtle};
+}
+
+entry:disabled {
+    background-color: ${surface};
+    color: ${disabled};
+}
+
+entry.error {
+    border-color: ${error};
+}
+
+entry.warning {
+    border-color: ${warning};
+}
+
+/* Notebooks (Tabs) */
+notebook > header {
+    background-color: ${surface};
+    border-bottom: 1px solid ${border};
+}
+
+notebook > header > tabs > tab {
+    background-color: ${surface};
+    color: ${textSubtle};
+    border: 1px solid transparent;
+    padding: 6px 12px;
+}
+
+notebook > header > tabs > tab:hover {
+    background-color: ${elevated};
+}
+
+notebook > header > tabs > tab:checked {
+    background-color: ${elevated};
+    color: ${text};
+    border-bottom-color: ${accent};
+}
+
+/* Scrollbars */
+scrollbar slider {
+    background-color: ${textMuted};
+    border-radius: 8px;
+    min-width: 6px;
+    min-height: 6px;
+}
+
+scrollbar slider:hover {
+    background-color: ${textSubtle};
+}
+
+scrollbar slider:active {
+    background-color: ${accent};
+}
+
+/* Menus and Popovers */
+menu,
+.menu,
+.context-menu {
+    background-color: ${elevated};
+    color: ${text};
+    border: 1px solid ${border};
+    border-radius: 3px;
+    padding: 4px;
+}
+
+menuitem,
+.menuitem {
+    padding: 6px 12px;
+    border-radius: 2px;
+}
+
+menuitem:hover,
+.menuitem:hover {
+    background-color: ${accentSubtle};
+    color: ${text};
+}
+
+menuitem:disabled,
+.menuitem:disabled {
+    color: ${disabled};
+}
+
+popover,
+.popover {
+    background-color: ${elevated};
+    color: ${text};
+    border: 1px solid ${border};
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Sidebars */
+.sidebar {
+    background-color: ${surface};
+    color: ${text};
+    border-right: 1px solid ${border};
+}
+
+.sidebar row {
+    padding: 8px 12px;
+}
+
+.sidebar row:selected {
+    background-color: ${accentSubtle};
+    color: ${text};
+}
+
+.sidebar row:hover {
+    background-color: ${elevated};
+}
+
+/* Lists */
+list,
+.list {
+    background-color: ${elevated};
+    color: ${text};
+}
+
+list row,
+.list row {
+    padding: 8px;
+}
+
+list row:hover,
+.list row:hover {
+    background-color: ${surface};
+}
+
+list row:selected,
+.list row:selected {
+    background-color: ${accent};
+    color: ${elevated};
+}
+
+/* Switches and Checkboxes */
+switch {
+    background-color: ${surface};
+    border: 1px solid ${border};
+    border-radius: 12px;
+}
+
+switch:checked {
+    background-color: ${accent};
+    border-color: ${accent};
+}
+
+switch slider {
+    background-color: ${elevated};
+    border-radius: 50%;
+}
+
+checkbutton check,
+radiobutton radio {
+    background-color: ${elevated};
+    border: 1px solid ${border};
+    border-radius: 3px;
+}
+
+checkbutton:checked check,
+radiobutton:checked radio {
+    background-color: ${accent};
+    border-color: ${accent};
+    color: ${elevated};
+}
+
+radiobutton radio {
+    border-radius: 50%;
+}
+
+/* Progress Bars */
+progressbar trough {
+    background-color: ${surface};
+    border-radius: 3px;
+}
+
+progressbar progress {
+    background-color: ${accent};
+    border-radius: 3px;
+}
+
+/* Spinners */
+spinner {
+    color: ${accent};
+}
+
+/* Scale (Sliders) */
+scale trough {
+    background-color: ${surface};
+    border-radius: 3px;
+}
+
+scale highlight {
+    background-color: ${accent};
+    border-radius: 3px;
+}
+
+scale slider {
+    background-color: ${elevated};
+    border: 1px solid ${accent};
+    border-radius: 50%;
+    min-width: 16px;
+    min-height: 16px;
+}
+
+/* Separators */
+separator {
+    background-color: ${border};
+    min-width: 1px;
+    min-height: 1px;
+}
+
+/* Tooltips */
+tooltip,
+.tooltip {
+    background-color: ${surface};
+    color: ${text};
+    border: 1px solid ${border};
+    border-radius: 4px;
+    padding: 6px 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Info Bars */
+.info {
+    background-color: ${accentSubtle};
+    color: ${text};
+}
+
+.warning {
+    background-color: ${warning};
+    color: ${elevated};
+}
+
+.error {
+    background-color: ${error};
+    color: ${elevated};
+}
+
+.success {
+    background-color: ${success};
+    color: ${elevated};
+}
+
+/* Links */
+link,
+*:link {
+    color: ${link};
+}
+
+link:hover,
+*:link:hover {
+    color: ${accent};
+}
+
+link:visited,
+*:visited {
+    color: ${secondary};
+}
+
+/* Selection */
+selection {
+    background-color: ${accent};
+    color: ${elevated};
+}
+
+/* Backdrop (Unfocused Windows) */
+*:backdrop {
+    opacity: 0.8;
+}
+`;
+}
+
+/**
+ * Generate index.theme metadata file
+ */
+function generateIndexTheme() {
+    return `[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=Candi
+Comment=A Nordic-inspired theme with Hygge warmth and Lagom balance
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=Candi
+Name=Candi
+`;
+}
+
+/**
+ * Ensure directory exists with proper error handling
+ */
+function ensureDir(dirPath) {
+    if (fs.existsSync(dirPath)) return;
+
+    try {
+        fs.mkdirSync(dirPath, { recursive: true });
+    } catch (err) {
+        let message = `Failed to create directory: ${dirPath}`;
+
+        switch (err.code) {
+            case 'EACCES':
+                message += '\n  Cause: Permission denied. Check write permissions for the parent directory.';
+                break;
+            case 'ENOSPC':
+                message += '\n  Cause: No space left on device. Free up disk space and try again.';
+                break;
+            case 'EROFS':
+                message += '\n  Cause: Read-only file system. Cannot create directories here.';
+                break;
+            case 'ENOTDIR':
+                message += '\n  Cause: A component of the path is not a directory.';
+                break;
+            default:
+                message += `\n  Cause: ${err.message}`;
+        }
+
+        console.error(`\x1b[31mError: ${message}\x1b[0m`);
+        process.exit(1);
+    }
+}
+
+// Ensure directories exist
+ensureDir(gnomeDir);
+ensureDir(gtk3Dir);
+ensureDir(gtk4Dir);
+
+// 2. Validate palettes before generating themes
+validatePalette(lightColors, 'Light');
+validatePalette(darkColors, 'Dark');
+
+// 3. Generate Themes
+const lightGtkCss = generateGtkCss(lightColors, false);
+const darkGtkCss = generateGtkCss(darkColors, true);
+const indexTheme = generateIndexTheme();
+
+// Write GTK3 themes
+fs.writeFileSync(path.join(gtk3Dir, 'gtk.css'), lightGtkCss);
+fs.writeFileSync(path.join(gtk3Dir, 'gtk-dark.css'), darkGtkCss);
+
+// Write GTK4 themes
+fs.writeFileSync(path.join(gtk4Dir, 'gtk.css'), lightGtkCss);
+fs.writeFileSync(path.join(gtk4Dir, 'gtk-dark.css'), darkGtkCss);
+
+// Write index.theme
+fs.writeFileSync(path.join(gnomeDir, 'index.theme'), indexTheme);
+
+console.log('Build complete!');
+console.log('  - Generated gnome/index.theme');
+console.log('  - Generated gnome/gtk-3.0/gtk.css');
+console.log('  - Generated gnome/gtk-3.0/gtk-dark.css');
+console.log('  - Generated gnome/gtk-4.0/gtk.css');
+console.log('  - Generated gnome/gtk-4.0/gtk-dark.css');

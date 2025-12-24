@@ -1,0 +1,401 @@
+/*
+ * Candi Light Theme for GTK
+ * Generated from OKLCH color space
+ */
+
+/* Color Definitions */
+@define-color theme_bg_color rgb(251, 248, 242);
+@define-color theme_fg_color rgb(35, 42, 48);
+@define-color theme_base_color rgb(255, 255, 255);
+@define-color theme_text_color rgb(35, 42, 48);
+@define-color theme_selected_bg_color rgb(67, 112, 133);
+@define-color theme_selected_fg_color rgb(255, 255, 255);
+
+@define-color borders rgb(224, 222, 216);
+@define-color warning_color rgb(203, 136, 46);
+@define-color error_color rgb(183, 91, 85);
+@define-color success_color rgb(74, 117, 76);
+
+@define-color link_color rgb(41, 107, 136);
+@define-color theme_unfocused_fg_color rgb(131, 135, 139);
+@define-color theme_unfocused_bg_color rgb(244, 240, 231);
+@define-color theme_unfocused_base_color rgb(244, 240, 231);
+@define-color theme_unfocused_text_color rgb(95, 100, 105);
+@define-color theme_unfocused_selected_bg_color rgb(187, 210, 222);
+@define-color theme_unfocused_selected_fg_color rgb(95, 100, 105);
+
+@define-color insensitive_bg_color rgb(244, 240, 231);
+@define-color insensitive_fg_color rgb(172, 174, 177);
+@define-color insensitive_base_color rgb(244, 240, 231);
+
+/* Window and Base Styling */
+* {
+    background-clip: padding-box;
+    -gtk-outline-radius: 3px;
+}
+
+window,
+.background {
+    background-color: rgb(251, 248, 242);
+    color: rgb(35, 42, 48);
+}
+
+.view,
+textview text,
+iconview {
+    background-color: rgb(255, 255, 255);
+    color: rgb(35, 42, 48);
+}
+
+.view:selected,
+.view:selected:focus,
+textview text:selected,
+textview text:selected:focus,
+iconview:selected,
+iconview:selected:focus {
+    background-color: rgb(67, 112, 133);
+    color: rgb(255, 255, 255);
+}
+
+/* Headers and Titlebars */
+headerbar,
+.titlebar {
+    background-color: rgb(244, 240, 231);
+    color: rgb(35, 42, 48);
+    border-bottom: 1px solid rgb(224, 222, 216);
+}
+
+headerbar:backdrop,
+.titlebar:backdrop {
+    background-color: rgb(244, 240, 231);
+    color: rgb(131, 135, 139);
+}
+
+/* Buttons */
+button {
+    background-color: rgb(255, 255, 255);
+    color: rgb(35, 42, 48);
+    border: 1px solid rgb(224, 222, 216);
+    border-radius: 3px;
+    padding: 6px 12px;
+}
+
+button:hover {
+    background-color: rgb(244, 240, 231);
+    border-color: rgb(67, 112, 133);
+}
+
+button:active,
+button:checked {
+    background-color: rgb(67, 112, 133);
+    color: rgb(255, 255, 255);
+    border-color: rgb(67, 112, 133);
+}
+
+button:disabled {
+    background-color: rgb(244, 240, 231);
+    color: rgb(172, 174, 177);
+    border-color: rgb(224, 222, 216);
+}
+
+button.suggested-action {
+    background-color: rgb(67, 112, 133);
+    color: rgb(255, 255, 255);
+    border-color: rgb(67, 112, 133);
+}
+
+button.suggested-action:hover {
+    background-color: rgb(187, 210, 222);
+}
+
+button.destructive-action {
+    background-color: rgb(183, 91, 85);
+    color: rgb(255, 255, 255);
+    border-color: rgb(183, 91, 85);
+}
+
+button.destructive-action:hover {
+    opacity: 0.9;
+}
+
+/* Entry Fields */
+entry {
+    background-color: rgb(255, 255, 255);
+    color: rgb(35, 42, 48);
+    border: 1px solid rgb(224, 222, 216);
+    border-radius: 3px;
+    padding: 6px;
+}
+
+entry:focus {
+    border-color: rgb(67, 112, 133);
+    box-shadow: 0 0 0 2px rgb(187, 210, 222);
+}
+
+entry:disabled {
+    background-color: rgb(244, 240, 231);
+    color: rgb(172, 174, 177);
+}
+
+entry.error {
+    border-color: rgb(183, 91, 85);
+}
+
+entry.warning {
+    border-color: rgb(203, 136, 46);
+}
+
+/* Notebooks (Tabs) */
+notebook > header {
+    background-color: rgb(244, 240, 231);
+    border-bottom: 1px solid rgb(224, 222, 216);
+}
+
+notebook > header > tabs > tab {
+    background-color: rgb(244, 240, 231);
+    color: rgb(95, 100, 105);
+    border: 1px solid transparent;
+    padding: 6px 12px;
+}
+
+notebook > header > tabs > tab:hover {
+    background-color: rgb(255, 255, 255);
+}
+
+notebook > header > tabs > tab:checked {
+    background-color: rgb(255, 255, 255);
+    color: rgb(35, 42, 48);
+    border-bottom-color: rgb(67, 112, 133);
+}
+
+/* Scrollbars */
+scrollbar slider {
+    background-color: rgb(131, 135, 139);
+    border-radius: 8px;
+    min-width: 6px;
+    min-height: 6px;
+}
+
+scrollbar slider:hover {
+    background-color: rgb(95, 100, 105);
+}
+
+scrollbar slider:active {
+    background-color: rgb(67, 112, 133);
+}
+
+/* Menus and Popovers */
+menu,
+.menu,
+.context-menu {
+    background-color: rgb(255, 255, 255);
+    color: rgb(35, 42, 48);
+    border: 1px solid rgb(224, 222, 216);
+    border-radius: 3px;
+    padding: 4px;
+}
+
+menuitem,
+.menuitem {
+    padding: 6px 12px;
+    border-radius: 2px;
+}
+
+menuitem:hover,
+.menuitem:hover {
+    background-color: rgb(187, 210, 222);
+    color: rgb(35, 42, 48);
+}
+
+menuitem:disabled,
+.menuitem:disabled {
+    color: rgb(172, 174, 177);
+}
+
+popover,
+.popover {
+    background-color: rgb(255, 255, 255);
+    color: rgb(35, 42, 48);
+    border: 1px solid rgb(224, 222, 216);
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Sidebars */
+.sidebar {
+    background-color: rgb(244, 240, 231);
+    color: rgb(35, 42, 48);
+    border-right: 1px solid rgb(224, 222, 216);
+}
+
+.sidebar row {
+    padding: 8px 12px;
+}
+
+.sidebar row:selected {
+    background-color: rgb(187, 210, 222);
+    color: rgb(35, 42, 48);
+}
+
+.sidebar row:hover {
+    background-color: rgb(255, 255, 255);
+}
+
+/* Lists */
+list,
+.list {
+    background-color: rgb(255, 255, 255);
+    color: rgb(35, 42, 48);
+}
+
+list row,
+.list row {
+    padding: 8px;
+}
+
+list row:hover,
+.list row:hover {
+    background-color: rgb(244, 240, 231);
+}
+
+list row:selected,
+.list row:selected {
+    background-color: rgb(67, 112, 133);
+    color: rgb(255, 255, 255);
+}
+
+/* Switches and Checkboxes */
+switch {
+    background-color: rgb(244, 240, 231);
+    border: 1px solid rgb(224, 222, 216);
+    border-radius: 12px;
+}
+
+switch:checked {
+    background-color: rgb(67, 112, 133);
+    border-color: rgb(67, 112, 133);
+}
+
+switch slider {
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%;
+}
+
+checkbutton check,
+radiobutton radio {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(224, 222, 216);
+    border-radius: 3px;
+}
+
+checkbutton:checked check,
+radiobutton:checked radio {
+    background-color: rgb(67, 112, 133);
+    border-color: rgb(67, 112, 133);
+    color: rgb(255, 255, 255);
+}
+
+radiobutton radio {
+    border-radius: 50%;
+}
+
+/* Progress Bars */
+progressbar trough {
+    background-color: rgb(244, 240, 231);
+    border-radius: 3px;
+}
+
+progressbar progress {
+    background-color: rgb(67, 112, 133);
+    border-radius: 3px;
+}
+
+/* Spinners */
+spinner {
+    color: rgb(67, 112, 133);
+}
+
+/* Scale (Sliders) */
+scale trough {
+    background-color: rgb(244, 240, 231);
+    border-radius: 3px;
+}
+
+scale highlight {
+    background-color: rgb(67, 112, 133);
+    border-radius: 3px;
+}
+
+scale slider {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(67, 112, 133);
+    border-radius: 50%;
+    min-width: 16px;
+    min-height: 16px;
+}
+
+/* Separators */
+separator {
+    background-color: rgb(224, 222, 216);
+    min-width: 1px;
+    min-height: 1px;
+}
+
+/* Tooltips */
+tooltip,
+.tooltip {
+    background-color: rgb(244, 240, 231);
+    color: rgb(35, 42, 48);
+    border: 1px solid rgb(224, 222, 216);
+    border-radius: 4px;
+    padding: 6px 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Info Bars */
+.info {
+    background-color: rgb(187, 210, 222);
+    color: rgb(35, 42, 48);
+}
+
+.warning {
+    background-color: rgb(203, 136, 46);
+    color: rgb(255, 255, 255);
+}
+
+.error {
+    background-color: rgb(183, 91, 85);
+    color: rgb(255, 255, 255);
+}
+
+.success {
+    background-color: rgb(74, 117, 76);
+    color: rgb(255, 255, 255);
+}
+
+/* Links */
+link,
+*:link {
+    color: rgb(41, 107, 136);
+}
+
+link:hover,
+*:link:hover {
+    color: rgb(67, 112, 133);
+}
+
+link:visited,
+*:visited {
+    color: rgb(176, 101, 42);
+}
+
+/* Selection */
+selection {
+    background-color: rgb(67, 112, 133);
+    color: rgb(255, 255, 255);
+}
+
+/* Backdrop (Unfocused Windows) */
+*:backdrop {
+    opacity: 0.8;
+}

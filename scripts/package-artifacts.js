@@ -42,11 +42,11 @@ vsixFiles.forEach(vsix => {
 });
 
 // 2. Build All
-console.log('\n\x1b[33m[2/6] Building all packages (Theme, Vim, Flutter, VS Code, KDE theme files)...\x1b[0m');
+console.log('\n\x1b[33m[2/7] Building all packages (Theme, Vim, Flutter, VS Code, KDE, GNOME theme files)...\x1b[0m');
 run('npm run build:all', rootDir);
 
 // 3. Build Website
-console.log('\n\x1b[33m[3/6] Building Website...\x1b[0m');
+console.log('\n\x1b[33m[3/7] Building Website...\x1b[0m');
 // Ensure dependencies are installed if node_modules is missing, though usually it's there
 if (!fs.existsSync(path.join(websiteDir, 'node_modules'))) {
     run('npm ci', websiteDir);
@@ -54,7 +54,7 @@ if (!fs.existsSync(path.join(websiteDir, 'node_modules'))) {
 run('npm run build', websiteDir);
 
 // 4. Zip Operations
-console.log('\n\x1b[33m[4/6] Generating Zips...\x1b[0m');
+console.log('\n\x1b[33m[4/7] Generating Zips...\x1b[0m');
 
 // Zip dist/ -> theme.zip
 console.log('Creating theme.zip...');
@@ -79,11 +79,16 @@ run(`zip -r -9 -v ${getZipName('vim')} vim/colors`, rootDir);
 console.log('Creating kde.zip...');
 run(`zip -r -9 -v ${getZipName('kde')} kde`, rootDir);
 
+// Zip gnome theme files -> gnome.zip
+console.log('Creating gnome.zip...');
+run(`zip -r -9 -v ${getZipName('gnome')} gnome`, rootDir);
+
 console.log('\n\x1b[32mArtifact generation complete! Generated:\x1b[0m');
 console.log(`- ${getZipName('theme')}`);
 console.log(`- ${getZipName('docs')}`);
 console.log(`- ${getZipName('vim')}`);
 console.log(`- ${getZipName('kde')}`);
+console.log(`- ${getZipName('gnome')}`);
 // Find the vsix files in root directory
 const rootVsixFiles = fs.readdirSync(rootDir).filter(f => f.endsWith('.vsix'));
 rootVsixFiles.forEach(f => console.log(`- ${f}`));

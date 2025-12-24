@@ -17,6 +17,7 @@ Candi provides a single source of truth for colors using the OKLCH color space, 
 | **VS Code** | Full | Light & Dark themes with unified syntax highlighting |
 | **Vim** | Full | Standalone `.vim` colorschemes (GUI & Terminal) |
 | **KDE Plasma** | Full | Color schemes for KDE 4, 5 & 6 (Plasma 6 color roles recommended) |
+| **GNOME** | Full | GTK3 & GTK4 themes for X11 and Wayland |
 
 ---
 
@@ -46,7 +47,7 @@ Candi is built with accessibility as a core requirement:
 ## Unified Commands
 
 - **Build Everything**: `npm run build:all`
-  - Generates assets for Web, Flutter, VS Code, Vim, and KDE.
+  - Generates assets for Web, Flutter, VS Code, Vim, KDE, and GNOME.
 - **Test Everything**: `npm test`
   - Validates color accuracy and platform-specific exports.
 - **Package VS Code**: `npm run vscode:package`
@@ -58,6 +59,7 @@ Candi is built with accessibility as a core requirement:
     - `vim.zip` (Vim color schemes)
     - `vscode-theme-candi-*.vsix` (VS Code extension)
     - `kde.zip` (KDE color schemes)
+    - `gnome.zip` (GNOME/GTK themes)
 - **Bump Versions**: `./scripts/bump-packages.sh <version>`
   - Updates version in all packages (npm, VS Code, Flutter).
 
@@ -137,6 +139,10 @@ module.exports = {
 ### KDE Plasma
 
 [KDE Theme Guide](docs/kde-theme.md)
+
+### GNOME
+
+[GNOME Theme Guide](docs/gnome-theme.md)
 
 ---
 
