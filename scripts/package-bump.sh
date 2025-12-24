@@ -32,3 +32,8 @@ echo "  - flutter/pubspec.yaml"
 sed -i "s/^version: .*/version: $VERSION/" flutter/pubspec.yaml
 
 echo "Done!"
+
+echo "Running npm install..."
+bash -c ./scripts/package-install.sh
+
+exit 0

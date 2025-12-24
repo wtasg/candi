@@ -325,6 +325,9 @@ fs.writeFileSync(path.join(themesDir, 'Candi Light-color-theme.json'), JSON.stri
 fs.writeFileSync(path.join(themesDir, 'Candi Dark-color-theme.json'), JSON.stringify(generateTheme('Dark', 'dark', darkColors), null, 4));
 
 // 3. Generate extension package.json
+
+const version = require('../package.json').version;
+
 const extensionPackage = {
     "name": "vscode-theme-candi",
     "displayName": "Candi Theme",
@@ -333,7 +336,7 @@ const extensionPackage = {
         "type": "git",
         "url": "https://github.com/wtasg/candi.git"
     },
-    "version": "0.0.1",
+    "version": version,
     "publisher": "wtasg",
     "engines": { "vscode": "^1.0.0" },
     "categories": ["Themes"],

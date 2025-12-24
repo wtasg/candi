@@ -1,6 +1,6 @@
 {
     "name": "@wtasg/candi",
-    "version": "0.0.6",
+    "version": "0.0.10",
     "description": "A Tailwind CSS theme inspired by Nordic/Scandinavian Hygge & Lagom design principles",
     "keywords": [
         "tailwindcss",
@@ -54,7 +54,7 @@
         "build:vscode": "node scripts/build-vscode.js",
         "build:vim": "node scripts/build-vim.js",
         "build:kde": "node scripts/build-kde.js",
-        "build:all": "npm run build && npm run build:flutter && npm run build:vscode && npm run build:vim && npm run build:kde && npm run vscode:package",
+        "build:all": "npm run build && npm run build:flutter && npm run build:vscode && npm run build:vim && npm run build:kde",
         "prepublishOnly": "npm run build:all",
         "test:color": "node scripts/test-color.js",
         "test:colors": "node scripts/test-color-conversions.js",
