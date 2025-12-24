@@ -58,7 +58,7 @@ run('zip -r -9 -v vim.zip vim/colors', rootDir);
 
 // Zip kde color files -> kde.zip
 console.log('Creating kde.zip...');
-run('zip -r -9 -v kde.zip kde/', rootDir);
+run('zip -r -9 -v kde.zip kde', rootDir);
 
 console.log('\n\x1b[32mArtifact generation complete! Generated:\x1b[0m');
 console.log('- theme.zip');
