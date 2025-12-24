@@ -19,6 +19,15 @@ const v5DarkPath = path.join(v5Dir, 'CandiDark.colors');
 
 console.log('--- KDE Theme Validation ---');
 
+/**
+ * Validates KDE v4 and v5 theme files and their expected contents.
+ *
+ * Reads the CandiLight and CandiDark files under kde/v4 and kde/v5, verifies directory and file existence,
+ * checks required INI sections and specific color mappings in the dark and light v4 files, and asserts that
+ * the corresponding v5 files are identical to the v4 files. On any validation failure the process exits with
+ * status code 1.
+ * @returns {boolean} `true` if all checks pass.
+ */
 function testKdeTheme() {
     try {
         // 1. Check directory structure

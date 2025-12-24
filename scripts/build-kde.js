@@ -30,6 +30,11 @@ if (!rootMatch || !darkMatch) {
     process.exit(1);
 }
 
+/**
+ * Extracts Candi OKLCH CSS custom properties from content and stores their RGB equivalents on target.
+ * @param {string} content - CSS text to scan for variables like `--candi-<name>: oklch(...)`.
+ * @param {Object.<string,{r:number,g:number,b:number}>} target - Object that will be populated with keys mapped to RGB objects; existing keys may be added or overwritten.
+ */
 function extractColors(content, target) {
     let match;
     const regex = /--candi-([\w-]+):\s*(oklch\([^)]+\))/gi;
@@ -46,12 +51,22 @@ extractColors(rootMatch[1], lightColors);
 extractColors(darkMatch[1], darkColors);
 
 /**
- * Format RGB values for KDE color scheme (R,G,B)
+ * Format an RGB color object as a comma-separated "R,G,B" string.
+ * @param {{r: number, g: number, b: number}} color - Object with numeric `r`, `g`, and `b` color components.
+ * @returns {string} The RGB components formatted as "R,G,B".
  */
 function formatRgb(color) {
     return `${color.r},${color.g},${color.b}`;
 }
 
+/**
+ * Build the contents of a KDE .colors scheme from a named palette.
+ *
+ * @param {string} name - Display name used for the ColorScheme and Name fields (e.g., "Light" or "Dark").
+ * @param {string} background - Background identifier (provided for API compatibility; not required by the generated content).
+ * @param {Object<string, {r:number,g:number,b:number}>} palette - Mapping of color token names (e.g., "bg", "text", "accent") to RGB objects.
+ * @returns {string} The complete KDE color scheme file content formatted for writing to a .colors file.
+ */
 function generateKdeTheme(name, background, palette) {
     // KDE uses specific color roles for different UI elements
     const bgNormal = formatRgb(palette['bg']);
