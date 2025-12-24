@@ -24,7 +24,7 @@ let passed = 0;
 
 testCases.forEach(tc => {
     const result = toHex(oklchToRgb(tc.l, tc.c, tc.h));
-    const status = result === tc.expected ? '✅' : '❌';
+    const status = result === tc.expected ? '[✓]' : '[✗]';
     if (result === tc.expected) passed++;
     console.log(`${status} ${tc.name}: expected ${tc.expected}, got ${result}`);
 });
@@ -32,7 +32,7 @@ testCases.forEach(tc => {
 console.log(`\nResult: ${passed}/${testCases.length} tests passed.`);
 
 if (passed === testCases.length) {
-    console.log('✓ All color conversions align with browser standards.');
+    console.log('All color conversions align with browser standards.');
 } else {
     console.error('! Conversion discrepancy detected.');
     process.exit(1);
@@ -113,31 +113,31 @@ contrastTests.forEach(tc => {
     const colors = tc.mode === 'light' ? lightColors : darkColors;
     const fgColor = colors[tc.fg];
     const bgColor = colors[tc.bg];
-    
+
     if (!fgColor || !bgColor) {
-        console.log(`⚠️  ${tc.mode} mode: ${tc.name} - Missing color(s)`);
+        console.log(`[WARN] ${tc.mode} mode: ${tc.name} - Missing color(s)`);
         return;
     }
-    
+
     const ratio = getContrastRatio(fgColor, bgColor);
     const passes = ratio >= tc.minRatio;
-    const status = passes ? '✅' : '❌';
-    
+    const status = passes ? '[✓]' : '[✗]';
+
     if (passes) {
         contrastPassed++;
     } else {
         wcagIssues.push(`${tc.mode} mode: ${tc.name} (${ratio.toFixed(2)}:1 < ${tc.minRatio}:1)`);
     }
-    
+
     console.log(`${status} ${tc.mode} mode: ${tc.name} - ${ratio.toFixed(2)}:1 (min: ${tc.minRatio}:1)`);
 });
 
 console.log(`\nResult: ${contrastPassed}/${contrastTests.length} contrast tests passed.`);
 
 if (wcagIssues.length > 0) {
-    console.log('\n⚠️  WCAG Contrast Issues Found:');
+    console.log('\n[WARN] WCAG Contrast Issues Found:');
     wcagIssues.forEach(issue => console.log(`  - ${issue}`));
     console.log('\nNote: Some contrast issues may be acceptable for non-text elements.');
 } else {
-    console.log('✓ All contrast ratios meet WCAG standards.');
+    console.log('All contrast ratios meet WCAG standards.');
 }

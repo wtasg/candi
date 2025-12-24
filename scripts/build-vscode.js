@@ -355,5 +355,5 @@ const extensionPackage = {
 
 fs.writeFileSync(path.join(vscodeDir, 'package.json'), JSON.stringify(extensionPackage, null, 4));
 
-console.log('✓ Build complete!');
+console.log('Build complete!');
 console.log('  - Generated vscode/ extension');

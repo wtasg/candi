@@ -1,0 +1,197 @@
+/**
+ * KDE Theme Validation Tests
+ *
+ * Verifies the generated KDE color scheme files.
+ */
+
+const fs = require('fs');
+const path = require('path');
+const assert = require('assert').strict;
+
+const kdeDir = path.join(__dirname, '..', 'kde');
+const v4Dir = path.join(kdeDir, 'v4');
+const v5Dir = path.join(kdeDir, 'v5');
+
+const v4LightPath = path.join(v4Dir, 'CandiLight.colors');
+const v4DarkPath = path.join(v4Dir, 'CandiDark.colors');
+const v5LightPath = path.join(v5Dir, 'CandiLight.colors');
+const v5DarkPath = path.join(v5Dir, 'CandiDark.colors');
+
+console.log('--- KDE Theme Validation ---');
+
+function testKdeTheme() {
+    try {
+        // 1. Check directory structure
+        assert.ok(fs.existsSync(kdeDir), 'kde directory should exist');
+        assert.ok(fs.existsSync(v4Dir), 'kde/v4 directory should exist');
+        assert.ok(fs.existsSync(v5Dir), 'kde/v5 directory should exist');
+        console.log('[✓] Directory structure verified');
+
+        // 2. Check file existence
+        assert.ok(fs.existsSync(v4LightPath), 'kde/v4/CandiLight.colors should exist');
+        assert.ok(fs.existsSync(v4DarkPath), 'kde/v4/CandiDark.colors should exist');
+        assert.ok(fs.existsSync(v5LightPath), 'kde/v5/CandiLight.colors should exist');
+        assert.ok(fs.existsSync(v5DarkPath), 'kde/v5/CandiDark.colors should exist');
+        console.log('[✓] All theme files exist');
+
+        // 3. Validate dark theme contents
+        const darkContent = fs.readFileSync(v4DarkPath, 'utf8');
+
+        // Check for required sections
+        assert.ok(darkContent.includes('[General]'), 'Should have [General] section');
+        assert.ok(darkContent.includes('[Colors:Window]'), 'Should have [Colors:Window] section');
+        assert.ok(darkContent.includes('[Colors:Button]'), 'Should have [Colors:Button] section');
+        assert.ok(darkContent.includes('[Colors:Selection]'), 'Should have [Colors:Selection] section');
+        assert.ok(darkContent.includes('[Colors:View]'), 'Should have [Colors:View] section');
+        assert.ok(darkContent.includes('[Colors:Tooltip]'), 'Should have [Colors:Tooltip] section');
+        assert.ok(darkContent.includes('[WM]'), 'Should have [WM] section');
+
+        // Check metadata
+        assert.ok(darkContent.includes('ColorScheme=Candi Dark'), 'Should have ColorScheme metadata');
+        assert.ok(darkContent.includes('Name=Candi Dark'), 'Should have Name metadata');
+
+        // Validate color format and semantic correctness (dark theme)
+        const rgbPattern = /=(\d{1,3}),(\d{1,3}),(\d{1,3})/;
+
+        // Helper to extract and validate RGB values
+        function extractRgb(content, key) {
+            const match = content.match(new RegExp(`${key}=(\\d{1,3}),(\\d{1,3}),(\\d{1,3})`));
+            if (!match) return null;
+            const [, r, g, b] = match.map(Number);
+            // Validate RGB range (0-255)
+            if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255) return null;
+            return { r, g, b };
+        }
+
+        // Validate BackgroundNormal has valid RGB format
+        const darkBg = extractRgb(darkContent, 'BackgroundNormal');
+        assert.ok(darkBg, 'Window background should have valid RGB format');
+
+        // Dark theme background should have low RGB values (dark colors)
+        assert.ok(darkBg.r < 50 && darkBg.g < 50 && darkBg.b < 50,
+            `Dark theme background should have low RGB values (got ${darkBg.r},${darkBg.g},${darkBg.b})`);
+
+        // Validate ForegroundNormal has valid RGB format
+        const darkFg = extractRgb(darkContent, 'ForegroundNormal');
+        assert.ok(darkFg, 'Window foreground should have valid RGB format');
+
+        // Dark theme foreground should have higher values than background (readable contrast)
+        const bgLuminance = (darkBg.r + darkBg.g + darkBg.b) / 3;
+        const fgLuminance = (darkFg.r + darkFg.g + darkFg.b) / 3;
+        assert.ok(fgLuminance > bgLuminance + 100,
+            `Foreground should be significantly lighter than background for contrast`);
+
+        // Validate semantic color roles exist with valid RGB format
+        const linkColor = extractRgb(darkContent, 'ForegroundLink');
+        assert.ok(linkColor, 'ForegroundLink should have valid RGB format');
+
+        const negativeColor = extractRgb(darkContent, 'ForegroundNegative');
+        assert.ok(negativeColor, 'ForegroundNegative should have valid RGB format');
+
+        const positiveColor = extractRgb(darkContent, 'ForegroundPositive');
+        assert.ok(positiveColor, 'ForegroundPositive should have valid RGB format');
+
+        const wmActive = extractRgb(darkContent, 'activeBackground');
+        assert.ok(wmActive, 'WM activeBackground should have valid RGB format');
+
+        console.log('[✓] Dark theme color format and semantics verified');
+
+        // 4. Validate light theme contents
+        const lightContent = fs.readFileSync(v4LightPath, 'utf8');
+
+        assert.ok(lightContent.includes('ColorScheme=Candi Light'), 'Should have ColorScheme metadata');
+        assert.ok(lightContent.includes('Name=Candi Light'), 'Should have Name metadata');
+
+        // Validate color format and semantic correctness (light theme)
+        const lightBg = extractRgb(lightContent, 'BackgroundNormal');
+        assert.ok(lightBg, 'Light theme background should have valid RGB format');
+
+        // Light theme background should have high RGB values (light colors)
+        assert.ok(lightBg.r > 200 && lightBg.g > 200 && lightBg.b > 200,
+            `Light theme background should have high RGB values (got ${lightBg.r},${lightBg.g},${lightBg.b})`);
+
+        const lightFg = extractRgb(lightContent, 'ForegroundNormal');
+        assert.ok(lightFg, 'Light theme foreground should have valid RGB format');
+
+        // Light theme foreground should have lower values than background (readable contrast)
+        const lightBgLuminance = (lightBg.r + lightBg.g + lightBg.b) / 3;
+        const lightFgLuminance = (lightFg.r + lightFg.g + lightFg.b) / 3;
+        assert.ok(lightBgLuminance > lightFgLuminance + 100,
+            `Light theme background should be significantly lighter than foreground for contrast`);
+
+        console.log('[✓] Light theme color format and semantics verified');
+
+        // 5. Verify v4 and v5 files are identical (same format)
+        const v5DarkContent = fs.readFileSync(v5DarkPath, 'utf8');
+        const v5LightContent = fs.readFileSync(v5LightPath, 'utf8');
+
+        assert.strictEqual(darkContent, v5DarkContent, 'v4 and v5 dark themes should be identical');
+        assert.strictEqual(lightContent, v5LightContent, 'v4 and v5 light themes should be identical');
+
+        console.log('[✓] v4 and v5 themes are identical');
+
+        console.log('\nResult: All KDE validation tests passed.');
+        return true;
+    } catch (err) {
+        console.error('\n[✗] Validation failed:', err.message);
+        process.exit(1);
+    }
+}
+
+/**
+ * Test that base.css defines all required color keys
+ */
+function testPaletteCompleteness() {
+    console.log('\n--- Palette Completeness Validation ---');
+
+    const baseCssPath = path.join(__dirname, '..', 'src', 'css', 'base.css');
+    const baseCss = fs.readFileSync(baseCssPath, 'utf8');
+
+    const requiredKeys = [
+        'bg', 'surface', 'elevated', 'text', 'text-subtle', 'text-muted',
+        'border', 'accent', 'accent-subtle', 'secondary', 'success',
+        'warning', 'error', 'link', 'disabled'
+    ];
+
+    let allKeysFound = true;
+    const missingInRoot = [];
+    const missingInDark = [];
+
+    // Extract :root and .dark sections
+    const rootMatch = baseCss.match(/:root\s*{([^}]+)}/i);
+    const darkMatch = baseCss.match(/\.dark\s*{([^}]+)}/i);
+
+    assert.ok(rootMatch, 'base.css should have :root block');
+    assert.ok(darkMatch, 'base.css should have .dark block');
+
+    requiredKeys.forEach(key => {
+        const pattern = new RegExp(`--candi-${key}:\\s*oklch\\([^)]+\\)`, 'i');
+
+        if (!pattern.test(rootMatch[1])) {
+            missingInRoot.push(key);
+            allKeysFound = false;
+        }
+
+        if (!pattern.test(darkMatch[1])) {
+            missingInDark.push(key);
+            allKeysFound = false;
+        }
+    });
+
+    if (!allKeysFound) {
+        if (missingInRoot.length > 0) {
+            console.error('[✗] Missing color keys in :root (light theme):');
+            missingInRoot.forEach(key => console.error(`  - --candi-${key}`));
+        }
+        if (missingInDark.length > 0) {
+            console.error('[✗] Missing color keys in .dark:');
+            missingInDark.forEach(key => console.error(`  - --candi-${key}`));
+        }
+        process.exit(1);
+    }
+
+    console.log(`[✓] All ${requiredKeys.length} required color keys found in both :root and .dark`);
+}
+
+testPaletteCompleteness();
+testKdeTheme();
