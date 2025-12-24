@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=Candi
+Comment=A Nordic-inspired theme with Hygge warmth and Lagom balance
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=Candi
+Name=Candi
