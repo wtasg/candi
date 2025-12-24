@@ -5,12 +5,14 @@ This directory contains KDE color scheme files for the Candi theme, compatible w
 ## Installation
 
 1. Copy the `.colors` files to your KDE color schemes directory:
+
    ```bash
    cp CandiLight.colors ~/.kde4/share/apps/color-schemes/
    cp CandiDark.colors ~/.kde4/share/apps/color-schemes/
    ```
 
    Or for system-wide installation:
+
    ```bash
    sudo cp CandiLight.colors /usr/share/apps/color-schemes/
    sudo cp CandiDark.colors /usr/share/apps/color-schemes/
@@ -29,6 +31,7 @@ This directory contains KDE color scheme files for the Candi theme, compatible w
 ## Color Scheme Structure
 
 The color scheme files define colors for:
+
 - Windows (backgrounds and borders)
 - Buttons and controls
 - Text selection

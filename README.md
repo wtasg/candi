@@ -29,6 +29,8 @@ Candi uses **OKLCH** as its primary color space instead of Hex codes. Benefits i
 - **Shared Logic**: Centralized conversion in `scripts/color-conv.js` ensures color accuracy across Chrome, VS Code, and mobile.
 - **Automated Accessibility**: Integrated WCAG 2.1 contrast ratio validation in the build pipeline.
 
+📖 **[Learn more about OKLCH color conversion](docs/color-conversion.md)** - Detailed explanation of the conversion pipeline and verification methods.
+
 ---
 
 ## Design & Accessibility
@@ -105,6 +107,7 @@ module.exports = {
 **Installation:**
 
 1. Copy the color scheme files to your KDE color schemes directory:
+
    ```bash
    # For KDE Plasma 5/6
    cp kde/v5/*.colors ~/.local/share/color-schemes/
