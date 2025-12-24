@@ -12,16 +12,23 @@ echo ""
 echo "[1/3] Root project"
 npm install
 
+# VS Code
+echo ""
+echo "[2/4] VS Code"
+cd vscode
+npm install
+cd ..
+
 # Website
 echo ""
-echo "[2/3] Website"
+echo "[3/4] Website"
 cd website
 npm install
 cd ..
 
 # Flutter
 echo ""
-echo "[3/3] Flutter"
+echo "[4/4] Flutter"
 cd flutter
 flutter pub get
 cd ..

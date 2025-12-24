@@ -23,6 +23,10 @@ sed -i "s/\"version\": \"[^\"]*\"/\"version\": \"$VERSION\"/" package.json
 echo "  - vscode/package.json"
 sed -i "s/\"version\": \"[^\"]*\"/\"version\": \"$VERSION\"/" vscode/package.json
 
+# Website (website/package.json)
+echo "  - website/package.json"
+sed -i "s/\"version\": \"[^\"]*\"/\"version\": \"$VERSION\"/" website/package.json
+
 # Flutter package (flutter/pubspec.yaml)
 echo "  - flutter/pubspec.yaml"
 sed -i "s/^version: .*/version: $VERSION/" flutter/pubspec.yaml

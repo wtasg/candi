@@ -1,6 +1,6 @@
 {
     "name": "candi-docs",
-    "version": "1.0.0",
+    "version": "0.0.6",
     "type": "module",
     "description": "Documentation website for Candi Design System",
     "scripts": {
