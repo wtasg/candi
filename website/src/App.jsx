@@ -52,11 +52,10 @@ function App() {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`px-4 py-2 rounded-soft text-sm font-medium transition-colors ${
-                    location.pathname === link.path
+                  className={`px-4 py-2 rounded-soft text-sm font-medium transition-colors ${location.pathname === link.path
                       ? 'bg-candi-surface text-candi-text'
                       : 'text-candi-subtle hover:bg-candi-surface hover:text-candi-text'
-                  }`}
+                    }`}
                 >
                   {link.label}
                 </Link>
@@ -86,11 +85,10 @@ function App() {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`px-3 py-1.5 rounded-soft text-sm font-medium transition-colors ${
-                  location.pathname === link.path
+                className={`px-3 py-1.5 rounded-soft text-sm font-medium transition-colors ${location.pathname === link.path
                     ? 'bg-candi-surface text-candi-text'
                     : 'text-candi-subtle hover:bg-candi-surface hover:text-candi-text'
-                }`}
+                  }`}
               >
                 {link.label}
               </Link>
@@ -125,7 +123,6 @@ function App() {
               <h3 className="font-semibold mb-3">Links</h3>
               <ul className="space-y-2 text-sm">
                 <li><a href="https://github.com/wtasg/candi" className="text-candi-subtle hover:text-candi-accent">GitHub</a></li>
-                <li><a href="https://www.npmjs.com/package/@wtasg/candi" className="text-candi-subtle hover:text-candi-accent">npm</a></li>
               </ul>
             </div>
             <div>

@@ -19,7 +19,8 @@ import '@wtasg/candi/css';
 ### Option 2: CDN
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/@wtasg/candi/dist/scandinavian.css">
+<!-- TODO: Add CDN -->
+<!-- <link rel="stylesheet" href="https://unpkg.com/@wtasg/candi/dist/scandinavian.css"> -->
 ```
 
 ## CSS Variables

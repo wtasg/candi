@@ -19,7 +19,7 @@
         "url": "https://github.com/wtasg/candi.git"
     },
     "publishConfig": {
-        "registry": "https://npm.pkg.github.com/@wtasg"
+        "registry": "https://npm.pkg.github.com"
     },
     "main": "dist/index.js",
     "module": "dist/index.mjs",
