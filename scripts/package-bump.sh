@@ -14,6 +14,7 @@ if [ -z "$VERSION" ]; then
 fi
 
 echo "Bumping all packages to version $VERSION"
+echo "$VERSION" > ./version
 
 # Main package (package.json)
 echo "  - package.json"
