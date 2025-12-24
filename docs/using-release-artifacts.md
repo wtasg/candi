@@ -4,32 +4,112 @@ Candi provides prebuilt artifacts for each release, allowing you to use the them
 
 ## Available Artifacts
 
-Each GitHub release includes the following artifacts:
+Each GitHub release includes the following versioned artifacts:
 
 | Artifact | Contents | Use Case |
 | :--- | :--- | :--- |
-| `theme.zip` | Web theme (`dist/` folder) | Using Candi with Tailwind CSS or vanilla CSS |
-| `vim.zip` | Vim colorschemes | Vim/Neovim users |
-| `kde.zip` | KDE color schemes | KDE Plasma desktop users |
-| `vscode-theme-candi-*.vsix` | VS Code extension | VS Code users |
-| `docs.zip` | Documentation website | Offline documentation reference |
+| `theme_VERSION.zip` | Web theme (`dist/` folder) | Using Candi with Tailwind CSS or vanilla CSS |
+| `vim_VERSION.zip` | Vim colorschemes | Vim/Neovim users |
+| `kde_VERSION.zip` | KDE color schemes | KDE Plasma desktop users |
+| `vscode-theme-candi-VERSION.vsix` | VS Code extension | VS Code users |
+| `docs_VERSION.zip` | Documentation website | Offline documentation reference |
 
 ## Downloading Artifacts
 
+### Via Browser
+
 1. Visit the [Candi Releases page](https://github.com/wtasg/candi/releases)
-2. Choose the latest release
+2. Choose the latest release (or a specific version like [v0.0.10](https://github.com/wtasg/candi/releases/tag/v0.0.10))
 3. Download the artifact(s) you need from the **Assets** section
+
+### Via Command Line
+
+Download artifacts directly using `curl` or `wget`. Replace `VERSION` with the desired version (e.g., `0.0.10`):
+
+**Using curl:**
+
+The `-L` flag follows redirects (GitHub uses redirects for release downloads) and `-O` saves the file with its original name:
+
+```bash
+# Download theme
+curl -LO https://github.com/wtasg/candi/releases/download/v0.0.10/theme_0.0.10.zip
+
+# Download vim colorschemes
+curl -LO https://github.com/wtasg/candi/releases/download/v0.0.10/vim_0.0.10.zip
+
+# Download KDE color schemes
+curl -LO https://github.com/wtasg/candi/releases/download/v0.0.10/kde_0.0.10.zip
+
+# Download VS Code extension
+curl -LO https://github.com/wtasg/candi/releases/download/v0.0.10/vscode-theme-candi-0.0.10.vsix
+
+# Download documentation
+curl -LO https://github.com/wtasg/candi/releases/download/v0.0.10/docs_0.0.10.zip
+```
+
+**Using wget:**
+
+`wget` automatically follows redirects and saves with the original filename. You can use brace expansion `{a,b,c}` to download multiple files:
+
+```bash
+# Download theme
+wget https://github.com/wtasg/candi/releases/download/v0.0.10/theme_0.0.10.zip
+
+# Download all artifacts at once
+wget https://github.com/wtasg/candi/releases/download/v0.0.10/{theme,vim,kde,docs}_0.0.10.zip
+wget https://github.com/wtasg/candi/releases/download/v0.0.10/vscode-theme-candi-0.0.10.vsix
+```
+
+**Get latest release version programmatically:**
+
+This script queries the GitHub API's `/releases/latest` endpoint to get the current version tag, then uses that to construct the download URL:
+
+```bash
+# Get the latest version tag
+LATEST=$(curl -s https://api.github.com/repos/wtasg/candi/releases/latest | grep '"tag_name"' | sed -E 's/.*"v([^"]+)".*/\1/')
+
+# Download latest theme
+curl -LO "https://github.com/wtasg/candi/releases/download/v${LATEST}/theme_${LATEST}.zip"
+```
+
+## Quick Install One-Liners
+
+For common use cases, here are single commands that download and install:
+
+**Vim (latest release):**
+
+This command queries the GitHub API to find the vim artifact URL, downloads it, extracts to a temp file, then installs to `~/.vim/colors`:
+
+```bash
+curl -sL $(curl -s https://api.github.com/repos/wtasg/candi/releases/latest | grep 'browser_download_url.*vim_' | cut -d'"' -f4) | funzip > /tmp/vim.zip && unzip -o /tmp/vim.zip -d ~/.vim/ && rm /tmp/vim.zip
+```
+
+**Neovim (latest release):**
+
+Similar to Vim, but creates the Neovim colors directory and extracts there:
+
+```bash
+mkdir -p ~/.config/nvim/colors && curl -sL $(curl -s https://api.github.com/repos/wtasg/candi/releases/latest | grep 'browser_download_url.*vim_' | cut -d'"' -f4) | funzip | tar -xf - -C ~/.config/nvim/
+```
+
+**VS Code (specific version):**
+
+Downloads the `.vsix` extension file and installs it using VS Code's CLI `--install-extension` flag:
+
+```bash
+curl -LO https://github.com/wtasg/candi/releases/download/v0.0.10/vscode-theme-candi-0.0.10.vsix && code --install-extension vscode-theme-candi-0.0.10.vsix
+```
 
 ## Installation Guides by Platform
 
-### Web (theme.zip)
+### Web (theme_VERSION.zip)
 
 **For Tailwind CSS projects:**
 
-1. Extract `theme.zip`:
+1. Extract `theme_VERSION.zip`:
 
    ```bash
-   unzip theme.zip
+   unzip theme_0.0.10.zip
    ```
 
 2. Copy the `dist/` folder to your project or install via npm:
@@ -47,10 +127,10 @@ Each GitHub release includes the following artifacts:
 
 **For vanilla CSS projects:**
 
-1. Extract `theme.zip` and copy the CSS file:
+1. Extract and copy the CSS file:
 
    ```bash
-   unzip theme.zip
+   unzip theme_0.0.10.zip
    cp dist/theme.css your-project/styles/
    ```
 
@@ -64,12 +144,12 @@ See [Use with Tailwind CSS](use-with-tailwindcss.md) and [Use without Tailwind C
 
 ---
 
-### Vim (vim.zip)
+### Vim (vim_VERSION.zip)
 
-1. Extract `vim.zip`:
+1. Extract `vim_VERSION.zip`:
 
    ```bash
-   unzip vim.zip
+   unzip vim_0.0.10.zip
    ```
 
 2. Copy colorschemes to your Vim colors directory:
@@ -97,12 +177,12 @@ See [Vim Theme Guide](vim-theme.md) for additional configuration options.
 
 ---
 
-### KDE Plasma (kde.zip)
+### KDE Plasma (kde_VERSION.zip)
 
-1. Extract `kde.zip`:
+1. Extract `kde_VERSION.zip`:
 
    ```bash
-   unzip kde.zip
+   unzip kde_0.0.10.zip
    ```
 
 2. Install color schemes based on your Plasma version:
@@ -154,14 +234,14 @@ See [VS Code Theme Guide](vscode-theme.md) for more details.
 
 ---
 
-### Documentation (docs.zip)
+### Documentation (docs_VERSION.zip)
 
-The `docs.zip` artifact contains a static build of the documentation website for offline reference.
+The `docs_VERSION.zip` artifact contains a static build of the documentation website for offline reference.
 
-1. Extract `docs.zip`:
+1. Extract `docs_VERSION.zip`:
 
    ```bash
-   unzip docs.zip
+   unzip docs_0.0.10.zip
    ```
 
 2. Open in a browser:
@@ -176,6 +256,104 @@ The `docs.zip` artifact contains a static build of the documentation website for
    ```bash
    npx serve website/dist
    ```
+
+## CI/CD Integration
+
+### GitHub Actions
+
+This workflow example demonstrates fetching the latest Candi version using `jq` to parse the GitHub API response, then downloading and extracting the theme for use in your build:
+
+```yaml
+name: Use Candi Theme
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Download Candi theme
+        run: |
+          # Get latest version
+          VERSION=$(curl -s https://api.github.com/repos/wtasg/candi/releases/latest | jq -r '.tag_name' | sed 's/^v//')
+          
+          # Download and extract theme
+          curl -LO "https://github.com/wtasg/candi/releases/download/v${VERSION}/theme_${VERSION}.zip"
+          unzip "theme_${VERSION}.zip" -d ./candi-theme
+          
+      - name: Use theme in build
+        run: |
+          cp ./candi-theme/dist/theme.css ./src/styles/
+          npm run build
+```
+
+### Docker
+
+This multi-stage Dockerfile installs `curl` and `unzip`, fetches the latest version from the GitHub API using `grep` and `sed`, downloads the theme, and makes it available for your application:
+
+```dockerfile
+FROM node:20-alpine AS builder
+
+# Download and extract Candi theme
+RUN apk add --no-cache curl unzip \
+    && VERSION=$(curl -s https://api.github.com/repos/wtasg/candi/releases/latest | grep '"tag_name"' | sed -E 's/.*"v([^"]+)".*/\1/') \
+    && curl -LO "https://github.com/wtasg/candi/releases/download/v${VERSION}/theme_${VERSION}.zip" \
+    && unzip "theme_${VERSION}.zip" -d /candi
+
+# Copy theme to your project
+COPY --from=builder /candi/dist/theme.css /app/styles/
+```
+
+### Shell Script
+
+The repository includes reusable download scripts in `scripts/`:
+
+**Using curl** ([download-artifact.sh](../scripts/download-artifact.sh)):
+
+This script accepts two arguments: the artifact type (`theme`, `vim`, `kde`, `docs`, or `vscode`) and an optional version (defaults to `latest`). It queries the GitHub API when needed and downloads the specified artifact:
+
+```bash
+#!/bin/bash
+# download-artifact.sh - Download Candi artifacts from GitHub releases using curl
+
+REPO="wtasg/candi"
+ARTIFACT="${1:-theme}"
+VERSION="${2:-latest}"
+
+# Fetch latest version from GitHub API if needed
+if [ "$VERSION" = "latest" ]; then
+    VERSION=$(curl -s "https://api.github.com/repos/${REPO}/releases/latest" \
+        | grep '"tag_name"' \
+        | sed -E 's/.*"v([^"]+)".*/\1/')
+fi
+
+# Construct filename based on artifact type
+case "$ARTIFACT" in
+    theme|vim|kde|docs) FILENAME="${ARTIFACT}_${VERSION}.zip" ;;
+    vscode) FILENAME="vscode-theme-candi-${VERSION}.vsix" ;;
+esac
+
+curl -L -O "https://github.com/${REPO}/releases/download/v${VERSION}/${FILENAME}"
+```
+
+**Using wget** ([download-artifact-wget.sh](../scripts/download-artifact-wget.sh)):
+
+This wget-based alternative supports downloading all artifacts at once with the `all` option:
+
+```bash
+./scripts/download-artifact-wget.sh all 0.0.10  # Download everything
+```
+
+**Usage examples:**
+
+```bash
+./scripts/download-artifact.sh theme          # Download latest theme
+./scripts/download-artifact.sh vim 0.0.10     # Download specific version
+./scripts/download-artifact.sh vscode latest  # Download latest VS Code extension
+./scripts/download-artifact-wget.sh all       # Download all latest artifacts
+```
 
 ## When to Build from Source
 

@@ -8,9 +8,9 @@ set -e
 VERSION="$1"
 
 if [ -z "$VERSION" ]; then
-    echo "Usage: $0 <version>"
-    echo "Example: $0 0.0.4"
-    exit 1
+  echo "Usage: $0 <version>"
+  echo "Example: $0 0.0.4"
+  exit 1
 fi
 
 echo "Bumping all packages to version $VERSION"
