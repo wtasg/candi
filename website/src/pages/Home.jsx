@@ -9,30 +9,30 @@ export default function Home() {
           <span>✨</span>
           <span>Hygge & Lagom</span>
         </div>
-        
+
         <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-6 max-w-4xl mx-auto">
           Nordic Design System with OKLCH Colors
         </h1>
-        
+
         <p className="text-xl text-candi-subtle max-w-2xl mx-auto mb-12">
-          A comprehensive design system inspired by Scandinavian principles of warmth and balance. 
+          A comprehensive design system inspired by Scandinavian principles of warmth and balance.
           Built with OKLCH color space for perceptual uniformity across all platforms.
         </p>
-        
+
         <div className="flex flex-wrap items-center justify-center gap-4">
-          <Link 
-            to="/colors" 
+          <Link
+            to="/colors"
             className="px-8 py-4 bg-candi-accent text-white rounded-soft font-medium hover:opacity-90 transition-opacity shadow-hygge"
           >
             Explore Colors
           </Link>
-          <Link 
-            to="/components" 
+          <Link
+            to="/components"
             className="px-8 py-4 bg-candi-secondary text-white rounded-soft font-medium hover:opacity-90 transition-opacity shadow-hygge"
           >
             View Components
           </Link>
-          <a 
+          <a
             href="https://github.com/wtasg/candi"
             target="_blank"
             rel="noopener noreferrer"
@@ -46,7 +46,7 @@ export default function Home() {
       {/* Features Grid */}
       <section className="max-w-7xl mx-auto px-6 py-20">
         <h2 className="text-3xl font-bold mb-12 text-center">Why Candi?</h2>
-        
+
         <div className="grid md:grid-cols-3 gap-8">
           <div className="bg-candi-surface border border-candi-border rounded-softer p-8 shadow-hygge">
             <div className="w-12 h-12 rounded-soft bg-candi-accent-subtle flex items-center justify-center mb-6">
@@ -90,15 +90,15 @@ export default function Home() {
       <section className="max-w-7xl mx-auto px-6 py-20">
         <div className="bg-candi-elevated border border-candi-border rounded-softer p-12 shadow-hygge-md">
           <h2 className="text-3xl font-bold mb-6">Quick Start</h2>
-          
+
           <div className="space-y-8">
             <div>
               <h3 className="text-xl font-semibold mb-3 text-candi-accent">Web (Tailwind CSS)</h3>
               <pre className="text-sm">
-                <code>{`npm install @wtasnorg/candi
+                <code>{`npm install @wtasg/candi
 
 // tailwind.config.js
-const { theme, plugin } = require('@wtasnorg/candi');
+const { theme, plugin } = require('@wtasg/candi');
 
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
@@ -140,7 +140,7 @@ MaterialApp(
       {/* Platform Support */}
       <section className="max-w-7xl mx-auto px-6 py-20">
         <h2 className="text-3xl font-bold mb-12 text-center">Platform Support</h2>
-        
+
         <div className="grid md:grid-cols-4 gap-6">
           {[
             { name: 'Web', icon: '🌐', desc: 'Tailwind CSS Plugin' },

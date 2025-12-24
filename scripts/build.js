@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Build script for @wtasnorg/candi
+ * Build script for @wtasg/candi
  *
  * Copies source files to dist/ for npm publishing.
  */
@@ -33,7 +33,7 @@ jsFiles.forEach(file => {
 });
 
 // Create TypeScript declarations
-const dtsContent = `declare module '@wtasnorg/candi' {
+const dtsContent = `declare module '@wtasg/candi' {
   export const theme: {
     colors: { candi: Record<string, string> };
     spacing: Record<string, string>;
@@ -49,24 +49,24 @@ const dtsContent = `declare module '@wtasnorg/candi' {
   export default { theme: typeof theme; plugin: typeof plugin };
 }
 
-declare module '@wtasnorg/candi/theme' {
+declare module '@wtasg/candi/theme' {
   const theme: Record<string, any>;
   export default theme;
 }
 
-declare module '@wtasnorg/candi/plugin' {
+declare module '@wtasg/candi/plugin' {
   import { PluginCreator } from 'tailwindcss/types/config';
   const plugin: PluginCreator;
   export default plugin;
 }
 
-declare module '@wtasnorg/candi/css' {}
-declare module '@wtasnorg/candi/css/base' {}
-declare module '@wtasnorg/candi/css/components' {}
-declare module '@wtasnorg/candi/css/utilities' {}
+declare module '@wtasg/candi/css' {}
+declare module '@wtasg/candi/css/base' {}
+declare module '@wtasg/candi/css/components' {}
+declare module '@wtasg/candi/css/utilities' {}
 
 // Tailwind CSS v4 support
-declare module '@wtasnorg/candi/v4' {}
+declare module '@wtasg/candi/v4' {}
 `;
 fs.writeFileSync(path.join(distDir, 'index.d.ts'), dtsContent);
 
