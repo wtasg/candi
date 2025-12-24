@@ -9,7 +9,7 @@ echo "Installing dependencies for all projects..."
 
 # Root project
 echo ""
-echo "[1/3] Root project"
+echo "[1/4] Root project"
 npm install
 
 # VS Code
