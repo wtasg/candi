@@ -161,3 +161,31 @@ r = Math.round(Math.min(1, Math.max(0, gamma(r))) * 255);
   "icon.png"
 ]
 ```
+
+---
+
+## Unicode Symbols for Console Output
+
+**Problem**: Emojis (✅ ❌) can render inconsistently across terminals and fonts.
+
+**Solution**: Use Unicode Dingbat symbols instead of emojis for pass/fail indicators:
+
+| Symbol | Code | Name | Usage |
+| -------- | ------ | ------ | ------- |
+| ✓ | U+2713 | Check Mark | Pass/success |
+| ✗ | U+2717 | Ballot X | Fail/error |
+| ✘ | U+2718 | Heavy Ballot X | Fail (bold) |
+
+**Why these work better**:
+
+- Part of Unicode since 1.1 (1993), not emoji
+- Render correctly in monospace fonts
+- No color/emoji variation issues
+- Work in all terminals
+
+**Example usage**:
+
+```javascript
+const status = passed ? '[✓]' : '[✗]';
+console.log(`${status} Test name`);
+```

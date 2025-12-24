@@ -4,7 +4,7 @@ A Tailwind CSS design system based on Nordic design principles: Hygge (warmth) a
 
 Candi provides a single source of truth for colors using the OKLCH color space, synchronized across Web, Flutter, VS Code, and Vim.
 
-📚 **[View Documentation Website](https://wtasg.github.io/candi/)** - Interactive color explorer, component playground, and comprehensive guides.
+**[View Documentation Website](https://wtasg.github.io/candi/)** - Interactive color explorer, component playground, and comprehensive guides.
 
 ---
 
@@ -16,6 +16,7 @@ Candi provides a single source of truth for colors using the OKLCH color space, 
 | **Flutter** | Full | Type-safe `CandiColors` with OKLCH metadata |
 | **VS Code** | Full | Light & Dark themes with unified syntax highlighting |
 | **Vim** | Full | Standalone `.vim` colorschemes (GUI & Terminal) |
+| **KDE Plasma** | Full | Color schemes for KDE 4, 5 & 6 (Plasma 6 color roles recommended) |
 
 ---
 
@@ -27,6 +28,8 @@ Candi uses **OKLCH** as its primary color space instead of Hex codes. Benefits i
 - **Synchronized Themes**: Updates to `src/css/base.css` propagate to all platforms via `npm run build:all`.
 - **Shared Logic**: Centralized conversion in `scripts/color-conv.js` ensures color accuracy across Chrome, VS Code, and mobile.
 - **Automated Accessibility**: Integrated WCAG 2.1 contrast ratio validation in the build pipeline.
+
+**[Learn more about OKLCH color conversion](docs/color-conversion.md)** - Detailed explanation of the conversion pipeline and verification methods.
 
 ---
 
@@ -43,7 +46,7 @@ Candi is built with accessibility as a core requirement:
 ## Unified Commands
 
 - **Build Everything**: `npm run build:all`
-  - Generates assets for Web, Flutter, VS Code, and Vim.
+  - Generates assets for Web, Flutter, VS Code, Vim, and KDE.
 - **Test Everything**: `npm test`
   - Validates color accuracy and platform-specific exports.
 - **Package VS Code**: `npm run vscode:package`
@@ -54,6 +57,7 @@ Candi is built with accessibility as a core requirement:
     - `docs.zip` (Documentation website)
     - `vim.zip` (Vim color schemes)
     - `vscode/vscode-theme-candi-*.vsix` (VS Code extension)
+    - `kde.zip` (KDE color schemes)
 
 ---
 
@@ -72,20 +76,22 @@ This package is published to GitHub Packages. To install it, you need to authent
 
 2. **Configure npm authentication**:
 
-   ```bash
-   npm login --scope=@wtasg --auth-type=legacy --registry=https://npm.pkg.github.com
-   ```
+```bash
+npm login --scope=@wtasg --auth-type=legacy --registry=https://npm.pkg.github.com
+```
 
-   - Username: Your GitHub username
-   - Password: The PAT you just created
-   - Email: Your GitHub email
+- Username: Your GitHub username
+- Password: The PAT you just created
+- Email: Your GitHub email
 
-   Or create/update your `~/.npmrc` file:
+Or create/update your `~/.npmrc` file:
 
-   ```text
-   //npm.pkg.github.com/:_authToken=YOUR_GITHUB_PAT
-   @wtasg:registry=https://npm.pkg.github.com
-   ```
+```text
+//npm.pkg.github.com/:_authToken=YOUR_GITHUB_PAT
+@wtasg:registry=https://npm.pkg.github.com
+```
+
+**[Using Prebuilt Releases](docs/using-release-artifacts.md)** - Download ready-to-use artifacts from GitHub releases (recommended for most users).
 
 ### Web (Tailwind CSS)
 
@@ -125,6 +131,10 @@ module.exports = {
 ### Vim
 
 [Vim Theme Guide](docs/vim-theme.md)
+
+### KDE Plasma
+
+[KDE Theme Guide](docs/kde-theme.md)
 
 ---
 

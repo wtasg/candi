@@ -148,5 +148,5 @@ ${generatePalette(darkColors)}
 
 fs.writeFileSync(dartColorsPath, dartTemplate);
 
-console.log('✓ Build complete!');
+console.log('Build complete!');
 console.log('  - Generated flutter/lib/candi_colors.dart');
