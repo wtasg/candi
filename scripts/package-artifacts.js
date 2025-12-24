@@ -22,6 +22,16 @@ console.log('\x1b[32mStarting artifact generation...\x1b[0m');
 console.log('\n\x1b[33m[1/6] Packaging VS Code Extension...\x1b[0m');
 run('npm run vscode:package', rootDir);
 
+// Move the generated .vsix file to root directory
+const vscodeDir = path.join(rootDir, 'vscode');
+const vsixFiles = fs.readdirSync(vscodeDir).filter(f => f.endsWith('.vsix'));
+vsixFiles.forEach(vsix => {
+    const src = path.join(vscodeDir, vsix);
+    const dest = path.join(rootDir, vsix);
+    fs.renameSync(src, dest);
+    console.log(`Moved ${vsix} to root directory`);
+});
+
 // 2. Build All
 console.log('\n\x1b[33m[2/6] Building all packages (Theme, Vim, Flutter, VS Code, KDE theme files)...\x1b[0m');
 run('npm run build:all', rootDir);
@@ -65,7 +75,7 @@ console.log('- theme.zip');
 console.log('- docs.zip');
 console.log('- vim.zip');
 console.log('- kde.zip');
-// Find the vsix file
-const vscodeDir = path.join(rootDir, 'vscode');
-const vsixFiles = fs.readdirSync(vscodeDir).filter(f => f.endsWith('.vsix'));
-vsixFiles.forEach(f => console.log(`- vscode/${f}`));
+// Find the vsix files in root directory
+const rootVsixFiles = fs.readdirSync(rootDir).filter(f => f.endsWith('.vsix'));
+rootVsixFiles.forEach(f => console.log(`- ${f}`));
+
