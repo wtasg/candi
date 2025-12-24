@@ -22,7 +22,7 @@ export default function Guides() {
             <div>
               <h3 className="text-lg font-semibold mb-3">Installation</h3>
               <pre className="text-sm mb-4">
-                <code>npm install @wtasnorg/candi</code>
+                <code>npm install @wtasg/candi</code>
               </pre>
             </div>
 
@@ -32,7 +32,7 @@ export default function Guides() {
                 Add Candi to your <code>tailwind.config.js</code>:
               </p>
               <pre className="text-sm">
-                <code>{`const { theme, plugin } = require('@wtasnorg/candi');
+                <code>{`const { theme, plugin } = require('@wtasg/candi');
 
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
@@ -244,7 +244,7 @@ endif`}</code>
             <div>
               <h3 className="text-lg font-semibold mb-3">Terminal Support</h3>
               <p className="text-candi-subtle">
-                The colorscheme works in both GUI and terminal Vim. For best results in terminal, 
+                The colorscheme works in both GUI and terminal Vim. For best results in terminal,
                 use a terminal with true color support and add to your config:
               </p>
               <pre className="text-sm mt-3">

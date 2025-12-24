@@ -59,10 +59,38 @@ Candi is built with accessibility as a core requirement:
 
 ## Installation & Usage
 
+### Authenticating with GitHub Packages
+
+This package is published to GitHub Packages. To install it, you need to authenticate with GitHub:
+
+1. **Create a Personal Access Token (PAT)**:
+   - Go to GitHub Settings → [Developer settings → Personal access tokens → Tokens (classic)](https://github.com/settings/tokens)
+   - Click "Generate new token (classic)"
+   - Give it a descriptive name (e.g., "npm packages")
+   - Select the `read:packages` scope
+   - Click "Generate token" and copy the token
+
+2. **Configure npm authentication**:
+
+   ```bash
+   npm login --scope=@wtasg --auth-type=legacy --registry=https://npm.pkg.github.com
+   ```
+
+   - Username: Your GitHub username
+   - Password: The PAT you just created
+   - Email: Your GitHub email
+
+   Or create/update your `~/.npmrc` file:
+
+   ```text
+   //npm.pkg.github.com/:_authToken=YOUR_GITHUB_PAT
+   @wtasg:registry=https://npm.pkg.github.com
+   ```
+
 ### Web (Tailwind CSS)
 
 ```bash
-npm install @wtasnorg/candi
+npm install @wtasg/candi
 ```
 
 **Tailwind v4** (Recommended):
@@ -70,14 +98,14 @@ npm install @wtasnorg/candi
 ```css
 /* In your CSS */
 @import "tailwindcss";
-@import "@wtasnorg/candi/v4";
+@import "@wtasg/candi/v4";
 ```
 
 **Tailwind v3**:
 
 ```js
 // tailwind.config.js
-const { theme, plugin } = require('@wtasnorg/candi');
+const { theme, plugin } = require('@wtasg/candi');
 module.exports = {
   theme: { extend: theme },
   plugins: [plugin],

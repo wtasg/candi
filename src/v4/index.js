@@ -7,7 +7,7 @@
  * @example
  * // In your CSS file:
  * @import "tailwindcss";
- * @import "@wtasnorg/candi/v4";
+ * @import "@wtasg/candi/v4";
  */
 
 const path = require('path');

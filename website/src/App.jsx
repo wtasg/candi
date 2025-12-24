@@ -46,7 +46,7 @@ function App() {
               <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-candi-accent to-candi-secondary"></div>
               <span className="text-xl font-semibold tracking-tight">Candi</span>
             </Link>
-            
+
             <div className="hidden md:flex items-center gap-1">
               {navLinks.map(link => (
                 <Link
@@ -125,7 +125,7 @@ function App() {
               <h3 className="font-semibold mb-3">Links</h3>
               <ul className="space-y-2 text-sm">
                 <li><a href="https://github.com/wtasg/candi" className="text-candi-subtle hover:text-candi-accent">GitHub</a></li>
-                <li><a href="https://www.npmjs.com/package/@wtasnorg/candi" className="text-candi-subtle hover:text-candi-accent">npm</a></li>
+                <li><a href="https://www.npmjs.com/package/@wtasg/candi" className="text-candi-subtle hover:text-candi-accent">npm</a></li>
               </ul>
             </div>
             <div>

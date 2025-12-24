@@ -5,7 +5,7 @@
  *
  * @example
  * // In tailwind.config.js
- * const { theme, plugin } = require('@wtasnorg/candi');
+ * const { theme, plugin } = require('@wtasg/candi');
  *
  * module.exports = {
  *   theme: { extend: theme },
