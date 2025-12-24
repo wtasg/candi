@@ -16,6 +16,7 @@ Candi provides a single source of truth for colors using the OKLCH color space, 
 | **Flutter** | Full | Type-safe `CandiColors` with OKLCH metadata |
 | **VS Code** | Full | Light & Dark themes with unified syntax highlighting |
 | **Vim** | Full | Standalone `.vim` colorschemes (GUI & Terminal) |
+| **KDE Plasma** | Full | Color schemes for KDE 4, 5 & 6 |
 
 ---
 
@@ -43,7 +44,7 @@ Candi is built with accessibility as a core requirement:
 ## Unified Commands
 
 - **Build Everything**: `npm run build:all`
-  - Generates assets for Web, Flutter, VS Code, and Vim.
+  - Generates assets for Web, Flutter, VS Code, Vim, and KDE.
 - **Test Everything**: `npm test`
   - Validates color accuracy and platform-specific exports.
 - **Package VS Code**: `npm run vscode:package`
@@ -54,6 +55,7 @@ Candi is built with accessibility as a core requirement:
     - `docs.zip` (Documentation website)
     - `vim.zip` (Vim color schemes)
     - `vscode/vscode-theme-candi-*.vsix` (VS Code extension)
+    - `kde.zip` (KDE color schemes)
 
 ---
 
@@ -97,6 +99,23 @@ module.exports = {
 ### Vim
 
 [Vim Theme Guide](docs/vim-theme.md)
+
+### KDE Plasma
+
+**Installation:**
+
+1. Copy the color scheme files to your KDE color schemes directory:
+   ```bash
+   # For KDE Plasma 5/6
+   cp kde/v5/*.colors ~/.local/share/color-schemes/
+   
+   # For KDE Plasma 4
+   cp kde/v4/*.colors ~/.kde4/share/apps/color-schemes/
+   ```
+
+2. Apply via System Settings → Appearance → Colors
+
+See [kde/v5/README.md](kde/v5/README.md) and [kde/v4/README.md](kde/v4/README.md) for detailed instructions.
 
 ---
 

@@ -19,15 +19,15 @@ console.log('\x1b[32mStarting artifact generation...\x1b[0m');
 
 // 1. VS Code Package
 // vsce package creates a .vsix file. The package.json script runs it in the vscode directory.
-console.log('\n\x1b[33m[1/5] Packaging VS Code Extension...\x1b[0m');
+console.log('\n\x1b[33m[1/6] Packaging VS Code Extension...\x1b[0m');
 run('npm run vscode:package', rootDir);
 
 // 2. Build All
-console.log('\n\x1b[33m[2/5] Building all packages (Theme, Vim, Flutter, VS Code theme files)...\x1b[0m');
+console.log('\n\x1b[33m[2/6] Building all packages (Theme, Vim, Flutter, VS Code, KDE theme files)...\x1b[0m');
 run('npm run build:all', rootDir);
 
 // 3. Build Website
-console.log('\n\x1b[33m[3/5] Building Website...\x1b[0m');
+console.log('\n\x1b[33m[3/6] Building Website...\x1b[0m');
 // Ensure dependencies are installed if node_modules is missing, though usually it's there
 if (!fs.existsSync(path.join(websiteDir, 'node_modules'))) {
     run('npm ci', websiteDir);
@@ -35,7 +35,7 @@ if (!fs.existsSync(path.join(websiteDir, 'node_modules'))) {
 run('npm run build', websiteDir);
 
 // 4. Zip Operations
-console.log('\n\x1b[33m[4/5] Generating Zips...\x1b[0m');
+console.log('\n\x1b[33m[4/6] Generating Zips...\x1b[0m');
 
 // Zip dist/ -> theme.zip
 console.log('Creating theme.zip...');
@@ -56,10 +56,15 @@ run('zip -r -9 -v docs.zip website/dist', rootDir);
 console.log('Creating vim.zip...');
 run('zip -r -9 -v vim.zip vim/colors', rootDir);
 
+// Zip kde color files -> kde.zip
+console.log('Creating kde.zip...');
+run('zip -r -9 -v kde.zip kde/', rootDir);
+
 console.log('\n\x1b[32mArtifact generation complete! Generated:\x1b[0m');
 console.log('- theme.zip');
 console.log('- docs.zip');
 console.log('- vim.zip');
+console.log('- kde.zip');
 // Find the vsix file
 const vscodeDir = path.join(rootDir, 'vscode');
 const vsixFiles = fs.readdirSync(vscodeDir).filter(f => f.endsWith('.vsix'));
