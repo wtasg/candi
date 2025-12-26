@@ -67,7 +67,18 @@ function generatePalette(colors) {
     return colorKeys.map(key => {
         const color = colors[key];
         if (!color) return `    // ${key} missing in source`;
-        return `    // ${color.oklch}\n    ${key}: CandiColor(${color.hex}, lightness: ${color.l}, chroma: ${color.c}, hue: ${color.h}${color.opacity !== 1 ? `, opacity: ${color.opacity}` : ''}),`;
+
+        // Build the constructor call
+        const params = `lightness: ${color.l}, chroma: ${color.c}, hue: ${color.h}${color.opacity !== 1 ? `, opacity: ${color.opacity}` : ''}`;
+        const singleLine = `${key}: CandiColor(${color.hex}, ${params}),`;
+
+        // If line is too long (>80 chars), split it to match dart format (uses 2-space indent)
+        if (singleLine.length > 76) { // 76 to account for 4-space indent
+            const paramLines = params.split(', ').map(p => `      ${p},`).join('\n');
+            return `    // ${color.oklch}\n    ${key}: CandiColor(\n      ${color.hex},\n${paramLines}\n    ),`;
+        }
+
+        return `    // ${color.oklch}\n    ${singleLine}`;
     }).join('\n');
 }
 

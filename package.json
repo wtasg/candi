@@ -55,7 +55,7 @@
     ],
     "scripts": {
         "build": "node scripts/build.js",
-        "build:flutter": "node scripts/build-flutter.js",
+        "build:flutter": "node scripts/build-flutter.js && npm run format:flutter",
         "build:vscode": "node scripts/build-vscode.js",
         "build:vim": "node scripts/build-vim.js",
         "build:kde": "node scripts/build-kde.js",
@@ -63,6 +63,7 @@
         "build:gnome": "node scripts/build-gnome.js",
         "build:obsidian": "node scripts/build-obsidian.js",
         "build:all": "npm run build && npm run build:flutter && npm run build:vscode && npm run build:vim && npm run build:kde && npm run build:konsole && npm run build:gnome && npm run build:obsidian",
+        "format:flutter": "cd flutter && dart format lib",
         "prepublishOnly": "npm run build:all",
         "test:color": "node scripts/test-color.js",
         "test:colors": "node scripts/test-color-conversions.js",
