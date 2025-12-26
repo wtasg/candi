@@ -2,6 +2,15 @@
 
 All notable changes to the Candi Design System will be documented in this file.
 
+## 0.0.21
+
+### Added
+
+- Dart lint integration with `lint:dart` and `lint:all` npm scripts
+  - Automated dart format checks
+  - Automated dart analyze checks
+- Lint script (`scripts/lint-dart.js`) for Flutter package quality assurance
+
 ## 0.0.20
 
 ### Added

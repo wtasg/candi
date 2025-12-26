@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.21
+
+### Added
+
+- Automated lint checks with `dart format` and `dart analyze`
+
 ## 0.0.20
 
 ### Added
