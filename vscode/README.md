@@ -20,4 +20,4 @@ Scandinavian design theme based on the Candi Design System.
 
 ## License
 
-MIT
+MIT License - See [LICENSE](LICENSE) for details.

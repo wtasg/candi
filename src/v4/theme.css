@@ -54,6 +54,14 @@
     --color-candi-syntax-string: oklch(60% 0.12 140);
     --color-candi-hover: oklch(0% 0 0 / 0.05);
     --color-candi-active: oklch(0% 0 0 / 0.1);
+    --color-candi-terminal-black: oklch(25% 0.01 250);
+    --color-candi-terminal-red: oklch(58% 0.12 25);
+    --color-candi-terminal-green: oklch(52% 0.08 145);
+    --color-candi-terminal-yellow: oklch(68% 0.13 70);
+    --color-candi-terminal-blue: oklch(52% 0.06 230);
+    --color-candi-terminal-magenta: oklch(60% 0.15 0);
+    --color-candi-terminal-cyan: oklch(65% 0.1 200);
+    --color-candi-terminal-white: oklch(92% 0.01 85);
 
     /* Terminal Palette */
     --color-candi-terminal-black: oklch(25% 0.01 250);
@@ -115,6 +123,14 @@
     --candi-syntax-string: oklch(60% 0.12 140);
     --candi-hover: oklch(0% 0 0 / 0.05);
     --candi-active: oklch(0% 0 0 / 0.1);
+    --candi-terminal-black: oklch(25% 0.01 250);
+    --candi-terminal-red: oklch(58% 0.12 25);
+    --candi-terminal-green: oklch(52% 0.08 145);
+    --candi-terminal-yellow: oklch(68% 0.13 70);
+    --candi-terminal-blue: oklch(52% 0.06 230);
+    --candi-terminal-magenta: oklch(60% 0.15 0);
+    --candi-terminal-cyan: oklch(65% 0.1 200);
+    --candi-terminal-white: oklch(92% 0.01 85);
 
     /* Terminal Palette */
     --candi-terminal-black: oklch(25% 0.01 250);
@@ -178,6 +194,14 @@
     --color-candi-terminal-blue: var(--candi-terminal-blue);
     --color-candi-terminal-magenta: var(--candi-terminal-magenta);
     --color-candi-terminal-cyan: var(--candi-terminal-cyan);
+    --color-candi-terminal-white: var(--candi-terminal-white);
+    --color-candi-terminal-black: var(--candi-terminal-black);
+    --color-candi-terminal-red: var(--candi-terminal-red);
+    --color-candi-terminal-green: var(--candi-terminal-green);
+    --color-candi-terminal-yellow: var(--candi-terminal-yellow);
+    --color-candi-terminal-blue: var(--candi-terminal-blue);
+    --color-candi-terminal-magenta: var(--candi-terminal-magenta);
+    --color-candi-terminal-cyan: var(--candi-terminal-cyan);
     --color-candi-terminal-white: var(--color-candi-text);
     /* @tokens-end-v4-map */
 }
@@ -226,6 +250,14 @@
     --candi-syntax-string: oklch(70% 0.12 140);
     --candi-hover: oklch(100% 0 0 / 0.1);
     --candi-active: oklch(100% 0 0 / 0.2);
+    --candi-terminal-black: oklch(15% 0.01 250);
+    --candi-terminal-red: oklch(65% 0.12 25);
+    --candi-terminal-green: oklch(60% 0.1 145);
+    --candi-terminal-yellow: oklch(72% 0.13 70);
+    --candi-terminal-blue: oklch(62% 0.08 230);
+    --candi-terminal-magenta: oklch(70% 0.15 0);
+    --candi-terminal-cyan: oklch(75% 0.1 200);
+    --candi-terminal-white: oklch(92% 0.01 85);
 
     /* Terminal Palette */
     --candi-terminal-black: oklch(15% 0.01 250);
@@ -282,6 +314,14 @@
     --color-candi-syntax-string: var(--candi-syntax-string);
     --color-candi-hover: var(--candi-hover);
     --color-candi-active: var(--candi-active);
+    --color-candi-terminal-black: var(--candi-terminal-black);
+    --color-candi-terminal-red: var(--candi-terminal-red);
+    --color-candi-terminal-green: var(--candi-terminal-green);
+    --color-candi-terminal-yellow: var(--candi-terminal-yellow);
+    --color-candi-terminal-blue: var(--candi-terminal-blue);
+    --color-candi-terminal-magenta: var(--candi-terminal-magenta);
+    --color-candi-terminal-cyan: var(--candi-terminal-cyan);
+    --color-candi-terminal-white: var(--candi-terminal-white);
     --color-candi-terminal-black: var(--candi-terminal-black);
     --color-candi-terminal-red: var(--candi-terminal-red);
     --color-candi-terminal-green: var(--candi-terminal-green);

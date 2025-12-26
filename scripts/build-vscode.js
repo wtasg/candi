@@ -115,8 +115,104 @@ function generateTheme(name, type, palette) {
             // Lists
             "list.activeSelectionBackground": palette['accent'] + "20",
             "list.activeSelectionForeground": palette['text'],
-            "list.hoverBackground": palette['surface'],
+            "list.activeSelectionIconForeground": palette['accent'],
             "list.inactiveSelectionBackground": palette['surface'],
+            "list.inactiveSelectionForeground": palette['text-subtle'],
+            "list.hoverBackground": palette['surface'],
+            "list.hoverForeground": palette['text'],
+            "list.focusBackground": palette['accent'] + "20",
+            "list.focusForeground": palette['text'],
+
+            // Input Controls
+            "input.background": palette['surface'],
+            "input.border": palette['border'],
+            "input.foreground": palette['text'],
+            "input.placeholderForeground": palette['text-muted'],
+            "inputOption.activeBorder": palette['accent'],
+            "inputValidation.errorBorder": palette['error'],
+            "inputValidation.warningBorder": palette['warning'],
+            "inputValidation.infoBorder": palette['info'],
+
+            // Dropdown
+            "dropdown.background": palette['surface'],
+            "dropdown.border": palette['border'],
+            "dropdown.foreground": palette['text'],
+
+            // Badge
+            "badge.background": palette['accent'],
+            "badge.foreground": palette['on-accent'],
+
+            // Panels
+            "panel.background": palette['bg'],
+            "panel.border": palette['border'],
+            "panelTitle.activeBorder": palette['accent'],
+            "panelTitle.activeForeground": palette['text'],
+            "panelTitle.inactiveForeground": palette['text-muted'],
+
+            // Peek View
+            "peekView.border": palette['accent'],
+            "peekViewEditor.background": palette['surface'],
+            "peekViewEditor.matchHighlightBackground": palette['warning'] + "30",
+            "peekViewResult.background": palette['surface'],
+            "peekViewResult.matchHighlightBackground": palette['warning'] + "30",
+            "peekViewResult.selectionBackground": palette['accent'] + "20",
+            "peekViewTitle.background": palette['surface'],
+            "peekViewTitleDescription.foreground": palette['text-subtle'],
+            "peekViewTitleLabel.foreground": palette['text'],
+
+            // Git Decorations
+            "gitDecoration.modifiedResourceForeground": palette['warning'],
+            "gitDecoration.deletedResourceForeground": palette['error'],
+            "gitDecoration.untrackedResourceForeground": palette['success'],
+            "gitDecoration.ignoredResourceForeground": palette['text-muted'],
+            "gitDecoration.conflictingResourceForeground": palette['error'],
+
+            // Breadcrumbs
+            "breadcrumb.foreground": palette['text-subtle'],
+            "breadcrumb.background": palette['bg'],
+            "breadcrumb.focusForeground": palette['text'],
+            "breadcrumb.activeSelectionForeground": palette['accent'],
+
+            // Menu
+            "menu.background": palette['surface'],
+            "menu.foreground": palette['text'],
+            "menu.selectionBackground": palette['accent'] + "20",
+            "menu.selectionForeground": palette['text'],
+            "menu.separatorBackground": palette['border'],
+
+            // Notifications
+            "notificationCenter.border": palette['border'],
+            "notificationCenterHeader.background": palette['surface'],
+            "notificationCenterHeader.foreground": palette['text'],
+            "notificationToast.border": palette['border'],
+            "notifications.background": palette['surface'],
+            "notifications.foreground": palette['text'],
+            "notifications.border": palette['border'],
+            "notificationLink.foreground": palette['accent'],
+
+            // Scrollbar
+            "scrollbar.shadow": palette['border'],
+            "scrollbarSlider.background": palette['border'] + "80",
+            "scrollbarSlider.hoverBackground": palette['border-strong'] + "80",
+            "scrollbarSlider.activeBackground": palette['border-strong'],
+
+            // Progress Bar
+            "progressBar.background": palette['accent'],
+
+            // Editor Widget
+            "editorWidget.background": palette['surface'],
+            "editorWidget.border": palette['border'],
+            "editorWidget.foreground": palette['text'],
+            "editorSuggestWidget.background": palette['surface'],
+            "editorSuggestWidget.border": palette['border'],
+            "editorSuggestWidget.foreground": palette['text'],
+            "editorSuggestWidget.highlightForeground": palette['accent'],
+            "editorSuggestWidget.selectedBackground": palette['accent'] + "20",
+
+            // Editor Hover
+            "editorHoverWidget.background": palette['surface'],
+            "editorHoverWidget.border": palette['border'],
+            "editorHoverWidget.foreground": palette['text'],
         },
         "tokenColors": [
             {
@@ -314,6 +410,34 @@ function generateTheme(name, type, palette) {
             {
                 "scope": ["token.debug-token"],
                 "settings": { "foreground": palette['text-muted'] }
+            },
+            {
+                "scope": ["comment.block.documentation", "comment.documentation"],
+                "settings": { "foreground": palette['text-subtle'], "fontStyle": "italic" }
+            },
+            {
+                "scope": ["entity.name.exception"],
+                "settings": { "foreground": palette['error'], "fontStyle": "bold" }
+            },
+            {
+                "scope": ["keyword.other.important"],
+                "settings": { "foreground": palette['error'], "fontStyle": "bold" }
+            },
+            {
+                "scope": ["markup.error"],
+                "settings": { "foreground": palette['error'] }
+            },
+            {
+                "scope": ["meta.diff.range", "meta.diff.index", "meta.separator"],
+                "settings": { "foreground": palette['text-subtle'] }
+            },
+            {
+                "scope": ["meta.diff.header.from-file"],
+                "settings": { "foreground": palette['error'] }
+            },
+            {
+                "scope": ["meta.diff.header.to-file"],
+                "settings": { "foreground": palette['success'] }
             }
         ]
     };

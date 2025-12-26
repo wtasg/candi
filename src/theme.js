@@ -20,20 +20,35 @@ module.exports = {
             // Borders
             border: 'var(--candi-border)',
             'border-strong': 'var(--candi-border-strong)',
+            divider: 'var(--candi-divider)',
 
             // Accents
             accent: 'var(--candi-accent)',
             'accent-subtle': 'var(--candi-accent-subtle)',
+            'on-accent': 'var(--candi-on-accent)',
             secondary: 'var(--candi-secondary)',
             'secondary-subtle': 'var(--candi-secondary-subtle)',
+            'on-secondary': 'var(--candi-on-secondary)',
             success: 'var(--candi-success)',
+            'on-success': 'var(--candi-on-success)',
             warning: 'var(--candi-warning)',
+            'on-warning': 'var(--candi-on-warning)',
             error: 'var(--candi-error)',
+            'on-error': 'var(--candi-on-error)',
             info: 'var(--candi-info)',
+            'on-info': 'var(--candi-on-info)',
             link: 'var(--candi-link)',
             disabled: 'var(--candi-disabled)',
             overlay: 'var(--candi-overlay)',
+            scrim: 'var(--candi-scrim)',
             'focus-ring': 'var(--candi-focus-ring)',
+
+            // Inverse
+            'inverse-surface': 'var(--candi-inverse-surface)',
+            'inverse-text': 'var(--candi-inverse-text)',
+
+            // Shadow
+            'shadow-color': 'var(--candi-shadow-color)',
 
             // Extended Syntax
             'syntax-keyword': 'var(--candi-syntax-keyword)',

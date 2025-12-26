@@ -58,4 +58,4 @@ print(accent.hue);       // 230.0
 
 ## License
 
-MIT
+MIT License - See [LICENSE](LICENSE) for details.

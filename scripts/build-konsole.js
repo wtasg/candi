@@ -1,0 +1,177 @@
+const fs = require('fs');
+const path = require('path');
+const palette = require('../src/data/colors');
+
+const { toHex6: toHex, parseOklch } = require('./color-conv');
+
+const konsoleDir = path.join(__dirname, '..', 'kde', 'konsole');
+
+function hexToRgb(hex) {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return { r, g, b };
+}
+
+function getColors(mode) {
+    const colors = {};
+    for (const [key, data] of Object.entries(palette[mode])) {
+        const value = data.oklch || data.value;
+        const parsed = parseOklch(value);
+        if (parsed) colors[key] = toHex(parsed);
+    }
+    return colors;
+}
+
+function generateKonsoleTheme(name, mode, colors) {
+    const isDark = mode === 'dark';
+
+    // Get RGB values for all colors
+    const bg = hexToRgb(colors.bg);
+    const fg = hexToRgb(colors.text);
+
+    // Terminal colors
+    const terminalBlack = hexToRgb(colors.terminalBlack);
+    const terminalRed = hexToRgb(colors.terminalRed);
+    const terminalGreen = hexToRgb(colors.terminalGreen);
+    const terminalYellow = hexToRgb(colors.terminalYellow);
+    const terminalBlue = hexToRgb(colors.terminalBlue);
+    const terminalMagenta = hexToRgb(colors.terminalMagenta);
+    const terminalCyan = hexToRgb(colors.terminalCyan);
+    const terminalWhite = hexToRgb(colors.text);
+
+    // Bright variants (slightly lighter/darker)
+    const brightBlack = hexToRgb(colors.textMuted);
+    const brightRed = hexToRgb(colors.error);
+    const brightGreen = hexToRgb(colors.success);
+    const brightYellow = hexToRgb(colors.warning);
+    const brightBlue = hexToRgb(colors.accent);
+    const brightMagenta = hexToRgb(colors.syntaxKeyword);
+    const brightCyan = hexToRgb(colors.syntaxVar);
+    const brightWhite = hexToRgb(colors.text);
+
+    return `[Background]
+Color=${bg.r},${bg.g},${bg.b}
+
+[BackgroundFaint]
+Color=${bg.r},${bg.g},${bg.b}
+
+[BackgroundIntense]
+Color=${bg.r},${bg.g},${bg.b}
+
+[Color0]
+Color=${terminalBlack.r},${terminalBlack.g},${terminalBlack.b}
+
+[Color0Faint]
+Color=${terminalBlack.r},${terminalBlack.g},${terminalBlack.b}
+
+[Color0Intense]
+Color=${brightBlack.r},${brightBlack.g},${brightBlack.b}
+
+[Color1]
+Color=${terminalRed.r},${terminalRed.g},${terminalRed.b}
+
+[Color1Faint]
+Color=${terminalRed.r},${terminalRed.g},${terminalRed.b}
+
+[Color1Intense]
+Color=${brightRed.r},${brightRed.g},${brightRed.b}
+
+[Color2]
+Color=${terminalGreen.r},${terminalGreen.g},${terminalGreen.b}
+
+[Color2Faint]
+Color=${terminalGreen.r},${terminalGreen.g},${terminalGreen.b}
+
+[Color2Intense]
+Color=${brightGreen.r},${brightGreen.g},${brightGreen.b}
+
+[Color3]
+Color=${terminalYellow.r},${terminalYellow.g},${terminalYellow.b}
+
+[Color3Faint]
+Color=${terminalYellow.r},${terminalYellow.g},${terminalYellow.b}
+
+[Color3Intense]
+Color=${brightYellow.r},${brightYellow.g},${brightYellow.b}
+
+[Color4]
+Color=${terminalBlue.r},${terminalBlue.g},${terminalBlue.b}
+
+[Color4Faint]
+Color=${terminalBlue.r},${terminalBlue.g},${terminalBlue.b}
+
+[Color4Intense]
+Color=${brightBlue.r},${brightBlue.g},${brightBlue.b}
+
+[Color5]
+Color=${terminalMagenta.r},${terminalMagenta.g},${terminalMagenta.b}
+
+[Color5Faint]
+Color=${terminalMagenta.r},${terminalMagenta.g},${terminalMagenta.b}
+
+[Color5Intense]
+Color=${brightMagenta.r},${brightMagenta.g},${brightMagenta.b}
+
+[Color6]
+Color=${terminalCyan.r},${terminalCyan.g},${terminalCyan.b}
+
+[Color6Faint]
+Color=${terminalCyan.r},${terminalCyan.g},${terminalCyan.b}
+
+[Color6Intense]
+Color=${brightCyan.r},${brightCyan.g},${brightCyan.b}
+
+[Color7]
+Color=${terminalWhite.r},${terminalWhite.g},${terminalWhite.b}
+
+[Color7Faint]
+Color=${terminalWhite.r},${terminalWhite.g},${terminalWhite.b}
+
+[Color7Intense]
+Color=${brightWhite.r},${brightWhite.g},${brightWhite.b}
+
+[Foreground]
+Color=${fg.r},${fg.g},${fg.b}
+
+[ForegroundFaint]
+Color=${fg.r},${fg.g},${fg.b}
+
+[ForegroundIntense]
+Color=${fg.r},${fg.g},${fg.b}
+
+[General]
+Anchor=0.5,0.5
+Blur=false
+ColorRandomization=false
+Description=Candi ${name} - Scandinavian design color scheme
+FillStyle=Tile
+Opacity=1
+Wallpaper=
+WallpaperFlipType=NoFlip
+WallpaperOpacity=1
+`;
+}
+
+// Ensure directory exists
+if (!fs.existsSync(konsoleDir)) {
+    fs.mkdirSync(konsoleDir, { recursive: true });
+}
+
+// Generate themes
+const lightColors = getColors('light');
+const darkColors = getColors('dark');
+
+fs.writeFileSync(
+    path.join(konsoleDir, 'CandiLight.colorscheme'),
+    generateKonsoleTheme('Light', 'light', lightColors)
+);
+
+fs.writeFileSync(
+    path.join(konsoleDir, 'CandiDark.colorscheme'),
+    generateKonsoleTheme('Dark', 'dark', darkColors)
+);
+
+console.log('Build complete!');
+console.log('  - Generated kde/konsole/CandiLight.colorscheme');
+console.log('  - Generated kde/konsole/CandiDark.colorscheme');

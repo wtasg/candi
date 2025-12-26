@@ -57,6 +57,16 @@ const palette = {
         // UI States
         hover: { oklch: 'oklch(0% 0 0 / 0.05)', name: 'Hover State', usage: 'Hover background' },
         active: { oklch: 'oklch(0% 0 0 / 0.1)', name: 'Active State', usage: 'Active background' },
+
+        // Terminal Colors
+        terminalBlack: { oklch: 'oklch(25% 0.01 250)', name: 'Terminal Black', usage: 'Terminal black' },
+        terminalRed: { oklch: 'oklch(58% 0.12 25)', name: 'Terminal Red', usage: 'Terminal red' },
+        terminalGreen: { oklch: 'oklch(52% 0.08 145)', name: 'Terminal Green', usage: 'Terminal green' },
+        terminalYellow: { oklch: 'oklch(68% 0.13 70)', name: 'Terminal Yellow', usage: 'Terminal yellow' },
+        terminalBlue: { oklch: 'oklch(52% 0.06 230)', name: 'Terminal Blue', usage: 'Terminal blue' },
+        terminalMagenta: { oklch: 'oklch(60% 0.15 0)', name: 'Terminal Magenta', usage: 'Terminal magenta' },
+        terminalCyan: { oklch: 'oklch(65% 0.1 200)', name: 'Terminal Cyan', usage: 'Terminal cyan' },
+        terminalWhite: { oklch: 'oklch(92% 0.01 85)', name: 'Terminal White', usage: 'Terminal white' },
     },
     dark: {
         bg: { oklch: 'oklch(18% 0.015 250)', name: 'Background', usage: 'Page background' },
@@ -109,6 +119,16 @@ const palette = {
         // UI States
         hover: { oklch: 'oklch(100% 0 0 / 0.1)', name: 'Hover State', usage: 'Hover background' },
         active: { oklch: 'oklch(100% 0 0 / 0.2)', name: 'Active State', usage: 'Active background' },
+
+        // Terminal Colors
+        terminalBlack: { oklch: 'oklch(15% 0.01 250)', name: 'Terminal Black', usage: 'Terminal black' },
+        terminalRed: { oklch: 'oklch(65% 0.12 25)', name: 'Terminal Red', usage: 'Terminal red' },
+        terminalGreen: { oklch: 'oklch(60% 0.1 145)', name: 'Terminal Green', usage: 'Terminal green' },
+        terminalYellow: { oklch: 'oklch(72% 0.13 70)', name: 'Terminal Yellow', usage: 'Terminal yellow' },
+        terminalBlue: { oklch: 'oklch(62% 0.08 230)', name: 'Terminal Blue', usage: 'Terminal blue' },
+        terminalMagenta: { oklch: 'oklch(70% 0.15 0)', name: 'Terminal Magenta', usage: 'Terminal magenta' },
+        terminalCyan: { oklch: 'oklch(75% 0.1 200)', name: 'Terminal Cyan', usage: 'Terminal cyan' },
+        terminalWhite: { oklch: 'oklch(92% 0.01 85)', name: 'Terminal White', usage: 'Terminal white' },
     }
 };
 

@@ -36,27 +36,21 @@ const darkColors = getColors('dark');
 
 /**
  * Convert hex color to nearest xterm-256 color code
- * @param {string} hex - Hex color like "#RRGGBB"
- * @returns {number} - xterm-256 color code (0-255)
  */
 function hexToXterm256(hex) {
-    // Parse hex to RGB
     const r = parseInt(hex.slice(1, 3), 16);
     const g = parseInt(hex.slice(3, 5), 16);
     const b = parseInt(hex.slice(5, 7), 16);
 
-    // Check for grayscale (approximate)
     const avg = (r + g + b) / 3;
     const isGray = Math.abs(r - avg) < 10 && Math.abs(g - avg) < 10 && Math.abs(b - avg) < 10;
 
     if (isGray) {
-        // Use grayscale ramp (232-255)
-        if (avg < 8) return 16; // black
-        if (avg > 248) return 231; // white
+        if (avg < 8) return 16;
+        if (avg > 248) return 231;
         return Math.min(255, Math.round(232 + (avg - 8) / 10));
     }
 
-    // Convert to 6x6x6 color cube (16-231)
     const rIndex = Math.round(r / 255 * 5);
     const gIndex = Math.round(g / 255 * 5);
     const bIndex = Math.round(b / 255 * 5);
@@ -65,75 +59,406 @@ function hexToXterm256(hex) {
 }
 
 function generateVimTheme(name, background, palette) {
-    // Helper to generate highlight group with GUI and terminal colors
-    const hi = (group, fgKey, bgKey = null, attr = 'none') => {
+    const isDark = background === 'dark';
+
+    // Helper to generate highlight group
+    const hi = (group, fgKey, bgKey = null, attr = 'NONE') => {
         const fg = fgKey ? palette[fgKey] : null;
         const bg = bgKey ? palette[bgKey] : null;
-        let line = `hi ${group.padEnd(18)}`;
+        let line = `hi ${group.padEnd(24)}`;
 
         if (fg) {
             line += ` guifg=${fg} ctermfg=${hexToXterm256(fg)}`;
+        } else {
+            line += ` guifg=NONE ctermfg=NONE`;
         }
         if (bg) {
             line += ` guibg=${bg} ctermbg=${hexToXterm256(bg)}`;
+        } else {
+            line += ` guibg=NONE ctermbg=NONE`;
         }
-        if (attr !== 'none') {
+        if (attr !== 'NONE') {
             line += ` gui=${attr} cterm=${attr}`;
+        } else {
+            line += ` gui=NONE cterm=NONE`;
         }
         return line;
     };
 
-    return `" Candi ${name} Colorscheme
-" Generated from Candi Design System
+    const link = (from, to) => `hi! link ${from.padEnd(24)} ${to}`;
 
-hi clear
-if exists("syntax_on")
+    return `" -----------------------------------------------------------------------------
+" File: candi-${background}.vim
+" Description: Scandinavian design colorscheme for Vim
+" Author: Candi Design System
+" Source: https://github.com/wtasg/candi
+" Last Modified: ${new Date().toISOString().split('T')[0]}
+" -----------------------------------------------------------------------------
+
+" Initialization: {{{
+
+if version > 580
+  hi clear
+  if exists("syntax_on")
     syntax reset
+  endif
 endif
 
 let g:colors_name = "candi-${background}"
 set background=${background}
 
-" UI Highlighting
+if !(has('termguicolors') && &termguicolors) && !has('gui_running') && &t_Co != 256
+  finish
+endif
+
+" }}}
+" Global Settings: {{{
+
+if !exists('g:candi_bold')
+  let g:candi_bold = 1
+endif
+
+if !exists('g:candi_italic')
+  if has('gui_running') || $TERM_ITALICS == 'true'
+    let g:candi_italic = 1
+  else
+    let g:candi_italic = 0
+  endif
+endif
+
+if !exists('g:candi_underline')
+  let g:candi_underline = 1
+endif
+
+if !exists('g:candi_undercurl')
+  let g:candi_undercurl = 1
+endif
+
+if !exists('g:candi_inverse')
+  let g:candi_inverse = 1
+endif
+
+if !exists('g:candi_italic_comments')
+  let g:candi_italic_comments = 1
+endif
+
+if !exists('g:candi_italic_strings')
+  let g:candi_italic_strings = 0
+endif
+
+" }}}
+" Emphasis Setup: {{{
+
+let s:bold = g:candi_bold == 1 ? 'bold' : 'NONE'
+let s:italic = g:candi_italic == 1 ? 'italic' : 'NONE'
+let s:underline = g:candi_underline == 1 ? 'underline' : 'NONE'
+let s:undercurl = g:candi_undercurl == 1 ? 'undercurl' : 'NONE'
+let s:inverse = g:candi_inverse == 1 ? 'inverse' : 'NONE'
+let s:italic_comments = g:candi_italic_comments == 1 ? 'italic' : 'NONE'
+let s:italic_strings = g:candi_italic_strings == 1 ? 'italic' : 'NONE'
+
+" }}}
+" Terminal Colors (Neovim): {{{
+
+if has('nvim')
+  let g:terminal_color_0  = '${palette['terminal-black']}'
+  let g:terminal_color_1  = '${palette['terminal-red']}'
+  let g:terminal_color_2  = '${palette['terminal-green']}'
+  let g:terminal_color_3  = '${palette['terminal-yellow']}'
+  let g:terminal_color_4  = '${palette['terminal-blue']}'
+  let g:terminal_color_5  = '${palette['terminal-magenta']}'
+  let g:terminal_color_6  = '${palette['terminal-cyan']}'
+  let g:terminal_color_7  = '${palette['text']}'
+  let g:terminal_color_8  = '${palette['text-muted']}'
+  let g:terminal_color_9  = '${palette['error']}'
+  let g:terminal_color_10 = '${palette['success']}'
+  let g:terminal_color_11 = '${palette['warning']}'
+  let g:terminal_color_12 = '${palette['accent']}'
+  let g:terminal_color_13 = '${palette['syntax-keyword']}'
+  let g:terminal_color_14 = '${palette['syntax-var']}'
+  let g:terminal_color_15 = '${palette['text']}'
+endif
+
+" }}}
+" Vanilla Colorscheme: {{{
+" General UI: {{{
+
 ${hi('Normal', 'text', 'bg')}
 ${hi('CursorLine', null, 'surface')}
+${hi('CursorColumn', null, 'surface')}
+${hi('ColorColumn', null, 'surface')}
+${hi('Conceal', 'accent')}
+
 ${hi('LineNr', 'text-muted', 'bg')}
-${hi('CursorLineNr', 'accent', 'bg')}
-${hi('Visual', 'elevated', 'accent')}
-${hi('Search', 'elevated', 'secondary')}
+${hi('CursorLineNr', 'accent', 'bg', 's:bold')}
+${hi('SignColumn', null, 'bg')}
+${hi('FoldColumn', 'text-muted', 'bg')}
+${hi('Folded', 'text-subtle', 'surface', 's:italic')}
+
+${hi('Visual', null, 'accent-subtle', 's:inverse')}
+${link('VisualNOS', 'Visual')}
+
+${hi('Search', 'on-warning', 'warning')}
+${hi('IncSearch', 'on-accent', 'accent', 's:bold')}
+
+${hi('MatchParen', 'accent', 'surface', 's:bold')}
+
+${hi('StatusLine', 'text', 'surface', 's:inverse')}
+${hi('StatusLineNC', 'text-muted', 'border', 's:inverse')}
 ${hi('VertSplit', 'border', 'bg')}
-${hi('StatusLine', 'text', 'surface')}
-${hi('StatusLineNC', 'text-muted', 'surface')}
+${hi('WildMenu', 'on-accent', 'accent', 's:bold')}
+
+${hi('TabLine', 'text-muted', 'surface')}
+${hi('TabLineFill', 'border', 'surface')}
+${hi('TabLineSel', 'text', 'bg', 's:bold')}
+
+${hi('Title', 'accent', null, 's:bold')}
+${hi('Directory', 'accent', null, 's:bold')}
+
+${hi('ErrorMsg', 'on-error', 'error', 's:bold')}
+${hi('WarningMsg', 'on-warning', 'warning', 's:bold')}
+${hi('ModeMsg', 'accent', null, 's:bold')}
+${hi('MoreMsg', 'success', null, 's:bold')}
+${hi('Question', 'secondary', null, 's:bold')}
+
+${hi('NonText', 'border')}
+${hi('SpecialKey', 'text-muted')}
+${hi('Whitespace', 'border')}
+
+" }}}
+" Cursor: {{{
+
+${hi('Cursor', null, null, 's:inverse')}
+${link('lCursor', 'Cursor')}
+${link('iCursor', 'Cursor')}
+${link('vCursor', 'Cursor')}
+
+" }}}
+" Completion Menu: {{{
+
 ${hi('Pmenu', 'text', 'surface')}
-${hi('PmenuSel', 'elevated', 'accent')}
-${hi('MatchParen', 'accent', null, 'bold')}
+${hi('PmenuSel', 'on-accent', 'accent', 's:bold')}
+${hi('PmenuSbar', null, 'surface')}
+${hi('PmenuThumb', null, 'border-strong')}
 
-" Syntax Highlighting
-${hi('Comment', 'text-muted', null, 'italic')}
-${hi('Constant', 'secondary')}
-${hi('String', 'success')}
-${hi('Character', 'success')}
-${hi('Number', 'secondary')}
-${hi('Boolean', 'secondary')}
-${hi('Float', 'secondary')}
+" }}}
+" Diffs: {{{
 
-${hi('Identifier', 'text')}
-${hi('Function', 'syntax-func')}
+${hi('DiffAdd', 'success', 'bg', 's:inverse')}
+${hi('DiffChange', 'warning', 'bg', 's:inverse')}
+${hi('DiffDelete', 'error', 'bg', 's:inverse')}
+${hi('DiffText', 'accent', 'bg', 's:inverse')}
 
-${hi('Statement', 'syntax-keyword', null, 'bold')}
+" }}}
+" Spelling: {{{
+
+if has("spell")
+  ${hi('SpellBad', null, null, 's:undercurl')}
+  ${hi('SpellCap', null, null, 's:undercurl')}
+  ${hi('SpellLocal', null, null, 's:undercurl')}
+  ${hi('SpellRare', null, null, 's:undercurl')}
+endif
+
+" }}}
+" }}}
+" Syntax Highlighting: {{{
+
+${hi('Comment', 'text-muted', null, 's:italic_comments')}
+${hi('Todo', 'on-accent', 'accent', 's:bold')}
+${hi('Error', 'on-error', 'error', 's:bold')}
+
+" Generic statement
+${hi('Statement', 'syntax-keyword', null, 's:bold')}
 ${hi('Conditional', 'syntax-keyword')}
 ${hi('Repeat', 'syntax-keyword')}
 ${hi('Label', 'syntax-keyword')}
+${hi('Exception', 'error', null, 's:bold')}
 ${hi('Operator', 'text')}
-${hi('Keyword', 'syntax-keyword')}
-${hi('Exception', 'error')}
+${hi('Keyword', 'syntax-keyword', null, 's:bold')}
 
+" Variable name
+${hi('Identifier', 'text')}
+${hi('Function', 'syntax-func', null, 's:bold')}
+
+" Generic preprocessor
 ${hi('PreProc', 'syntax-type')}
-${hi('Type', 'syntax-type')}
-${hi('Special', 'syntax-type')}
-${hi('Underlined', 'accent', null, 'underline')}
-${hi('Error', 'elevated', 'error')}
-${hi('Todo', 'elevated', 'accent', 'bold')}
+${hi('Include', 'syntax-type')}
+${hi('Define', 'syntax-type')}
+${hi('Macro', 'syntax-type')}
+${hi('PreCondit', 'syntax-type')}
+
+" Generic constant
+${hi('Constant', 'syntax-const')}
+${hi('Character', 'syntax-const')}
+${hi('String', 'syntax-string', null, 's:italic_strings')}
+${hi('Boolean', 'syntax-const')}
+${hi('Number', 'syntax-const')}
+${hi('Float', 'syntax-const')}
+
+" Generic type
+${hi('Type', 'syntax-type', null, 's:bold')}
+${hi('StorageClass', 'syntax-keyword')}
+${hi('Structure', 'syntax-type')}
+${hi('Typedef', 'syntax-type')}
+
+" Generic special
+${hi('Special', 'secondary')}
+${hi('SpecialChar', 'secondary')}
+${hi('Tag', 'accent')}
+${hi('Delimiter', 'text-subtle')}
+${hi('SpecialComment', 'text-subtle', null, 's:italic')}
+${hi('Debug', 'error')}
+
+${hi('Underlined', 'link', null, 's:underline')}
+${hi('Ignore', 'text-muted')}
+
+" }}}
+" Plugin Support: {{{
+" GitGutter: {{{
+
+${link('GitGutterAdd', 'DiffAdd')}
+${link('GitGutterChange', 'DiffChange')}
+${link('GitGutterDelete', 'DiffDelete')}
+${link('GitGutterChangeDelete', 'DiffChange')}
+
+" }}}
+" Signify: {{{
+
+${link('SignifySignAdd', 'DiffAdd')}
+${link('SignifySignChange', 'DiffChange')}
+${link('SignifySignDelete', 'DiffDelete')}
+
+" }}}
+" ALE (Asynchronous Lint Engine): {{{
+
+${hi('ALEError', null, null, 's:undercurl')}
+${hi('ALEWarning', null, null, 's:undercurl')}
+${hi('ALEInfo', null, null, 's:undercurl')}
+${hi('ALEErrorSign', 'error', 'bg')}
+${hi('ALEWarningSign', 'warning', 'bg')}
+${hi('ALEInfoSign', 'info', 'bg')}
+
+" }}}
+" COC (Conquer of Completion): {{{
+
+${hi('CocErrorSign', 'error', 'bg')}
+${hi('CocWarningSign', 'warning', 'bg')}
+${hi('CocInfoSign', 'info', 'bg')}
+${hi('CocHintSign', 'accent', 'bg')}
+${hi('CocErrorFloat', 'error')}
+${hi('CocWarningFloat', 'warning')}
+${hi('CocInfoFloat', 'info')}
+${hi('CocHintFloat', 'accent')}
+${hi('CocErrorHighlight', null, null, 's:undercurl')}
+${hi('CocWarningHighlight', null, null, 's:undercurl')}
+${hi('CocInfoHighlight', null, null, 's:undercurl')}
+${hi('CocHintHighlight', null, null, 's:undercurl')}
+
+" }}}
+" NERDTree: {{{
+
+${hi('NERDTreeDir', 'accent', null, 's:bold')}
+${hi('NERDTreeDirSlash', 'accent')}
+${hi('NERDTreeFile', 'text')}
+${hi('NERDTreeExecFile', 'success', null, 's:bold')}
+${hi('NERDTreeOpenable', 'secondary')}
+${hi('NERDTreeClosable', 'secondary')}
+${hi('NERDTreeUp', 'text-muted')}
+${hi('NERDTreeCWD', 'accent', null, 's:bold')}
+
+" }}}
+" CtrlP: {{{
+
+${hi('CtrlPMatch', 'accent', null, 's:bold')}
+${hi('CtrlPNoEntries', 'error')}
+${hi('CtrlPMode1', 'on-accent', 'accent', 's:bold')}
+${hi('CtrlPMode2', 'text', 'surface', 's:bold')}
+
+" }}}
+" }}}
+" Filetype Specific: {{{
+" Markdown: {{{
+
+${hi('markdownH1', 'accent', null, 's:bold')}
+${hi('markdownH2', 'accent', null, 's:bold')}
+${hi('markdownH3', 'secondary', null, 's:bold')}
+${hi('markdownH4', 'secondary', null, 's:bold')}
+${hi('markdownH5', 'secondary')}
+${hi('markdownH6', 'secondary')}
+${hi('markdownCode', 'syntax-string')}
+${hi('markdownCodeBlock', 'syntax-string')}
+${hi('markdownCodeDelimiter', 'syntax-string')}
+${hi('markdownBlockquote', 'text-subtle', null, 's:italic')}
+${hi('markdownListMarker', 'accent')}
+${hi('markdownOrderedListMarker', 'accent')}
+${hi('markdownRule', 'border')}
+${hi('markdownLinkText', 'link', null, 's:underline')}
+${hi('markdownUrl', 'link')}
+${link('markdownIdDeclaration', 'markdownLinkText')}
+
+" }}}
+" HTML: {{{
+
+${hi('htmlTag', 'text-subtle')}
+${hi('htmlEndTag', 'text-subtle')}
+${hi('htmlTagName', 'accent', null, 's:bold')}
+${hi('htmlArg', 'secondary')}
+${hi('htmlSpecialChar', 'syntax-const')}
+${hi('htmlLink', 'link', null, 's:underline')}
+${hi('htmlBold', null, null, 's:bold')}
+${hi('htmlItalic', null, null, 's:italic')}
+
+" }}}
+" CSS: {{{
+
+${hi('cssBraces', 'text-subtle')}
+${hi('cssFunctionName', 'syntax-func')}
+${hi('cssIdentifier', 'accent')}
+${hi('cssClassName', 'accent')}
+${hi('cssColor', 'syntax-const')}
+${hi('cssImportant', 'error', null, 's:bold')}
+${hi('cssProp', 'text')}
+
+" }}}
+" JavaScript: {{{
+
+${hi('javaScriptBraces', 'text-subtle')}
+${hi('javaScriptFunction', 'syntax-keyword', null, 's:bold')}
+${hi('javaScriptIdentifier', 'syntax-keyword')}
+${hi('javaScriptNumber', 'syntax-const')}
+${hi('javaScriptNull', 'syntax-const')}
+
+" }}}
+" Python: {{{
+
+${hi('pythonBuiltin', 'syntax-func')}
+${hi('pythonFunction', 'syntax-func', null, 's:bold')}
+${hi('pythonDecorator', 'secondary')}
+${hi('pythonInclude', 'syntax-keyword')}
+${hi('pythonOperator', 'syntax-keyword')}
+${hi('pythonException', 'error', null, 's:bold')}
+
+" }}}
+" JSON: {{{
+
+${hi('jsonKeyword', 'accent')}
+${hi('jsonQuote', 'text-subtle')}
+${hi('jsonBraces', 'text-subtle')}
+${hi('jsonString', 'syntax-string')}
+
+" }}}
+" Vim: {{{
+
+${hi('vimCommentTitle', 'text-subtle', null, 's:bold')}
+${hi('vimNotation', 'secondary')}
+${hi('vimBracket', 'secondary')}
+${hi('vimMapModKey', 'secondary')}
+${hi('vimCommand', 'syntax-keyword', null, 's:bold')}
+
+" }}}
+" }}}
+
+" vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker:
 `;
 }
 
@@ -141,7 +466,7 @@ ${hi('Todo', 'elevated', 'accent', 'bold')}
 if (!fs.existsSync(vimDir)) fs.mkdirSync(vimDir);
 if (!fs.existsSync(colorsDir)) fs.mkdirSync(colorsDir);
 
-// 2. Generate Themes
+// Generate Themes
 fs.writeFileSync(path.join(colorsDir, 'candi-light.vim'), generateVimTheme('Light', 'light', lightColors));
 fs.writeFileSync(path.join(colorsDir, 'candi-dark.vim'), generateVimTheme('Dark', 'dark', darkColors));
 
