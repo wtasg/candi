@@ -7,45 +7,74 @@ const dartColorsPath = path.join(__dirname, '..', 'flutter', 'lib', 'candi_color
 const { toHex8, parseOklch } = require('./color-conv');
 
 function getColors(mode) {
-  const colors = {};
-  for (const [key, data] of Object.entries(palette[mode])) {
-    const value = data.oklch || data.value;
-    const parsed = parseOklch(value);
-    if (parsed) {
-      colors[key] = {
-        hex: toHex8(parsed),
-        l: parsed.l,
-        c: parsed.c,
-        h: parsed.h,
-        opacity: parsed.opacity,
-        oklch: value
-      };
+    const colors = {};
+    for (const [key, data] of Object.entries(palette[mode])) {
+        const value = data.oklch || data.value;
+        const parsed = parseOklch(value);
+        if (parsed) {
+            colors[key] = {
+                hex: toHex8(parsed),
+                l: parsed.l,
+                c: parsed.c,
+                h: parsed.h,
+                opacity: parsed.opacity,
+                oklch: value
+            };
+        }
     }
-  }
-  return colors;
+    return colors;
 }
 
 const lightColors = getColors('light');
 const darkColors = getColors('dark');
 
-// Define keys to ensure consistent order
+// All color keys for Flutter (excludes shadow CSS values, includes all OKLCH colors)
 const colorKeys = [
-  'bg', 'surface', 'elevated', 'text', 'textSubtle', 'textMuted',
-  'border', 'borderStrong', 'accent', 'accentSubtle', 'secondary',
-  'secondarySubtle', 'success', 'warning', 'error', 'focusRing'
+    // Backgrounds
+    'bg', 'surface', 'elevated',
+    // Text
+    'text', 'textSubtle', 'textMuted',
+    // Borders
+    'border', 'borderStrong', 'divider',
+    // Primary
+    'accent', 'accentSubtle', 'onAccent',
+    // Secondary
+    'secondary', 'secondarySubtle', 'onSecondary',
+    // Status
+    'success', 'onSuccess',
+    'warning', 'onWarning',
+    'error', 'onError',
+    'info', 'onInfo',
+    // Interactive
+    'link', 'disabled', 'focusRing',
+    // Overlays
+    'overlay', 'scrim', 'shadowColor',
+    // Inverse
+    'inverseSurface', 'inverseText',
+    // UI States
+    'hover', 'active',
 ];
 
+function generatePaletteFields() {
+    return colorKeys.map(key => `    required this.${key},`).join('\n');
+}
+
+function generatePaletteMembers() {
+    return colorKeys.map(key => `  final CandiColor ${key};`).join('\n');
+}
+
 function generatePalette(colors) {
-  return colorKeys.map(key => {
-    const color = colors[key];
-    if (!color) return `    // ${key} missing in CSS`;
-    return `    // ${color.oklch}\n    ${key}: CandiColor(${color.hex}, lightness: ${color.l}, chroma: ${color.c}, hue: ${color.h}${color.opacity !== 1 ? `, opacity: ${color.opacity}` : ''}),`;
-  }).join('\n');
+    return colorKeys.map(key => {
+        const color = colors[key];
+        if (!color) return `    // ${key} missing in source`;
+        return `    // ${color.oklch}\n    ${key}: CandiColor(${color.hex}, lightness: ${color.l}, chroma: ${color.c}, hue: ${color.h}${color.opacity !== 1 ? `, opacity: ${color.opacity}` : ''}),`;
+    }).join('\n');
 }
 
 const dartTemplate = `/// Candi Color Palette for Flutter
 ///
 /// Generated from OKLCH source of truth.
+/// Total colors: ${colorKeys.length} per palette
 library;
 
 import 'dart:ui';
@@ -71,40 +100,10 @@ class CandiColor extends Color {
 /// Semantic color palette for the Candi theme.
 class CandiPalette {
   const CandiPalette._({
-    required this.bg,
-    required this.surface,
-    required this.elevated,
-    required this.text,
-    required this.textSubtle,
-    required this.textMuted,
-    required this.border,
-    required this.borderStrong,
-    required this.accent,
-    required this.accentSubtle,
-    required this.secondary,
-    required this.secondarySubtle,
-    required this.success,
-    required this.warning,
-    required this.error,
-    required this.focusRing,
+${generatePaletteFields()}
   });
 
-  final CandiColor bg;
-  final CandiColor surface;
-  final CandiColor elevated;
-  final CandiColor text;
-  final CandiColor textSubtle;
-  final CandiColor textMuted;
-  final CandiColor border;
-  final CandiColor borderStrong;
-  final CandiColor accent;
-  final CandiColor accentSubtle;
-  final CandiColor secondary;
-  final CandiColor secondarySubtle;
-  final CandiColor success;
-  final CandiColor warning;
-  final CandiColor error;
-  final CandiColor focusRing;
+${generatePaletteMembers()}
 }
 
 abstract final class CandiColors {
@@ -123,4 +122,4 @@ ${generatePalette(darkColors)}
 fs.writeFileSync(dartColorsPath, dartTemplate);
 
 console.log('Build complete!');
-console.log('  - Generated flutter/lib/candi_colors.dart');
+console.log(`  - Generated flutter/lib/candi_colors.dart (${colorKeys.length} colors per palette)`);
