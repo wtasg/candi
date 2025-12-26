@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.0.20
+
+### Added
+
+- Comprehensive dartdoc comments for all public API members
+  - CandiColor class and all properties fully documented
+  - CandiPalette class with detailed descriptions for all 33 color tokens
+  - CandiColors class with usage examples
+- Example application (`example/main.dart`)
+  - Interactive light/dark mode switcher
+  - Complete showcase of all 33 color tokens
+  - OKLCH metadata display for each color
+  - Material Design 3 integration example
+  - Example buttons and components
+- Example README with usage patterns and integration guide
+
+### Changed
+
+- Improved documentation coverage from 15.6% to 100%
+- Formatted all Dart code with `dart format`
+- Enhanced pub.dev package quality score
+
 ## 0.0.19
 
 - Version synchronization update

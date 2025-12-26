@@ -2,6 +2,19 @@
 
 All notable changes to the Candi Design System will be documented in this file.
 
+## 0.0.20
+
+### Added
+
+- Comprehensive dartdoc comments for all public API members (100% coverage)
+- Flutter example application demonstrating all color tokens
+- Example README with usage patterns and integration guide
+
+### Changed
+
+- Improved pub.dev package score with complete documentation
+- Formatted all Dart code with `dart format`
+
 ## 0.0.19
 
 ### Fixed
