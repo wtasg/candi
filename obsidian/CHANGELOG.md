@@ -2,6 +2,19 @@
 
 All notable changes to the Candi Obsidian theme will be documented in this file.
 
+## [0.0.19] - 2025-12-26
+
+### Fixed
+
+- Added manifest.json to version bump script for proper version synchronization
+
+## [0.0.18] - 2025-12-26
+
+### Changed
+
+- Version synchronization update
+- No functional changes
+
 ## [0.0.17] - 2025-12-26
 
 ### Added

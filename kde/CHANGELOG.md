@@ -2,6 +2,20 @@
 
 All notable changes to the Candi KDE Plasma color schemes will be documented in this file.
 
+## [0.0.19] - 2025-12-26
+
+### Changed
+
+- Version synchronization update
+- No functional changes
+
+## [0.0.18] - 2025-12-26
+
+### Changed
+
+- Version synchronization update
+- No functional changes
+
 ## [0.0.17] - 2025-12-26
 
 ### Added

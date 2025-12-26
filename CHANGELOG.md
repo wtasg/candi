@@ -2,6 +2,20 @@
 
 All notable changes to the Candi Design System will be documented in this file.
 
+## 0.0.19
+
+### Fixed
+
+- Version synchronization across all packages
+  - Added `obsidian/manifest.json` to version bump script
+  - Ensures Obsidian theme version stays in sync with other packages
+
+## 0.0.18
+
+### Changed
+
+- Internal version bump for consistency
+
 ## 0.0.17
 
 ### Added

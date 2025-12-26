@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.0.19
+
+- Version synchronization update
+- No functional changes
+
+## 0.0.18
+
+- Version synchronization update
+- No functional changes
+
 ## 0.0.17
 
 - Expanded color palette from 16 to 33 colors per mode
