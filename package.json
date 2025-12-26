@@ -1,6 +1,6 @@
 {
     "name": "@wtasg/candi",
-    "version": "0.0.15",
+    "version": "0.0.16",
     "description": "A Tailwind CSS theme inspired by Nordic/Scandinavian Hygge & Lagom design principles",
     "keywords": [
         "tailwindcss",
@@ -79,7 +79,9 @@
         "flutter:pub-upgrade-dry-run": "cd flutter && flutter pub upgrade --dry-run",
         "flutter:pub-publish": "cd flutter && flutter pub publish",
         "flutter:pub-publish-dry-run": "cd flutter && flutter pub publish --dry-run",
-        "artifact": "node scripts/package-artifacts.js"
+        "artifact": "node scripts/package-artifacts.js",
+        "lint:md": "markdownlint-cli2 \"**/*.md\" \"!node_modules\" \"!website/node_modules\"",
+        "lint:md:fix": "markdownlint-cli2 --fix \"**/*.md\" \"!node_modules\" \"!website/node_modules\""
     },
     "peerDependencies": {
         "tailwindcss": ">=3.0.0 || >=4.0.0"
@@ -88,6 +90,7 @@
         "node": ">=24.0.0"
     },
     "devDependencies": {
+        "markdownlint-cli2": "^0.20.0",
         "tailwindcss": "^3.4.19"
     }
 }

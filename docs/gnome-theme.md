@@ -42,6 +42,7 @@ sudo cp -r gnome /usr/share/themes/Candi
 ### Using GNOME Tweaks (GUI)
 
 1. Install GNOME Tweaks:
+
    ```bash
    # Ubuntu/Debian
    sudo apt install gnome-tweaks
@@ -89,7 +90,7 @@ export GTK_THEME=Candi
 
 ## Theme Files
 
-```
+```text
 gnome/
 ├── index.theme          # Theme metadata
 ├── gtk-3.0/
@@ -115,7 +116,7 @@ GTK applications will automatically load `gtk-dark.css` when dark mode is enable
 The theme uses these semantic color tokens:
 
 | Token | Light | Dark | Usage |
-|-------|-------|------|-------|
+| ------- | ------- | ------- | ------- |
 | `theme_bg_color` | Warm white | Warm dark | Window backgrounds |
 | `theme_base_color` | Pure white | Card surface | Input fields, views |
 | `theme_fg_color` | Warm charcoal | Off-white | Primary text |
@@ -134,9 +135,11 @@ To customize the theme:
 
 1. Edit the source colors in `src/css/base.css`
 2. Rebuild the theme:
+
    ```bash
    npm run build:gnome
    ```
+
 3. Restart your GTK applications or re-apply the theme
 
 ## Compatibility

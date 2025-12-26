@@ -24,7 +24,7 @@ gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
 
 ## Files
 
-```
+```text
 gnome/
 ├── index.theme          # Theme metadata
 ├── gtk-3.0/

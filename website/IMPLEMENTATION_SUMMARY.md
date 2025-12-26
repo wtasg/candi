@@ -66,7 +66,7 @@ A comprehensive, interactive documentation website has been successfully created
 
 ### Files Created
 
-```
+```text
 website/
 ├── src/
 │   ├── App.jsx                     # Main app component with navigation
@@ -104,16 +104,20 @@ README.md                          # Updated with link to documentation
 ## Deployment
 
 ### Automatic Deployment
+
 The website is configured to deploy automatically via GitHub Actions when changes are pushed to the main branch.
 
 ### Manual Deployment Options
+
 1. **GitHub Pages** (configured)
 2. **Netlify** (configuration included)
 3. **Vercel** (instructions provided)
 4. **Cloudflare Pages** (instructions provided)
 
 ### Custom Domain
+
 To deploy at `candi.wtasg.org`:
+
 1. Add DNS CNAME: `candi` → `wtasg.github.io`
 2. Configure in GitHub Pages settings
 3. Enable HTTPS
@@ -169,22 +173,26 @@ npm run preview
 ## Key Implementation Details
 
 ### Color Utilities
+
 - `oklchToRgb()`: Converts OKLCH to RGB using proper color space math
 - `getContrastRatio()`: Calculates WCAG contrast ratios
 - `checkAccessibility()`: Determines WCAG compliance levels (AA/AAA)
 
 ### SPA Routing for GitHub Pages
+
 - 404.html redirects to index.html with path preserved
 - Main HTML includes script to restore correct path
 - Works seamlessly with React Router
 
 ### Responsive Design
+
 - Mobile-first approach
 - Responsive navigation (collapses on mobile)
 - Grid layouts adapt to screen size
 - Touch-friendly interactive elements
 
 ### Performance
+
 - Code splitting by route
 - Lazy loading of pages
 - Optimized CSS with Tailwind
@@ -194,6 +202,7 @@ npm run preview
 ## Accessibility Features
 
 The website itself follows accessibility best practices:
+
 - Semantic HTML
 - ARIA labels where appropriate
 - Keyboard navigation support
@@ -213,6 +222,7 @@ OKLCH colors are displayed using native CSS support where available, with fallba
 ## Maintenance
 
 To update the documentation:
+
 1. Edit page components in `website/src/pages/`
 2. Update color data in `website/src/data/colors.js`
 3. Commit and push to trigger automatic deployment
