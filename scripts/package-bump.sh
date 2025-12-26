@@ -32,6 +32,10 @@ sed -i "s/\"version\": \"[^\"]*\"/\"version\": \"$VERSION\"/" website/package.js
 echo "  - flutter/pubspec.yaml"
 sed -i "s/^version: .*/version: $VERSION/" flutter/pubspec.yaml
 
+# Obsidian theme (obsidian/manifest.json)
+echo "  - obsidian/manifest.json"
+sed -i "s/\"version\": \"[^\"]*\"/\"version\": \"$VERSION\"/" obsidian/manifest.json
+
 echo "Done!"
 
 echo "Running npm install..."
