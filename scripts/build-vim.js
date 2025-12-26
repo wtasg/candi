@@ -126,19 +126,19 @@ ${hi('Boolean', 'secondary')}
 ${hi('Float', 'secondary')}
 
 ${hi('Identifier', 'text')}
-${hi('Function', 'accent')}
+${hi('Function', 'syntax-func')}
 
-${hi('Statement', 'accent', null, 'bold')}
-${hi('Conditional', 'accent')}
-${hi('Repeat', 'accent')}
-${hi('Label', 'accent')}
+${hi('Statement', 'syntax-keyword', null, 'bold')}
+${hi('Conditional', 'syntax-keyword')}
+${hi('Repeat', 'syntax-keyword')}
+${hi('Label', 'syntax-keyword')}
 ${hi('Operator', 'text')}
-${hi('Keyword', 'accent')}
+${hi('Keyword', 'syntax-keyword')}
 ${hi('Exception', 'error')}
 
-${hi('PreProc', 'secondary')}
-${hi('Type', 'secondary')}
-${hi('Special', 'secondary')}
+${hi('PreProc', 'syntax-type')}
+${hi('Type', 'syntax-type')}
+${hi('Special', 'syntax-type')}
 ${hi('Underlined', 'accent', null, 'underline')}
 ${hi('Error', 'elevated', 'error')}
 ${hi('Todo', 'elevated', 'accent', 'bold')}

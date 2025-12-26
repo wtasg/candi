@@ -56,6 +56,18 @@ function generateTheme(name, type, palette) {
             "descriptionForeground": palette['text-subtle'],
             "errorForeground": palette['error'],
 
+            // Terminal
+            "terminal.background": palette['bg'],
+            "terminal.foreground": palette['text'],
+            "terminal.ansiBlack": palette['terminal-black'],
+            "terminal.ansiRed": palette['terminal-red'],
+            "terminal.ansiGreen": palette['terminal-green'],
+            "terminal.ansiYellow": palette['terminal-yellow'],
+            "terminal.ansiBlue": palette['terminal-blue'],
+            "terminal.ansiMagenta": palette['terminal-magenta'],
+            "terminal.ansiCyan": palette['terminal-cyan'],
+            "terminal.ansiWhite": palette['terminal-white'],
+
             // Buttons
             "button.background": palette['accent'],
             "button.foreground": palette['elevated'],
@@ -142,11 +154,11 @@ function generateTheme(name, type, palette) {
             },
             {
                 "scope": ["entity.name.function", "support.function"],
-                "settings": { "foreground": palette['accent'] }
+                "settings": { "foreground": palette['syntax-func'] }
             },
             {
                 "scope": ["entity.name.type", "entity.name.class", "support.type", "support.class"],
-                "settings": { "foreground": palette['secondary'] }
+                "settings": { "foreground": palette['syntax-type'] }
             },
             {
                 "scope": ["entity.name.tag", "punctuation.definition.tag"],
@@ -158,7 +170,7 @@ function generateTheme(name, type, palette) {
             },
             {
                 "scope": ["entity.name.namespace", "entity.name.module"],
-                "settings": { "foreground": palette['secondary'] }
+                "settings": { "foreground": palette['syntax-type'] }
             },
             {
                 "scope": ["punctuation.separator", "punctuation.terminator", "punctuation.accessor"],

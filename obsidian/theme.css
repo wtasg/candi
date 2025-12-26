@@ -75,9 +75,15 @@
     --tag-background-hover: #F4F0E7;
 
     /* Code */
-    --code-normal: #B0652A;
+    --code-normal: #232A30;
     --code-background: #F4F0E7;
     --code-comment: #83878B;
+    --code-keyword: #C5547C;
+    --code-type: #8186D7;
+    --code-var: #2BA1A7;
+    --code-const: #E28247;
+    --code-func: #1479B0;
+    --code-string: #57914A;
 
     /* Checkbox */
     --checkbox-color: #437085;
@@ -192,9 +198,15 @@
     --tag-background-hover: #161B20;
 
     /* Code */
-    --code-normal: #C77A41;
+    --code-normal: #E8E4DD;
     --code-background: #161B20;
     --code-comment: #7C7A76;
+    --code-keyword: #E7729B;
+    --code-type: #9FA5F9;
+    --code-var: #53C1C7;
+    --code-const: #FFA167;
+    --code-func: #3D98D1;
+    --code-string: #75B168;
 
     /* Checkbox */
     --checkbox-color: #4F8FAD;

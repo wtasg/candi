@@ -65,7 +65,13 @@ function validatePalette(palette, themeName) {
         'warning',
         'error',
         'link',
-        'disabled'
+        'disabled',
+        'syntax-keyword',
+        'syntax-type',
+        'syntax-var',
+        'syntax-const',
+        'syntax-func',
+        'syntax-string'
     ];
 
     const missingKeys = requiredKeys.filter(key => !palette[key]);
@@ -161,9 +167,15 @@ function generateThemeCss(lightPalette, darkPalette) {
     --tag-background-hover: ${lightPalette['surface']};
 
     /* Code */
-    --code-normal: ${lightPalette['secondary']};
+    --code-normal: ${lightPalette['text']};
     --code-background: ${lightPalette['surface']};
     --code-comment: ${lightPalette['text-muted']};
+    --code-keyword: ${lightPalette['syntax-keyword']};
+    --code-type: ${lightPalette['syntax-type']};
+    --code-var: ${lightPalette['syntax-var']};
+    --code-const: ${lightPalette['syntax-const']};
+    --code-func: ${lightPalette['syntax-func']};
+    --code-string: ${lightPalette['syntax-string']};
 
     /* Checkbox */
     --checkbox-color: ${lightPalette['accent']};
@@ -278,9 +290,15 @@ function generateThemeCss(lightPalette, darkPalette) {
     --tag-background-hover: ${darkPalette['surface']};
 
     /* Code */
-    --code-normal: ${darkPalette['secondary']};
+    --code-normal: ${darkPalette['text']};
     --code-background: ${darkPalette['surface']};
     --code-comment: ${darkPalette['text-muted']};
+    --code-keyword: ${darkPalette['syntax-keyword']};
+    --code-type: ${darkPalette['syntax-type']};
+    --code-var: ${darkPalette['syntax-var']};
+    --code-const: ${darkPalette['syntax-const']};
+    --code-func: ${darkPalette['syntax-func']};
+    --code-string: ${darkPalette['syntax-string']};
 
     /* Checkbox */
     --checkbox-color: ${darkPalette['accent']};

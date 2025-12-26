@@ -16,6 +16,20 @@ export const colorTokens = {
     success: { oklch: 'oklch(52% 0.08 145)', l: 52, c: 0.08, h: 145, usage: 'Success states' },
     warning: { oklch: 'oklch(68% 0.13 70)', l: 68, c: 0.13, h: 70, usage: 'Warning states' },
     error: { oklch: 'oklch(58% 0.12 25)', l: 58, c: 0.12, h: 25, usage: 'Error states' },
+    link: { oklch: 'oklch(50% 0.08 230)', l: 50, c: 0.08, h: 230, usage: 'Hyperlinks' },
+    disabled: { oklch: 'oklch(75% 0.005 250)', l: 75, c: 0.005, h: 250, usage: 'Disabled UI' },
+
+    // Extended Syntax
+    syntaxKeyword: { oklch: 'oklch(60% 0.15 0)', l: 60, c: 0.15, h: 0, usage: 'Language keywords' },
+    syntaxType: { oklch: 'oklch(65% 0.12 280)', l: 65, c: 0.12, h: 280, usage: 'Types and classes' },
+    syntaxVar: { oklch: 'oklch(65% 0.1 200)', l: 65, c: 0.1, h: 200, usage: 'Variables' },
+    syntaxConst: { oklch: 'oklch(70% 0.14 50)', l: 70, c: 0.14, h: 50, usage: 'Constants' },
+    syntaxFunc: { oklch: 'oklch(55% 0.12 240)', l: 55, c: 0.12, h: 240, usage: 'Functions' },
+    syntaxString: { oklch: 'oklch(60% 0.12 140)', l: 60, c: 0.12, h: 140, usage: 'Strings' },
+
+    // UI States
+    hover: { oklch: 'oklch(0% 0 0 / 0.05)', l: 0, c: 0, h: 0, usage: 'Hover background' },
+    active: { oklch: 'oklch(0% 0 0 / 0.1)', l: 0, c: 0, h: 0, usage: 'Active background' },
   },
   dark: {
     bg: { oklch: 'oklch(18% 0.015 250)', l: 18, c: 0.015, h: 250, usage: 'Page background' },
@@ -33,6 +47,20 @@ export const colorTokens = {
     success: { oklch: 'oklch(60% 0.1 145)', l: 60, c: 0.1, h: 145, usage: 'Success states' },
     warning: { oklch: 'oklch(72% 0.13 70)', l: 72, c: 0.13, h: 70, usage: 'Warning states' },
     error: { oklch: 'oklch(65% 0.12 25)', l: 65, c: 0.12, h: 25, usage: 'Error states' },
+    link: { oklch: 'oklch(60% 0.08 230)', l: 60, c: 0.08, h: 230, usage: 'Hyperlinks' },
+    disabled: { oklch: 'oklch(45% 0.005 250)', l: 45, c: 0.005, h: 250, usage: 'Disabled UI' },
+
+    // Extended Syntax
+    syntaxKeyword: { oklch: 'oklch(70% 0.15 0)', l: 70, c: 0.15, h: 0, usage: 'Language keywords' },
+    syntaxType: { oklch: 'oklch(75% 0.12 280)', l: 75, c: 0.12, h: 280, usage: 'Types and classes' },
+    syntaxVar: { oklch: 'oklch(75% 0.1 200)', l: 75, c: 0.1, h: 200, usage: 'Variables' },
+    syntaxConst: { oklch: 'oklch(80% 0.14 50)', l: 80, c: 0.14, h: 50, usage: 'Constants' },
+    syntaxFunc: { oklch: 'oklch(65% 0.12 240)', l: 65, c: 0.12, h: 240, usage: 'Functions' },
+    syntaxString: { oklch: 'oklch(70% 0.12 140)', l: 70, c: 0.12, h: 140, usage: 'Strings' },
+
+    // UI States
+    hover: { oklch: 'oklch(100% 0 0 / 0.1)', l: 100, c: 0, h: 0, usage: 'Hover background' },
+    active: { oklch: 'oklch(100% 0 0 / 0.2)', l: 100, c: 0, h: 0, usage: 'Active background' },
   }
 };
 
@@ -52,4 +80,14 @@ export const colorNames = {
   success: 'Success',
   warning: 'Warning',
   error: 'Error',
+  link: 'Link',
+  disabled: 'Disabled',
+  syntaxKeyword: 'Syntax Keyword',
+  syntaxType: 'Syntax Type',
+  syntaxVar: 'Syntax Variable',
+  syntaxConst: 'Syntax Constant',
+  syntaxFunc: 'Syntax Function',
+  syntaxString: 'Syntax String',
+  hover: 'Hover State',
+  active: 'Active State',
 };

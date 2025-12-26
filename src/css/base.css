@@ -33,6 +33,28 @@
     --candi-shadow-md: 0 4px 20px rgba(45, 50, 57, 0.1);
     --candi-shadow-lg: 0 8px 40px rgba(45, 50, 57, 0.15);
     --candi-focus-ring: oklch(52% 0.06 230 / 0.4);
+
+    /* Extended Syntax */
+    --candi-syntax-keyword: oklch(60% 0.15 0);
+    --candi-syntax-type: oklch(65% 0.12 280);
+    --candi-syntax-var: oklch(65% 0.1 200);
+    --candi-syntax-const: oklch(70% 0.14 50);
+    --candi-syntax-func: oklch(55% 0.12 240);
+    --candi-syntax-string: oklch(60% 0.12 140);
+
+    /* Terminal Palette */
+    --candi-terminal-black: oklch(25% 0.01 250);
+    --candi-terminal-red: var(--candi-error);
+    --candi-terminal-green: var(--candi-success);
+    --candi-terminal-yellow: var(--candi-warning);
+    --candi-terminal-blue: var(--candi-accent);
+    --candi-terminal-magenta: var(--candi-syntax-keyword);
+    --candi-terminal-cyan: var(--candi-syntax-var);
+    --candi-terminal-white: var(--candi-text);
+
+    /* UI States */
+    --candi-hover: oklch(0% 0 0 / 0.05);
+    --candi-active: oklch(0% 0 0 / 0.1);
 }
 
 .dark {
@@ -63,6 +85,28 @@
     --candi-shadow-md: 0 4px 20px rgba(0, 0, 0, 0.35);
     --candi-shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.45);
     --candi-focus-ring: oklch(62% 0.08 230 / 0.5);
+
+    /* Extended Syntax */
+    --candi-syntax-keyword: oklch(70% 0.15 0);
+    --candi-syntax-type: oklch(75% 0.12 280);
+    --candi-syntax-var: oklch(75% 0.1 200);
+    --candi-syntax-const: oklch(80% 0.14 50);
+    --candi-syntax-func: oklch(65% 0.12 240);
+    --candi-syntax-string: oklch(70% 0.12 140);
+
+    /* Terminal Palette */
+    --candi-terminal-black: oklch(15% 0.01 250);
+    --candi-terminal-red: var(--candi-error);
+    --candi-terminal-green: var(--candi-success);
+    --candi-terminal-yellow: var(--candi-warning);
+    --candi-terminal-blue: var(--candi-accent);
+    --candi-terminal-magenta: var(--candi-syntax-keyword);
+    --candi-terminal-cyan: var(--candi-syntax-var);
+    --candi-terminal-white: var(--candi-text);
+
+    /* UI States */
+    --candi-hover: oklch(100% 0 0 / 0.1);
+    --candi-active: oklch(100% 0 0 / 0.2);
 }
 
 /* Base styles */

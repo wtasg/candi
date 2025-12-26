@@ -8,6 +8,9 @@
         "selection.background": "#43708540",
         "descriptionForeground": "#5F6469",
         "errorForeground": "#B75B55",
+        "terminal.background": "#FBF8F2",
+        "terminal.foreground": "#232A30",
+        "terminal.ansiBlack": "#1E2226",
         "button.background": "#437085",
         "button.foreground": "#FFFFFF",
         "button.hoverBackground": "#437085",
@@ -119,7 +122,7 @@
                 "support.function"
             ],
             "settings": {
-                "foreground": "#437085"
+                "foreground": "#1479B0"
             }
         },
         {
@@ -130,7 +133,7 @@
                 "support.class"
             ],
             "settings": {
-                "foreground": "#B0652A"
+                "foreground": "#8186D7"
             }
         },
         {
@@ -156,7 +159,7 @@
                 "entity.name.module"
             ],
             "settings": {
-                "foreground": "#B0652A"
+                "foreground": "#8186D7"
             }
         },
         {

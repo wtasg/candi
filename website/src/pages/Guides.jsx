@@ -67,7 +67,8 @@ document.documentElement.classList.toggle('dark');
                 <li>• <code>candi-text</code>, <code>candi-subtle</code>, <code>candi-muted</code> - Text colors</li>
                 <li>• <code>candi-border</code>, <code>candi-border-strong</code> - Borders</li>
                 <li>• <code>candi-accent</code>, <code>candi-secondary</code> - Action colors</li>
-                <li>• <code>candi-success</code>, <code>candi-warning</code>, <code>candi-error</code> - Status colors</li>
+                <li>• <code>candi-syntax-*</code> - Granular syntax highlighting tokens</li>
+                <li>• <code>candi-terminal-*</code> - ANSI-compatible terminal palette</li>
               </ul>
             </div>
           </div>
@@ -147,7 +148,7 @@ print(accentColor.h); // Hue`}</code>
       <div className="mb-12">
         <div className="bg-candi-surface border border-candi-border rounded-softer p-8">
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-12 h-12 rounded-soft flex items-center justify-center text-2xl" style={{backgroundColor: 'oklch(85% 0.04 145)'}}>
+            <div className="w-12 h-12 rounded-soft flex items-center justify-center text-2xl" style={{ backgroundColor: 'oklch(85% 0.04 145)' }}>
               💻
             </div>
             <h2 className="text-2xl font-bold">VS Code Theme</h2>
@@ -181,12 +182,10 @@ code --install-extension candi-theme-*.vsix`}</code>
 
             <div>
               <h3 className="text-lg font-semibold mb-3">Features</h3>
-              <ul className="space-y-2 text-candi-subtle">
-                <li>• Consistent colors with web and Flutter versions</li>
-                <li>• Optimized syntax highlighting for multiple languages</li>
-                <li>• Comfortable for long coding sessions</li>
-                <li>• Warm backgrounds reduce eye strain</li>
-              </ul>
+              <li>• Optimized syntax highlighting with dedicated tokens (Keyword, Type, Func, etc.)</li>
+              <li>• Integrated terminal with full ANSI-compatible Candi palette</li>
+              <li>• Comfortable for long coding sessions with warm backgrounds</li>
+              <li>• Consistent colors with web and mobile platforms</li>
             </div>
           </div>
         </div>
@@ -196,7 +195,7 @@ code --install-extension candi-theme-*.vsix`}</code>
       <div className="mb-12">
         <div className="bg-candi-surface border border-candi-border rounded-softer p-8">
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-12 h-12 rounded-soft flex items-center justify-center text-2xl" style={{backgroundColor: 'oklch(95% 0.04 70)'}}>
+            <div className="w-12 h-12 rounded-soft flex items-center justify-center text-2xl" style={{ backgroundColor: 'oklch(95% 0.04 70)' }}>
               ⌨️
             </div>
             <h2 className="text-2xl font-bold">Vim Colorscheme</h2>
@@ -255,6 +254,41 @@ endif`}</code>
         </div>
       </div>
 
+      {/* Obsidian */}
+      <div className="mb-12">
+        <div className="bg-candi-surface border border-candi-border rounded-softer p-8">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-12 h-12 rounded-soft flex items-center justify-center text-2xl" style={{ backgroundColor: 'oklch(90% 0.1 280)' }}>
+              🗒️
+            </div>
+            <h2 className="text-2xl font-bold">Obsidian</h2>
+          </div>
+
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-lg font-semibold mb-3">Installation</h3>
+              <p className="text-candi-subtle mb-3">
+                Copy the theme files to your Obsidian vaults:
+              </p>
+              <pre className="text-sm">
+                <code>{`# Manual installation
+mkdir -p .obsidian/themes/Candi
+cp obsidian/* .obsidian/themes/Candi/`}</code>
+              </pre>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold mb-3">Activation</h3>
+              <ol className="space-y-2 text-candi-subtle list-decimal list-inside">
+                <li>Open Obsidian Settings</li>
+                <li>Go to Appearance → Theme</li>
+                <li>Select "Candi" from the dropdown</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Build Command */}
       <div className="bg-candi-accent-subtle border border-candi-accent rounded-softer p-8">
         <h2 className="text-2xl font-bold mb-4">Building From Source</h2>
@@ -276,7 +310,8 @@ npm run build:all
 npm run build          # Web/Tailwind
 npm run build:flutter  # Flutter
 npm run build:vscode   # VS Code
-npm run build:vim      # Vim`}</code>
+npm run build:vim      # Vim
+npm run build:obsidian # Obsidian`}</code>
         </pre>
       </div>
     </div>

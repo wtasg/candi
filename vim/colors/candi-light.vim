@@ -33,19 +33,19 @@ hi Boolean            guifg=#B0652A ctermfg=137
 hi Float              guifg=#B0652A ctermfg=137
 
 hi Identifier         guifg=#232A30 ctermfg=235
-hi Function           guifg=#437085 ctermfg=67
+hi Function           guifg=#1479B0 ctermfg=31
 
-hi Statement          guifg=#437085 ctermfg=67 gui=bold cterm=bold
-hi Conditional        guifg=#437085 ctermfg=67
-hi Repeat             guifg=#437085 ctermfg=67
-hi Label              guifg=#437085 ctermfg=67
+hi Statement          guifg=#C5547C ctermfg=174 gui=bold cterm=bold
+hi Conditional        guifg=#C5547C ctermfg=174
+hi Repeat             guifg=#C5547C ctermfg=174
+hi Label              guifg=#C5547C ctermfg=174
 hi Operator           guifg=#232A30 ctermfg=235
-hi Keyword            guifg=#437085 ctermfg=67
+hi Keyword            guifg=#C5547C ctermfg=174
 hi Exception          guifg=#B75B55 ctermfg=174
 
-hi PreProc            guifg=#B0652A ctermfg=137
-hi Type               guifg=#B0652A ctermfg=137
-hi Special            guifg=#B0652A ctermfg=137
+hi PreProc            guifg=#8186D7 ctermfg=146
+hi Type               guifg=#8186D7 ctermfg=146
+hi Special            guifg=#8186D7 ctermfg=146
 hi Underlined         guifg=#437085 ctermfg=67 gui=underline cterm=underline
 hi Error              guifg=#FFFFFF ctermfg=231 guibg=#B75B55 ctermbg=174
 hi Todo               guifg=#FFFFFF ctermfg=231 guibg=#437085 ctermbg=67 gui=bold cterm=bold

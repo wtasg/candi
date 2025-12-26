@@ -34,6 +34,28 @@ module.exports = {
             disabled: 'var(--candi-disabled)',
             overlay: 'var(--candi-overlay)',
             'focus-ring': 'var(--candi-focus-ring)',
+
+            // Extended Syntax
+            'syntax-keyword': 'var(--candi-syntax-keyword)',
+            'syntax-type': 'var(--candi-syntax-type)',
+            'syntax-var': 'var(--candi-syntax-var)',
+            'syntax-const': 'var(--candi-syntax-const)',
+            'syntax-func': 'var(--candi-syntax-func)',
+            'syntax-string': 'var(--candi-syntax-string)',
+
+            // Terminal
+            'terminal-black': 'var(--candi-terminal-black)',
+            'terminal-red': 'var(--candi-terminal-red)',
+            'terminal-green': 'var(--candi-terminal-green)',
+            'terminal-yellow': 'var(--candi-terminal-yellow)',
+            'terminal-blue': 'var(--candi-terminal-blue)',
+            'terminal-magenta': 'var(--candi-terminal-magenta)',
+            'terminal-cyan': 'var(--candi-terminal-cyan)',
+            'terminal-white': 'var(--candi-terminal-white)',
+
+            // UI States
+            hover: 'var(--candi-hover)',
+            active: 'var(--candi-active)',
         },
     },
 

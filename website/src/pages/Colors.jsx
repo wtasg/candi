@@ -8,77 +8,100 @@ export default function Colors() {
 
   const colors = colorTokens[mode];
 
+  const categories = [
+    {
+      title: 'Base Palette',
+      description: 'Core colors that define the application structure and typography.',
+      keys: ['bg', 'surface', 'elevated', 'text', 'subtle', 'muted', 'border', 'borderStrong', 'accent', 'accentSubtle', 'secondary', 'secondarySubtle', 'link', 'disabled', 'success', 'warning', 'error']
+    },
+    {
+      title: 'Extended Syntax',
+      description: 'Rich colors designed for code highlighting and semantic representation.',
+      keys: ['syntaxKeyword', 'syntaxType', 'syntaxVar', 'syntaxConst', 'syntaxFunc', 'syntaxString']
+    },
+    {
+      title: 'UI Feedback',
+      description: 'Dynamic colors for interactive states and feedback.',
+      keys: ['hover', 'active']
+    }
+  ];
+
   return (
     <div className="max-w-7xl mx-auto px-6 py-12">
       <div className="mb-12">
         <h1 className="text-4xl font-bold mb-4">Color Palette</h1>
         <p className="text-xl text-candi-subtle mb-6">
-          Interactive explorer showcasing all Candi color tokens with OKLCH values, hex codes, and RGB values.
+          Interactive explorer showcasing all Candi color tokens via OKLCH, hex, and RGB.
         </p>
 
         <div className="flex gap-2">
           <button
             onClick={() => setMode('light')}
             className={`px-6 py-3 rounded-soft font-medium transition-colors ${mode === 'light'
-                ? 'bg-candi-accent text-white'
-                : 'bg-candi-surface text-candi-text hover:bg-candi-border'
+              ? 'bg-candi-accent text-white'
+              : 'bg-candi-surface text-candi-text hover:bg-candi-border'
               }`}
           >
-            Light Mode
+            Hygge (Light)
           </button>
           <button
             onClick={() => setMode('dark')}
             className={`px-6 py-3 rounded-soft font-medium transition-colors ${mode === 'dark'
-                ? 'bg-candi-accent text-white'
-                : 'bg-candi-surface text-candi-text hover:bg-candi-border'
+              ? 'bg-candi-accent text-white'
+              : 'bg-candi-surface text-candi-text hover:bg-candi-border'
               }`}
           >
-            Dark Mode
+            Lagom (Dark)
           </button>
         </div>
       </div>
 
-      {/* Color Grid */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-        {Object.entries(colors).map(([key, value]) => {
-          const hex = oklchToHex(value.l, value.c, value.h);
-          const rgb = oklchToRgb(value.l, value.c, value.h);
+      {categories.map((cat) => (
+        <section key={cat.title} className="mb-16">
+          <div className="mb-8 border-l-4 border-candi-accent pl-6">
+            <h2 className="text-2xl font-bold mb-2">{cat.title}</h2>
+            <p className="text-candi-subtle">{cat.description}</p>
+          </div>
 
-          return (
-            <div
-              key={key}
-              onClick={() => setSelectedColor({ key, ...value, hex, rgb })}
-              className="bg-candi-surface border border-candi-border rounded-softer overflow-hidden cursor-pointer hover:shadow-hygge-md transition-shadow"
-            >
-              <div
-                className="h-32 w-full"
-                style={{ backgroundColor: value.oklch }}
-              />
-              <div className="p-6">
-                <h3 className="font-semibold text-lg mb-2">{colorNames[key]}</h3>
-                <p className="text-sm text-candi-subtle mb-4">{value.usage}</p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {cat.keys.map((key) => {
+              const value = colors[key];
+              if (!value) return null;
 
-                <div className="space-y-2 text-sm font-mono">
-                  <div className="flex justify-between">
-                    <span className="text-candi-muted">OKLCH:</span>
-                    <span className="text-candi-text">{value.oklch}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-candi-muted">HEX:</span>
-                    <span className="text-candi-text">{hex}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-candi-muted">RGB:</span>
-                    <span className="text-candi-text">
-                      {rgb.r}, {rgb.g}, {rgb.b}
-                    </span>
+              const hex = oklchToHex(value.l, value.c, value.h);
+              const rgb = oklchToRgb(value.l, value.c, value.h);
+
+              return (
+                <div
+                  key={key}
+                  onClick={() => setSelectedColor({ key, ...value, hex, rgb })}
+                  className="bg-candi-surface border border-candi-border rounded-softer overflow-hidden cursor-pointer hover:shadow-hygge-md transition-shadow"
+                >
+                  <div
+                    className="h-32 w-full"
+                    style={{ backgroundColor: value.oklch }}
+                  />
+                  <div className="p-6">
+                    <h3 className="font-semibold text-lg mb-2">{colorNames[key]}</h3>
+                    <p className="text-sm text-candi-subtle mb-4 h-10 line-clamp-2">{value.usage}</p>
+
+                    <div className="space-y-2 text-sm font-mono">
+                      <div className="flex justify-between">
+                        <span className="text-candi-muted font-sans text-xs uppercase tracking-wider">OKLCH</span>
+                        <span className="text-candi-text">{value.oklch}</span>
+                      </div>
+                      <div className="flex justify-between border-t border-candi-border/30 pt-1">
+                        <span className="text-candi-muted font-sans text-xs uppercase tracking-wider">HEX</span>
+                        <span className="text-candi-text">{hex}</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+              );
+            })}
+          </div>
+        </section>
+      ))}
 
       {/* Selected Color Detail Modal */}
       {selectedColor && (
