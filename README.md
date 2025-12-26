@@ -18,6 +18,7 @@ Candi provides a single source of truth for colors using the OKLCH color space, 
 | **Vim** | Full | Standalone `.vim` colorschemes (GUI & Terminal) |
 | **KDE Plasma** | Full | Color schemes for KDE 4, 5 & 6 (Plasma 6 color roles recommended) |
 | **GNOME** | Full | GTK3 & GTK4 themes for X11 and Wayland |
+| **Obsidian** | Full | Light & Dark themes with 60+ CSS variables |
 
 ---
 
@@ -144,6 +145,10 @@ module.exports = {
 
 [GNOME Theme Guide](docs/gnome-theme.md)
 
+### Obsidian
+
+[Obsidian Theme Guide](docs/obsidian-theme.md)
+
 ---
 
 ## Color Tokens
@@ -201,11 +206,15 @@ candi/
 │   ├── plugin.js  # Tailwind v3 plugin
 │   └── theme.js   # Tailwind v3 theme extension
 ├── dist/          # Built output (git-ignored)
+├── scripts/       # Build and test scripts
+├── docs/          # Documentation guides
 ├── website/       # Documentation site (Vite + React)
 ├── flutter/       # Flutter package
 ├── vscode/        # VS Code extension
 ├── vim/           # Vim colorschemes
-└── scripts/       # Build scripts
+├── kde/           # KDE Plasma color schemes
+├── gnome/         # GTK3/GTK4 themes
+└── obsidian/      # Obsidian theme
 ```
 
 ---

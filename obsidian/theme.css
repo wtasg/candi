@@ -1,0 +1,239 @@
+/*
+ * Candi Theme for Obsidian
+ * A Nordic-inspired theme with Hygge warmth and Lagom balance.
+ * Generated from OKLCH color space.
+ */
+
+.theme-light {
+    /* Backgrounds */
+    --background-primary: #FBF8F2;
+    --background-primary-alt: #F4F0E7;
+    --background-secondary: #F4F0E7;
+    --background-secondary-alt: #FFFFFF;
+    --background-modifier-border: #E0DED8;
+    --background-modifier-form-field: #FFFFFF;
+    --background-modifier-form-field-highlighted: #BBD2DE;
+    --background-modifier-box-shadow: rgba(0, 0, 0, 0.1);
+    --background-modifier-success: #4A754C;
+    --background-modifier-error: #B75B55;
+    --background-modifier-error-rgb: 148, 85, 77;
+    --background-modifier-cover: rgba(0, 0, 0, 0.6);
+
+    /* Text */
+    --text-normal: #232A30;
+    --text-muted: #83878B;
+    --text-faint: #ACAEB1;
+    --text-on-accent: #FFFFFF;
+    --text-error: #B75B55;
+    --text-success: #4A754C;
+    --text-warning: #CB882E;
+    --text-selection: #BBD2DE;
+    --text-accent: #437085;
+    --text-accent-hover: #296B88;
+
+    /* Interactive elements */
+    --interactive-normal: #FFFFFF;
+    --interactive-hover: #F4F0E7;
+    --interactive-accent: #437085;
+    --interactive-accent-rgb: 103, 126, 145;
+    --interactive-accent-hover: #296B88;
+    --interactive-success: #4A754C;
+
+    /* Scrollbar */
+    --scrollbar-active-thumb-bg: #83878B;
+    --scrollbar-bg: #F4F0E7;
+    --scrollbar-thumb-bg: #E0DED8;
+
+    /* UI elements */
+    --divider-color: #E0DED8;
+    --divider-color-hover: #83878B;
+    --tab-text-color: #5F6469;
+    --tab-text-color-focused: #232A30;
+    --tab-text-color-focused-active: #437085;
+    --tab-background-active: #FFFFFF;
+    --tab-divider-color: #E0DED8;
+
+    /* Headings */
+    --h1-color: #232A30;
+    --h2-color: #232A30;
+    --h3-color: #232A30;
+    --h4-color: #5F6469;
+    --h5-color: #5F6469;
+    --h6-color: #83878B;
+
+    /* Links */
+    --link-color: #296B88;
+    --link-color-hover: #437085;
+    --link-external-color: #B0652A;
+    --link-external-color-hover: #437085;
+    --link-unresolved-color: #83878B;
+
+    /* Tags */
+    --tag-color: #437085;
+    --tag-color-hover: #296B88;
+    --tag-background: #BBD2DE;
+    --tag-background-hover: #F4F0E7;
+
+    /* Code */
+    --code-normal: #B0652A;
+    --code-background: #F4F0E7;
+    --code-comment: #83878B;
+
+    /* Checkbox */
+    --checkbox-color: #437085;
+    --checkbox-color-hover: #296B88;
+    --checkbox-border-color: #E0DED8;
+
+    /* Blockquote */
+    --blockquote-border-color: #437085;
+
+    /* Table */
+    --table-header-background: #F4F0E7;
+    --table-header-background-hover: #BBD2DE;
+    --table-row-even-background: #FBF8F2;
+    --table-row-odd-background: #F4F0E7;
+    --table-row-background-hover: #BBD2DE;
+
+    /* Graph */
+    --graph-line: #E0DED8;
+    --graph-node: #437085;
+    --graph-node-focused: #296B88;
+    --graph-node-tag: #B0652A;
+    --graph-node-attachment: #4A754C;
+
+    /* Icons */
+    --icon-color: #5F6469;
+    --icon-color-hover: #232A30;
+    --icon-color-active: #437085;
+    --icon-color-focused: #437085;
+
+    /* Nav */
+    --nav-item-color: #5F6469;
+    --nav-item-color-hover: #232A30;
+    --nav-item-color-active: #437085;
+    --nav-item-background-hover: #F4F0E7;
+    --nav-item-background-active: #BBD2DE;
+
+    /* Prompt/Modal */
+    --prompt-border-color: #E0DED8;
+
+    /* Focus */
+    --shadow-focus: 0 0 0 2px #BBD2DE;
+}
+
+.theme-dark {
+    /* Backgrounds */
+    --background-primary: #0D1218;
+    --background-primary-alt: #161B20;
+    --background-secondary: #161B20;
+    --background-secondary-alt: #1C2229;
+    --background-modifier-border: #2A2E33;
+    --background-modifier-form-field: #1C2229;
+    --background-modifier-form-field-highlighted: #233F4B;
+    --background-modifier-box-shadow: rgba(0, 0, 0, 0.3);
+    --background-modifier-success: #58905A;
+    --background-modifier-error: #CE7069;
+    --background-modifier-error-rgb: 166, 103, 103;
+    --background-modifier-cover: rgba(0, 0, 0, 0.8);
+
+    /* Text */
+    --text-normal: #E8E4DD;
+    --text-muted: #7C7A76;
+    --text-faint: #535558;
+    --text-on-accent: #0D1218;
+    --text-error: #CE7069;
+    --text-success: #58905A;
+    --text-warning: #D8953D;
+    --text-selection: #233F4B;
+    --text-accent: #4F8FAD;
+    --text-accent-hover: #4989A7;
+
+    /* Interactive elements */
+    --interactive-normal: #1C2229;
+    --interactive-hover: #161B20;
+    --interactive-accent: #4F8FAD;
+    --interactive-accent-rgb: 127, 153, 179;
+    --interactive-accent-hover: #4989A7;
+    --interactive-success: #58905A;
+
+    /* Scrollbar */
+    --scrollbar-active-thumb-bg: #7C7A76;
+    --scrollbar-bg: #161B20;
+    --scrollbar-thumb-bg: #2A2E33;
+
+    /* UI elements */
+    --divider-color: #2A2E33;
+    --divider-color-hover: #7C7A76;
+    --tab-text-color: #A7A49F;
+    --tab-text-color-focused: #E8E4DD;
+    --tab-text-color-focused-active: #4F8FAD;
+    --tab-background-active: #1C2229;
+    --tab-divider-color: #2A2E33;
+
+    /* Headings */
+    --h1-color: #E8E4DD;
+    --h2-color: #E8E4DD;
+    --h3-color: #E8E4DD;
+    --h4-color: #A7A49F;
+    --h5-color: #A7A49F;
+    --h6-color: #7C7A76;
+
+    /* Links */
+    --link-color: #4989A7;
+    --link-color-hover: #4F8FAD;
+    --link-external-color: #C77A41;
+    --link-external-color-hover: #4F8FAD;
+    --link-unresolved-color: #7C7A76;
+
+    /* Tags */
+    --tag-color: #4F8FAD;
+    --tag-color-hover: #4989A7;
+    --tag-background: #233F4B;
+    --tag-background-hover: #161B20;
+
+    /* Code */
+    --code-normal: #C77A41;
+    --code-background: #161B20;
+    --code-comment: #7C7A76;
+
+    /* Checkbox */
+    --checkbox-color: #4F8FAD;
+    --checkbox-color-hover: #4989A7;
+    --checkbox-border-color: #2A2E33;
+
+    /* Blockquote */
+    --blockquote-border-color: #4F8FAD;
+
+    /* Table */
+    --table-header-background: #161B20;
+    --table-header-background-hover: #233F4B;
+    --table-row-even-background: #0D1218;
+    --table-row-odd-background: #161B20;
+    --table-row-background-hover: #233F4B;
+
+    /* Graph */
+    --graph-line: #2A2E33;
+    --graph-node: #4F8FAD;
+    --graph-node-focused: #4989A7;
+    --graph-node-tag: #C77A41;
+    --graph-node-attachment: #58905A;
+
+    /* Icons */
+    --icon-color: #A7A49F;
+    --icon-color-hover: #E8E4DD;
+    --icon-color-active: #4F8FAD;
+    --icon-color-focused: #4F8FAD;
+
+    /* Nav */
+    --nav-item-color: #A7A49F;
+    --nav-item-color-hover: #E8E4DD;
+    --nav-item-color-active: #4F8FAD;
+    --nav-item-background-hover: #161B20;
+    --nav-item-background-active: #233F4B;
+
+    /* Prompt/Modal */
+    --prompt-border-color: #2A2E33;
+
+    /* Focus */
+    --shadow-focus: 0 0 0 2px #233F4B;
+}
