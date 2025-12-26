@@ -240,7 +240,7 @@ The npm package is published to GitHub Packages, not npmjs.com.
 
 ```json
 {
-  "name": "@wtasg/candi",
+  "name": "@wtasnorg/candi",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   }

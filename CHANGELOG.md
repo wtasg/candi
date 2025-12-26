@@ -2,6 +2,12 @@
 
 All notable changes to the Candi Design System will be documented in this file.
 
+## 0.0.22
+
+### Changed
+
+- Package name updated from `@wtasg/candi` to `@wtasnorg/candi` for npmjs.com publication
+
 ## 0.0.21
 
 ### Added
@@ -10,6 +16,10 @@ All notable changes to the Candi Design System will be documented in this file.
   - Automated dart format checks
   - Automated dart analyze checks
 - Lint script (`scripts/lint-dart.js`) for Flutter package quality assurance
+- Dual publishing to npmjs.com and GitHub Packages
+  - Package now available on npmjs.com as `@wtasnorg/candi` (no authentication required)
+  - GitHub Packages publishing maintained for GitHub-native workflows
+  - Simplified installation for all users
 
 ## 0.0.20
 

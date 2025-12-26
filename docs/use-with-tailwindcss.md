@@ -4,8 +4,12 @@ This guide covers integrating the Candi design system into a Tailwind CSS projec
 
 ## Installation
 
+> [!IMPORTANT]
+> This package is published to **GitHub Packages**. You must authenticate before installing.
+> See the [GitHub Packages Authentication Guide](../README.md#quick-setup-github-packages-authentication) for setup instructions.
+
 ```bash
-npm install @wtasg/candi
+npm install @wtasnorg/candi
 ```
 
 ## Tailwind v4 (Recommended)
@@ -35,7 +39,7 @@ export default defineConfig({
 ```css
 /* src/index.css */
 @import "tailwindcss";
-@import "@wtasg/candi/v4";
+@import "@wtasnorg/candi/v4";
 ```
 
 That's it! All Candi utilities are now available.
@@ -58,7 +62,7 @@ For Tailwind v3, use the JavaScript plugin and theme:
 ### 1. Configure `tailwind.config.js`
 
 ```js
-const { theme, plugin } = require('@wtasg/candi');
+const { theme, plugin } = require('@wtasnorg/candi');
 
 module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
@@ -154,7 +158,7 @@ function Card({ title, children }) {
 ### Next.js (v3)
 
 ```js
-const { theme, plugin } = require('@wtasg/candi');
+const { theme, plugin } = require('@wtasnorg/candi');
 
 module.exports = {
   content: ['./app/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
@@ -167,7 +171,7 @@ module.exports = {
 ### Vite / React (v3)
 
 ```js
-const { theme, plugin } = require('@wtasg/candi');
+const { theme, plugin } = require('@wtasnorg/candi');
 
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],

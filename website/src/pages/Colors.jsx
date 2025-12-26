@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import palette from '@wtasg/candi/colors'
+import palette from '@wtasnorg/candi/colors'
 import { oklchToHex, oklchToRgb } from '../utils/colorUtils'
 
 export default function Colors() {

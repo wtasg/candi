@@ -137,9 +137,12 @@ Download ready-to-use artifacts from GitHub releases (recommended for most users
 
 **[Using Prebuilt Releases Guide](docs/using-release-artifacts.md)**
 
-### Authenticating with GitHub Packages
+### GitHub Packages Authentication (Required)
 
-This package is published to GitHub Packages. To install it, you need to authenticate with GitHub:
+> [!IMPORTANT]
+> This package is published to **GitHub Packages**, not npmjs.com. You must authenticate with GitHub before installing.
+
+To install the package, you need to authenticate with GitHub:
 
 1. **Create a Personal Access Token (PAT)**:
    - Go to GitHub Settings → [Developer settings → Personal access tokens → Tokens (classic)](https://github.com/settings/tokens)
@@ -168,7 +171,7 @@ Or create/update your `~/.npmrc` file:
 ### Web (Tailwind CSS)
 
 ```bash
-npm install @wtasg/candi
+npm install @wtasnorg/candi
 ```
 
 **Tailwind v4** (Recommended):
@@ -176,14 +179,14 @@ npm install @wtasg/candi
 ```css
 /* In your CSS */
 @import "tailwindcss";
-@import "@wtasg/candi/v4";
+@import "@wtasnorg/candi/v4";
 ```
 
 **Tailwind v3**:
 
 ```js
 // tailwind.config.js
-const { theme, plugin } = require('@wtasg/candi');
+const { theme, plugin } = require('@wtasnorg/candi');
 module.exports = {
   theme: { extend: theme },
   plugins: [plugin],

@@ -1,6 +1,6 @@
 {
-    "name": "@wtasg/candi",
-    "version": "0.0.21",
+    "name": "@wtasnorg/candi",
+    "version": "0.0.22",
     "description": "A Tailwind CSS theme inspired by Nordic/Scandinavian Hygge & Lagom design principles",
     "keywords": [
         "tailwindcss",
@@ -19,7 +19,7 @@
         "url": "https://github.com/wtasg/candi.git"
     },
     "publishConfig": {
-        "registry": "https://npm.pkg.github.com"
+        "access": "public"
     },
     "main": "dist/index.js",
     "module": "dist/index.mjs",
@@ -85,7 +85,9 @@
         "lint:dart": "node scripts/lint-dart.js",
         "lint:md": "markdownlint-cli2 \"**/*.md\" \"!node_modules\" \"!website/node_modules\"",
         "lint:md:fix": "markdownlint-cli2 --fix \"**/*.md\" \"!node_modules\" \"!website/node_modules\"",
-        "lint:all": "npm run lint:dart && npm run lint:md"
+        "lint:all": "npm run lint:dart && npm run lint:md",
+        "publish:github": "npm publish --registry=https://npm.pkg.github.com",
+        "publish:npm": "npm publish --registry=https://registry.npmjs.org"
     },
     "peerDependencies": {
         "tailwindcss": ">=3.0.0 || >=4.0.0"

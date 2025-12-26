@@ -22,7 +22,7 @@ export default function Guides() {
             <div>
               <h3 className="text-lg font-semibold mb-3">Installation</h3>
               <pre className="text-sm mb-4">
-                <code>npm install @wtasg/candi</code>
+                <code>npm install @wtasnorg/candi</code>
               </pre>
             </div>
 
@@ -32,7 +32,7 @@ export default function Guides() {
                 Add Candi to your <code>tailwind.config.js</code>:
               </p>
               <pre className="text-sm">
-                <code>{`const { theme, plugin } = require('@wtasg/candi');
+                <code>{`const { theme, plugin } = require('@wtasnorg/candi');
 
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],

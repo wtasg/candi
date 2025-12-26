@@ -95,10 +95,10 @@ export default function Home() {
             <div>
               <h3 className="text-xl font-semibold mb-3 text-candi-accent">Web (Tailwind CSS)</h3>
               <pre className="text-sm">
-                <code>{`npm install @wtasg/candi
+                <code>{`npm install @wtasnorg/candi
 
 // tailwind.config.js
-const { theme, plugin } = require('@wtasg/candi');
+const { theme, plugin } = require('@wtasnorg/candi');
 
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],

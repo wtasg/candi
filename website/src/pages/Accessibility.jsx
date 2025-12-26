@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import palette from '@wtasg/candi/colors'
+import palette from '@wtasnorg/candi/colors'
 import { checkAccessibility } from '../utils/colorUtils'
 
 export default function Accessibility() {

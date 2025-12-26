@@ -6,21 +6,25 @@ Use the Candi design system with standard CSS.
 
 ### Option 1: npm
 
+> [!IMPORTANT]
+> This package is published to **GitHub Packages**. You must authenticate before installing.
+> See the [GitHub Packages Authentication Guide](../README.md#quick-setup-github-packages-authentication) for setup instructions.
+
 ```bash
-npm install @wtasg/candi
+npm install @wtasnorg/candi
 ```
 
 Import in your JavaScript/TypeScript:
 
 ```js
-import '@wtasg/candi/css';
+import '@wtasnorg/candi/css';
 ```
 
 ### Option 2: CDN
 
 ```html
 <!-- TODO: Add CDN -->
-<!-- <link rel="stylesheet" href="https://unpkg.com/@wtasg/candi/dist/scandinavian.css"> -->
+<!-- <link rel="stylesheet" href="https://unpkg.com/@wtasnorg/candi/dist/scandinavian.css"> -->
 ```
 
 ## CSS Variables
