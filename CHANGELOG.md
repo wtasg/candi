@@ -2,6 +2,13 @@
 
 All notable changes to the Candi Design System will be documented in this file.
 
+## 0.0.23
+
+### Changed
+
+- Removed GitHub Packages publishing (package now only published to npmjs.com)
+- Simplified publishing workflow
+
 ## 0.0.22
 
 ### Changed

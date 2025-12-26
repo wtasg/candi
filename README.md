@@ -137,38 +137,7 @@ Download ready-to-use artifacts from GitHub releases (recommended for most users
 
 **[Using Prebuilt Releases Guide](docs/using-release-artifacts.md)**
 
-### GitHub Packages Authentication (Required)
-
-> [!IMPORTANT]
-> This package is published to **GitHub Packages**, not npmjs.com. You must authenticate with GitHub before installing.
-
-To install the package, you need to authenticate with GitHub:
-
-1. **Create a Personal Access Token (PAT)**:
-   - Go to GitHub Settings → [Developer settings → Personal access tokens → Tokens (classic)](https://github.com/settings/tokens)
-   - Click "Generate new token (classic)"
-   - Give it a descriptive name (e.g., "npm packages")
-   - Select the `read:packages` scope
-   - Click "Generate token" and copy the token
-
-2. **Configure npm authentication**:
-
-```bash
-npm login --scope=@wtasg --auth-type=legacy --registry=https://npm.pkg.github.com
-```
-
-- Username: Your GitHub username
-- Password: The PAT you just created
-- Email: Your GitHub email
-
-Or create/update your `~/.npmrc` file:
-
-```text
-//npm.pkg.github.com/:_authToken=YOUR_GITHUB_PAT
-@wtasg:registry=https://npm.pkg.github.com
-```
-
-### Web (Tailwind CSS)
+### Web (npm Package)
 
 ```bash
 npm install @wtasnorg/candi

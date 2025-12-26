@@ -13,7 +13,8 @@ class CandiColor extends Color {
   final double hue;
   final double opacity;
 
-  const CandiColor(int value, {
+  const CandiColor(
+    int value, {
     required this.lightness,
     required this.chroma,
     required this.hue,
@@ -21,7 +22,8 @@ class CandiColor extends Color {
   }) : super(value);
 
   @override
-  String toString() => 'CandiColor(oklch(${(lightness * 100).toStringAsFixed(0)}% $chroma $hue))';
+  String toString() =>
+      'CandiColor(oklch(${(lightness * 100).toStringAsFixed(0)}% $chroma $hue))';
 }
 
 /// Semantic color palette for the Candi theme.
@@ -115,19 +117,22 @@ abstract final class CandiColors {
     // oklch(90% 0.008 85)
     border: CandiColor(0XFFE0DED8, lightness: 0.9, chroma: 0.008, hue: 85),
     // oklch(82% 0.01 85)
-    borderStrong: CandiColor(0XFFC7C4BD, lightness: 0.82, chroma: 0.01, hue: 85),
+    borderStrong:
+        CandiColor(0XFFC7C4BD, lightness: 0.82, chroma: 0.01, hue: 85),
     // oklch(88% 0.006 85)
     divider: CandiColor(0XFFD9D7D3, lightness: 0.88, chroma: 0.006, hue: 85),
     // oklch(52% 0.06 230)
     accent: CandiColor(0XFF437085, lightness: 0.52, chroma: 0.06, hue: 230),
     // oklch(85% 0.03 230)
-    accentSubtle: CandiColor(0XFFBBD2DE, lightness: 0.85, chroma: 0.03, hue: 230),
+    accentSubtle:
+        CandiColor(0XFFBBD2DE, lightness: 0.85, chroma: 0.03, hue: 230),
     // oklch(100% 0 0)
     onAccent: CandiColor(0XFFFFFFFF, lightness: 1, chroma: 0, hue: 0),
     // oklch(58% 0.12 55)
     secondary: CandiColor(0XFFB0652A, lightness: 0.58, chroma: 0.12, hue: 55),
     // oklch(88% 0.04 55)
-    secondarySubtle: CandiColor(0XFFEDD1BF, lightness: 0.88, chroma: 0.04, hue: 55),
+    secondarySubtle:
+        CandiColor(0XFFEDD1BF, lightness: 0.88, chroma: 0.04, hue: 55),
     // oklch(100% 0 0)
     onSecondary: CandiColor(0XFFFFFFFF, lightness: 1, chroma: 0, hue: 0),
     // oklch(52% 0.08 145)
@@ -151,21 +156,28 @@ abstract final class CandiColors {
     // oklch(75% 0.005 250)
     disabled: CandiColor(0XFFACAEB1, lightness: 0.75, chroma: 0.005, hue: 250),
     // oklch(52% 0.06 230 / 0.4)
-    focusRing: CandiColor(0X66437085, lightness: 0.52, chroma: 0.06, hue: 230, opacity: 0.4),
+    focusRing: CandiColor(0X66437085,
+        lightness: 0.52, chroma: 0.06, hue: 230, opacity: 0.4),
     // oklch(0% 0 0 / 0.5)
-    overlay: CandiColor(0X80000000, lightness: 0, chroma: 0, hue: 0, opacity: 0.5),
+    overlay:
+        CandiColor(0X80000000, lightness: 0, chroma: 0, hue: 0, opacity: 0.5),
     // oklch(0% 0 0 / 0.32)
-    scrim: CandiColor(0X52000000, lightness: 0, chroma: 0, hue: 0, opacity: 0.32),
+    scrim:
+        CandiColor(0X52000000, lightness: 0, chroma: 0, hue: 0, opacity: 0.32),
     // oklch(25% 0.01 250 / 0.15)
-    shadowColor: CandiColor(0X261E2226, lightness: 0.25, chroma: 0.01, hue: 250, opacity: 0.15),
+    shadowColor: CandiColor(0X261E2226,
+        lightness: 0.25, chroma: 0.01, hue: 250, opacity: 0.15),
     // oklch(25% 0.015 250)
-    inverseSurface: CandiColor(0XFF1C2229, lightness: 0.25, chroma: 0.015, hue: 250),
+    inverseSurface:
+        CandiColor(0XFF1C2229, lightness: 0.25, chroma: 0.015, hue: 250),
     // oklch(92% 0.01 85)
     inverseText: CandiColor(0XFFE8E4DD, lightness: 0.92, chroma: 0.01, hue: 85),
     // oklch(0% 0 0 / 0.05)
-    hover: CandiColor(0X0D000000, lightness: 0, chroma: 0, hue: 0, opacity: 0.05),
+    hover:
+        CandiColor(0X0D000000, lightness: 0, chroma: 0, hue: 0, opacity: 0.05),
     // oklch(0% 0 0 / 0.1)
-    active: CandiColor(0X1A000000, lightness: 0, chroma: 0, hue: 0, opacity: 0.1),
+    active:
+        CandiColor(0X1A000000, lightness: 0, chroma: 0, hue: 0, opacity: 0.1),
   );
 
   /// Dark mode palette
@@ -185,19 +197,22 @@ abstract final class CandiColors {
     // oklch(30% 0.01 250)
     border: CandiColor(0XFF2A2E33, lightness: 0.3, chroma: 0.01, hue: 250),
     // oklch(40% 0.012 250)
-    borderStrong: CandiColor(0XFF43484E, lightness: 0.4, chroma: 0.012, hue: 250),
+    borderStrong:
+        CandiColor(0XFF43484E, lightness: 0.4, chroma: 0.012, hue: 250),
     // oklch(28% 0.008 250)
     divider: CandiColor(0XFF26292D, lightness: 0.28, chroma: 0.008, hue: 250),
     // oklch(62% 0.08 230)
     accent: CandiColor(0XFF4F8FAD, lightness: 0.62, chroma: 0.08, hue: 230),
     // oklch(35% 0.04 230)
-    accentSubtle: CandiColor(0XFF233F4B, lightness: 0.35, chroma: 0.04, hue: 230),
+    accentSubtle:
+        CandiColor(0XFF233F4B, lightness: 0.35, chroma: 0.04, hue: 230),
     // oklch(15% 0.01 230)
     onAccent: CandiColor(0XFF070C0F, lightness: 0.15, chroma: 0.01, hue: 230),
     // oklch(65% 0.12 55)
     secondary: CandiColor(0XFFC77A41, lightness: 0.65, chroma: 0.12, hue: 55),
     // oklch(30% 0.05 55)
-    secondarySubtle: CandiColor(0XFF412714, lightness: 0.3, chroma: 0.05, hue: 55),
+    secondarySubtle:
+        CandiColor(0XFF412714, lightness: 0.3, chroma: 0.05, hue: 55),
     // oklch(15% 0.02 55)
     onSecondary: CandiColor(0XFF120904, lightness: 0.15, chroma: 0.02, hue: 55),
     // oklch(60% 0.1 145)
@@ -221,20 +236,28 @@ abstract final class CandiColors {
     // oklch(45% 0.005 250)
     disabled: CandiColor(0XFF535558, lightness: 0.45, chroma: 0.005, hue: 250),
     // oklch(62% 0.08 230 / 0.5)
-    focusRing: CandiColor(0X804F8FAD, lightness: 0.62, chroma: 0.08, hue: 230, opacity: 0.5),
+    focusRing: CandiColor(0X804F8FAD,
+        lightness: 0.62, chroma: 0.08, hue: 230, opacity: 0.5),
     // oklch(0% 0 0 / 0.7)
-    overlay: CandiColor(0XB3000000, lightness: 0, chroma: 0, hue: 0, opacity: 0.7),
+    overlay:
+        CandiColor(0XB3000000, lightness: 0, chroma: 0, hue: 0, opacity: 0.7),
     // oklch(0% 0 0 / 0.6)
-    scrim: CandiColor(0X99000000, lightness: 0, chroma: 0, hue: 0, opacity: 0.6),
+    scrim:
+        CandiColor(0X99000000, lightness: 0, chroma: 0, hue: 0, opacity: 0.6),
     // oklch(0% 0 0 / 0.4)
-    shadowColor: CandiColor(0X66000000, lightness: 0, chroma: 0, hue: 0, opacity: 0.4),
+    shadowColor:
+        CandiColor(0X66000000, lightness: 0, chroma: 0, hue: 0, opacity: 0.4),
     // oklch(92% 0.008 85)
-    inverseSurface: CandiColor(0XFFE7E4DF, lightness: 0.92, chroma: 0.008, hue: 85),
+    inverseSurface:
+        CandiColor(0XFFE7E4DF, lightness: 0.92, chroma: 0.008, hue: 85),
     // oklch(25% 0.015 250)
-    inverseText: CandiColor(0XFF1C2229, lightness: 0.25, chroma: 0.015, hue: 250),
+    inverseText:
+        CandiColor(0XFF1C2229, lightness: 0.25, chroma: 0.015, hue: 250),
     // oklch(100% 0 0 / 0.1)
-    hover: CandiColor(0X1AFFFFFF, lightness: 1, chroma: 0, hue: 0, opacity: 0.1),
+    hover:
+        CandiColor(0X1AFFFFFF, lightness: 1, chroma: 0, hue: 0, opacity: 0.1),
     // oklch(100% 0 0 / 0.2)
-    active: CandiColor(0X33FFFFFF, lightness: 1, chroma: 0, hue: 0, opacity: 0.2),
+    active:
+        CandiColor(0X33FFFFFF, lightness: 1, chroma: 0, hue: 0, opacity: 0.2),
   );
 }
