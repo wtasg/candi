@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.0.17
+
+- Expanded color palette from 16 to 33 colors per mode
+- Added contrast colors: onAccent, onSecondary, onSuccess, onWarning, onError, onInfo
+- Added UI colors: divider, scrim, shadowColor
+- Added inverse colors: inverseSurface, inverseText (for SnackBars)
+- Added interactive states: hover, active, link, disabled
+- Full Material Design 3 color role coverage
+
 ## 0.0.16
 
 - Added markdown linting configuration

@@ -50,6 +50,12 @@ print(accent.chroma);    // 0.06
 print(accent.hue);       // 230.0
 ```
 
+## Development
+
+1. Update Changelog.md with changes
+2. Run `flutter pub publish --dry-run` to validate changes
+3. Run `flutter pub publish` to publish to pub.dev
+
 ## License
 
 MIT
