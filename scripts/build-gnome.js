@@ -1,49 +1,40 @@
-#!/usr/bin/env node
-/**
- * Build script for GNOME themes from Candi colors.
- *
- * Extracts OKLCH colors from src/css/base.css, converts to RGB/CSS,
- * and generates GTK3/GTK4 theme files in gnome/.
- */
-
 const fs = require('fs');
 const path = require('path');
+const palette = require('../src/data/colors');
 
-const baseCssPath = path.join(__dirname, '..', 'src', 'css', 'base.css');
 const gnomeDir = path.join(__dirname, '..', 'gnome');
 const gtk3Dir = path.join(gnomeDir, 'gtk-3.0');
 const gtk4Dir = path.join(gnomeDir, 'gtk-4.0');
 
-const { parseOklch, oklchToRgb } = require('./color-conv');
+const { parseOklch } = require('./color-conv');
 
-// 1. Read CSS
-const css = fs.readFileSync(baseCssPath, 'utf8');
+const toKebab = (str) => str.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
 
-const lightColors = {};
-const darkColors = {};
-
-const rootMatch = css.match(/:root\s*{([^}]+)}/i);
-const darkMatch = css.match(/\.dark\s*{([^}]+)}/i);
-
-if (!rootMatch || !darkMatch) {
-    console.error('Failed to find :root or .dark blocks in CSS');
-    process.exit(1);
-}
-
-function extractColors(content, target) {
-    let match;
-    const regex = /--candi-([\w-]+):\s*(oklch\([^)]+\))/gi;
-    while ((match = regex.exec(content)) !== null) {
-        const key = match[1];
-        const data = parseOklch(match[2]);
-        if (data) {
-            target[key] = { r: data.r, g: data.g, b: data.b };
-        }
+function getColors(mode) {
+    const colors = {};
+    for (const [key, data] of Object.entries(palette[mode])) {
+        const value = data.oklch || data.value;
+        const parsed = parseOklch(value);
+        if (parsed) colors[toKebab(key)] = { r: parsed.r, g: parsed.g, b: parsed.b };
     }
+
+    // Add terminal colors
+    const isLight = mode === 'light';
+    const black = parseOklch(`oklch(${isLight ? '25%' : '15%'} 0.01 250)`);
+    colors['terminal-black'] = { r: black.r, g: black.g, b: black.b };
+    colors['terminal-red'] = colors['error'];
+    colors['terminal-green'] = colors['success'];
+    colors['terminal-yellow'] = colors['warning'];
+    colors['terminal-blue'] = colors['accent'];
+    colors['terminal-magenta'] = colors['syntax-keyword'];
+    colors['terminal-cyan'] = colors['syntax-var'];
+    colors['terminal-white'] = colors['text'];
+
+    return colors;
 }
 
-extractColors(rootMatch[1], lightColors);
-extractColors(darkMatch[1], darkColors);
+const lightColors = getColors('light');
+const darkColors = getColors('dark');
 
 /**
  * Format RGB values as CSS color (rgb(R, G, B))

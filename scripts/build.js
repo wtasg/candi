@@ -16,6 +16,10 @@ if (!fs.existsSync(distDir)) {
   fs.mkdirSync(distDir, { recursive: true });
 }
 
+// 0. Synchronize colors from source of truth
+console.log('Synchronizing colors...');
+require('./sync-colors');
+
 // Copy JS files
 const jsFiles = ['index.js', 'theme.js', 'plugin.js'];
 jsFiles.forEach(file => {

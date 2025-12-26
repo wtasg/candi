@@ -1,18 +1,18 @@
 import { useState } from 'react'
-import { colorTokens, colorNames } from '../data/colors'
+import palette from '@wtasg/candi/colors'
 import { oklchToHex, oklchToRgb } from '../utils/colorUtils'
 
 export default function Colors() {
   const [mode, setMode] = useState('light');
   const [selectedColor, setSelectedColor] = useState(null);
 
-  const colors = colorTokens[mode];
+  const colors = palette[mode];
 
   const categories = [
     {
       title: 'Base Palette',
       description: 'Core colors that define the application structure and typography.',
-      keys: ['bg', 'surface', 'elevated', 'text', 'subtle', 'muted', 'border', 'borderStrong', 'accent', 'accentSubtle', 'secondary', 'secondarySubtle', 'link', 'disabled', 'success', 'warning', 'error']
+      keys: ['bg', 'surface', 'elevated', 'text', 'textSubtle', 'textMuted', 'border', 'borderStrong', 'accent', 'accentSubtle', 'secondary', 'secondarySubtle', 'link', 'disabled', 'success', 'warning', 'error']
     },
     {
       title: 'Extended Syntax',
@@ -82,7 +82,7 @@ export default function Colors() {
                     style={{ backgroundColor: value.oklch }}
                   />
                   <div className="p-6">
-                    <h3 className="font-semibold text-lg mb-2">{colorNames[key]}</h3>
+                    <h3 className="font-semibold text-lg mb-2">{value.name}</h3>
                     <p className="text-sm text-candi-subtle mb-4 h-10 line-clamp-2">{value.usage}</p>
 
                     <div className="space-y-2 text-sm font-mono">
@@ -114,7 +114,7 @@ export default function Colors() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex justify-between items-start mb-6">
-              <h2 className="text-2xl font-bold">{colorNames[selectedColor.key]}</h2>
+              <h2 className="text-2xl font-bold">{selectedColor.name}</h2>
               <button
                 onClick={() => setSelectedColor(null)}
                 className="text-candi-muted hover:text-candi-text"

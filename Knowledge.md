@@ -189,3 +189,41 @@ r = Math.round(Math.min(1, Math.max(0, gamma(r))) * 255);
 const status = passed ? '[✓]' : '[✗]';
 console.log(`${status} Test name`);
 ```
+
+---
+
+## Color Pipeline Architecture
+
+The color system uses a single source of truth with generated CSS outputs.
+
+```text
+                    npm run build
+                         │
+                         ▼
+        ┌────────────────────────────────────┐
+        │     src/data/colors.js             │
+        │     (Source of Truth)              │
+        └────────────────────────────────────┘
+                         │
+                         ▼
+        ┌────────────────────────────────────┐
+        │     scripts/sync-colors.js         │
+        │     (Generator Script)             │
+        └────────────────────────────────────┘
+                         │
+          ┌──────────────┴──────────────┐
+          ▼                             ▼
+  src/css/base.css              src/v4/theme.css
+  (CSS Variables)               (Tailwind v4 theme)
+          │                             │
+          ▼                             ▼
+  dist/base.css                 dist/v4/theme.css
+  (Published)                   (Published)
+```
+
+**Key points**:
+
+- Edit only `src/data/colors.js` to change colors
+- Run `npm run build` to regenerate CSS files
+- Both `base.css` and `theme.css` have "do not edit" warnings
+- Platform builds (VSCode, Vim, KDE, etc.) consume `colors.js` directly

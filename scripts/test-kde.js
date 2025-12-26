@@ -144,53 +144,43 @@ function testKdeTheme() {
 function testPaletteCompleteness() {
     console.log('\n--- Palette Completeness Validation ---');
 
-    const baseCssPath = path.join(__dirname, '..', 'src', 'css', 'base.css');
-    const baseCss = fs.readFileSync(baseCssPath, 'utf8');
+    const palette = require('../src/data/colors');
 
     const requiredKeys = [
-        'bg', 'surface', 'elevated', 'text', 'text-subtle', 'text-muted',
-        'border', 'accent', 'accent-subtle', 'secondary', 'success',
+        'bg', 'surface', 'elevated', 'text', 'textSubtle', 'textMuted',
+        'border', 'accent', 'accentSubtle', 'secondary', 'success',
         'warning', 'error', 'link', 'disabled'
     ];
 
     let allKeysFound = true;
-    const missingInRoot = [];
+    const missingInLight = [];
     const missingInDark = [];
 
-    // Extract :root and .dark sections
-    const rootMatch = baseCss.match(/:root\s*{([^}]+)}/i);
-    const darkMatch = baseCss.match(/\.dark\s*{([^}]+)}/i);
-
-    assert.ok(rootMatch, 'base.css should have :root block');
-    assert.ok(darkMatch, 'base.css should have .dark block');
-
     requiredKeys.forEach(key => {
-        const pattern = new RegExp(`--candi-${key}:\\s*oklch\\([^)]+\\)`, 'i');
-
-        if (!pattern.test(rootMatch[1])) {
-            missingInRoot.push(key);
+        if (!palette.light[key]) {
+            missingInLight.push(key);
             allKeysFound = false;
         }
 
-        if (!pattern.test(darkMatch[1])) {
+        if (!palette.dark[key]) {
             missingInDark.push(key);
             allKeysFound = false;
         }
     });
 
     if (!allKeysFound) {
-        if (missingInRoot.length > 0) {
-            console.error('[✗] Missing color keys in :root (light theme):');
-            missingInRoot.forEach(key => console.error(`  - --candi-${key}`));
+        if (missingInLight.length > 0) {
+            console.error('[✗] Missing color keys in light theme (colors.js):');
+            missingInLight.forEach(key => console.error(`  - ${key}`));
         }
         if (missingInDark.length > 0) {
-            console.error('[✗] Missing color keys in .dark:');
-            missingInDark.forEach(key => console.error(`  - --candi-${key}`));
+            console.error('[✗] Missing color keys in dark theme (colors.js):');
+            missingInDark.forEach(key => console.error(`  - ${key}`));
         }
         process.exit(1);
     }
 
-    console.log(`[✓] All ${requiredKeys.length} required color keys found in both :root and .dark`);
+    console.log(`[✓] All ${requiredKeys.length} required color keys found in colors.js`);
 }
 
 testPaletteCompleteness();

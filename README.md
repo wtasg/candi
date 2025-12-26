@@ -1,8 +1,8 @@
 # Candi Design System
 
-A Tailwind CSS design system based on Nordic design principles: Hygge (warmth) and Lagom (balance).
+A multi-platform design system based on Nordic/Scandinavian design principles: Hygge (warmth) and Lagom (balance).
 
-Candi provides a single source of truth for colors using the OKLCH color space, synchronized across Web, Flutter, VS Code, and Vim.
+Candi provides a single source of truth for colors using the OKLCH color space, synchronized across Web, Flutter, VS Code, Vim, KDE, GNOME, and Obsidian.
 
 **[View Documentation Website](https://wtasg.github.io/candi/)** - Interactive color explorer, component playground, and comprehensive guides.
 
@@ -16,57 +16,126 @@ Candi provides a single source of truth for colors using the OKLCH color space, 
 | **Flutter** | Full | Type-safe `CandiColors` with OKLCH metadata |
 | **VS Code** | Full | Light & Dark themes with unified syntax highlighting |
 | **Vim** | Full | Standalone `.vim` colorschemes (GUI & Terminal) |
-| **KDE Plasma** | Full | Color schemes for KDE 4, 5 & 6 (Plasma 6 color roles recommended) |
+| **KDE Plasma** | Full | Color schemes for KDE 4, 5 & 6 |
 | **GNOME** | Full | GTK3 & GTK4 themes for X11 and Wayland |
 | **Obsidian** | Full | Light & Dark themes with 60+ CSS variables |
 
 ---
 
-## Architecture: OKLCH-First
+## Architecture
 
-Candi uses **OKLCH** as its primary color space instead of Hex codes. Benefits include:
+### Single Source of Truth
 
-- **Perceptual Uniformity**: Consistent contrast and brightness across the palette.
-- **Synchronized Themes**: Updates to `src/css/base.css` propagate to all platforms via `npm run build:all`.
-- **Shared Logic**: Centralized conversion in `scripts/color-conv.js` ensures color accuracy across Chrome, VS Code, and mobile.
-- **Automated Accessibility**: Integrated WCAG 2.1 contrast ratio validation in the build pipeline.
+All colors are defined in `src/data/colors.js`. This file is the canonical source for the entire design system.
 
-**[Learn more about OKLCH color conversion](docs/color-conversion.md)** - Detailed explanation of the conversion pipeline and verification methods.
+```text
+src/data/colors.js (Source of Truth)
+        │
+        ▼
+scripts/sync-colors.js (Generator)
+        │
+        ├── src/css/base.css (CSS Variables)
+        ├── src/v4/theme.css (Tailwind v4 @theme)
+        └── dist/colors.json (Data export)
+
+Platform Builds (all consume colors.js directly):
+├── build-flutter.js → flutter/lib/candi_colors.dart
+├── build-vscode.js  → vscode/themes/*.json
+├── build-vim.js     → vim/colors/*.vim
+├── build-kde.js     → kde/v4,v5/*.colors
+├── build-gnome.js   → gnome/gtk-*/*.css
+└── build-obsidian.js → obsidian/theme.css
+```
+
+### OKLCH Color Space
+
+Candi uses OKLCH as its primary color space instead of Hex codes:
+
+- **Perceptual Uniformity**: Consistent contrast and brightness across the palette
+- **Synchronized Themes**: Updates to `src/data/colors.js` propagate to all platforms via `npm run build:all`
+- **Shared Logic**: Centralized conversion in `scripts/color-conv.js` ensures color accuracy
+- **Automated Accessibility**: Integrated WCAG 2.1 contrast ratio validation
+
+**[Learn more about OKLCH color conversion](docs/color-conversion.md)**
 
 ---
 
-## Design & Accessibility
+## Project Structure
 
-Candi is built with accessibility as a core requirement:
-
-- **WCAG Standards**: Our color extraction pipeline automatically validates contrast ratios between text and backgrounds.
-- **Primary Text**: Aimed at **4.5:1** contrast (WCAG AA) for standard text.
-- **UI Elements**: Accents and status indicators (Success/Warning/Error) are tuned for **3.0:1** contrast (WCAG Graphical Objects) to maintain the soft Scandinavian aesthetic without sacrificing usability.
+```text
+candi/
+├── src/                    # Source files for npm package
+│   ├── css/                # CSS files (base, components, utilities)
+│   ├── data/               # Source of truth (colors.js)
+│   ├── v4/                 # Tailwind v4 theme
+│   ├── index.js            # Main entry point
+│   ├── plugin.js           # Tailwind v3 plugin
+│   └── theme.js            # Tailwind v3 theme extension
+├── scripts/                # Build and test scripts
+│   ├── build.js            # Main npm package build
+│   ├── build-*.js          # Platform-specific builds
+│   ├── test-*.js           # Platform-specific tests
+│   ├── sync-colors.js      # Color synchronization
+│   └── color-conv.js       # OKLCH/RGB conversion utilities
+├── dist/                   # Built output (git-ignored)
+├── docs/                   # Documentation guides
+├── website/                # Documentation site (Vite + React)
+├── flutter/                # Flutter package
+├── vscode/                 # VS Code extension
+├── vim/                    # Vim colorschemes
+├── kde/                    # KDE Plasma color schemes
+├── gnome/                  # GTK3/GTK4 themes
+└── obsidian/               # Obsidian theme
+```
 
 ---
 
-## Unified Commands
+## Commands
 
-- **Build Everything**: `npm run build:all`
-  - Generates assets for Web, Flutter, VS Code, Vim, KDE, and GNOME.
-- **Test Everything**: `npm test`
-  - Validates color accuracy and platform-specific exports.
-- **Package VS Code**: `npm run vscode:package`
-  - Generates a `.vsix` file.
-- **Generate Artifacts**: `npm run artifact`
-  - Builds all platforms and packages them into zip archives:
-    - `theme.zip` (CSS & JS distributions)
-    - `docs.zip` (Documentation website)
-    - `vim.zip` (Vim color schemes)
-    - `vscode-theme-candi-*.vsix` (VS Code extension)
-    - `kde.zip` (KDE color schemes)
-    - `gnome.zip` (GNOME/GTK themes)
-- **Bump Versions**: `./scripts/bump-packages.sh <version>`
-  - Updates version in all packages (npm, VS Code, Flutter).
+### Build
+
+| Command | Description |
+| :--- | :--- |
+| `npm run build` | Build npm package (CSS, JS, TypeScript declarations) |
+| `npm run build:all` | Build all platforms (Web, Flutter, VS Code, Vim, KDE, GNOME, Obsidian) |
+| `npm run build:flutter` | Build Flutter package only |
+| `npm run build:vscode` | Build VS Code extension only |
+| `npm run build:vim` | Build Vim colorschemes only |
+| `npm run build:kde` | Build KDE color schemes only |
+| `npm run build:gnome` | Build GNOME/GTK themes only |
+| `npm run build:obsidian` | Build Obsidian theme only |
+
+### Test
+
+| Command | Description |
+| :--- | :--- |
+| `npm test` | Run all tests |
+| `npm run test:color` | Test color definitions |
+| `npm run test:colors` | Test color conversions |
+| `npm run test:flutter` | Test Flutter package |
+| `npm run test:vscode` | Test VS Code extension |
+| `npm run test:vim` | Test Vim colorschemes |
+| `npm run test:kde` | Test KDE color schemes |
+| `npm run test:gnome` | Test GNOME themes |
+| `npm run test:obsidian` | Test Obsidian theme |
+
+### Package & Publish
+
+| Command | Description |
+| :--- | :--- |
+| `npm run artifact` | Package all platforms into zip archives |
+| `npm run vscode:package` | Generate `.vsix` VS Code extension |
+| `./scripts/package-bump.sh <version>` | Bump version across all packages |
 
 ---
 
 ## Installation & Usage
+
+### Using Prebuilt Releases
+
+Download ready-to-use artifacts from GitHub releases (recommended for most users).
+
+**[Using Prebuilt Releases Guide](docs/using-release-artifacts.md)**
 
 ### Authenticating with GitHub Packages
 
@@ -96,8 +165,6 @@ Or create/update your `~/.npmrc` file:
 @wtasg:registry=https://npm.pkg.github.com
 ```
 
-**[Using Prebuilt Releases](docs/using-release-artifacts.md)** - Download ready-to-use artifacts from GitHub releases (recommended for most users).
-
 ### Web (Tailwind CSS)
 
 ```bash
@@ -123,31 +190,18 @@ module.exports = {
 };
 ```
 
-[Full Web Setup Guide](docs/use-with-tailwindcss.md)
+**[Full Web Setup Guide](docs/use-with-tailwindcss.md)** | **[Use Without Tailwind](docs/use-without-tailwindcss.md)**
 
-### Flutter
+### Platform Guides
 
-[Flutter Integration Guide](docs/flutter-integration.md)
-
-### VS Code
-
-[VS Code Theme Guide](docs/vscode-theme.md)
-
-### Vim
-
-[Vim Theme Guide](docs/vim-theme.md)
-
-### KDE Plasma
-
-[KDE Theme Guide](docs/kde-theme.md)
-
-### GNOME
-
-[GNOME Theme Guide](docs/gnome-theme.md)
-
-### Obsidian
-
-[Obsidian Theme Guide](docs/obsidian-theme.md)
+| Platform | Guide |
+| :--- | :--- |
+| Flutter | [Flutter Integration Guide](docs/flutter-integration.md) |
+| VS Code | [VS Code Theme Guide](docs/vscode-theme.md) |
+| Vim | [Vim Theme Guide](docs/vim-theme.md) |
+| KDE Plasma | [KDE Theme Guide](docs/kde-theme.md) |
+| GNOME | [GNOME Theme Guide](docs/gnome-theme.md) |
+| Obsidian | [Obsidian Theme Guide](docs/obsidian-theme.md) |
 
 ---
 
@@ -157,9 +211,27 @@ module.exports = {
 | :--- | :--- | :--- | :--- |
 | `bg` | Warm white | Warm dark | Page background |
 | `surface` | Soft cream | Card surface | Cards, sections |
+| `elevated` | Pure white | Elevated dark | Modals, popups |
 | `text` | Warm charcoal | Off-white | Primary text |
+| `text-subtle` | Medium gray | Light gray | Secondary text |
+| `text-muted` | Light gray | Muted gray | Tertiary text |
 | `accent` | Steel blue | Lighter steel | Primary actions |
 | `secondary` | Terracotta | Lighter terracotta | Secondary actions |
+| `success` | Forest green | Lighter green | Success states |
+| `warning` | Amber | Lighter amber | Warning states |
+| `error` | Coral red | Lighter coral | Error states |
+
+**[Customize Colors](docs/customizing-colors.md)**
+
+---
+
+## Design & Accessibility
+
+Candi is built with accessibility as a core requirement:
+
+- **WCAG Standards**: Color extraction pipeline automatically validates contrast ratios
+- **Primary Text**: Aimed at **4.5:1** contrast (WCAG AA) for standard text
+- **UI Elements**: Accents and status indicators tuned for **3.0:1** contrast (WCAG Graphical Objects)
 
 ---
 
@@ -169,6 +241,7 @@ module.exports = {
 
 - Node.js 24+
 - npm
+- Flutter SDK (for Flutter package development)
 
 ### Setup
 
@@ -194,28 +267,20 @@ npm install
 npm run dev     # Starts dev server at http://localhost:3000
 ```
 
-The `predev` and `prebuild` scripts automatically rebuild the parent package, so changes to `src/v4/theme.css` are reflected immediately.
+The `predev` and `prebuild` scripts automatically rebuild the parent package, so changes to `src/data/colors.js` are reflected immediately.
 
-### Project Structure
+### Making Color Changes
 
-```text
-candi/
-├── src/           # Source files for npm package
-│   ├── css/       # Base CSS files
-│   ├── v4/        # Tailwind v4 theme
-│   ├── plugin.js  # Tailwind v3 plugin
-│   └── theme.js   # Tailwind v3 theme extension
-├── dist/          # Built output (git-ignored)
-├── scripts/       # Build and test scripts
-├── docs/          # Documentation guides
-├── website/       # Documentation site (Vite + React)
-├── flutter/       # Flutter package
-├── vscode/        # VS Code extension
-├── vim/           # Vim colorschemes
-├── kde/           # KDE Plasma color schemes
-├── gnome/         # GTK3/GTK4 themes
-└── obsidian/      # Obsidian theme
-```
+1. Edit `src/data/colors.js` (the single source of truth)
+2. Run `npm run build:all` to regenerate all platform themes
+3. Run `npm test` to validate color accuracy and contrast ratios
+
+---
+
+## Related Documentation
+
+- [Knowledge Base](Knowledge.md) - Lessons learned and development gotchas
+- [Color Conversion](docs/color-conversion.md) - OKLCH to RGB conversion pipeline
 
 ---
 

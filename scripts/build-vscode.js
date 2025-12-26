@@ -1,47 +1,38 @@
-#!/usr/bin/env node
-/**
- * Build script for VS Code theme from Candi colors.
- *
- * Extracts OKLCH colors from src/css/base.css, converts to Hex,
- * and generates a VS Code extension in vscode/.
- */
-
 const fs = require('fs');
 const path = require('path');
+const palette = require('../src/data/colors');
 
-const baseCssPath = path.join(__dirname, '..', 'src', 'css', 'base.css');
 const vscodeDir = path.join(__dirname, '..', 'vscode');
 const themesDir = path.join(vscodeDir, 'themes');
 
 const { toHex6: toHex, parseOklch } = require('./color-conv');
 
-// 1. Read CSS
-const css = fs.readFileSync(baseCssPath, 'utf8');
+const toKebab = (str) => str.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
 
-const lightColors = {};
-const darkColors = {};
-
-const varRegex = /--candi-([\w-]+):\s*(oklch\([^)]+\))/gi;
-
-const rootMatch = css.match(/:root\s*{([^}]+)}/i);
-const darkMatch = css.match(/\.dark\s*{([^}]+)}/i);
-
-if (!rootMatch || !darkMatch) {
-    console.error('Failed to find :root or .dark blocks in CSS');
-    process.exit(1);
-}
-
-function extractColors(content, target) {
-    let match;
-    while ((match = varRegex.exec(content)) !== null) {
-        const key = match[1];
-        const data = parseOklch(match[2]);
-        if (data) target[key] = toHex(data);
+function getColors(mode) {
+    const colors = {};
+    for (const [key, data] of Object.entries(palette[mode])) {
+        const value = data.oklch || data.value;
+        const parsed = parseOklch(value);
+        if (parsed) colors[toKebab(key)] = toHex(parsed);
     }
+
+    // Add terminal colors
+    const isLight = mode === 'light';
+    colors['terminal-black'] = toHex(parseOklch(`oklch(${isLight ? '25%' : '15%'} 0.01 250)`));
+    colors['terminal-red'] = colors['error'];
+    colors['terminal-green'] = colors['success'];
+    colors['terminal-yellow'] = colors['warning'];
+    colors['terminal-blue'] = colors['accent'];
+    colors['terminal-magenta'] = colors['syntax-keyword'];
+    colors['terminal-cyan'] = colors['syntax-var'];
+    colors['terminal-white'] = colors['text'];
+
+    return colors;
 }
 
-extractColors(rootMatch[1], lightColors);
-extractColors(darkMatch[1], darkColors);
+const lightColors = getColors('light');
+const darkColors = getColors('dark');
 
 function generateTheme(name, type, palette) {
     return {

@@ -42,7 +42,12 @@
         "./css/base": "./dist/base.css",
         "./css/components": "./dist/components.css",
         "./css/utilities": "./dist/utilities.css",
-        "./v4": "./dist/v4/theme.css"
+        "./v4": "./dist/v4/theme.css",
+        "./colors": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/colors.mjs",
+            "require": "./dist/colors.js"
+        }
     },
     "files": [
         "dist",

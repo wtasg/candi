@@ -70,37 +70,16 @@ function getContrastRatio(rgb1, rgb2) {
     return (lighter + 0.05) / (darker + 0.05);
 }
 
-// Read colors from base.css
-const baseCssPath = path.join(__dirname, '..', 'src', 'css', 'base.css');
-const css = fs.readFileSync(baseCssPath, 'utf8');
-
-const lightColors = {};
-const darkColors = {};
-
-const rootMatch = css.match(/:root\s*{([^}]+)}/i);
-const darkMatch = css.match(/\.dark\s*{([^}]+)}/i);
-
-function extractColors(content, target) {
-    let match;
-    const regex = /--candi-([\w-]+):\s*(oklch\([^)]+\))/gi;
-    while ((match = regex.exec(content)) !== null) {
-        const key = match[1];
-        const data = parseOklch(match[2]);
-        if (data) target[key] = data;
-    }
-}
-
-extractColors(rootMatch[1], lightColors);
-extractColors(darkMatch[1], darkColors);
+const palette = require('../src/data/colors');
 
 const contrastTests = [
     { mode: 'light', name: 'text on bg', fg: 'text', bg: 'bg', minRatio: 4.5 },
-    { mode: 'light', name: 'subtle on bg', fg: 'text-subtle', bg: 'bg', minRatio: 4.5 },
+    { mode: 'light', name: 'subtle on bg', fg: 'textSubtle', bg: 'bg', minRatio: 4.5 },
     { mode: 'light', name: 'accent on bg', fg: 'accent', bg: 'bg', minRatio: 3.0 },
     { mode: 'light', name: 'success on bg', fg: 'success', bg: 'bg', minRatio: 3.0 },
     { mode: 'light', name: 'error on bg', fg: 'error', bg: 'bg', minRatio: 3.0 },
     { mode: 'dark', name: 'text on bg', fg: 'text', bg: 'bg', minRatio: 4.5 },
-    { mode: 'dark', name: 'subtle on bg', fg: 'text-subtle', bg: 'bg', minRatio: 4.5 },
+    { mode: 'dark', name: 'subtle on bg', fg: 'textSubtle', bg: 'bg', minRatio: 4.5 },
     { mode: 'dark', name: 'accent on bg', fg: 'accent', bg: 'bg', minRatio: 3.0 },
     { mode: 'dark', name: 'success on bg', fg: 'success', bg: 'bg', minRatio: 3.0 },
     { mode: 'dark', name: 'error on bg', fg: 'error', bg: 'bg', minRatio: 3.0 },
@@ -110,9 +89,12 @@ let contrastPassed = 0;
 let wcagIssues = [];
 
 contrastTests.forEach(tc => {
-    const colors = tc.mode === 'light' ? lightColors : darkColors;
-    const fgColor = colors[tc.fg];
-    const bgColor = colors[tc.bg];
+    const colors = palette[tc.mode];
+    const fgData = colors[tc.fg];
+    const bgData = colors[tc.bg];
+
+    const fgColor = fgData ? parseOklch(fgData.oklch || fgData.value) : null;
+    const bgColor = bgData ? parseOklch(bgData.oklch || bgData.value) : null;
 
     if (!fgColor || !bgColor) {
         console.log(`[WARN] ${tc.mode} mode: ${tc.name} - Missing color(s)`);

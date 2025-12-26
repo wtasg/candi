@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { colorTokens, colorNames } from '../data/colors'
+import palette from '@wtasg/candi/colors'
 import { checkAccessibility } from '../utils/colorUtils'
 
 export default function Accessibility() {
@@ -7,7 +7,7 @@ export default function Accessibility() {
   const [fgColor, setFgColor] = useState('text');
   const [bgColor, setBgColor] = useState('bg');
 
-  const colors = colorTokens[mode];
+  const colors = palette[mode];
   const fg = colors[fgColor];
   const bg = colors[bgColor];
   const result = checkAccessibility(fg, bg);
@@ -43,8 +43,8 @@ export default function Accessibility() {
               onChange={(e) => setFgColor(e.target.value)}
               className="w-full px-4 py-3 bg-candi-elevated border border-candi-border rounded-soft focus:outline-none focus:ring-2 focus:ring-candi-accent"
             >
-              {Object.keys(colors).map(key => (
-                <option key={key} value={key}>{colorNames[key]}</option>
+              {Object.entries(colors).map(([key, value]) => (
+                <option key={key} value={key}>{value.name}</option>
               ))}
             </select>
           </div>
@@ -56,8 +56,8 @@ export default function Accessibility() {
               onChange={(e) => setBgColor(e.target.value)}
               className="w-full px-4 py-3 bg-candi-elevated border border-candi-border rounded-soft focus:outline-none focus:ring-2 focus:ring-candi-accent"
             >
-              {Object.keys(colors).map(key => (
-                <option key={key} value={key}>{colorNames[key]}</option>
+              {Object.entries(colors).map(([key, value]) => (
+                <option key={key} value={key}>{value.name}</option>
               ))}
             </select>
           </div>
@@ -76,7 +76,7 @@ export default function Accessibility() {
               The contrast ratio is calculated according to WCAG 2.1 standards.
             </p>
             <p className="text-sm">
-              Small text (under 18pt or 14pt bold) requires a minimum contrast ratio of 4.5:1 for AA compliance 
+              Small text (under 18pt or 14pt bold) requires a minimum contrast ratio of 4.5:1 for AA compliance
               and 7:1 for AAA compliance.
             </p>
           </div>
@@ -101,33 +101,30 @@ export default function Accessibility() {
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <span>Normal Text (AA)</span>
-                <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                  result.passes 
-                    ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:bg-opacity-30 dark:text-green-400' 
-                    : 'bg-red-100 text-red-800 dark:bg-red-900 dark:bg-opacity-30 dark:text-red-400'
-                }`}>
+                <span className={`px-3 py-1 rounded-full text-sm font-medium ${result.passes
+                  ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:bg-opacity-30 dark:text-green-400'
+                  : 'bg-red-100 text-red-800 dark:bg-red-900 dark:bg-opacity-30 dark:text-red-400'
+                  }`}>
                   {result.passes ? 'Pass' : 'Fail'}
                 </span>
               </div>
               <div className="flex items-center justify-between">
                 <span>Large Text (AA)</span>
-                <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                  result.passesLarge 
-                    ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:bg-opacity-30 dark:text-green-400' 
-                    : 'bg-red-100 text-red-800 dark:bg-red-900 dark:bg-opacity-30 dark:text-red-400'
-                }`}>
+                <span className={`px-3 py-1 rounded-full text-sm font-medium ${result.passesLarge
+                  ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:bg-opacity-30 dark:text-green-400'
+                  : 'bg-red-100 text-red-800 dark:bg-red-900 dark:bg-opacity-30 dark:text-red-400'
+                  }`}>
                   {result.passesLarge ? 'Pass' : 'Fail'}
                 </span>
               </div>
               <div className="flex items-center justify-between">
                 <span>Overall Level</span>
-                <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                  result.level === 'AAA' 
-                    ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:bg-opacity-30 dark:text-green-400'
-                    : result.level.includes('AA')
+                <span className={`px-3 py-1 rounded-full text-sm font-medium ${result.level === 'AAA'
+                  ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:bg-opacity-30 dark:text-green-400'
+                  : result.level.includes('AA')
                     ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:bg-opacity-30 dark:text-yellow-400'
                     : 'bg-red-100 text-red-800 dark:bg-red-900 dark:bg-opacity-30 dark:text-red-400'
-                }`}>
+                  }`}>
                   {result.level}
                 </span>
               </div>
@@ -207,21 +204,21 @@ export default function Accessibility() {
             { fg: 'text', bg: 'bg', label: 'Text on Background' },
             { fg: 'text', bg: 'surface', label: 'Text on Surface' },
             { fg: 'text', bg: 'elevated', label: 'Text on Elevated' },
-            { fg: 'subtle', bg: 'bg', label: 'Subtle on Background' },
+            { fg: 'textSubtle', bg: 'bg', label: 'Subtle on Background' },
             { fg: 'accent', bg: 'bg', label: 'Accent on Background' },
             { fg: 'secondary', bg: 'bg', label: 'Secondary on Background' },
           ] : [
             { fg: 'text', bg: 'bg', label: 'Text on Background' },
             { fg: 'text', bg: 'surface', label: 'Text on Surface' },
             { fg: 'text', bg: 'elevated', label: 'Text on Elevated' },
-            { fg: 'subtle', bg: 'bg', label: 'Subtle on Background' },
+            { fg: 'textSubtle', bg: 'bg', label: 'Subtle on Background' },
             { fg: 'accent', bg: 'bg', label: 'Accent on Background' },
             { fg: 'secondary', bg: 'bg', label: 'Secondary on Background' },
           ]).map((combo, i) => {
             const fgClr = colors[combo.fg];
             const bgClr = colors[combo.bg];
             const comboResult = checkAccessibility(fgClr, bgClr);
-            
+
             return (
               <div
                 key={i}

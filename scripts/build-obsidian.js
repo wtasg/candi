@@ -1,50 +1,27 @@
-#!/usr/bin/env node
-/**
- * Build script for Obsidian theme from Candi colors.
- *
- * Extracts OKLCH colors from src/css/base.css, converts to Hex,
- * and generates an Obsidian theme in obsidian/.
- */
-
 const fs = require('fs');
 const path = require('path');
+const palette = require('../src/data/colors');
 
-const baseCssPath = path.join(__dirname, '..', 'src', 'css', 'base.css');
 const obsidianDir = path.join(__dirname, '..', 'obsidian');
 
-const { parseOklch } = require('./color-conv');
-const { toHex6 } = require('./color-conv');
+const { parseOklch, toHex6 } = require('./color-conv');
 
 const version = require('../package.json').version;
 
-// 1. Read CSS
-const css = fs.readFileSync(baseCssPath, 'utf8');
+const toKebab = (str) => str.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
 
-const lightColors = {};
-const darkColors = {};
-
-const rootMatch = css.match(/:root\s*{([^}]+)}/i);
-const darkMatch = css.match(/\.dark\s*{([^}]+)}/i);
-
-if (!rootMatch || !darkMatch) {
-    console.error('Failed to find :root or .dark blocks in CSS');
-    process.exit(1);
-}
-
-function extractColors(content, target) {
-    let match;
-    const regex = /--candi-([\w-]+):\s*(oklch\([^)]+\))/gi;
-    while ((match = regex.exec(content)) !== null) {
-        const key = match[1];
-        const data = parseOklch(match[2]);
-        if (data) {
-            target[key] = toHex6({ r: data.r, g: data.g, b: data.b });
-        }
+function getColors(mode) {
+    const colors = {};
+    for (const [key, data] of Object.entries(palette[mode])) {
+        const value = data.oklch || data.value;
+        const parsed = parseOklch(value);
+        if (parsed) colors[toKebab(key)] = toHex6({ r: parsed.r, g: parsed.g, b: parsed.b });
     }
+    return colors;
 }
 
-extractColors(rootMatch[1], lightColors);
-extractColors(darkMatch[1], darkColors);
+const lightColors = getColors('light');
+const darkColors = getColors('dark');
 
 /**
  * Validate that all required color palette keys exist

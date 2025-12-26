@@ -1,58 +1,32 @@
-#!/usr/bin/env node
-/**
- * Build script for Flutter theme from CSS variables.
- *
- * Extracts OKLCH color tokens from src/css/base.css,
- * converts them to RGB, and generates flutter/lib/candi_colors.dart.
- */
-
 const fs = require('fs');
 const path = require('path');
+const palette = require('../src/data/colors');
 
-const baseCssPath = path.join(__dirname, '..', 'src', 'css', 'base.css');
 const dartColorsPath = path.join(__dirname, '..', 'flutter', 'lib', 'candi_colors.dart');
 
 const { toHex8, parseOklch } = require('./color-conv');
 
-// 1. Read CSS
-const css = fs.readFileSync(baseCssPath, 'utf8');
-
-const lightColors = {};
-const darkColors = {};
-
-const varRegex = /--candi-([\w-]+):\s*(oklch\([^)]+\))/gi;
-
-const rootMatch = css.match(/:root\s*{([^}]+)}/i);
-const darkMatch = css.match(/\.dark\s*{([^}]+)}/i);
-
-if (!rootMatch || !darkMatch) {
-  console.error('Failed to find :root or .dark blocks in CSS');
-  process.exit(1);
-}
-
-const rootContent = rootMatch[1];
-const darkContent = darkMatch[1];
-
-function extractColors(content, target) {
-  let match;
-  while ((match = varRegex.exec(content)) !== null) {
-    const key = match[1].replace(/-([a-z])/g, (g) => g[1].toUpperCase());
-    const data = parseOklch(match[2]);
-    if (data) {
-      target[key] = {
-        hex: toHex8(data),
-        l: data.l,
-        c: data.c,
-        h: data.h,
-        opacity: data.opacity,
-        oklch: match[2]
+function getColors(mode) {
+  const colors = {};
+  for (const [key, data] of Object.entries(palette[mode])) {
+    const value = data.oklch || data.value;
+    const parsed = parseOklch(value);
+    if (parsed) {
+      colors[key] = {
+        hex: toHex8(parsed),
+        l: parsed.l,
+        c: parsed.c,
+        h: parsed.h,
+        opacity: parsed.opacity,
+        oklch: value
       };
     }
   }
+  return colors;
 }
 
-extractColors(rootContent, lightColors);
-extractColors(darkContent, darkColors);
+const lightColors = getColors('light');
+const darkColors = getColors('dark');
 
 // Define keys to ensure consistent order
 const colorKeys = [
