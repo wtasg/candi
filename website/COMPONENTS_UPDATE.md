@@ -35,7 +35,7 @@ Successfully added a comprehensive component library to the Candi website with 2
 
 ## New Files Structure
 
-```
+```text
 website/src/
 ├── components/
 │   ├── Accordion.jsx

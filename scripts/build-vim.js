@@ -10,89 +10,103 @@ const { toHex6: toHex, parseOklch } = require('./color-conv');
 const toKebab = (str) => str.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
 
 function getColors(mode) {
-    const colors = {};
-    for (const [key, data] of Object.entries(palette[mode])) {
-        const value = data.oklch || data.value;
-        const parsed = parseOklch(value);
-        if (parsed) colors[toKebab(key)] = toHex(parsed);
-    }
+  const colors = {};
+  for (const [key, data] of Object.entries(palette[mode])) {
+    const value = data.oklch || data.value;
+    const parsed = parseOklch(value);
+    if (parsed) colors[toKebab(key)] = toHex(parsed);
+  }
 
-    // Add terminal colors
-    const isLight = mode === 'light';
-    colors['terminal-black'] = toHex(parseOklch(`oklch(${isLight ? '25%' : '15%'} 0.01 250)`));
-    colors['terminal-red'] = colors['error'];
-    colors['terminal-green'] = colors['success'];
-    colors['terminal-yellow'] = colors['warning'];
-    colors['terminal-blue'] = colors['accent'];
-    colors['terminal-magenta'] = colors['syntax-keyword'];
-    colors['terminal-cyan'] = colors['syntax-var'];
-    colors['terminal-white'] = colors['text'];
+  // Add terminal colors
+  const isLight = mode === 'light';
+  colors['terminal-black'] = toHex(parseOklch(`oklch(${isLight ? '25%' : '15%'} 0.01 250)`));
+  colors['terminal-red'] = colors['error'];
+  colors['terminal-green'] = colors['success'];
+  colors['terminal-yellow'] = colors['warning'];
+  colors['terminal-blue'] = colors['accent'];
+  colors['terminal-magenta'] = colors['syntax-keyword'];
+  colors['terminal-cyan'] = colors['syntax-var'];
+  colors['terminal-white'] = colors['text'];
 
-    return colors;
+  return colors;
 }
 
 const lightColors = getColors('light');
 const darkColors = getColors('dark');
 
 /**
+ * Get the last modified date from existing file, or use current date if file doesn't exist
+ */
+function getLastModifiedDate(filePath) {
+  if (fs.existsSync(filePath)) {
+    const content = fs.readFileSync(filePath, 'utf8');
+    const match = content.match(/Last Modified: (\d{4}-\d{2}-\d{2})/);
+    if (match) {
+      return match[1];
+    }
+  }
+  return new Date().toISOString().split('T')[0];
+}
+
+/**
  * Convert hex color to nearest xterm-256 color code
  */
 function hexToXterm256(hex) {
-    const r = parseInt(hex.slice(1, 3), 16);
-    const g = parseInt(hex.slice(3, 5), 16);
-    const b = parseInt(hex.slice(5, 7), 16);
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
 
-    const avg = (r + g + b) / 3;
-    const isGray = Math.abs(r - avg) < 10 && Math.abs(g - avg) < 10 && Math.abs(b - avg) < 10;
+  const avg = (r + g + b) / 3;
+  const isGray = Math.abs(r - avg) < 10 && Math.abs(g - avg) < 10 && Math.abs(b - avg) < 10;
 
-    if (isGray) {
-        if (avg < 8) return 16;
-        if (avg > 248) return 231;
-        return Math.min(255, Math.round(232 + (avg - 8) / 10));
-    }
+  if (isGray) {
+    if (avg < 8) return 16;
+    if (avg > 248) return 231;
+    return Math.min(255, Math.round(232 + (avg - 8) / 10));
+  }
 
-    const rIndex = Math.round(r / 255 * 5);
-    const gIndex = Math.round(g / 255 * 5);
-    const bIndex = Math.round(b / 255 * 5);
+  const rIndex = Math.round(r / 255 * 5);
+  const gIndex = Math.round(g / 255 * 5);
+  const bIndex = Math.round(b / 255 * 5);
 
-    return 16 + (36 * rIndex) + (6 * gIndex) + bIndex;
+  return 16 + (36 * rIndex) + (6 * gIndex) + bIndex;
 }
 
-function generateVimTheme(name, background, palette) {
-    const isDark = background === 'dark';
+function generateVimTheme(name, background, palette, lastModified) {
+  const isDark = background === 'dark';
 
-    // Helper to generate highlight group
-    const hi = (group, fgKey, bgKey = null, attr = 'NONE') => {
-        const fg = fgKey ? palette[fgKey] : null;
-        const bg = bgKey ? palette[bgKey] : null;
-        let line = `hi ${group.padEnd(24)}`;
+  // Helper to generate highlight group
+  const hi = (group, fgKey, bgKey = null, attr = 'NONE') => {
+    const fg = fgKey ? palette[fgKey] : null;
+    const bg = bgKey ? palette[bgKey] : null;
+    let line = `hi ${group.padEnd(24)}`;
 
-        if (fg) {
-            line += ` guifg=${fg} ctermfg=${hexToXterm256(fg)}`;
-        } else {
-            line += ` guifg=NONE ctermfg=NONE`;
-        }
-        if (bg) {
-            line += ` guibg=${bg} ctermbg=${hexToXterm256(bg)}`;
-        } else {
-            line += ` guibg=NONE ctermbg=NONE`;
-        }
-        if (attr !== 'NONE') {
-            line += ` gui=${attr} cterm=${attr}`;
-        } else {
-            line += ` gui=NONE cterm=NONE`;
-        }
-        return line;
-    };
+    if (fg) {
+      line += ` guifg=${fg} ctermfg=${hexToXterm256(fg)}`;
+    } else {
+      line += ` guifg=NONE ctermfg=NONE`;
+    }
+    if (bg) {
+      line += ` guibg=${bg} ctermbg=${hexToXterm256(bg)}`;
+    } else {
+      line += ` guibg=NONE ctermbg=NONE`;
+    }
+    if (attr !== 'NONE') {
+      line += ` gui=${attr} cterm=${attr}`;
+    } else {
+      line += ` gui=NONE cterm=NONE`;
+    }
+    return line;
+  };
 
-    const link = (from, to) => `hi! link ${from.padEnd(24)} ${to}`;
+  const link = (from, to) => `hi! link ${from.padEnd(24)} ${to}`;
 
-    return `" -----------------------------------------------------------------------------
+  return `" -----------------------------------------------------------------------------
 " File: candi-${background}.vim
 " Description: Scandinavian design colorscheme for Vim
 " Author: Candi Design System
 " Source: https://github.com/wtasg/candi
-" Last Modified: ${new Date().toISOString().split('T')[0]}
+" Last Modified: ${lastModified}
 " -----------------------------------------------------------------------------
 
 " Initialization: {{{
@@ -466,10 +480,50 @@ ${hi('vimCommand', 'syntax-keyword', null, 's:bold')}
 if (!fs.existsSync(vimDir)) fs.mkdirSync(vimDir);
 if (!fs.existsSync(colorsDir)) fs.mkdirSync(colorsDir);
 
-// Generate Themes
-fs.writeFileSync(path.join(colorsDir, 'candi-light.vim'), generateVimTheme('Light', 'light', lightColors));
-fs.writeFileSync(path.join(colorsDir, 'candi-dark.vim'), generateVimTheme('Dark', 'dark', darkColors));
+// Get last modified dates from existing files
+const lightThemePath = path.join(colorsDir, 'candi-light.vim');
+const darkThemePath = path.join(colorsDir, 'candi-dark.vim');
+const lightLastModified = getLastModifiedDate(lightThemePath);
+const darkLastModified = getLastModifiedDate(darkThemePath);
+
+// Generate themes with preserved last modified dates
+const lightTheme = generateVimTheme('Light', 'light', lightColors, lightLastModified);
+const darkTheme = generateVimTheme('Dark', 'dark', darkColors, darkLastModified);
+
+// Only write if content has changed (excluding the Last Modified line)
+const shouldWrite = (filePath, newContent) => {
+  if (!fs.existsSync(filePath)) return true;
+
+  const existingContent = fs.readFileSync(filePath, 'utf8');
+  const stripDate = (content) => content.replace(/Last Modified: \d{4}-\d{2}-\d{2}/, 'Last Modified: XXXX-XX-XX');
+
+  return stripDate(existingContent) !== stripDate(newContent);
+};
+
+// Write light theme
+if (shouldWrite(lightThemePath, lightTheme)) {
+  // Update the last modified date only if content changed
+  const updatedLightTheme = lightTheme.replace(
+    /Last Modified: \d{4}-\d{2}-\d{2}/,
+    `Last Modified: ${new Date().toISOString().split('T')[0]}`
+  );
+  fs.writeFileSync(lightThemePath, updatedLightTheme);
+  console.log('  - Updated vim/colors/candi-light.vim');
+} else {
+  console.log('  - vim/colors/candi-light.vim unchanged');
+}
+
+// Write dark theme
+if (shouldWrite(darkThemePath, darkTheme)) {
+  // Update the last modified date only if content changed
+  const updatedDarkTheme = darkTheme.replace(
+    /Last Modified: \d{4}-\d{2}-\d{2}/,
+    `Last Modified: ${new Date().toISOString().split('T')[0]}`
+  );
+  fs.writeFileSync(darkThemePath, updatedDarkTheme);
+  console.log('  - Updated vim/colors/candi-dark.vim');
+} else {
+  console.log('  - vim/colors/candi-dark.vim unchanged');
+}
 
 console.log('Build complete!');
-console.log('  - Generated vim/colors/candi-light.vim');
-console.log('  - Generated vim/colors/candi-dark.vim');
