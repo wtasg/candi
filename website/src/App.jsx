@@ -3,6 +3,7 @@ import { Routes, Route, Link, useLocation } from 'react-router-dom'
 import Home from './pages/Home'
 import Colors from './pages/Colors'
 import Components from './pages/Components'
+import ComponentShowcase from './pages/ComponentShowcase'
 import Guides from './pages/Guides'
 import Philosophy from './pages/Philosophy'
 import Accessibility from './pages/Accessibility'
@@ -31,6 +32,7 @@ function App() {
     { path: '/', label: 'Home' },
     { path: '/colors', label: 'Colors' },
     { path: '/components', label: 'Components' },
+    { path: '/showcase', label: 'Showcase' },
     { path: '/guides', label: 'Guides' },
     { path: '/philosophy', label: 'Philosophy' },
     { path: '/accessibility', label: 'Accessibility' },
@@ -53,8 +55,8 @@ function App() {
                   key={link.path}
                   to={link.path}
                   className={`px-4 py-2 rounded-soft text-sm font-medium transition-colors ${location.pathname === link.path
-                      ? 'bg-candi-surface text-candi-text'
-                      : 'text-candi-subtle hover:bg-candi-surface hover:text-candi-text'
+                    ? 'bg-candi-surface text-candi-text'
+                    : 'text-candi-subtle hover:bg-candi-surface hover:text-candi-text'
                     }`}
                 >
                   {link.label}
@@ -86,8 +88,8 @@ function App() {
                 key={link.path}
                 to={link.path}
                 className={`px-3 py-1.5 rounded-soft text-sm font-medium transition-colors ${location.pathname === link.path
-                    ? 'bg-candi-surface text-candi-text'
-                    : 'text-candi-subtle hover:bg-candi-surface hover:text-candi-text'
+                  ? 'bg-candi-surface text-candi-text'
+                  : 'text-candi-subtle hover:bg-candi-surface hover:text-candi-text'
                   }`}
               >
                 {link.label}
@@ -102,6 +104,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/colors" element={<Colors />} />
+          <Route path="/showcase" element={<ComponentShowcase />} />
           <Route path="/components" element={<Components />} />
           <Route path="/guides" element={<Guides />} />
           <Route path="/philosophy" element={<Philosophy />} />
