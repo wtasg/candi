@@ -23,6 +23,13 @@
 - Improved property documentation for all 33 color tokens
 - Library-level Quick Start guide
 
+### Fixed
+
+- Resolved 17 deprecation warnings for Flutter 3.x compatibility
+- Replaced deprecated `withOpacity()` with `withValues(alpha:)`
+- Replaced deprecated `.value` with direct Color comparison
+- Updated dartdoc to reference `candiOpacity` instead of deprecated `opacity`
+
 ## 0.0.21
 
 ### Added

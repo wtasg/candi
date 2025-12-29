@@ -314,17 +314,20 @@ class _ColorCard extends StatelessWidget {
                 Text(
                   'L: ${(color.lightness * 100).toStringAsFixed(0)}%',
                   style: TextStyle(
-                      fontSize: 10, color: textColor.withOpacity(0.7)),
+                      fontSize: 10,
+                      color: textColor.withValues(alpha: 0.7)),
                 ),
                 Text(
                   'C: ${color.chroma.toStringAsFixed(3)}',
                   style: TextStyle(
-                      fontSize: 10, color: textColor.withOpacity(0.7)),
+                      fontSize: 10,
+                      color: textColor.withValues(alpha: 0.7)),
                 ),
                 Text(
                   'H: ${color.hue.toStringAsFixed(0)}°',
                   style: TextStyle(
-                      fontSize: 10, color: textColor.withOpacity(0.7)),
+                      fontSize: 10,
+                      color: textColor.withValues(alpha: 0.7)),
                 ),
               ],
             ),

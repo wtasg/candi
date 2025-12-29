@@ -12,7 +12,7 @@ void main() {
         hue: 230.0,
       );
 
-      expect(color.value, 0xFF437085);
+      expect(color.toARGB32(), 0xFF437085);
       expect(color.lightness, 0.52);
       expect(color.chroma, 0.06);
       expect(color.hue, 230.0);
@@ -80,23 +80,21 @@ void main() {
       final lightScheme = CandiColors.light.toColorScheme();
       expect(lightScheme, isA<ColorScheme>());
       expect(lightScheme.brightness, Brightness.light);
-      expect(lightScheme.primary.value, CandiColors.light.accent.value);
-      expect(lightScheme.error.value, CandiColors.light.error.value);
-      expect(lightScheme.surface.value, CandiColors.light.surface.value);
+      expect(lightScheme.primary, equals(CandiColors.light.accent));
+      expect(lightScheme.error, equals(CandiColors.light.error));
+      expect(lightScheme.surface, equals(CandiColors.light.surface));
 
       final darkScheme = CandiColors.dark.toColorScheme();
       expect(darkScheme.brightness, Brightness.dark);
-      expect(darkScheme.primary.value, CandiColors.dark.accent.value);
+      expect(darkScheme.primary, equals(CandiColors.dark.accent));
     });
 
     test('toThemeData should return valid ThemeData', () {
       final lightTheme = CandiColors.light.toThemeData();
       expect(lightTheme, isA<ThemeData>());
       expect(lightTheme.useMaterial3, true);
-      expect(
-          lightTheme.scaffoldBackgroundColor.value, CandiColors.light.bg.value);
-      expect(lightTheme.colorScheme.primary.value,
-          CandiColors.light.accent.value);
+      expect(lightTheme.scaffoldBackgroundColor, equals(CandiColors.light.bg));
+      expect(lightTheme.colorScheme.primary, equals(CandiColors.light.accent));
 
       final darkTheme = CandiColors.dark.toThemeData();
       expect(darkTheme.useMaterial3, true);

@@ -34,7 +34,7 @@ import 'package:flutter/material.dart';
 /// - [lightness]: Perceived lightness (0.0 = black, 1.0 = white)
 /// - [chroma]: Color intensity (0.0 = gray, higher = more saturated)
 /// - [hue]: Color angle in degrees (0-360)
-/// - [opacity]: Alpha channel (0.0 = transparent, 1.0 = opaque)
+/// - [candiOpacity]: Alpha channel (0.0 = transparent, 1.0 = opaque)
 ///
 /// ## Example
 ///

@@ -18,6 +18,13 @@ All notable changes to the Candi Design System will be documented in this file.
 - Flutter package: Enhanced dartdoc comments with code examples and property documentation
 - Flutter package: File size increased from 360 to 696 lines (improved documentation)
 
+### Fixed
+
+- Flutter package: Resolved 17 deprecation warnings for Flutter 3.x compatibility
+  - Replaced deprecated `withOpacity()` with `withValues(alpha:)`
+  - Replaced deprecated `.value` with direct Color comparison
+  - Updated dartdoc to reference `candiOpacity` instead of deprecated `opacity`
+
 ## 0.0.23
 
 ### Changed

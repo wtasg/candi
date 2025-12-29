@@ -158,7 +158,7 @@ import 'package:flutter/material.dart';
 /// - [lightness]: Perceived lightness (0.0 = black, 1.0 = white)
 /// - [chroma]: Color intensity (0.0 = gray, higher = more saturated)
 /// - [hue]: Color angle in degrees (0-360)
-/// - [opacity]: Alpha channel (0.0 = transparent, 1.0 = opaque)
+/// - [candiOpacity]: Alpha channel (0.0 = transparent, 1.0 = opaque)
 ///
 /// ## Example
 ///
@@ -447,7 +447,3 @@ fs.writeFileSync(dartColorsPath, dartTemplate);
 
 console.log('Build complete!');
 console.log(`  - Generated flutter/lib/candi_colors.dart (${colorKeys.length} colors per palette)`);
-console.log('  - Added comprehensive dartdoc comments');
-console.log('  - Added convenience aliases (muted, subtle, primary, etc.)');
-console.log('  - Added toColorScheme() and toThemeData() factory methods');
-
