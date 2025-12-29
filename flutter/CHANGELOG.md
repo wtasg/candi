@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.0.24
+
+### Added
+
+- Convenience aliases for common design system naming patterns:
+  - `muted` → `textMuted`
+  - `subtle` → `textSubtle`
+  - `primary` / `onPrimary` → `accent` / `onAccent`
+  - `primarySubtle` → `accentSubtle`
+  - `background` → `bg`
+- `toColorScheme()` factory method - returns Material 3 ColorScheme
+- `toThemeData()` factory method - returns complete ThemeData with:
+  - Scaffold, card, and canvas colors
+  - AppBar, button, and input decoration themes
+  - Text theme with proper color hierarchy
+  - Divider, icon, and focus themes
+
+### Changed
+
+- Enhanced dartdoc comments with code examples
+- Improved property documentation for all 33 color tokens
+- Library-level Quick Start guide
+
 ## 0.0.21
 
 ### Added

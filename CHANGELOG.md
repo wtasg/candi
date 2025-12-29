@@ -2,6 +2,22 @@
 
 All notable changes to the Candi Design System will be documented in this file.
 
+## 0.0.24
+
+### Added
+
+- Flutter package: Convenience aliases for common design system naming patterns
+  - `muted` → `textMuted`, `subtle` → `textSubtle`
+  - `primary` / `onPrimary` → `accent` / `onAccent`
+  - `background` → `bg`
+- Flutter package: `toColorScheme()` factory method for Material 3 integration
+- Flutter package: `toThemeData()` factory method for complete theme generation
+
+### Changed
+
+- Flutter package: Enhanced dartdoc comments with code examples and property documentation
+- Flutter package: File size increased from 360 to 696 lines (improved documentation)
+
 ## 0.0.23
 
 ### Changed

@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter/material.dart';
 import 'package:candi_colors/candi.dart';
-import 'dart:ui';
 
 void main() {
   group('CandiColor', () {
@@ -41,10 +41,66 @@ void main() {
 
     test('focusRing should have correct opacity', () {
       final light = CandiColors.light;
-      expect(light.focusRing.opacity, 0.4);
+      expect(light.focusRing.candiOpacity, 0.4);
 
       final dark = CandiColors.dark;
-      expect(dark.focusRing.opacity, 0.5);
+      expect(dark.focusRing.candiOpacity, 0.5);
+    });
+  });
+
+  group('Convenience Aliases', () {
+    test('muted should reference textMuted', () {
+      expect(CandiColors.light.muted, equals(CandiColors.light.textMuted));
+      expect(CandiColors.dark.muted, equals(CandiColors.dark.textMuted));
+    });
+
+    test('subtle should reference textSubtle', () {
+      expect(CandiColors.light.subtle, equals(CandiColors.light.textSubtle));
+      expect(CandiColors.dark.subtle, equals(CandiColors.dark.textSubtle));
+    });
+
+    test('primary should reference accent', () {
+      expect(CandiColors.light.primary, equals(CandiColors.light.accent));
+      expect(CandiColors.dark.primary, equals(CandiColors.dark.accent));
+    });
+
+    test('onPrimary should reference onAccent', () {
+      expect(CandiColors.light.onPrimary, equals(CandiColors.light.onAccent));
+      expect(CandiColors.dark.onPrimary, equals(CandiColors.dark.onAccent));
+    });
+
+    test('background should reference bg', () {
+      expect(CandiColors.light.background, equals(CandiColors.light.bg));
+      expect(CandiColors.dark.background, equals(CandiColors.dark.bg));
+    });
+  });
+
+  group('Flutter Integration', () {
+    test('toColorScheme should return valid ColorScheme', () {
+      final lightScheme = CandiColors.light.toColorScheme();
+      expect(lightScheme, isA<ColorScheme>());
+      expect(lightScheme.brightness, Brightness.light);
+      expect(lightScheme.primary.value, CandiColors.light.accent.value);
+      expect(lightScheme.error.value, CandiColors.light.error.value);
+      expect(lightScheme.surface.value, CandiColors.light.surface.value);
+
+      final darkScheme = CandiColors.dark.toColorScheme();
+      expect(darkScheme.brightness, Brightness.dark);
+      expect(darkScheme.primary.value, CandiColors.dark.accent.value);
+    });
+
+    test('toThemeData should return valid ThemeData', () {
+      final lightTheme = CandiColors.light.toThemeData();
+      expect(lightTheme, isA<ThemeData>());
+      expect(lightTheme.useMaterial3, true);
+      expect(
+          lightTheme.scaffoldBackgroundColor.value, CandiColors.light.bg.value);
+      expect(lightTheme.colorScheme.primary.value,
+          CandiColors.light.accent.value);
+
+      final darkTheme = CandiColors.dark.toThemeData();
+      expect(darkTheme.useMaterial3, true);
+      expect(darkTheme.colorScheme.brightness, Brightness.dark);
     });
   });
 }

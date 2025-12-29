@@ -1,24 +1,69 @@
 /// Candi Color Palette for Flutter
 ///
+/// A Scandinavian-inspired color palette based on Nordic design principles:
+/// Hygge (warmth) and Lagom (balance).
+///
+/// ## Quick Start
+///
+/// ```dart
+/// import 'package:candi_colors/candi.dart';
+///
+/// // Access colors directly
+/// Container(color: CandiColors.light.surface);
+///
+/// // Use convenience aliases
+/// Text('Hello', style: TextStyle(color: CandiColors.dark.muted));
+///
+/// // Create a ThemeData
+/// MaterialApp(theme: CandiColors.light.toThemeData());
+/// ```
+///
 /// Generated from OKLCH source of truth.
 /// Total colors: 33 per palette
 library;
 
-import 'dart:ui';
+import 'package:flutter/material.dart';
 
-/// A Color implementation that retains OKLCH metadata.
+/// A [Color] implementation that retains OKLCH metadata.
+///
+/// OKLCH is a perceptually uniform color space that provides better
+/// color manipulation and contrast calculations than traditional RGB.
+///
+/// ## Properties
+///
+/// - [lightness]: Perceived lightness (0.0 = black, 1.0 = white)
+/// - [chroma]: Color intensity (0.0 = gray, higher = more saturated)
+/// - [hue]: Color angle in degrees (0-360)
+/// - [opacity]: Alpha channel (0.0 = transparent, 1.0 = opaque)
+///
+/// ## Example
+///
+/// ```dart
+/// final accent = CandiColors.light.accent;
+/// print(accent.lightness); // 0.52
+/// print(accent.chroma);    // 0.06
+/// print(accent.hue);       // 230.0
+/// ```
 class CandiColor extends Color {
+  /// Perceived lightness in OKLCH (0.0-1.0).
   final double lightness;
-  final double chroma;
-  final double hue;
-  final double opacity;
 
+  /// Color intensity/saturation in OKLCH.
+  final double chroma;
+
+  /// Hue angle in degrees (0-360).
+  final double hue;
+
+  /// Opacity/alpha value (0.0-1.0).
+  final double candiOpacity;
+
+  /// Creates a [CandiColor] with OKLCH metadata.
   const CandiColor(
     int value, {
     required this.lightness,
     required this.chroma,
     required this.hue,
-    this.opacity = 1.0,
+    this.candiOpacity = 1.0,
   }) : super(value);
 
   @override
@@ -27,6 +72,29 @@ class CandiColor extends Color {
 }
 
 /// Semantic color palette for the Candi theme.
+///
+/// Provides a complete set of colors for building UIs with consistent
+/// visual hierarchy and accessibility.
+///
+/// ## Color Categories
+///
+/// - **Backgrounds**: [bg], [surface], [elevated]
+/// - **Text**: [text], [textSubtle], [textMuted]
+/// - **Borders**: [border], [borderStrong], [divider]
+/// - **Accent**: [accent], [accentSubtle], [onAccent]
+/// - **Secondary**: [secondary], [secondarySubtle], [onSecondary]
+/// - **Status**: [success], [warning], [error], [info] (with `on*` variants)
+/// - **Interactive**: [link], [disabled], [focusRing], [hover], [active]
+/// - **Overlays**: [overlay], [scrim], [shadowColor]
+/// - **Inverse**: [inverseSurface], [inverseText]
+///
+/// ## Convenience Aliases
+///
+/// Common naming patterns from other design systems:
+/// - [muted] → [textMuted]
+/// - [subtle] → [textSubtle]
+/// - [primary] → [accent]
+/// - [onPrimary] → [onAccent]
 class CandiPalette {
   const CandiPalette._({
     required this.bg,
@@ -64,43 +132,308 @@ class CandiPalette {
     required this.active,
   });
 
+  /// Page background color.
   final CandiColor bg;
+
+  /// Card and section background color.
   final CandiColor surface;
+
+  /// Elevated surface (modals, popups) background color.
   final CandiColor elevated;
+
+  /// Primary text color.
   final CandiColor text;
+
+  /// Secondary/subdued text color.
   final CandiColor textSubtle;
+
+  /// Tertiary/muted text color for less important content.
   final CandiColor textMuted;
+
+  /// Default border color.
   final CandiColor border;
+
+  /// Emphasized border color.
   final CandiColor borderStrong;
+
+  /// Divider/separator line color.
   final CandiColor divider;
+
+  /// Primary accent color for buttons and interactive elements.
   final CandiColor accent;
+
+  /// Subtle accent for hover states and backgrounds.
   final CandiColor accentSubtle;
+
+  /// Text color on accent backgrounds.
   final CandiColor onAccent;
+
+  /// Secondary action color (terracotta).
   final CandiColor secondary;
+
+  /// Subtle secondary for backgrounds.
   final CandiColor secondarySubtle;
+
+  /// Text color on secondary backgrounds.
   final CandiColor onSecondary;
+
+  /// Success state color (green).
   final CandiColor success;
+
+  /// Text color on success backgrounds.
   final CandiColor onSuccess;
+
+  /// Warning state color (amber).
   final CandiColor warning;
+
+  /// Text color on warning backgrounds.
   final CandiColor onWarning;
+
+  /// Error state color (coral red).
   final CandiColor error;
+
+  /// Text color on error backgrounds.
   final CandiColor onError;
+
+  /// Informational state color (blue).
   final CandiColor info;
+
+  /// Text color on info backgrounds.
   final CandiColor onInfo;
+
+  /// Hyperlink color.
   final CandiColor link;
+
+  /// Disabled element color.
   final CandiColor disabled;
+
+  /// Focus ring/outline color with opacity.
   final CandiColor focusRing;
+
+  /// Overlay color for modals (semi-transparent).
   final CandiColor overlay;
+
+  /// Scrim color for dimming backgrounds.
   final CandiColor scrim;
+
+  /// Shadow color with transparency.
   final CandiColor shadowColor;
+
+  /// Inverse surface for contrast elements.
   final CandiColor inverseSurface;
+
+  /// Text color on inverse surfaces.
   final CandiColor inverseText;
+
+  /// Hover state overlay color.
   final CandiColor hover;
+
+  /// Active/pressed state overlay color.
   final CandiColor active;
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // Convenience Aliases
+  // ─────────────────────────────────────────────────────────────────────────
+
+  /// Alias for [textMuted]. Common in design systems.
+  CandiColor get muted => textMuted;
+
+  /// Alias for [textSubtle]. Common in design systems.
+  CandiColor get subtle => textSubtle;
+
+  /// Alias for [accent]. Maps to Material's primary concept.
+  CandiColor get primary => accent;
+
+  /// Alias for [accentSubtle]. Subtle primary variant.
+  CandiColor get primarySubtle => accentSubtle;
+
+  /// Alias for [onAccent]. Text on primary backgrounds.
+  CandiColor get onPrimary => onAccent;
+
+  /// Alias for [bg]. Alternative naming convention.
+  CandiColor get background => bg;
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // Flutter Integration
+  // ─────────────────────────────────────────────────────────────────────────
+
+  /// Creates a [ColorScheme] from this palette.
+  ///
+  /// Maps Candi semantic colors to Material 3 color roles.
+  ///
+  /// ## Example
+  ///
+  /// ```dart
+  /// final scheme = CandiColors.light.toColorScheme();
+  /// ThemeData(colorScheme: scheme);
+  /// ```
+  ColorScheme toColorScheme({Brightness? brightness}) {
+    final isDark = bg.lightness < 0.5;
+    return ColorScheme(
+      brightness: brightness ?? (isDark ? Brightness.dark : Brightness.light),
+      primary: accent,
+      onPrimary: onAccent,
+      primaryContainer: accentSubtle,
+      onPrimaryContainer: text,
+      secondary: secondary,
+      onSecondary: onSecondary,
+      secondaryContainer: secondarySubtle,
+      onSecondaryContainer: text,
+      tertiary: info,
+      onTertiary: onInfo,
+      tertiaryContainer: info,
+      onTertiaryContainer: onInfo,
+      error: error,
+      onError: onError,
+      errorContainer: error,
+      onErrorContainer: onError,
+      surface: surface,
+      onSurface: text,
+      onSurfaceVariant: textSubtle,
+      outline: border,
+      outlineVariant: borderStrong,
+      shadow: shadowColor,
+      scrim: scrim,
+      inverseSurface: inverseSurface,
+      onInverseSurface: inverseText,
+      inversePrimary: accent,
+      surfaceTint: accent,
+    );
+  }
+
+  /// Creates a complete [ThemeData] from this palette.
+  ///
+  /// Provides a ready-to-use Material 3 theme with Candi colors.
+  ///
+  /// ## Example
+  ///
+  /// ```dart
+  /// MaterialApp(
+  ///   theme: CandiColors.light.toThemeData(),
+  ///   darkTheme: CandiColors.dark.toThemeData(),
+  /// );
+  /// ```
+  ///
+  /// ## Parameters
+  ///
+  /// - [useMaterial3]: Use Material 3 design (default: true)
+  ThemeData toThemeData({
+    bool useMaterial3 = true,
+  }) {
+    final colorScheme = toColorScheme();
+    return ThemeData(
+      useMaterial3: useMaterial3,
+      colorScheme: colorScheme,
+      scaffoldBackgroundColor: bg,
+      canvasColor: surface,
+      cardColor: surface,
+      dividerColor: divider,
+      disabledColor: disabled,
+      hoverColor: hover,
+      focusColor: focusRing,
+      highlightColor: active,
+      splashColor: active,
+      shadowColor: shadowColor,
+      appBarTheme: AppBarTheme(
+        backgroundColor: surface,
+        foregroundColor: text,
+        elevation: 0,
+        surfaceTintColor: Colors.transparent,
+      ),
+      cardTheme: CardThemeData(
+        color: surface,
+        elevation: 1,
+        shadowColor: shadowColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: accent,
+          foregroundColor: onAccent,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+        ),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          foregroundColor: accent,
+          side: BorderSide(color: border),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+        ),
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          foregroundColor: accent,
+        ),
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        filled: true,
+        fillColor: surface,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(color: border),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(color: border),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(color: accent, width: 2),
+        ),
+      ),
+      dividerTheme: DividerThemeData(
+        color: divider,
+        thickness: 1,
+      ),
+      iconTheme: IconThemeData(
+        color: textSubtle,
+      ),
+      textTheme: TextTheme(
+        displayLarge: TextStyle(color: text),
+        displayMedium: TextStyle(color: text),
+        displaySmall: TextStyle(color: text),
+        headlineLarge: TextStyle(color: text),
+        headlineMedium: TextStyle(color: text),
+        headlineSmall: TextStyle(color: text),
+        titleLarge: TextStyle(color: text),
+        titleMedium: TextStyle(color: text),
+        titleSmall: TextStyle(color: text),
+        bodyLarge: TextStyle(color: text),
+        bodyMedium: TextStyle(color: text),
+        bodySmall: TextStyle(color: textSubtle),
+        labelLarge: TextStyle(color: text),
+        labelMedium: TextStyle(color: textSubtle),
+        labelSmall: TextStyle(color: textMuted),
+      ),
+    );
+  }
 }
 
+/// Static access to light and dark Candi palettes.
+///
+/// ## Usage
+///
+/// ```dart
+/// // Direct color access
+/// Container(color: CandiColors.light.surface);
+/// Text('Hello', style: TextStyle(color: CandiColors.dark.text));
+///
+/// // With theme
+/// MaterialApp(
+///   theme: CandiColors.light.toThemeData(),
+///   darkTheme: CandiColors.dark.toThemeData(),
+/// );
+/// ```
 abstract final class CandiColors {
-  /// Light mode palette
+  /// Light mode palette with warm, Nordic-inspired colors.
+  ///
+  /// Optimized for readability with WCAG AA contrast ratios.
   static const light = CandiPalette._(
     // oklch(98% 0.008 85)
     bg: CandiColor(0XFFFBF8F2, lightness: 0.98, chroma: 0.008, hue: 85),
@@ -173,7 +506,7 @@ abstract final class CandiColors {
       lightness: 0.52,
       chroma: 0.06,
       hue: 230,
-      opacity: 0.4,
+      candiOpacity: 0.4,
     ),
     // oklch(0% 0 0 / 0.5)
     overlay: CandiColor(
@@ -181,7 +514,7 @@ abstract final class CandiColors {
       lightness: 0,
       chroma: 0,
       hue: 0,
-      opacity: 0.5,
+      candiOpacity: 0.5,
     ),
     // oklch(0% 0 0 / 0.32)
     scrim: CandiColor(
@@ -189,7 +522,7 @@ abstract final class CandiColors {
       lightness: 0,
       chroma: 0,
       hue: 0,
-      opacity: 0.32,
+      candiOpacity: 0.32,
     ),
     // oklch(25% 0.01 250 / 0.15)
     shadowColor: CandiColor(
@@ -197,7 +530,7 @@ abstract final class CandiColors {
       lightness: 0.25,
       chroma: 0.01,
       hue: 250,
-      opacity: 0.15,
+      candiOpacity: 0.15,
     ),
     // oklch(25% 0.015 250)
     inverseSurface: CandiColor(
@@ -214,7 +547,7 @@ abstract final class CandiColors {
       lightness: 0,
       chroma: 0,
       hue: 0,
-      opacity: 0.05,
+      candiOpacity: 0.05,
     ),
     // oklch(0% 0 0 / 0.1)
     active: CandiColor(
@@ -222,11 +555,14 @@ abstract final class CandiColors {
       lightness: 0,
       chroma: 0,
       hue: 0,
-      opacity: 0.1,
+      candiOpacity: 0.1,
     ),
   );
 
-  /// Dark mode palette
+  /// Dark mode palette with cool, muted tones.
+  ///
+  /// Maintains visual consistency with the light theme while
+  /// reducing eye strain in low-light environments.
   static const dark = CandiPalette._(
     // oklch(18% 0.015 250)
     bg: CandiColor(0XFF0D1218, lightness: 0.18, chroma: 0.015, hue: 250),
@@ -299,7 +635,7 @@ abstract final class CandiColors {
       lightness: 0.62,
       chroma: 0.08,
       hue: 230,
-      opacity: 0.5,
+      candiOpacity: 0.5,
     ),
     // oklch(0% 0 0 / 0.7)
     overlay: CandiColor(
@@ -307,7 +643,7 @@ abstract final class CandiColors {
       lightness: 0,
       chroma: 0,
       hue: 0,
-      opacity: 0.7,
+      candiOpacity: 0.7,
     ),
     // oklch(0% 0 0 / 0.6)
     scrim: CandiColor(
@@ -315,7 +651,7 @@ abstract final class CandiColors {
       lightness: 0,
       chroma: 0,
       hue: 0,
-      opacity: 0.6,
+      candiOpacity: 0.6,
     ),
     // oklch(0% 0 0 / 0.4)
     shadowColor: CandiColor(
@@ -323,7 +659,7 @@ abstract final class CandiColors {
       lightness: 0,
       chroma: 0,
       hue: 0,
-      opacity: 0.4,
+      candiOpacity: 0.4,
     ),
     // oklch(92% 0.008 85)
     inverseSurface: CandiColor(
@@ -345,7 +681,7 @@ abstract final class CandiColors {
       lightness: 1,
       chroma: 0,
       hue: 0,
-      opacity: 0.1,
+      candiOpacity: 0.1,
     ),
     // oklch(100% 0 0 / 0.2)
     active: CandiColor(
@@ -353,7 +689,7 @@ abstract final class CandiColors {
       lightness: 1,
       chroma: 0,
       hue: 0,
-      opacity: 0.2,
+      candiOpacity: 0.2,
     ),
   );
 }
