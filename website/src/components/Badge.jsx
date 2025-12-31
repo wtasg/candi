@@ -14,12 +14,12 @@ export default function Badge({
 
     const variants = {
         default: 'bg-candi-surface text-candi-text border border-candi-border',
-        accent: 'bg-candi-accent-subtle text-candi-accent',
-        secondary: 'bg-candi-secondary-subtle text-candi-secondary',
-        success: 'bg-candi-success-subtle text-candi-success',
-        error: 'bg-candi-error-subtle text-candi-error',
-        warning: 'bg-candi-warning-subtle text-candi-warning',
-        info: 'bg-candi-info-subtle text-candi-info',
+        accent: 'bg-candi-accent-subtle text-candi-text',
+        secondary: 'bg-candi-secondary-subtle text-candi-text',
+        success: 'bg-candi-success-subtle text-candi-text',
+        error: 'bg-candi-error-subtle text-candi-text',
+        warning: 'bg-candi-warning-subtle text-candi-text',
+        info: 'bg-candi-info-subtle text-candi-text',
     }
 
     const sizes = {

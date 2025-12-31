@@ -31,9 +31,19 @@ function testVimTheme() {
         assert.ok(darkContent.includes('set background=dark'), 'Should set background');
 
         // Check key UI colors (now includes terminal colors)
-        assert.ok(darkContent.includes('hi Normal') && darkContent.includes('guifg=#E8E4DD') && darkContent.includes('guibg=#0D1218'), 'Normal highlight group mapping mismatch');
-        assert.ok(darkContent.includes('hi CursorLine') && darkContent.includes('guibg=#161B20'), 'CursorLine mapping mismatch');
-        assert.ok(darkContent.includes('hi Function') && darkContent.includes('guifg=#4F8FAD'), 'Function mapping mismatch');
+        // Check key UI colors (now includes terminal colors)
+        const normalLine = darkContent.split('\n').find(line => line.startsWith('hi Normal'));
+        assert.ok(normalLine, 'Should have Normal highlight group');
+
+        const guifg = normalLine.match(/guifg=(#[0-9A-Fa-f]+)/)[1];
+        const guibg = normalLine.match(/guibg=(#[0-9A-Fa-f]+)/)[1];
+
+        assert.equal(guifg.toUpperCase(), '#E8E4DD', 'Normal foreground mismatch');
+        assert.equal(guibg.toUpperCase(), '#15110A', 'Normal background mismatch');
+        assert.ok(darkContent.includes('hi CursorLine') && darkContent.includes('guibg=#1D1A14'), 'CursorLine mapping mismatch');
+        assert.ok(darkContent.includes('hi Function') && darkContent.includes('guifg=#7987DE'), 'Function mapping mismatch');
+        // Wait, Function was #4F8FAD (Accent). New Accent is #8885D0.
+        // I should update Function check too while I'm here.
 
         // Check terminal colors are present
         assert.ok(darkContent.includes('ctermfg=') && darkContent.includes('ctermbg='), 'Terminal colors should be present');
@@ -44,7 +54,7 @@ function testVimTheme() {
         const lightContent = fs.readFileSync(lightThemePath, 'utf8');
         assert.ok(lightContent.includes('let g:colors_name = "candi-light"'), 'Should set colors_name');
         assert.ok(lightContent.includes('set background=light'), 'Should set background');
-        assert.ok(lightContent.includes('hi Normal') && lightContent.includes('guifg=#232A30') && lightContent.includes('guibg=#FBF8F2'), 'Light Normal highlight mapping mismatch');
+        assert.ok(lightContent.includes('hi Normal') && lightContent.includes('guifg=#1A222B') && lightContent.includes('guibg=#F5F1E9'), 'Light Normal highlight mapping mismatch');
 
         console.log('[✓] Light theme mappings verified');
 

@@ -56,18 +56,18 @@ function generateTheme(name, type, palette) {
             "button.hoverBackground": palette['accent'], // Should ideally be slightly different
 
             // Editor
-            "editor.background": palette['bg'],
+            "editor.background": type === 'light' ? palette['surface'] : palette['bg'],
             "editor.foreground": palette['text'],
             "editorLineNumber.foreground": palette['text-muted'],
             "editorLineNumber.activeForeground": palette['text'],
             "editorCursor.foreground": palette['accent'],
             "editor.selectionBackground": palette['accent'] + "30",
-            "editor.lineHighlightBackground": palette['surface'],
+            "editor.lineHighlightBackground": type === 'light' ? palette['border'] : palette['surface'],
             "editorIndentGuide.background1": palette['border'],
             "editorIndentGuide.activeBackground1": palette['border-strong'],
 
             // Sidebar
-            "sideBar.background": palette['surface'],
+            "sideBar.background": type === 'light' ? palette['bg'] : palette['surface'],
             "sideBar.foreground": palette['text-subtle'],
             "sideBar.border": palette['border'],
             "sideBarTitle.foreground": palette['text'],
@@ -76,17 +76,17 @@ function generateTheme(name, type, palette) {
             "sideBarSectionHeader.border": palette['border'],
 
             // Activity Bar
-            "activityBar.background": palette['bg'],
+            "activityBar.background": type === 'light' ? palette['surface'] : palette['bg'],
             "activityBar.foreground": palette['text'],
             "activityBar.inactiveForeground": palette['text-muted'],
             "activityBar.border": palette['border'],
             "activityBar.activeBorder": palette['accent'],
 
             // Tabs
-            "editorGroupHeader.tabsBackground": palette['surface'],
-            "tab.activeBackground": palette['bg'],
+            "editorGroupHeader.tabsBackground": type === 'light' ? palette['bg'] : palette['surface'],
+            "tab.activeBackground": type === 'light' ? palette['surface'] : palette['bg'],
             "tab.activeForeground": palette['text'],
-            "tab.inactiveBackground": palette['surface'],
+            "tab.inactiveBackground": type === 'light' ? palette['bg'] : palette['surface'],
             "tab.inactiveForeground": palette['text-muted'],
             "tab.border": palette['border'],
             "tab.activeBorderTop": palette['accent'],
