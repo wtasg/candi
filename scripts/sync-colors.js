@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 /**
  * Sync Colors Script
  *
@@ -42,38 +43,18 @@ function generateVars(modePalette, prefix = '--candi-') {
         const value = data.oklch || data.value;
         css += `    ${prefix}${toKebab(key)}: ${value};\n`;
     }
-
-    // Terminal Palette (derived)
-    const isLight = modePalette === palette.light;
-    css += `\n    /* Terminal Palette */\n`;
-    css += `    ${prefix}terminal-black: oklch(${isLight ? '25%' : '15%'} 0.01 250);\n`;
-    css += `    ${prefix}terminal-red: var(${prefix}error);\n`;
-    css += `    ${prefix}terminal-green: var(${prefix}success);\n`;
-    css += `    ${prefix}terminal-yellow: var(${prefix}warning);\n`;
-    css += `    ${prefix}terminal-blue: var(${prefix}accent);\n`;
-    css += `    ${prefix}terminal-magenta: var(${prefix}syntax-keyword);\n`;
-    css += `    ${prefix}terminal-cyan: var(${prefix}syntax-var);\n`;
-    css += `    ${prefix}terminal-white: var(${prefix}text);\n`;
-
     return css;
 }
+
 
 function generateVarMap(modePalette) {
     let css = '';
     for (const key of Object.keys(modePalette)) {
         css += `    --color-candi-${toKebab(key)}: var(--candi-${toKebab(key)});\n`;
     }
-    // Terminal
-    css += '    --color-candi-terminal-black: var(--candi-terminal-black);\n';
-    css += '    --color-candi-terminal-red: var(--candi-terminal-red);\n';
-    css += '    --color-candi-terminal-green: var(--candi-terminal-green);\n';
-    css += '    --color-candi-terminal-yellow: var(--candi-terminal-yellow);\n';
-    css += '    --color-candi-terminal-blue: var(--candi-terminal-blue);\n';
-    css += '    --color-candi-terminal-magenta: var(--candi-terminal-magenta);\n';
-    css += '    --color-candi-terminal-cyan: var(--candi-terminal-cyan);\n';
-    css += '    --color-candi-terminal-white: var(--color-candi-text);\n';
     return css;
 }
+
 
 // 1. Update base.css
 let baseCss = fs.readFileSync(baseCssPath, 'utf8');

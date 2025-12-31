@@ -62,16 +62,6 @@
     --candi-terminal-magenta: oklch(60% 0.15 0);
     --candi-terminal-cyan: oklch(65% 0.1 200);
     --candi-terminal-white: oklch(92% 0.01 85);
-
-    /* Terminal Palette */
-    --candi-terminal-black: oklch(25% 0.01 250);
-    --candi-terminal-red: var(--candi-error);
-    --candi-terminal-green: var(--candi-success);
-    --candi-terminal-yellow: var(--candi-warning);
-    --candi-terminal-blue: var(--candi-accent);
-    --candi-terminal-magenta: var(--candi-syntax-keyword);
-    --candi-terminal-cyan: var(--candi-syntax-var);
-    --candi-terminal-white: var(--candi-text);
     /* @tokens-end-light */
 }
 
@@ -127,16 +117,6 @@
     --candi-terminal-magenta: oklch(70% 0.15 0);
     --candi-terminal-cyan: oklch(75% 0.1 200);
     --candi-terminal-white: oklch(92% 0.01 85);
-
-    /* Terminal Palette */
-    --candi-terminal-black: oklch(15% 0.01 250);
-    --candi-terminal-red: var(--candi-error);
-    --candi-terminal-green: var(--candi-success);
-    --candi-terminal-yellow: var(--candi-warning);
-    --candi-terminal-blue: var(--candi-accent);
-    --candi-terminal-magenta: var(--candi-syntax-keyword);
-    --candi-terminal-cyan: var(--candi-syntax-var);
-    --candi-terminal-white: var(--candi-text);
     /* @tokens-end-dark */
 }
 

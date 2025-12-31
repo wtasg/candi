@@ -1,0 +1,323 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://github.com/wtasg/candi/schemas/token-schema.v1.json",
+    "title": "Candi Color Token Schema",
+    "description": "JSON Schema for validating the structure of colors.js token definitions",
+    "$comment": "Schema version 1.0.0 - Bump $id when making breaking changes. Root must contain exactly light and dark palettes.",
+    "definitions": {
+        "OklchToken": {
+            "type": "object",
+            "description": "A color token defined using OKLCH color space",
+            "$comment": "OKLCH provides perceptually uniform color manipulation",
+            "properties": {
+                "oklch": {
+                    "type": "string",
+                    "pattern": "^oklch\\(.+\\)$",
+                    "$comment": "Structural pattern only - numerical validation in lint-tokens.js",
+                    "description": "OKLCH color value in format: oklch(L% C H) or oklch(L% C H / A)"
+                },
+                "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Human-readable name for the token"
+                },
+                "usage": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Describes where/how this token should be used"
+                }
+            },
+            "required": [
+                "oklch",
+                "name",
+                "usage"
+            ],
+            "additionalProperties": false
+        },
+        "ValueToken": {
+            "type": "object",
+            "description": "A token defined with a raw CSS value (e.g., shadows)",
+            "$comment": "Used for non-color tokens like box-shadow definitions",
+            "properties": {
+                "value": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Raw CSS value (e.g., box-shadow definition)"
+                },
+                "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Human-readable name for the token"
+                },
+                "usage": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Describes where/how this token should be used"
+                }
+            },
+            "required": [
+                "value",
+                "name",
+                "usage"
+            ],
+            "additionalProperties": false
+        },
+        "ColorToken": {
+            "$comment": "A token must be EITHER oklch OR value, never both - enforced by allOf+not",
+            "allOf": [
+                {
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/OklchToken"
+                        },
+                        {
+                            "$ref": "#/definitions/ValueToken"
+                        }
+                    ]
+                },
+                {
+                    "not": {
+                        "required": [
+                            "oklch",
+                            "value"
+                        ]
+                    }
+                }
+            ]
+        },
+        "Palette": {
+            "type": "object",
+            "description": "A complete color palette (light or dark mode)",
+            "$comment": "Token groups: backgrounds (bg/surface/elevated), text (text/textSubtle/textMuted), borders, accents, status, interactive, overlay, inverse, shadow, syntax, terminal",
+            "properties": {
+                "bg": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "surface": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "elevated": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "text": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "textSubtle": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "textMuted": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "border": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "borderStrong": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "divider": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "accent": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "accentSubtle": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "onAccent": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "secondary": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "secondarySubtle": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "onSecondary": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "success": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "onSuccess": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "warning": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "onWarning": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "error": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "onError": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "info": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "onInfo": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "link": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "disabled": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "focusRing": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "hover": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "active": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "overlay": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "scrim": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "inverseSurface": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "inverseText": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "shadow": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "shadowMd": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "shadowLg": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "shadowColor": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "syntaxKeyword": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "syntaxType": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "syntaxVar": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "syntaxConst": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "syntaxFunc": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "syntaxString": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "terminalBlack": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "terminalRed": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "terminalGreen": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "terminalYellow": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "terminalBlue": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "terminalMagenta": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "terminalCyan": {
+                    "$ref": "#/definitions/ColorToken"
+                },
+                "terminalWhite": {
+                    "$ref": "#/definitions/ColorToken"
+                }
+            },
+            "patternProperties": {
+                "^syntax[A-Z][a-zA-Z]*$": {
+                    "$ref": "#/definitions/ColorToken",
+                    "$comment": "Extensible: allows future syntax tokens like syntaxComment, syntaxOperator"
+                },
+                "^terminal[A-Z][a-zA-Z]*$": {
+                    "$ref": "#/definitions/ColorToken",
+                    "$comment": "Extensible: allows future terminal tokens like terminalBrightRed"
+                }
+            },
+            "required": [
+                "bg",
+                "surface",
+                "elevated",
+                "text",
+                "textSubtle",
+                "textMuted",
+                "border",
+                "borderStrong",
+                "divider",
+                "accent",
+                "accentSubtle",
+                "onAccent",
+                "secondary",
+                "secondarySubtle",
+                "onSecondary",
+                "success",
+                "onSuccess",
+                "warning",
+                "onWarning",
+                "error",
+                "onError",
+                "info",
+                "onInfo",
+                "link",
+                "disabled",
+                "focusRing",
+                "hover",
+                "active",
+                "overlay",
+                "scrim",
+                "inverseSurface",
+                "inverseText",
+                "shadow",
+                "shadowMd",
+                "shadowLg",
+                "shadowColor",
+                "syntaxKeyword",
+                "syntaxType",
+                "syntaxVar",
+                "syntaxConst",
+                "syntaxFunc",
+                "syntaxString",
+                "terminalBlack",
+                "terminalRed",
+                "terminalGreen",
+                "terminalYellow",
+                "terminalBlue",
+                "terminalMagenta",
+                "terminalCyan",
+                "terminalWhite"
+            ],
+            "additionalProperties": false
+        }
+    },
+    "type": "object",
+    "properties": {
+        "light": {
+            "$ref": "#/definitions/Palette"
+        },
+        "dark": {
+            "$ref": "#/definitions/Palette"
+        }
+    },
+    "required": [
+        "light",
+        "dark"
+    ],
+    "additionalProperties": false
+}

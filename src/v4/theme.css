@@ -62,16 +62,6 @@
     --color-candi-terminal-magenta: oklch(60% 0.15 0);
     --color-candi-terminal-cyan: oklch(65% 0.1 200);
     --color-candi-terminal-white: oklch(92% 0.01 85);
-
-    /* Terminal Palette */
-    --color-candi-terminal-black: oklch(25% 0.01 250);
-    --color-candi-terminal-red: var(--color-candi-error);
-    --color-candi-terminal-green: var(--color-candi-success);
-    --color-candi-terminal-yellow: var(--color-candi-warning);
-    --color-candi-terminal-blue: var(--color-candi-accent);
-    --color-candi-terminal-magenta: var(--color-candi-syntax-keyword);
-    --color-candi-terminal-cyan: var(--color-candi-syntax-var);
-    --color-candi-terminal-white: var(--color-candi-text);
     /* @tokens-end-v4 */
 }
 
@@ -131,16 +121,6 @@
     --candi-terminal-magenta: oklch(60% 0.15 0);
     --candi-terminal-cyan: oklch(65% 0.1 200);
     --candi-terminal-white: oklch(92% 0.01 85);
-
-    /* Terminal Palette */
-    --candi-terminal-black: oklch(25% 0.01 250);
-    --candi-terminal-red: var(--candi-error);
-    --candi-terminal-green: var(--candi-success);
-    --candi-terminal-yellow: var(--candi-warning);
-    --candi-terminal-blue: var(--candi-accent);
-    --candi-terminal-magenta: var(--candi-syntax-keyword);
-    --candi-terminal-cyan: var(--candi-syntax-var);
-    --candi-terminal-white: var(--candi-text);
     /* @tokens-end-root */
 
   /* Map Tailwind v4 variables to light mode defaults */
@@ -195,14 +175,6 @@
     --color-candi-terminal-magenta: var(--candi-terminal-magenta);
     --color-candi-terminal-cyan: var(--candi-terminal-cyan);
     --color-candi-terminal-white: var(--candi-terminal-white);
-    --color-candi-terminal-black: var(--candi-terminal-black);
-    --color-candi-terminal-red: var(--candi-terminal-red);
-    --color-candi-terminal-green: var(--candi-terminal-green);
-    --color-candi-terminal-yellow: var(--candi-terminal-yellow);
-    --color-candi-terminal-blue: var(--candi-terminal-blue);
-    --color-candi-terminal-magenta: var(--candi-terminal-magenta);
-    --color-candi-terminal-cyan: var(--candi-terminal-cyan);
-    --color-candi-terminal-white: var(--color-candi-text);
     /* @tokens-end-v4-map */
 }
 
@@ -258,16 +230,6 @@
     --candi-terminal-magenta: oklch(70% 0.15 0);
     --candi-terminal-cyan: oklch(75% 0.1 200);
     --candi-terminal-white: oklch(92% 0.01 85);
-
-    /* Terminal Palette */
-    --candi-terminal-black: oklch(15% 0.01 250);
-    --candi-terminal-red: var(--candi-error);
-    --candi-terminal-green: var(--candi-success);
-    --candi-terminal-yellow: var(--candi-warning);
-    --candi-terminal-blue: var(--candi-accent);
-    --candi-terminal-magenta: var(--candi-syntax-keyword);
-    --candi-terminal-cyan: var(--candi-syntax-var);
-    --candi-terminal-white: var(--candi-text);
     /* @tokens-end-dark-root */
 
   /* Map Tailwind v4 variables to dark mode overrides */
@@ -322,13 +284,5 @@
     --color-candi-terminal-magenta: var(--candi-terminal-magenta);
     --color-candi-terminal-cyan: var(--candi-terminal-cyan);
     --color-candi-terminal-white: var(--candi-terminal-white);
-    --color-candi-terminal-black: var(--candi-terminal-black);
-    --color-candi-terminal-red: var(--candi-terminal-red);
-    --color-candi-terminal-green: var(--candi-terminal-green);
-    --color-candi-terminal-yellow: var(--candi-terminal-yellow);
-    --color-candi-terminal-blue: var(--candi-terminal-blue);
-    --color-candi-terminal-magenta: var(--candi-terminal-magenta);
-    --color-candi-terminal-cyan: var(--candi-terminal-cyan);
-    --color-candi-terminal-white: var(--color-candi-text);
     /* @tokens-end-v4-map-dark */
 }

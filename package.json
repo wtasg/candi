@@ -1,6 +1,6 @@
 {
     "name": "@wtasnorg/candi",
-    "version": "0.0.24",
+    "version": "0.0.25",
     "description": "A Tailwind CSS theme inspired by Nordic/Scandinavian Hygge & Lagom design principles",
     "keywords": [
         "tailwindcss",
@@ -54,7 +54,7 @@
         "README.md"
     ],
     "scripts": {
-        "build": "node scripts/build.js",
+        "build": "npm run lint:tokens && node scripts/build.js",
         "build:flutter": "node scripts/build-flutter.js && npm run format:flutter",
         "build:vscode": "node scripts/build-vscode.js",
         "build:vim": "node scripts/build-vim.js",
@@ -67,6 +67,7 @@
         "prepublishOnly": "npm run build:all",
         "test:color": "node scripts/test-color.js",
         "test:colors": "node scripts/test-color-conversions.js",
+        "test:src": "node scripts/test-src.js",
         "test:flutter": "cd flutter && flutter test",
         "test:vscode": "node scripts/test-vscode.js",
         "test:vim": "node scripts/test-vim.js",
@@ -74,7 +75,7 @@
         "test:konsole": "node scripts/test-konsole.js",
         "test:gnome": "node scripts/test-gnome.js",
         "test:obsidian": "node scripts/test-obsidian.js",
-        "test:all": "npm run test:color && npm run test:colors && npm run test:flutter && npm run test:vscode && npm run test:vim && npm run test:kde && npm run test:konsole && npm run test:gnome && npm run test:obsidian",
+        "test:all": "npm run test:src && npm run test:color && npm run test:colors && npm run test:flutter && npm run test:vscode && npm run test:vim && npm run test:kde && npm run test:konsole && npm run test:gnome && npm run test:obsidian",
         "test": "npm run test:all",
         "vscode:package": "cd vscode && npx -y @vscode/vsce package",
         "flutter:pub": "cd flutter && flutter pub get",
@@ -84,9 +85,10 @@
         "flutter:pub-publish-dry-run": "cd flutter && flutter pub publish --dry-run",
         "artifact": "node scripts/package-artifacts.js",
         "lint:dart": "node scripts/lint-dart.js",
+        "lint:tokens": "node scripts/lint-tokens.js",
         "lint:md": "markdownlint-cli2 \"**/*.md\" \"!node_modules\" \"!website/node_modules\"",
         "lint:md:fix": "markdownlint-cli2 --fix \"**/*.md\" \"!node_modules\" \"!website/node_modules\"",
-        "lint:all": "npm run lint:dart && npm run lint:md"
+        "lint:all": "npm run lint:tokens && npm run lint:dart && npm run lint:md"
     },
     "peerDependencies": {
         "tailwindcss": ">=3.0.0 || >=4.0.0"
