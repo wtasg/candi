@@ -181,15 +181,15 @@ function deriveOnColor(baseOklchStr) {
 // Main Generation
 // =============================================================================
 
-function generatePalette() {
+function generatePalette({ verbose = false } = {}) {
     const palette = {};
 
     ['light', 'dark'].forEach(mode => {
         palette[mode] = {};
-        console.log(`\n--- Generating [${mode}] ---`);
+        if (verbose) console.log(`\n--- Generating [${mode}] ---`);
 
         Object.entries(ANCHORS[mode]).forEach(([name, anchorValue]) => {
-            console.log(`Anchor: ${name} (${anchorValue})`);
+            if (verbose) console.log(`Anchor: ${name} (${anchorValue})`);
 
             // 1. Base (Direct anchor)
             palette[mode][name] = {
@@ -211,7 +211,7 @@ function generatePalette() {
                     name: `${name} ${variantName}`,
                     usage: `Derived ${variantName} of ${name}`
                 };
-                console.log(`  -> ${keyName.padEnd(20)}: ${derived.oklch}`);
+                if (verbose) console.log(`  -> ${keyName.padEnd(20)}: ${derived.oklch}`);
             });
 
             // 3. On-Color
@@ -223,8 +223,10 @@ function generatePalette() {
                 usage: `Text on ${name}`
             };
 
-            const status = onResult.warning ? 'WARN (<4.5)' : 'PASS';
-            console.log(`  -> ${onKeyName.padEnd(20)}: ${onResult.oklch} [Contrast: ${onResult.contrast.toFixed(2)} ${status}]`);
+            if (verbose) {
+                const status = onResult.warning ? 'WARN (<4.5)' : 'PASS';
+                console.log(`  -> ${onKeyName.padEnd(20)}: ${onResult.oklch} [Contrast: ${onResult.contrast.toFixed(2)} ${status}]`);
+            }
         });
     });
 

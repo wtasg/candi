@@ -13,8 +13,16 @@ function getColors(mode) {
     const colors = {};
     for (const [key, data] of Object.entries(palette[mode])) {
         const value = data.oklch || data.value;
+        if (!value) {
+            console.warn(`[WARN] ${mode}.${key}: No oklch or value defined, skipping`);
+            continue;
+        }
         const parsed = parseOklch(value);
-        if (parsed) colors[toKebab(key)] = toHex(parsed);
+        if (parsed) {
+            colors[toKebab(key)] = toHex(parsed);
+        } else {
+            console.warn(`[WARN] ${mode}.${key}: Could not parse '${value}'`);
+        }
     }
     return colors;
 }

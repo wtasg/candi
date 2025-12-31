@@ -10,6 +10,10 @@ function getColors(mode) {
   const colors = {};
   for (const [key, data] of Object.entries(palette[mode])) {
     const value = data.oklch || data.value;
+    if (!value) {
+      console.warn(`[WARN] ${mode}.${key}: No oklch or value defined, skipping`);
+      continue;
+    }
     const parsed = parseOklch(value);
     if (parsed) {
       colors[key] = {
@@ -20,6 +24,8 @@ function getColors(mode) {
         opacity: parsed.opacity,
         oklch: value
       };
+    } else {
+      console.warn(`[WARN] ${mode}.${key}: Could not parse '${value}'`);
     }
   }
   return colors;
@@ -28,8 +34,10 @@ function getColors(mode) {
 const lightColors = getColors('light');
 const darkColors = getColors('dark');
 
-// All color keys for Flutter (excludes shadow CSS values, includes all OKLCH colors)
-const colorKeys = [
+// Dynamically generate color keys from parsed palette
+// This ensures colorKeys stays in sync with colors.js
+// Ordering: backgrounds, text, borders, semantics, interactive, overlays, inverse, ui states, terminal
+const colorKeyOrder = [
   // Backgrounds
   'bg', 'surface', 'elevated',
   // Text
@@ -37,14 +45,14 @@ const colorKeys = [
   // Borders
   'border', 'borderStrong', 'divider',
   // Primary
-  'accent', 'accentSubtle', 'onAccent',
+  'accent', 'accentSubtle', 'accentSoft', 'accentStrong', 'accentOutline', 'onAccent',
   // Secondary
-  'secondary', 'secondarySubtle', 'onSecondary',
+  'secondary', 'secondarySubtle', 'secondarySoft', 'secondaryStrong', 'secondaryOutline', 'onSecondary',
   // Status
-  'success', 'onSuccess',
-  'warning', 'onWarning',
-  'error', 'onError',
-  'info', 'onInfo',
+  'success', 'successSubtle', 'successSoft', 'successStrong', 'successOutline', 'onSuccess',
+  'warning', 'warningSubtle', 'warningSoft', 'warningStrong', 'warningOutline', 'onWarning',
+  'error', 'errorSubtle', 'errorSoft', 'errorStrong', 'errorOutline', 'onError',
+  'info', 'infoSubtle', 'infoSoft', 'infoStrong', 'infoOutline', 'onInfo',
   // Interactive
   'link', 'disabled', 'focusRing',
   // Overlays
@@ -57,6 +65,9 @@ const colorKeys = [
   'terminalBlack', 'terminalRed', 'terminalGreen', 'terminalYellow',
   'terminalBlue', 'terminalMagenta', 'terminalCyan', 'terminalWhite',
 ];
+
+// Filter to only keys that exist in the parsed palette
+const colorKeys = colorKeyOrder.filter(key => lightColors[key]);
 
 // Semantic documentation for each color
 const colorDocs = {
