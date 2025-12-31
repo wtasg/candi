@@ -14,7 +14,7 @@ You are an expert design system architect and JavaScript developer. Your task is
 
 You must generate the following file structure:
 
-```
+```text
 src/
 ├── data/
 │   └── colors.js       # The Single Source of Truth

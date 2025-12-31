@@ -378,10 +378,70 @@ This updates:
 ## Hygge & Lagom Design Philosophies
 
 ### Hygge (Warmth)
+
 Creating a cozy, inviting atmosphere through warm color temperatures.
+
 - **Implementation**: Neutral palette uses Hue 85 (warm) across all themes. Previous cool-blue (Hue 275) variants have been phased out.
 
 ### Lagom (Balance)
+
 Finding the balance between grayness and over-saturation.
+
 - **Implementation**: Subtle variants preserve 80% of parent chroma to maintain chromatic richness.
 - **Logic**: Defined in `scripts/gen-oklch-primitives.js`.
+
+---
+
+## Dependencies & Security
+
+### Audit Commands
+
+Run these commands periodically to check for vulnerabilities and outdated packages:
+
+```bash
+# NPM security audit
+npm audit
+
+# Check for outdated npm packages
+npm outdated
+
+# Flutter/Dart outdated packages
+cd showcase_flutter && flutter pub outdated
+```
+
+### Current Status (January 2026)
+
+| Platform | Vulnerabilities | Outdated |
+| -------- | --------------- | -------- |
+| npm | 0 | Tailwind v4 available (major) |
+| Flutter (showcase) | 0 | Transitive deps only |
+
+### Tailwind CSS Compatibility
+
+The project supports **both Tailwind v3 and v4** via peer dependencies:
+
+```json
+"peerDependencies": {
+  "tailwindcss": ">=3.0.0 || >=4.0.0"
+}
+```
+
+- **v3 users**: Use `require('@wtasnorg/candi')` with `tailwind.config.js`
+- **v4 users**: Use `@import "@wtasnorg/candi/v4"` in CSS
+
+See [Tailwind CSS v4 Migration](#tailwind-css-v4-migration) section above for upgrade guidance.
+
+### Updating Dependencies
+
+```bash
+# Update all npm dependencies to latest compatible versions
+npm update
+
+# Update Flutter dependencies
+cd flutter && flutter pub upgrade
+cd showcase_flutter && flutter pub upgrade
+```
+
+> [!CAUTION]
+> Major version upgrades (like Tailwind v3 → v4) require manual review and testing.
+> Always run `npm run test:all` after updating dependencies.

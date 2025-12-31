@@ -203,6 +203,7 @@ module.exports = {
 ## Design & Accessibility
 
 Candi prioritizes accessibility through automated validation:
+
 - **WCAG Compliance**: Contrast ratios are validated programmatically during the color extraction pipeline.
 - **Primary Text**: Targets **4.5:1** (WCAG AA) for standard text.
 - **UI Elements**: Accents and state indicators target **3.0:1** (WCAG Graphical Objects).
