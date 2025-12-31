@@ -158,8 +158,6 @@ class GalleryScreen extends StatelessWidget {
     Color color,
   ) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    // Note: In a real app, we'd use themed colors. Here we use CandiColors directly just for demo.
-    // However, we should probably use the palette from the current theme.
     final palette = isDark ? CandiColors.dark : CandiColors.light;
 
     Color statusColor;

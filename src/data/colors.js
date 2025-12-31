@@ -27,8 +27,6 @@ const neutrals = {
         borderStrong: { oklch: 'oklch(80% 0.015 85)', name: 'Border Strong', usage: 'Strong borders' },
         divider: { oklch: 'oklch(85% 0.01 85)', name: 'Divider', usage: 'Divider lines' },
 
-        // Semantic overrides? None. We use generated semantics.
-
         link: { oklch: 'oklch(50% 0.08 230)', name: 'Link', usage: 'Hyperlinks' },
         disabled: { oklch: 'oklch(75% 0.005 250)', name: 'Disabled', usage: 'Disabled UI' },
         overlay: { oklch: 'oklch(0% 0 0 / 0.5)', name: 'Overlay', usage: 'Modal backdrops' },

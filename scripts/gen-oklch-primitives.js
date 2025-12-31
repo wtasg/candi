@@ -42,16 +42,16 @@ const ANCHORS = {
 // =============================================================================
 // Light Mode: "Subtle" means lighter but VIBRANT (Hygge).
 const VARIANTS_LIGHT = {
-    subtle: { dl: +0.33, dc: 0.80 }, // Lagom: Preserves 80% Chroma (was 50%)
-    soft: { dl: +0.10, dc: 0.90 },   // Preserves 90% Chroma (was 80%)
+    subtle: { dl: +0.33, dc: 0.80 },
+    soft: { dl: +0.10, dc: 0.90 },
     base: { dl: 0, dc: 1.00 },
     strong: { dl: -0.10, dc: 1.10 },
-    outline: { dl: -0.15, dc: 0.90 }, // Cleaner outline (was 70%)
+    outline: { dl: -0.15, dc: 0.90 },
 };
 
 // Dark Mode: "Subtle" means darker but WARM.
 const VARIANTS_DARK = {
-    subtle: { dl: -0.27, dc: 0.80 }, // Lagom: Preserves 80% Chroma (was 50%)
+    subtle: { dl: -0.27, dc: 0.80 },
     soft: { dl: +0.10, dc: 0.90 },
     base: { dl: 0, dc: 1.00 },
     strong: { dl: -0.10, dc: 1.10 },
@@ -163,17 +163,12 @@ function deriveOnColor(baseOklchStr) {
     const contrastWhite = getContrast(baseRgb, whiteRgb);
     const contrastBlack = getContrast(baseRgb, blackRgb);
 
-    // Prefer higher contrast
-    // Note: User rule: "Adjust L until one does" (Advanced).
-    // For now, simpler selection:
     if (contrastWhite >= 4.5 && contrastWhite >= contrastBlack) {
         return { oklch: 'oklch(100% 0 0)', contrast: contrastWhite, color: 'White' };
     } else if (contrastBlack >= 4.5 && contrastBlack > contrastWhite) {
         return { oklch: 'oklch(0% 0 0)', contrast: contrastBlack, color: 'Black' };
     } else {
-        // Fallback: Pick the best one, even if < 4.5 (would implement shifting later if needed)
-        // Or strictly follow "Adjust L" rule if we want to be perfect now.
-        // Let's stick to simple selection first, and log warning.
+        // Fallback: Pick the best one, even if < 4.5
         const best = contrastWhite > contrastBlack ?
             { oklch: 'oklch(100% 0 0)', contrast: contrastWhite, color: 'White' } :
             { oklch: 'oklch(0% 0 0)', contrast: contrastBlack, color: 'Black' };
@@ -208,15 +203,7 @@ function generatePalette() {
                 if (variantName === 'base') return; // Already handled
 
                 const derived = deriveColor(anchorValue, rules);
-                const fullName = `${name}-${variantName}`; // e.g. accent-subtle
-                // Map to camelCase for the JS object keys if we want consistency with old format,
-                // BUT user suggested "candi-warning-subtle" (kebab).
-                // Let's use camelCase for the internal object keys to match existing patterns:
-                // accentSubtle, warningStrong.
-                // Wait, user Example: "subtle" -> "accentSubtle" (in old colors.js)
-                // New system exposes: "--candi-warning-subtle" via CSS.
-                // In colors.js, we should probably stick to camelCase for keys: `warningSubtle`.
-
+                const fullName = `${name}-${variantName}`;
                 const keyName = name + variantName.charAt(0).toUpperCase() + variantName.slice(1);
 
                 palette[mode][keyName] = {

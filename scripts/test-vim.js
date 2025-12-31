@@ -30,8 +30,7 @@ function testVimTheme() {
         assert.ok(darkContent.includes('let g:colors_name = "candi-dark"'), 'Should set colors_name');
         assert.ok(darkContent.includes('set background=dark'), 'Should set background');
 
-        // Check key UI colors (now includes terminal colors)
-        // Check key UI colors (now includes terminal colors)
+        // Check key UI colors
         const normalLine = darkContent.split('\n').find(line => line.startsWith('hi Normal'));
         assert.ok(normalLine, 'Should have Normal highlight group');
 
@@ -42,8 +41,6 @@ function testVimTheme() {
         assert.equal(guibg.toUpperCase(), '#15110A', 'Normal background mismatch');
         assert.ok(darkContent.includes('hi CursorLine') && darkContent.includes('guibg=#1D1A14'), 'CursorLine mapping mismatch');
         assert.ok(darkContent.includes('hi Function') && darkContent.includes('guifg=#7987DE'), 'Function mapping mismatch');
-        // Wait, Function was #4F8FAD (Accent). New Accent is #8885D0.
-        // I should update Function check too while I'm here.
 
         // Check terminal colors are present
         assert.ok(darkContent.includes('ctermfg=') && darkContent.includes('ctermbg='), 'Terminal colors should be present');

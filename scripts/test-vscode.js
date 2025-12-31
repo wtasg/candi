@@ -43,13 +43,7 @@ function testExtension() {
         // Check token colors
         const keywordToken = darkTheme.tokenColors.find(tc => tc.scope.includes('keyword'));
         assert.ok(keywordToken, 'Theme should highlight keywords');
-        assert.equal(keywordToken.settings.foreground, '#7987DE'); // Syntax Keyword (Hue 0) -> Magenta/Pink
-        // ERROR Correction: If it was #4F8FAD (Accent) before, maybe it IS Accent.
-        // But let's check my hypothesis. 
-        // If I put #8885D0 here and it fails, I'll know. 
-        // Actually, let's look at `scripts/gen-oklch-primitives.js`. Anchors defined Accent.
-        // `src/data/colors.js` defined `syntaxKeyword` as `oklch(70% 0.15 0)`.
-        // Let's run a quick calc for `oklch(0.70, 0.15, 0)`.
+        assert.equal(keywordToken.settings.foreground, '#7987DE');
 
         console.log('[✓] Theme color mappings verified');
 

@@ -38,12 +38,8 @@ console.log('=== DERIVATION COMPARISON ===\n');
     const oldMode = oldPalette[mode];
     const newMode = newPalette[mode];
 
-    // Check only the tokens that exist in the *new* palette (the derived ones)
+    // Check only the tokens that exist in the new palette
     Object.keys(newMode).forEach(key => {
-        // Map keys if necessary. 
-        // Old: accentSubtle
-        // New: accentSubtle (we matched keys in gen script)
-
         const oldToken = oldMode[key];
         const newToken = newMode[key];
 
