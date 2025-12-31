@@ -2,6 +2,25 @@
 
 All notable changes to the Candi Design System will be documented in this file.
 
+## 0.0.25
+
+### Added
+
+- Programmatic color derivation engine in `scripts/gen-oklch-primitives.js`.
+- Color system architecture and derivation rules in `ARCHITECTURE.md`.
+- Regression guards: `guard-semantics.js` and `compare-derivations.js`.
+
+### Changed
+
+- **Dark Mode**: Shifted neutral palette to Hue 85 for system-wide warmth (Hygge).
+- **Subtle Variants**: Increased chroma preservation to 80% to maintain chromatic richness (Lagom).
+- **VS Code Light**: Muted editor background by swapping `bg` and `surface` token roles.
+- **Synchronization**: Unified palette across Flutter, Vim, GNOME, KDE, and Obsidian.
+
+### Fixed
+
+- Updated test suites and reference values to align with warm neutral architecture.
+
 ## 0.0.24
 
 ### Added

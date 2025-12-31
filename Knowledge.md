@@ -202,13 +202,19 @@ The color system uses a single source of truth with generated CSS outputs.
                          ▼
         ┌────────────────────────────────────┐
         │     src/data/colors.js             │
-        │     (Source of Truth)              │
+        │     (Authoritative Anchors)        │
+        └────────────────────────────────────┘
+                         │
+                         ▼
+        ┌────────────────────────────────────┐
+        │   scripts/gen-oklch-primitives.js  │
+        │   (Lagom Derivation Engine)        │
         └────────────────────────────────────┘
                          │
                          ▼
         ┌────────────────────────────────────┐
         │     scripts/sync-colors.js         │
-        │     (Generator Script)             │
+        │     (Sync & Export Logic)          │
         └────────────────────────────────────┘
                          │
           ┌──────────────┴──────────────┐
@@ -366,3 +372,16 @@ This updates:
 - `package.json` (npm)
 - `vscode/package.json` (VS Code extension)
 - `flutter/pubspec.yaml` (Flutter)
+
+---
+
+## Hygge & Lagom Design Philosophies
+
+### Hygge (Warmth)
+Creating a cozy, inviting atmosphere through warm color temperatures.
+- **Implementation**: Neutral palette uses Hue 85 (warm) across all themes. Previous cool-blue (Hue 275) variants have been phased out.
+
+### Lagom (Balance)
+Finding the balance between grayness and over-saturation.
+- **Implementation**: Subtle variants preserve 80% of parent chroma to maintain chromatic richness.
+- **Logic**: Defined in `scripts/gen-oklch-primitives.js`.

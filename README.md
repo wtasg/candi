@@ -32,13 +32,16 @@ All colors are defined in `src/data/colors.js`. This file is the canonical sourc
 src/data/colors.js (Source of Truth)
         │
         ▼
+scripts/gen-oklch-primitives.js (Derivation Engine)
+        │
+        ▼
 scripts/sync-colors.js (Generator)
         │
         ├── src/css/base.css (CSS Variables)
         ├── src/v4/theme.css (Tailwind v4 @theme)
         └── dist/colors.json (Data export)
 
-Platform Builds (all consume colors.js directly):
+Platform Builds (all consume colors.js & derivation engine):
 ├── build-flutter.js → flutter/lib/candi_colors.dart
 ├── build-vscode.js  → vscode/themes/*.json
 ├── build-vim.js     → vim/colors/*.vim
@@ -181,9 +184,9 @@ module.exports = {
 
 | Token | Light | Dark | Usage |
 | :--- | :--- | :--- | :--- |
-| `bg` | Warm white | Warm dark | Page background |
-| `surface` | Soft cream | Card surface | Cards, sections |
-| `elevated` | Pure white | Elevated dark | Modals, popups |
+| `bg` | Warm white | Warm dark (Hygge) | Page background |
+| `surface` | Soft cream | Warm dark surface | Cards, sections |
+| `elevated` | Pure white | Warm elevated dark | Modals, popups |
 | `text` | Warm charcoal | Off-white | Primary text |
 | `text-subtle` | Medium gray | Light gray | Secondary text |
 | `text-muted` | Light gray | Muted gray | Tertiary text |
@@ -199,11 +202,10 @@ module.exports = {
 
 ## Design & Accessibility
 
-Candi is built with accessibility as a core requirement:
-
-- **WCAG Standards**: Color extraction pipeline automatically validates contrast ratios
-- **Primary Text**: Aimed at **4.5:1** contrast (WCAG AA) for standard text
-- **UI Elements**: Accents and status indicators tuned for **3.0:1** contrast (WCAG Graphical Objects)
+Candi prioritizes accessibility through automated validation:
+- **WCAG Compliance**: Contrast ratios are validated programmatically during the color extraction pipeline.
+- **Primary Text**: Targets **4.5:1** (WCAG AA) for standard text.
+- **UI Elements**: Accents and state indicators target **3.0:1** (WCAG Graphical Objects).
 
 ---
 
@@ -229,23 +231,21 @@ npm install
 npm run build:all
 ```
 
-### Working on the Documentation Website
+### Documentation Website
 
-The docs website lives in `website/` and uses the built theme from `dist/`:
+The documentation site in `website/` consumes the built theme from `dist/`:
 
 ```bash
 cd website
 npm install
-npm run dev     # Starts dev server at http://localhost:3000
+npm run dev
 ```
 
-The `predev` and `prebuild` scripts automatically rebuild the parent package, so changes to `src/data/colors.js` are reflected immediately.
+### Color Modifications
 
-### Making Color Changes
-
-1. Edit `src/data/colors.js` (the single source of truth)
-2. Run `npm run build:all` to regenerate all platform themes
-3. Run `npm test` to validate color accuracy and contrast ratios
+1. Edit authoritative anchors in `src/data/colors.js`.
+2. Run `npm run build:all` to regenerate platform themes via the derivation engine.
+3. Run `npm test` to validate system-wide harmony and contrast.
 
 ---
 

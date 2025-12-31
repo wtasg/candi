@@ -125,7 +125,7 @@ To customize colors:
 
 5. Refresh System Settings to see your new theme
 
-For advanced customization using OKLCH, modify `src/css/base.css` in the repository and rebuild:
+For advanced customization using OKLCH, modify `src/data/colors.js` in the repository and rebuild:
 
 ```bash
 npm run build:kde
@@ -153,7 +153,7 @@ npm run build:kde
 
 ## Development
 
-The KDE color schemes are generated from the same OKLCH source as all other Candi platforms:
+The KDE color schemes are generated from the same OKLCH source (`src/data/colors.js`) as all other Candi platforms:
 
 ```bash
 # Build all platforms including KDE
