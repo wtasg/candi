@@ -133,7 +133,7 @@ All colors are derived from the Candi design system's OKLCH color space, ensurin
 
 To customize the theme:
 
-1. Edit the source colors in `src/css/base.css`
+1. Edit the source colors in `src/data/colors.js`
 2. Rebuild the theme:
 
    ```bash

@@ -3,8 +3,9 @@ export default function Philosophy() {
     <div className="max-w-4xl mx-auto px-6 py-12">
       <div className="mb-12">
         <h1 className="text-4xl font-bold mb-4">Design Philosophy</h1>
-        <p className="text-xl text-candi-subtle">
+        <p className="text-xl text-candi-subtle mb-6">
           Candi is inspired by Nordic design principles that emphasize warmth, balance, and intentionality.
+          Our technical architecture mirrors this philosophy: <strong>Expose intent, derive variation.</strong>
         </p>
       </div>
 
@@ -79,11 +80,12 @@ export default function Philosophy() {
 
           <div className="space-y-6">
             <div>
-              <h3 className="text-xl font-semibold mb-3">Balanced Color Saturation</h3>
+              <h3 className="text-xl font-semibold mb-3">Controlled Warmth & Rhythm</h3>
               <p className="text-candi-subtle leading-relaxed mb-4">
-                Candi's colors are intentionally muted. Accent colors have moderate chroma values
-                (typically 0.06-0.12 in OKLCH), providing enough visual interest without being
-                overwhelming or garish.
+                "Lagom" (Just Right) is often mistaken for minimalism or desaturation. In Candi, it means
+                <strong> controlled warmth</strong>. We preserve the chromatic richness (Chroma) of our colors even
+                in subtle variants, avoiding the "grayness" of typical corporate design. The result is a palette
+                that feels alive and cozy (Hygge) while maintaining strict contrast steps (Rhythm).
               </p>
 
               <div className="grid grid-cols-3 gap-4">
@@ -105,9 +107,10 @@ export default function Philosophy() {
             <div>
               <h3 className="text-xl font-semibold mb-3">Appropriate Contrast</h3>
               <p className="text-candi-subtle leading-relaxed">
-                Text contrast is optimized for readability without being harsh. We aim for WCAG AA compliance
-                as a baseline, with many combinations exceeding AAA standards. The perceptual uniformity of
-                OKLCH helps ensure consistent readability across all color pairs.
+                We prioritize "Contrast Rhythm" — consistent steps in lightness between layers.
+                Backgrounds, surfaces, and elevated elements follow a predictable scale, ensuring
+                that depth is conveyed through lightness, while warmth is conveyed through preserved chroma.
+                The perceptual uniformity of OKLCH ensures this rhythm is felt equally across all hues.
               </p>
             </div>
 

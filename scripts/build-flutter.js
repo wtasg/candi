@@ -7,122 +7,150 @@ const dartColorsPath = path.join(__dirname, '..', 'flutter', 'lib', 'candi_color
 const { toHex8, parseOklch } = require('./color-conv');
 
 function getColors(mode) {
-    const colors = {};
-    for (const [key, data] of Object.entries(palette[mode])) {
-        const value = data.oklch || data.value;
-        const parsed = parseOklch(value);
-        if (parsed) {
-            colors[key] = {
-                hex: toHex8(parsed),
-                l: parsed.l,
-                c: parsed.c,
-                h: parsed.h,
-                opacity: parsed.opacity,
-                oklch: value
-            };
-        }
+  const colors = {};
+  for (const [key, data] of Object.entries(palette[mode])) {
+    const value = data.oklch || data.value;
+    if (!value) {
+      console.warn(`[WARN] ${mode}.${key}: No oklch or value defined, skipping`);
+      continue;
     }
-    return colors;
+    const parsed = parseOklch(value);
+    if (parsed) {
+      colors[key] = {
+        hex: toHex8(parsed),
+        l: parsed.l,
+        c: parsed.c,
+        h: parsed.h,
+        opacity: parsed.opacity,
+        oklch: value
+      };
+    } else {
+      console.warn(`[WARN] ${mode}.${key}: Could not parse '${value}'`);
+    }
+  }
+  return colors;
 }
 
 const lightColors = getColors('light');
 const darkColors = getColors('dark');
 
-// All color keys for Flutter (excludes shadow CSS values, includes all OKLCH colors)
-const colorKeys = [
-    // Backgrounds
-    'bg', 'surface', 'elevated',
-    // Text
-    'text', 'textSubtle', 'textMuted',
-    // Borders
-    'border', 'borderStrong', 'divider',
-    // Primary
-    'accent', 'accentSubtle', 'onAccent',
-    // Secondary
-    'secondary', 'secondarySubtle', 'onSecondary',
-    // Status
-    'success', 'onSuccess',
-    'warning', 'onWarning',
-    'error', 'onError',
-    'info', 'onInfo',
-    // Interactive
-    'link', 'disabled', 'focusRing',
-    // Overlays
-    'overlay', 'scrim', 'shadowColor',
-    // Inverse
-    'inverseSurface', 'inverseText',
-    // UI States
-    'hover', 'active',
+// Dynamically generate color keys from parsed palette
+// This ensures colorKeys stays in sync with colors.js
+// Ordering: backgrounds, text, borders, semantics, interactive, overlays, inverse, ui states, terminal
+const colorKeyOrder = [
+  // Backgrounds
+  'bg', 'surface', 'elevated',
+  // Text
+  'text', 'textSubtle', 'textMuted',
+  // Borders
+  'border', 'borderStrong', 'divider',
+  // Primary
+  'accent', 'accentSubtle', 'accentSoft', 'accentStrong', 'accentOutline', 'onAccent',
+  // Secondary
+  'secondary', 'secondarySubtle', 'secondarySoft', 'secondaryStrong', 'secondaryOutline', 'onSecondary',
+  // Status
+  'success', 'successSubtle', 'successSoft', 'successStrong', 'successOutline', 'onSuccess',
+  'warning', 'warningSubtle', 'warningSoft', 'warningStrong', 'warningOutline', 'onWarning',
+  'error', 'errorSubtle', 'errorSoft', 'errorStrong', 'errorOutline', 'onError',
+  'info', 'infoSubtle', 'infoSoft', 'infoStrong', 'infoOutline', 'onInfo',
+  // Interactive
+  'link', 'disabled', 'focusRing',
+  // Overlays
+  'overlay', 'scrim', 'shadowColor',
+  // Inverse
+  'inverseSurface', 'inverseText',
+  // UI States
+  'hover', 'active',
+  // Terminal
+  'terminalBlack', 'terminalRed', 'terminalGreen', 'terminalYellow',
+  'terminalBlue', 'terminalMagenta', 'terminalCyan', 'terminalWhite',
 ];
+
+// Filter to only keys that exist in the parsed palette
+const colorKeys = colorKeyOrder.filter(key => lightColors[key]);
 
 // Semantic documentation for each color
 const colorDocs = {
-    bg: 'Page background color.',
-    surface: 'Card and section background color.',
-    elevated: 'Elevated surface (modals, popups) background color.',
-    text: 'Primary text color.',
-    textSubtle: 'Secondary/subdued text color.',
-    textMuted: 'Tertiary/muted text color for less important content.',
-    border: 'Default border color.',
-    borderStrong: 'Emphasized border color.',
-    divider: 'Divider/separator line color.',
-    accent: 'Primary accent color for buttons and interactive elements.',
-    accentSubtle: 'Subtle accent for hover states and backgrounds.',
-    onAccent: 'Text color on accent backgrounds.',
-    secondary: 'Secondary action color (terracotta).',
-    secondarySubtle: 'Subtle secondary for backgrounds.',
-    onSecondary: 'Text color on secondary backgrounds.',
-    success: 'Success state color (green).',
-    onSuccess: 'Text color on success backgrounds.',
-    warning: 'Warning state color (amber).',
-    onWarning: 'Text color on warning backgrounds.',
-    error: 'Error state color (coral red).',
-    onError: 'Text color on error backgrounds.',
-    info: 'Informational state color (blue).',
-    onInfo: 'Text color on info backgrounds.',
-    link: 'Hyperlink color.',
-    disabled: 'Disabled element color.',
-    focusRing: 'Focus ring/outline color with opacity.',
-    overlay: 'Overlay color for modals (semi-transparent).',
-    scrim: 'Scrim color for dimming backgrounds.',
-    shadowColor: 'Shadow color with transparency.',
-    inverseSurface: 'Inverse surface for contrast elements.',
-    inverseText: 'Text color on inverse surfaces.',
-    hover: 'Hover state overlay color.',
-    active: 'Active/pressed state overlay color.',
+  bg: 'Page background color.',
+  surface: 'Card and section background color.',
+  elevated: 'Elevated surface (modals, popups) background color.',
+  text: 'Primary text color.',
+  textSubtle: 'Secondary/subdued text color.',
+  textMuted: 'Tertiary/muted text color for less important content.',
+  border: 'Default border color.',
+  borderStrong: 'Emphasized border color.',
+  divider: 'Divider/separator line color.',
+  accent: 'Primary accent color for buttons and interactive elements.',
+  accentSubtle: 'Subtle accent for hover states and backgrounds.',
+  onAccent: 'Text color on accent backgrounds.',
+  secondary: 'Secondary action color (terracotta).',
+  secondarySubtle: 'Subtle secondary for backgrounds.',
+  onSecondary: 'Text color on secondary backgrounds.',
+  success: 'Success state color (green).',
+  onSuccess: 'Text color on success backgrounds.',
+  warning: 'Warning state color (amber).',
+  onWarning: 'Text color on warning backgrounds.',
+  error: 'Error state color (coral red).',
+  onError: 'Text color on error backgrounds.',
+  info: 'Informational state color (blue).',
+  onInfo: 'Text color on info backgrounds.',
+  link: 'Hyperlink color.',
+  disabled: 'Disabled element color.',
+  focusRing: 'Focus ring/outline color with opacity.',
+  overlay: 'Overlay color for modals (semi-transparent).',
+  scrim: 'Scrim color for dimming backgrounds.',
+  shadowColor: 'Shadow color with transparency.',
+  inverseSurface: 'Inverse surface for contrast elements.',
+  inverseText: 'Text color on inverse surfaces.',
+  hover: 'Hover state overlay color.',
+  active: 'Active/pressed state overlay color.',
+  terminalBlack: 'Terminal ANSI black color.',
+  terminalRed: 'Terminal ANSI red color.',
+  terminalGreen: 'Terminal ANSI green color.',
+  terminalYellow: 'Terminal ANSI yellow color.',
+  terminalBlue: 'Terminal ANSI blue color.',
+  terminalMagenta: 'Terminal ANSI magenta color.',
+  terminalCyan: 'Terminal ANSI cyan color.',
+  terminalWhite: 'Terminal ANSI white color.',
 };
 
 function generatePaletteFields() {
-    return colorKeys.map(key => `    required this.${key},`).join('\n');
+  return colorKeys.map(key => `    required this.${key},`).join('\n');
 }
 
 function generatePaletteMembers() {
-    return colorKeys.map(key => {
-        const doc = colorDocs[key] || `The ${key} color.`;
-        return `  /// ${doc}\n  final CandiColor ${key};`;
-    }).join('\n\n');
+  return colorKeys.map(key => {
+    const doc = colorDocs[key] || `The ${key} color.`;
+    return `  /// ${doc}\n  final CandiColor ${key};`;
+  }).join('\n\n');
 }
 
 function generatePalette(colors) {
-    return colorKeys.map(key => {
-        const color = colors[key];
-        if (!color) return `    // ${key} missing in source`;
+  return colorKeys.map(key => {
+    const color = colors[key];
+    if (!color) return `    // ${key} missing in source`;
 
-        // Build the constructor call (use candiOpacity to avoid conflict with Color.opacity)
-        const params = `lightness: ${color.l}, chroma: ${color.c}, hue: ${color.h}${color.opacity !== 1 ? `, candiOpacity: ${color.opacity}` : ''}`;
-        const singleLine = `${key}: CandiColor(${color.hex}, ${params}),`;
+    // Build the constructor call (use candiOpacity to avoid conflict with Color.opacity)
+    const params = `lightness: ${color.l}, chroma: ${color.c}, hue: ${color.h}${color.opacity !== 1 ? `, candiOpacity: ${color.opacity}` : ''}`;
+    const singleLine = `${key}: CandiColor(${color.hex}, ${params}),`;
 
-        // If line is too long (>80 chars), split it to match dart format (uses 2-space indent)
-        if (singleLine.length > 76) { // 76 to account for 4-space indent
-            const paramLines = params.split(', ').map(p => `      ${p},`).join('\n');
-            return `    // ${color.oklch}\n    ${key}: CandiColor(\n      ${color.hex},\n${paramLines}\n    ),`;
-        }
+    // If line is too long (>80 chars), split it to match dart format (uses 2-space indent)
+    if (singleLine.length > 76) { // 76 to account for 4-space indent
+      const paramLines = params.split(', ').map(p => `      ${p},`).join('\n');
+      return `    // ${color.oklch}\n    ${key}: CandiColor(\n      ${color.hex},\n${paramLines}\n    ),`;
+    }
 
-        return `    // ${color.oklch}\n    ${singleLine}`;
-    }).join('\n');
+    return `    // ${color.oklch}\n    ${singleLine}`;
+  }).join('\n');
 }
 
-const dartTemplate = `/// Candi Color Palette for Flutter
+const dartTemplate = `// ============================================================================
+// DO NOT EDIT THIS FILE DIRECTLY
+// This file is auto-generated by scripts/build-flutter.js
+// Edit the source at src/data/colors.js and run: npm run build:flutter
+// ============================================================================
+
+/// Candi Color Palette for Flutter
 ///
 /// A Scandinavian-inspired color palette based on Nordic design principles:
 /// Hygge (warmth) and Lagom (balance).

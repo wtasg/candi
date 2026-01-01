@@ -43,10 +43,13 @@ If you've built the `.vsix` file from source using `npm run vscode:package`, fol
 
 ## Development
 
-Modify colors in `src/css/base.css` and run:
+Modify colors in `src/data/colors.js` and run:
 
 ```bash
 npm run build:vscode
 ```
+
+> [!NOTE]
+> The Light Theme uses a refined background strategy where the `editor.background` uses the `surface` token for a subtler, muted feel, while the sidebar uses the `bg` token.
 
 Theme files are generated in `vscode/themes/`.

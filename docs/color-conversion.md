@@ -47,9 +47,9 @@ OKLCH can represent colors beyond sRGB, making themes future-proof for wide-gamu
 
 Candi's multi-platform theme generation requires converting OKLCH colors to various formats. The conversion pipeline follows these steps:
 
-### Step 1: Parse OKLCH from CSS
+### Step 1: Parse OKLCH from colors.js
 
-Extract OKLCH values from `src/css/base.css`:
+Extract OKLCH values from `src/data/colors.js`:
 
 ```javascript
 // Input: "oklch(98% 0.008 85)"

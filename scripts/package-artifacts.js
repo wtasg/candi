@@ -58,17 +58,10 @@ console.log('\n\x1b[33m[4/8] Generating Zips...\x1b[0m');
 
 // Zip dist/ -> theme.zip
 console.log('Creating theme.zip...');
-// -r: recursive, -9: best compression, -v: verbose
-// Note: We zip 'dist' folder itself, so it appears as a top level folder in the zip?
-// "zip -r09v theme.zip dist/" will include "dist/" as a folder in the zip.
 run(`zip -r -9 -v ${getZipName('theme')} dist/`, rootDir);
 
 // Zip website/dist -> docs.zip
 console.log('Creating docs.zip from website/dist...');
-// We likely want the contents of website/dist, or the folder itself?
-// "zip -r09v docs.zip website/dist" will put "website/dist" inside the zip.
-// Usually for docs.zip one might expect just the content, but let's stick to what's requested implicitly/explicitly.
-// User said "zip -r09v website/dist to docs.zip".
 run(`zip -r -9 -v ${getZipName('docs')} website/dist`, rootDir);
 
 // Zip vim color files -> vim.zip

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import CandiButton from '../components/Button'
 
 export default function Components() {
   const [showCode, setShowCode] = useState({});
@@ -7,74 +8,72 @@ export default function Components() {
     setShowCode(prev => ({ ...prev, [component]: !prev[component] }));
   };
 
-  const Button = () => (
-    <div className="mb-12">
-      <h2 className="text-2xl font-bold mb-4">Buttons</h2>
-      <div className="bg-candi-surface border border-candi-border rounded-softer p-8">
-        <div className="flex flex-wrap gap-4 mb-4">
-          <button className="px-6 py-3 bg-candi-accent text-white rounded-soft font-medium hover:opacity-90 transition-opacity shadow-hygge">
-            Primary Button
-          </button>
-          <button className="px-6 py-3 bg-candi-secondary text-white rounded-soft font-medium hover:opacity-90 transition-opacity shadow-hygge">
-            Secondary Button
-          </button>
-          <button className="px-6 py-3 border-2 border-candi-border-strong text-candi-text rounded-soft font-medium hover:bg-candi-surface transition-colors">
-            Outline Button
-          </button>
-          <button className="px-6 py-3 text-candi-text rounded-soft font-medium hover:bg-candi-surface transition-colors">
-            Ghost Button
-          </button>
-          <button className="px-6 py-3 bg-candi-success text-white rounded-soft font-medium hover:opacity-90 transition-opacity shadow-hygge">
-            Success
-          </button>
-          <button className="px-6 py-3 bg-candi-error text-white rounded-soft font-medium hover:opacity-90 transition-opacity shadow-hygge">
-            Error
-          </button>
+  const ButtonSection = () => {
+    const colors = ['primary', 'secondary', 'success', 'info', 'warning', 'error'];
+    const rows = [
+      { label: 'Normal (Medium)', props: { size: 'medium' } },
+      { label: 'Small', props: { size: 'small' } },
+      { label: 'Large', props: { size: 'large' } },
+      { label: 'Full Width', props: { fullWidth: true } },
+      { label: 'Disabled', props: { disabled: true } },
+    ];
+
+    return (
+      <div className="mb-12">
+        <h2 className="text-2xl font-bold mb-4">Buttons</h2>
+        <div className="bg-candi-surface border border-candi-border rounded-softer p-8 overflow-x-auto">
+          <table className="w-full text-left border-collapse min-w-[800px]">
+            <thead>
+              <tr>
+                <th className="p-4 text-sm font-semibold text-candi-subtle">State / Size</th>
+                {colors.map(color => (
+                  <th key={color} className="p-4 text-sm font-semibold text-candi-subtle capitalize text-center">
+                    {color}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((row) => (
+                <tr key={row.label} className="border-t border-candi-border">
+                  <td className="p-4 font-medium text-candi-text whitespace-nowrap">{row.label}</td>
+                  {colors.map(color => (
+                    <td key={`${row.label}-${color}`} className="p-4 text-center">
+                      <CandiButton variant={color} {...row.props}>
+                        Button
+                      </CandiButton>
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          <div className="mt-8">
+            <button
+              onClick={() => toggleCode('button')}
+              className="text-sm text-candi-accent hover:underline mb-2"
+            >
+              {showCode.button ? 'Hide Code' : 'Show Code'}
+            </button>
+
+            {showCode.button && (
+              <pre className="text-sm bg-candi-elevated p-4 rounded-soft overflow-x-auto">
+                <code>{`{/* Sizes */}
+<Button variant="primary" size="small">Small</Button>
+<Button variant="primary" size="medium">Medium</Button>
+<Button variant="primary" size="large">Large</Button>
+
+{/* States */}
+<Button variant="primary" fullWidth>Full Width</Button>
+<Button variant="primary" disabled>Disabled</Button>`}</code>
+              </pre>
+            )}
+          </div>
         </div>
-
-        <button
-          onClick={() => toggleCode('button')}
-          className="text-sm text-candi-accent hover:underline"
-        >
-          {showCode.button ? 'Hide Code' : 'Show Code'}
-        </button>
-
-        {showCode.button && (
-          <pre className="mt-4 text-sm">
-            <code>{`{/* Primary */}
-<button className="px-6 py-3 bg-candi-accent text-white rounded-soft font-medium hover:opacity-90 transition-opacity shadow-hygge">
-  Primary Button
-</button>
-
-{/* Secondary */}
-<button className="px-6 py-3 bg-candi-secondary text-white rounded-soft font-medium hover:opacity-90 transition-opacity shadow-hygge">
-  Secondary Button
-</button>
-
-{/* Outline */}
-<button className="px-6 py-3 border-2 border-candi-border-strong text-candi-text rounded-soft font-medium hover:bg-candi-surface transition-colors">
-  Outline Button
-</button>
-
-{/* Ghost */}
-<button className="px-6 py-3 text-candi-text rounded-soft font-medium hover:bg-candi-surface transition-colors">
-  Ghost Button
-</button>
-
-{/* Success */}
-<button className="px-6 py-3 bg-candi-success text-white rounded-soft font-medium hover:opacity-90 transition-opacity shadow-hygge">
-  Success
-</button>
-
-{/* Error */}
-<button className="px-6 py-3 bg-candi-error text-white rounded-soft font-medium hover:opacity-90 transition-opacity shadow-hygge">
-  Error
-</button>`}</code>
-          </pre>
-        )}
       </div>
-    </div>
-  );
+    );
+  };
 
   const Card = () => (
     <div className="mb-12">
@@ -260,7 +259,7 @@ export default function Components() {
         </p>
       </div>
 
-      <Button />
+      <ButtonSection />
       <Card />
       <Input />
       <Badge />
@@ -270,19 +269,19 @@ export default function Components() {
         <h2 className="text-2xl font-bold mb-4">Alerts</h2>
         <div className="bg-candi-surface border border-candi-border rounded-softer p-8">
           <div className="space-y-4">
-            <div className="p-4 bg-candi-accent-subtle border border-candi-accent rounded-soft">
+            <div className="p-4 bg-candi-info-subtle border border-candi-info rounded-soft">
               <div className="flex gap-3">
-                <svg className="w-5 h-5 text-candi-accent flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-candi-info flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <div>
-                  <h4 className="font-semibold text-candi-accent mb-1">Information</h4>
+                  <h4 className="font-semibold text-candi-info mb-1">Information</h4>
                   <p className="text-sm text-candi-text">This is an informational alert message.</p>
                 </div>
               </div>
             </div>
 
-            <div className="p-4 rounded-soft" style={{ backgroundColor: 'oklch(85% 0.04 145)', borderColor: 'oklch(52% 0.08 145)', borderWidth: '1px' }}>
+            <div className="p-4 bg-candi-success-subtle border border-candi-success rounded-soft">
               <div className="flex gap-3">
                 <svg className="w-5 h-5 text-candi-success flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -294,7 +293,7 @@ export default function Components() {
               </div>
             </div>
 
-            <div className="p-4 rounded-soft" style={{ backgroundColor: 'oklch(95% 0.04 70)', borderColor: 'oklch(68% 0.13 70)', borderWidth: '1px' }}>
+            <div className="p-4 bg-candi-warning-subtle border border-candi-warning rounded-soft">
               <div className="flex gap-3">
                 <svg className="w-5 h-5 text-candi-warning flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
@@ -306,7 +305,7 @@ export default function Components() {
               </div>
             </div>
 
-            <div className="p-4 rounded-soft" style={{ backgroundColor: 'oklch(95% 0.04 25)', borderColor: 'oklch(58% 0.12 25)', borderWidth: '1px' }}>
+            <div className="p-4 bg-candi-error-subtle border border-candi-error rounded-soft">
               <div className="flex gap-3">
                 <svg className="w-5 h-5 text-candi-error flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />

@@ -53,13 +53,24 @@ Maintaining high accessibility is a priority in the Candi design system. When cu
 - **Subtle / Muted Text**: These tokens (`text-subtle`, `text-muted`) may fall below 4.5:1 for decorative purposes but should remain legible.
 - **UI Components & Accents**: For focus rings, buttons, and state indicators (`accent`, `success`, `error`), we target a **3.0:1** ratio. This meets the WCAG requirement for user interface components and graphical objects.
 
-You can verify your custom colors by running the automated test suite:
+### Verifying Color Accuracy
+
+Run the automated test suite to ensure your changes adhere to Hygge and Lagom principles:
 
 ```bash
 npm run test:color
 ```
 
-## Tailwind Usage
+This validates:
+
+- OKLCH format and value ranges
+- Contrast ratios against WCAG standards
+- Semantic completeness
+- Parity between light and dark modes
+
+For advanced modifications, see [ARCHITECTURE.md](../ARCHITECTURE.md) which details the derivation logic for subtle variants.
+
+### Tailwind Usage
 
 Variables are automatically mapped to Tailwind utilities:
 
@@ -67,7 +78,7 @@ Variables are automatically mapped to Tailwind utilities:
 <button className="bg-candi-accent">Uses custom color</button>
 ```
 
-## Resources
+### Resources
 
 - [oklch.com](https://oklch.com) - Color picker
 - [Huetone](https://huetone.ardov.me) - Palette generator

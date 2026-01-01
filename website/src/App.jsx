@@ -136,7 +136,7 @@ function App() {
             </div>
           </div>
           <div className="mt-8 pt-8 border-t border-candi-border text-center text-candi-muted text-sm">
-            <p>MIT License © 2024 wtasg</p>
+            <p>MIT License © {new Date().getFullYear()} wtasg</p>
           </div>
         </div>
       </footer>

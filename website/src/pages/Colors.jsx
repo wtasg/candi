@@ -10,9 +10,23 @@ export default function Colors() {
 
   const categories = [
     {
-      title: 'Base Palette',
-      description: 'Core colors that define the application structure and typography.',
-      keys: ['bg', 'surface', 'elevated', 'text', 'textSubtle', 'textMuted', 'border', 'borderStrong', 'accent', 'accentSubtle', 'secondary', 'secondarySubtle', 'link', 'disabled', 'success', 'warning', 'error']
+      title: 'Semantic Anchors',
+      description: 'The core hand-tuned colors that drive the system. All other semantic colors are derived from these.',
+      keys: ['accent', 'secondary', 'success', 'warning', 'error', 'info']
+    },
+    {
+      title: 'Derived Variants',
+      description: 'Programmatically generated variants (Subtle, Soft, Strong, Outline) enforcing strict offsets and gamut correction.',
+      keys: [
+        'accentSubtle', 'accentSoft', 'accentStrong', 'accentOutline', 'onAccent',
+        'secondarySubtle', 'secondarySoft', 'secondaryStrong', 'secondaryOutline', 'onSecondary',
+        'warningSubtle', 'warningSoft', 'warningStrong', 'warningOutline', 'onWarning'
+      ]
+    },
+    {
+      title: 'Structural Neutrals',
+      description: 'Hand-tuned neutral tones for backgrounds, surfaces, and text.',
+      keys: ['bg', 'surface', 'elevated', 'text', 'textSubtle', 'textMuted', 'border', 'borderStrong', 'divider']
     },
     {
       title: 'Extended Syntax',
@@ -42,7 +56,7 @@ export default function Colors() {
               : 'bg-candi-surface text-candi-text hover:bg-candi-border'
               }`}
           >
-            Hygge (Light)
+            Light Mode
           </button>
           <button
             onClick={() => setMode('dark')}
@@ -51,7 +65,7 @@ export default function Colors() {
               : 'bg-candi-surface text-candi-text hover:bg-candi-border'
               }`}
           >
-            Lagom (Dark)
+            Dark Mode
           </button>
         </div>
       </div>
@@ -235,6 +249,33 @@ export default function Colors() {
             <div className="bg-candi-elevated p-4 rounded-soft">
               <h3 className="font-semibold mb-2">Hue (H)</h3>
               <p className="text-sm">Color type as an angle from 0° to 360°</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Naming Contract */}
+      <div className="bg-candi-surface border border-candi-border rounded-softer p-8 mt-12">
+        <h2 className="text-2xl font-bold mb-4">Naming Contract</h2>
+        <div className="space-y-4 text-candi-subtle">
+          <p>
+            Candi enforces a strict naming convention to distinguish between internal logic and external usage:
+          </p>
+          <div className="grid md:grid-cols-2 gap-6 mt-4">
+            <div className="bg-candi-elevated p-4 rounded-soft">
+              <h3 className="font-semibold mb-2">Internal (JS/JSON)</h3>
+              <code className="text-candi-accent font-mono">camelCase</code>
+              <p className="text-sm mt-2">Used in generated JS/JSON files.</p>
+              <div className="mt-2 text-xs font-mono text-candi-muted">
+                warningSubtle, onAccent
+              </div>
+            </div>
+            <div className="bg-candi-elevated p-4 rounded-soft">
+              <h3 className="font-semibold mb-2">External (CSS)</h3>
+              <code className="text-candi-secondary font-mono">kebab-case</code>
+              <p className="text-sm mt-2">Used in CSS variables and classes.</p>
+              <div className="mt-2 text-xs font-mono text-candi-muted">
+                --candi-warning-subtle, .text-candi-on-accent
+              </div>
             </div>
           </div>
         </div>
