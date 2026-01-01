@@ -1,7 +1,7 @@
 name: showcase_flutter
 description: 'A showcase of Flutter components using the Candi color palette.'
 publish_to: 'none'
-version: 0.1.0
+version: 0.0.26
 
 environment:
   sdk: ^3.10.4

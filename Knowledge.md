@@ -392,6 +392,49 @@ Finding the balance between grayness and over-saturation.
 
 ---
 
+## Flutter Showcase Application
+
+**Problem**: Visualizing the entire design system across different components and color modes is difficult during development.
+
+**Solution**: A dedicated `showcase_flutter/` application that:
+
+1. **Imports by path**: Uses `candi_colors: { path: ../flutter }` for immediate feedback.
+2. **Gallery View**: Displays every semantic token applied to real Material 3 widgets.
+3. **Playground View**: Interactive simulations for:
+   - **Accessibility**: Real-time contrast checks.
+   - **Color Vision**: Protanopia, Deuteranopia, Tritanopia, and Achromatopsia simulations.
+   - **Light/Dark Switching**: Global theme toggle.
+
+This app serves as both a development playground and a living documentation.
+
+---
+
+## Terminal Color Synchronization
+
+**Problem**: Terminal colors were redundantly defined in multiple places, leading to drift.
+
+**Solution**: Unified terminal color definitions in `src/data/colors.js` and removed manual overrides in:
+
+- `scripts/sync-colors.js` (removed hardcoded terminal variables)
+- `vscode/` theme generation
+- `vim/` template files
+
+**Result**: Terminal colors now strictly follow the single source of truth and are guaranteed to match the rest of the UI on all platforms.
+
+---
+
+## Token Integrity & Linting
+
+**Problem**: Manual edits to `src/data/colors.js` could introduce invalid OKLCH strings or missing tokens.
+
+**Solution**:
+
+1. **JSON Schema**: Created a formal schema in `schemas/tokens.schema.json`.
+2. **Automated Linting**: `scripts/lint-tokens.js` validates the live JS object against the schema on every build.
+3. **CI Integration**: `npm run lint:all` catches errors before they propagate to platform builds.
+
+---
+
 ## Dependencies & Security
 
 ### Audit Commands

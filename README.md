@@ -19,6 +19,7 @@ Candi provides a single source of truth for colors using the OKLCH color space, 
 | **KDE Plasma** | Full | Color schemes for KDE 4, 5 & 6 |
 | **GNOME** | Full | GTK3 & GTK4 themes for X11 and Wayland |
 | **Obsidian** | Full | Light & Dark themes with 60+ CSS variables |
+| **Showcase App** | Full | Interactive Flutter gallery & playground |
 
 ---
 
@@ -47,7 +48,8 @@ Platform Builds (all consume colors.js & derivation engine):
 ├── build-vim.js     → vim/colors/*.vim
 ├── build-kde.js     → kde/v4,v5/*.colors
 ├── build-gnome.js   → gnome/gtk-*/*.css
-└── build-obsidian.js → obsidian/theme.css
+├── build-obsidian.js → obsidian/theme.css
+└── build-showcase.js → showcase_flutter/ (Vite/Web build)
 ```
 
 ### OKLCH Color Space
@@ -88,7 +90,8 @@ candi/
 ├── vim/                    # Vim colorschemes
 ├── kde/                    # KDE Plasma color schemes
 ├── gnome/                  # GTK3/GTK4 themes
-└── obsidian/               # Obsidian theme
+├── obsidian/               # Obsidian theme
+└── showcase_flutter/       # Flutter showcase application
 ```
 
 ---
@@ -107,6 +110,7 @@ candi/
 | `npm run build:kde` | Build KDE color schemes only |
 | `npm run build:gnome` | Build GNOME/GTK themes only |
 | `npm run build:obsidian` | Build Obsidian theme only |
+| `npm run build:showcase` | Build Flutter showcase app only |
 
 ### Test
 
@@ -121,6 +125,7 @@ candi/
 | `npm run test:kde` | Test KDE color schemes |
 | `npm run test:gnome` | Test GNOME themes |
 | `npm run test:obsidian` | Test Obsidian theme |
+| `npm run test:showcase` | Test Flutter showcase app |
 
 ### Package & Publish
 

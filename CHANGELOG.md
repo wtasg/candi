@@ -2,6 +2,23 @@
 
 All notable changes to the Candi Design System will be documented in this file.
 
+## 0.0.26
+
+### Added
+
+- **Showcase App**: New Flutter-based interactive showcase application in `showcase_flutter/`.
+  - Comprehensive gallery of all color-mode-aware components.
+  - Interactive playground for accessibility and color vision simulation.
+  - Real-time theme switching (Light/Dark).
+- **Regression Testing**: Added platform-specific tests for KDE, Flutter, and VS Code.
+- **Validation**: JSON Schema for `src/data/colors.js` to ensure token integrity.
+- **Linting**: New `npm run lint:tokens` and `npm run lint:all`.
+
+### Changed
+
+- **Terminal Colors**: Refactored terminal color definitions to eliminate redundancy and ensure parity across all platforms.
+- **Documentation**: Updated architecture diagrams and platform guides.
+
 ## 0.0.25
 
 ### Added
@@ -12,6 +29,7 @@ All notable changes to the Candi Design System will be documented in this file.
 
 ### Changed
 
+- **Light Mode**: Adjusted editor background to a "warm white" (`oklch(96% 0.012 85)`) for enhanced comfort.
 - **Dark Mode**: Shifted neutral palette to Hue 85 for system-wide warmth (Hygge).
 - **Subtle Variants**: Increased chroma preservation to 80% to maintain chromatic richness (Lagom).
 - **VS Code Light**: Muted editor background by swapping `bg` and `surface` token roles.
@@ -20,6 +38,7 @@ All notable changes to the Candi Design System will be documented in this file.
 ### Fixed
 
 - Updated test suites and reference values to align with warm neutral architecture.
+- Resolved all known parity issues across platform build scripts.
 
 ## 0.0.24
 

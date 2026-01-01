@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.0.26
+
+- **Terminal Parity**: Synchronized terminal color definitions with the core design system.
+- **Regression Guards**: Integrated with platform-specific test suites.
+
+## 0.0.25
+
+- **Warm Neutral Architecture**: Shifted neutral palette to Hue 85 for system-wide warmth (Hygge).
+- **Subtle Richness**: Subtle variants now preserve 80% of chroma (Lagom).
+- **Synchronization**: Complete parity with the programmatic color derivation engine.
+
 ## 0.0.24
 
 ### Added

@@ -11,6 +11,7 @@ This document describes the publishing process for each Candi Design System prod
 - [KDE Plasma Themes](#kde-plasma-themes)
 - [GNOME Themes](#gnome-themes)
 - [Obsidian Theme](#obsidian-theme)
+- [Showcase App](#showcase-app)
 - [Website (GitHub Pages)](#website-github-pages)
 
 ---
@@ -430,6 +431,27 @@ Users can install directly from Obsidian:
 
 ---
 
+## Showcase App
+
+Flutter-based interactive showcase application.
+
+### Prerequisites
+
+- Flutter SDK
+
+### Building
+
+```bash
+cd showcase_flutter
+flutter build web
+```
+
+### Deployment
+
+The showcase app is currently deployed as part of the documentation website or used as a standalone demonstration tool.
+
+---
+
 ## Website (GitHub Pages)
 
 Documentation and demo website.
@@ -483,6 +505,7 @@ Use this checklist for a complete release:
 - [ ] Publish Flutter package
 - [ ] Publish VSCode extension
 - [ ] Create GitHub releases for Vim, KDE, GNOME, Obsidian
+- [ ] Build showcase app (`npm run build:showcase`)
 - [ ] Deploy website
 - [ ] Announce release (Twitter, Reddit, etc.)
 
