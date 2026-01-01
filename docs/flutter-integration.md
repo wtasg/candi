@@ -1,4 +1,4 @@
-# Flutter Integration
+# Flutter Integration Guide
 
 The Candi Design System provides a Flutter package for using OKLCH-based colors in cross-platform applications.
 

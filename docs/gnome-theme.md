@@ -1,16 +1,16 @@
-# Candi Theme for GNOME
+# GNOME Theme
 
 This directory contains GTK3 and GTK4 theme files for the Candi design system, compatible with both X11 and Wayland.
 
 ## Overview
 
-The Candi GNOME theme provides a cohesive visual experience across GTK applications, featuring:
+The Candi GNOME theme provides a cohesive visual experience across GTK applications:
 
-- **Nordic Design**: Hygge warmth and Lagom balance
-- **OKLCH Color Space**: Perceptually uniform colors converted to CSS
-- **GTK3 & GTK4**: Full support for modern GNOME applications
-- **Light & Dark Variants**: Automatic theme switching support
-- **X11 & Wayland**: Compatible with both display servers
+- Nordic Design: Hygge warmth and Lagom balance.
+- OKLCH Color Space: Perceptually uniform colors converted to CSS.
+- GTK3 and GTK4: Comprehensive support for modern GNOME applications.
+- Color Modes: Automatic switching between light and dark variants.
+- Platform Support: Verified compatibility with X11 and Wayland.
 
 ## Installation
 
@@ -144,10 +144,10 @@ To customize the theme:
 
 ## Compatibility
 
-- **GTK3**: 3.20 and later
-- **GTK4**: 4.0 and later
-- **GNOME Shell**: All versions (theme affects applications only, not Shell itself)
-- **Display Servers**: X11 and Wayland
+- GTK3: 3.20 and later
+- GTK4: 4.0 and later
+- GNOME Shell: All versions (theme affects applications only, not Shell itself)
+- Display Servers: X11 and Wayland
 
 ## Troubleshooting
 
@@ -179,9 +179,9 @@ To customize the theme:
 
 Candi also provides themes for:
 
-- **KDE Plasma**: See [kde-theme.md](kde-theme.md)
-- **VS Code**: See [vscode-theme.md](vscode-theme.md)
-- **Vim**: See [vim-theme.md](vim-theme.md)
-- **Flutter**: See [flutter-integration.md](flutter-integration.md)
+- KDE Plasma: See [kde-theme.md](kde-theme.md)
+- VS Code: See [vscode-theme.md](vscode-theme.md)
+- Vim: See [vim-theme.md](vim-theme.md)
+- Flutter: See [flutter-integration.md](flutter-integration.md)
 
 All themes share the same OKLCH color palette for a consistent experience across platforms.

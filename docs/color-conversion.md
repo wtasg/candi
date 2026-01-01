@@ -4,15 +4,15 @@ This document explains the color conversion system used in the Candi design syst
 
 ## Why OKLCH?
 
-Candi uses the **OKLCH color space** for all color definitions instead of traditional RGB or HSL. This choice provides significant benefits:
+Candi uses the OKLCH color space for all color definitions instead of traditional RGB or HSL. This choice provides significant benefits:
 
 ### Perceptual Uniformity
 
 OKLCH is based on OKLab, a perceptually uniform color space. This means:
 
-- Equal numerical changes produce visually equal changes in color
-- A lightness change of 10% looks the same across all hues
-- Chroma adjustments are consistent regardless of lightness or hue
+- Equal numerical changes produce visually equal changes in color.
+- A lightness change of 10% looks the same across all hues.
+- Chroma adjustments are consistent regardless of lightness or hue.
 
 ### Design Benefits
 
@@ -37,9 +37,9 @@ Generate harmonious color scales by adjusting only lightness:
 
 ### Wide Gamut Support
 
-OKLCH can represent colors beyond sRGB, making themes future-proof for wide-gamut displays.
+OKLCH can represent colors beyond sRGB, making themes compatible with wide-gamut displays.
 
-**Reference**: [A Perceptual Color Space for Image Processing](https://bottosson.github.io/posts/oklab/) by Björn Ottosson
+Reference: [A Perceptual Color Space for Image Processing](https://bottosson.github.io/posts/oklab/) by Björn Ottosson.
 
 ---
 
@@ -250,9 +250,9 @@ r = Math.min(1, Math.max(0, gamma(r)));
 
 Keep chroma values conservative:
 
-- **Low lightness** (0-30%): chroma ≤ 0.1
-- **Mid lightness** (30-70%): chroma ≤ 0.15
-- **High lightness** (70-100%): chroma ≤ 0.1
+- Low lightness (0-30%): chroma ≤ 0.1
+- Mid lightness (30-70%): chroma ≤ 0.15
+- High lightness (70-100%): chroma ≤ 0.1
 
 Candi's color palette is designed to stay within sRGB gamut.
 

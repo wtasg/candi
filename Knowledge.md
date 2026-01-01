@@ -6,11 +6,11 @@ Lessons learned and gotchas encountered during development.
 
 ## Package.json Exports Order
 
-**Problem**: Vite shows warning: "The condition 'types' here will never be used as it comes after both 'import' and 'require'"
+Vite might show a warning: "The condition 'types' here will never be used as it comes after both 'import' and 'require'".
 
-**Cause**: In the `exports` field, conditions are evaluated in order. If `types` comes after `import`/`require`, TypeScript won't see it.
+In the `exports` field, conditions are evaluated in order. If `types` comes after `import` or `require`, TypeScript will not detect it.
 
-**Solution**: Always put `types` first:
+Solution: Place `types` first:
 
 ```json
 "exports": {
@@ -38,14 +38,14 @@ Not:
 
 ## Tailwind CSS v4 Migration
 
-**Key changes from v3 to v4**:
+Key changes from v3 to v4:
 
-1. **PostCSS plugin moved**: Use `@tailwindcss/postcss` instead of `tailwindcss`
-2. **Vite plugin available**: `@tailwindcss/vite` for better integration
-3. **CSS-first config**: Use `@theme` block in CSS instead of `tailwind.config.js`
-4. **Import syntax**: Replace `@tailwind base/components/utilities` with `@import "tailwindcss"`
+1. PostCSS plugin moved: Use `@tailwindcss/postcss` instead of `tailwindcss`.
+2. Vite plugin available: `@tailwindcss/vite` for better integration.
+3. CSS-first configuration: Use `@theme` block in CSS instead of `tailwind.config.js`.
+4. Import syntax: Replace `@tailwind base/components/utilities` with `@import "tailwindcss"`.
 
-**Example v4 setup**:
+Example v4 setup:
 
 ```css
 @import "tailwindcss";
@@ -60,15 +60,15 @@ Not:
 
 ## Monorepo CSS Imports
 
-**Problem**: Website in `website/` needs to import theme from parent `dist/`
+The website in `website/` must import the theme from the parent `dist/` directory.
 
-**Solution**: Use relative path in CSS:
+Solution: Use a relative path in CSS:
 
 ```css
 @import "../../dist/v4/theme.css";
 ```
 
-Add `predev`/`prebuild` scripts to auto-build parent:
+Add `predev` or `prebuild` scripts to automatically build the parent:
 
 ```json
 "scripts": {
@@ -77,81 +77,74 @@ Add `predev`/`prebuild` scripts to auto-build parent:
 }
 ```
 
-This avoids `npm link` complexity and works in CI.
+This avoids `npm link` complexity and ensures compatibility with CI environments.
 
 ---
 
 ## GitHub Pages SPA Routing
 
-**Problem**: 404 errors on page refresh in Single Page Applications
+Single Page Applications (SPAs) on GitHub Pages may encounter 404 errors on page refresh.
 
-**GitHub Pages**: Does NOT support `_redirects` files (that's Netlify-only)
+Unlike Netlify, GitHub Pages does not support `_redirects` files.
 
-**Solution for GitHub Pages**: Use `404.html` with JavaScript redirect (see [spa-github-pages](https://github.com/rafgraph/spa-github-pages))
+Solution: Use a 404.html file with a JavaScript redirect.
 
 ### pathSegmentsToKeep Configuration
 
-The `pathSegmentsToKeep` variable controls how many path segments are preserved during the redirect:
+The `pathSegmentsToKeep` variable determines how many path segments are preserved during a redirect.
 
 | Deployment Type | Base Path | pathSegmentsToKeep |
-| ----------------- | ----------- | ------------------- |
-| Subdirectory (`username.github.io/repo/`) | `/repo/` | `1` |
-| Custom domain (`example.com/`) | `/` | `0` |
-| Root user site (`username.github.io/`) | `/` | `0` |
+| :--- | :--- | :--- |
+| Subdirectory (`username.github.io/repo/`) | `/repo/` | 1 |
+| Custom domain (`example.com/`) | `/` | 0 |
+| Root user site (`username.github.io/`) | `/` | 0 |
 
-**Example**: For `https://wtasg.github.io/candi/colors`:
+Example: For `https://wtasg.github.io/candi/colors`:
 
-- With `pathSegmentsToKeep = 1`: Preserves `/candi/`, redirects to `/candi/?/colors`
-- With `pathSegmentsToKeep = 0`: Would incorrectly lose the `/candi/` segment
+- With `pathSegmentsToKeep = 1`: Preserves `/candi/`, redirects to `/candi/?/colors`.
+- With `pathSegmentsToKeep = 0`: Loses the `/candi/` segment.
 
-**Both must match**: If you change `base` in `vite.config.js`, you must also change `pathSegmentsToKeep` in `404.html`.
+The `base` value in `vite.config.js` must match `pathSegmentsToKeep` in `404.html`.
 
 ---
 
 ## OKLab/OKLCH Color Conversion
 
-**Problem**: OKLCH to RGB conversion produces incorrect colors for some values
+OKLCH to RGB conversion may produce incorrect colors for some values if LMS values are clamped too early.
 
-**Cause**: Clamping negative LMS values to zero before cubing:
+The OKLab color space uses LMS (cone response) values that can be negative for out-of-gamut colors. Clamping negative values before cubing corrupts the conversion.
 
-```javascript
-// ✗ Wrong - loses negative values
-const L = Math.pow(Math.max(0, l_), 3);
-```
-
-**Why it matters**: The OKLab color space uses LMS (cone response) values that can be negative for out-of-gamut or mathematically extended colors. Clamping before cubing corrupts the conversion.
-
-**Solution**: Use signed cube (preserves sign through multiplication):
+Solution: Use a signed cube to preserve the sign through multiplication:
 
 ```javascript
-// ✓ Correct - preserves sign
-const L = l_ * l_ * l_;  // negative³ = negative
+// Correct - preserves sign
+const L = l_ * l_ * l_;
 const M = m_ * m_ * m_;
 const S = s_ * s_ * s_;
 ```
 
-Then clamp at the **final RGB output stage**:
+Clamp at the final RGB output stage:
 
 ```javascript
 r = Math.round(Math.min(1, Math.max(0, gamma(r))) * 255);
 ```
 
-**Reference**: [bottosson.github.io/posts/oklab](https://bottosson.github.io/posts/oklab/)
+Reference: [OKLab post by Björn Ottosson](https://bottosson.github.io/posts/oklab/)
 
 ---
 
 ## VS Code VSIX Packaging
 
-**Problem**: `.vsix` package size is unexpectedly large or contains unwanted files (like `node_modules`).
+Problem: `.vsix` package size is unexpectedly large or contains unwanted files (like `node_modules`).
 
-**Cause**: `vsce package` includes everything by default unless excluded.
+Cause: `vsce package` includes everything by default unless excluded.
 
-**Solution**:
+Solution:
 
 1. Add `.vscodeignore` to exclude files.
 2. OR explicit use `"files"` array in `package.json` to include only necessary files.
 
-**Important**: `vsce` will warn if neither exists.
+Important: `vsce` will warn if neither exists.
 
 ```json
 // package.json in extension folder
@@ -166,83 +159,52 @@ r = Math.round(Math.min(1, Math.max(0, gamma(r))) * 255);
 
 ## Unicode Symbols for Console Output
 
-**Problem**: Emojis (✅ ❌) can render inconsistently across terminals and fonts.
+Emojis can render inconsistently across different terminals and fonts.
 
-**Solution**: Use Unicode Dingbat symbols instead of emojis for pass/fail indicators:
+Solution: Use Unicode Dingbat symbols for more consistent pass/fail indicators.
 
 | Symbol | Code | Name | Usage |
-| -------- | ------ | ------ | ------- |
-| ✓ | U+2713 | Check Mark | Pass/success |
-| ✗ | U+2717 | Ballot X | Fail/error |
-| ✘ | U+2718 | Heavy Ballot X | Fail (bold) |
+| :--- | :--- | :--- | :--- |
+| ✓ | U+2713 | Check Mark | Success |
+| ✗ | U+2717 | Ballot X | Error |
+| ✘ | U+2718 | Heavy Ballot X | Critical Error |
 
-**Why these work better**:
-
-- Part of Unicode since 1.1 (1993), not emoji
-- Render correctly in monospace fonts
-- No color/emoji variation issues
-- Work in all terminals
-
-**Example usage**:
-
-```javascript
-const status = passed ? '[✓]' : '[✗]';
-console.log(`${status} Test name`);
-```
+These symbols render more reliably in monospace fonts and avoid variation issues common with emojis.
 
 ---
 
 ## Color Pipeline Architecture
 
-The color system uses a single source of truth with generated CSS outputs.
+The color system is governed by a Single Source of Truth (SSOT) with two distinct responsibilities following the Single Responsibility Principle (SRP).
 
 ```text
-                    npm run build
-                         │
-                         ▼
-        ┌────────────────────────────────────┐
-        │     src/data/colors.js             │
-        │     (Authoritative Anchors)        │
-        └────────────────────────────────────┘
-                         │
-                         ▼
-        ┌────────────────────────────────────┐
-        │   scripts/gen-oklch-primitives.js  │
-        │   (Lagom Derivation Engine)        │
-        └────────────────────────────────────┘
-                         │
-                         ▼
-        ┌────────────────────────────────────┐
-        │     scripts/sync-colors.js         │
-        │     (Sync & Export Logic)          │
-        └────────────────────────────────────┘
-                         │
-          ┌──────────────┴──────────────┐
-          ▼                             ▼
-  src/css/base.css              src/v4/theme.css
-  (CSS Variables)               (Tailwind v4 theme)
-          │                             │
-          ▼                             ▼
-  dist/base.css                 dist/v4/theme.css
-  (Published)                   (Published)
+Derivation Engine (scripts/gen-oklch-primitives.js)
+    │ (Rules & Anchors)
+    ▼
+Palette Assembly (src/data/colors.js)
+    │ (Neutrals & Composition)
+    ▼
+Synchronization (scripts/sync-colors.js)
+    │ (Export Logic)
+    ▼
+Generated Outputs (dist/base.css, dist/v4/theme.css, etc.)
 ```
 
-**Key points**:
+Key Principles:
 
-- Edit only `src/data/colors.js` to change colors
-- Run `npm run build` to regenerate CSS files
-- Both `base.css` and `theme.css` have "do not edit" warnings
-- Platform builds (VSCode, Vim, KDE, etc.) consume `colors.js` directly
+- Edit `src/data/colors.js` for color changes.
+- Run `npm run build` to regenerate CSS files.
+- Platform builds consume `colors.js` directly.
 
 ---
 
 ## Publishing to npm (GitHub Packages)
 
-The npm package is published to GitHub Packages, not npmjs.com.
+The npm package is published to GitHub Packages.
 
 ### Configuration
 
-`package.json` must include:
+The `package.json` includes the following `publishConfig`:
 
 ```json
 {
@@ -255,17 +217,10 @@ The npm package is published to GitHub Packages, not npmjs.com.
 
 ### Authentication
 
-Create a GitHub PAT with `write:packages` scope, then:
+A GitHub PAT with `write:packages` scope is required for authentication.
 
 ```bash
 npm login --scope=@wtasg --auth-type=legacy --registry=https://npm.pkg.github.com
-```
-
-Or add to `~/.npmrc`:
-
-```text
-//npm.pkg.github.com/:_authToken=YOUR_GITHUB_PAT
-@wtasg:registry=https://npm.pkg.github.com
 ```
 
 ### Publishing
@@ -275,7 +230,7 @@ npm run build:all
 npm publish
 ```
 
-The `prepublishOnly` script runs `build:all` automatically.
+The `prepublishOnly` script automates the `build:all` step.
 
 ---
 
@@ -283,17 +238,17 @@ The `prepublishOnly` script runs `build:all` automatically.
 
 ### Prerequisites
 
-1. Google account for pub.dev authentication
-2. Complete `pubspec.yaml` with description, homepage, repository
-3. LICENSE, README.md, and CHANGELOG.md in `flutter/`
+1. Google account authentication for pub.dev.
+2. Complete `pubspec.yaml` with description, homepage, and repository.
+3. Relevant documentation (LICENSE, README.md, CHANGELOG.md) in the `flutter/` directory.
 
 ### Commands
 
 ```bash
-# Validate without publishing
+# Dry run validation
 npm run flutter:pub-publish-dry-run
 
-# Authenticate (opens browser)
+# Authentication
 dart pub login
 
 # Publish
@@ -302,9 +257,8 @@ npm run flutter:pub-publish
 
 ### Important Notes
 
-- Package versions are immutable once published
-- Package name `candi_colors` follows pub.dev conventions (lowercase, underscores)
-- After publishing, transfer to a verified publisher at pub.dev/packages/candi_colors/admin
+- Versions are immutable once published.
+- The name `candi_colors` follows pub.dev naming conventions.
 
 ---
 
@@ -341,16 +295,12 @@ Without this, `vsce` would include everything, inflating package size.
 
 ## Creating Release Artifacts
 
-The `npm run artifact` command packages all platforms into distributable zip files:
-
-```bash
-npm run artifact
-```
+The `npm run artifact` command packages all platforms into distributable zip files.
 
 ### Generated Files
 
 | Artifact | Contents |
-| ---------- | ---------- |
+| :--- | :--- |
 | `theme_{version}.zip` | CSS & JS distributions |
 | `docs_{version}.zip` | Documentation website |
 | `vim_{version}.zip` | Vim colorschemes |
@@ -361,7 +311,7 @@ npm run artifact
 
 ### Version Bumping
 
-To update version across all packages:
+To update the version across all packages:
 
 ```bash
 ./scripts/package-bump.sh 0.0.13
@@ -381,110 +331,74 @@ This updates:
 
 Creating a cozy, inviting atmosphere through warm color temperatures.
 
-- **Implementation**: Neutral palette uses Hue 85 (warm) across all themes. Previous cool-blue (Hue 275) variants have been phased out.
+- Implementation: Neutral palette uses Hue 85 (warm) across all themes. Previous cool-blue (Hue 275) variants have been phased out.
 
 ### Lagom (Balance)
 
 Finding the balance between grayness and over-saturation.
 
-- **Implementation**: Subtle variants preserve 80% of parent chroma to maintain chromatic richness.
-- **Logic**: Defined in `scripts/gen-oklch-primitives.js`.
+- Implementation: Subtle variants preserve 80% of parent chroma to maintain chromatic richness.
+- Logic: Defined in `scripts/gen-oklch-primitives.js`.
 
 ---
 
 ## Flutter Showcase Application
 
-**Problem**: Visualizing the entire design system across different components and color modes is difficult during development.
+Visualizing the design system across various components and color modes is facilitated by the `showcase_flutter/` application.
 
-**Solution**: A dedicated `showcase_flutter/` application that:
+1. Direct Integration: Uses path dependencies for immediate feedback.
+2. Gallery View: Displays semantic tokens applied to Material 3 widgets.
+3. Playground View: Supports interactive simulations for accessibility and color vision.
 
-1. **Imports by path**: Uses `candi_colors: { path: ../flutter }` for immediate feedback.
-2. **Gallery View**: Displays every semantic token applied to real Material 3 widgets.
-3. **Playground View**: Interactive simulations for:
-   - **Accessibility**: Real-time contrast checks.
-   - **Color Vision**: Protanopia, Deuteranopia, Tritanopia, and Achromatopsia simulations.
-   - **Light/Dark Switching**: Global theme toggle.
-
-This app serves as both a development playground and a living documentation.
+This application serves as a development environment and living documentation.
 
 ---
 
 ## Terminal Color Synchronization
 
-**Problem**: Terminal colors were redundantly defined in multiple places, leading to drift.
+Terminal colors were previously redundantly defined, leading to potential inconsistencies.
 
-**Solution**: Unified terminal color definitions in `src/data/colors.js` and removed manual overrides in:
+Solution: Unified terminal color definitions in `src/data/colors.js` and removed manual overrides in:
 
-- `scripts/sync-colors.js` (removed hardcoded terminal variables)
+- `scripts/sync-colors.js`
 - `vscode/` theme generation
 - `vim/` template files
 
-**Result**: Terminal colors now strictly follow the single source of truth and are guaranteed to match the rest of the UI on all platforms.
+Result: Terminal colors follow the Single Source of Truth and match the UI across all platforms.
 
 ---
 
-## Token Integrity & Linting
+## Token Integrity and Linting
 
-**Problem**: Manual edits to `src/data/colors.js` could introduce invalid OKLCH strings or missing tokens.
+Ensuring token validity is automated through schema validation.
 
-**Solution**:
-
-1. **JSON Schema**: Created a formal schema in `schemas/tokens.schema.json`.
-2. **Automated Linting**: `scripts/lint-tokens.js` validates the live JS object against the schema on every build.
-3. **CI Integration**: `npm run lint:all` catches errors before they propagate to platform builds.
+1. JSON Schema: Defined in `schemas/tokens.schema.json`.
+2. Automated Linting: `scripts/lint-tokens.js` validates the Palette Assembly.
+3. CI Integration: `npm run lint:all` catches structural errors before they propagate.
 
 ---
 
-## Dependencies & Security
+## Dependencies and Security
 
-### Audit Commands
-
-Run these commands periodically to check for vulnerabilities and outdated packages:
+Perform periodic audits to ensure dependency health.
 
 ```bash
 # NPM security audit
 npm audit
 
-# Check for outdated npm packages
+# Outdated packages check
 npm outdated
 
-# Flutter/Dart outdated packages
+# Flutter/Dart dependencies
 cd showcase_flutter && flutter pub outdated
 ```
 
-### Current Status (January 2026)
-
-| Platform | Vulnerabilities | Outdated |
-| -------- | --------------- | -------- |
-| npm | 0 | Tailwind v4 available (major) |
-| Flutter (showcase) | 0 | Transitive deps only |
-
 ### Tailwind CSS Compatibility
 
-The project supports **both Tailwind v3 and v4** via peer dependencies:
+Candi supports both Tailwind v3 and v4 through peer dependencies.
 
-```json
-"peerDependencies": {
-  "tailwindcss": ">=3.0.0 || >=4.0.0"
-}
-```
-
-- **v3 users**: Use `require('@wtasnorg/candi')` with `tailwind.config.js`
-- **v4 users**: Use `@import "@wtasnorg/candi/v4"` in CSS
-
-See [Tailwind CSS v4 Migration](#tailwind-css-v4-migration) section above for upgrade guidance.
-
-### Updating Dependencies
-
-```bash
-# Update all npm dependencies to latest compatible versions
-npm update
-
-# Update Flutter dependencies
-cd flutter && flutter pub upgrade
-cd showcase_flutter && flutter pub upgrade
-```
+- v3: Use `require('@wtasnorg/candi')` in `tailwind.config.js`.
+- v4: Use `@import "@wtasnorg/candi/v4"` in CSS.
 
 > [!CAUTION]
-> Major version upgrades (like Tailwind v3 → v4) require manual review and testing.
-> Always run `npm run test:all` after updating dependencies.
+> Major upgrades require manual review. Always run the full test suite after updates.

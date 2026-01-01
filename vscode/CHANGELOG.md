@@ -8,21 +8,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.0.27] - 2026-01-01
 
 ### Changed
+
 - Synchronization release across all Candi platforms.
 
 ## [0.0.26] - 2026-01-01
 
 ### Added
 
-- **JSON Schema Validation**: Ensuring theme integrity via automated checks.
-- **Platform Tests**: Added regression tests for theme generation.
+- JSON Schema Validation: Ensuring theme integrity via automated checks.
+- Platform Tests: Added regression tests for theme generation.
 
 ### Changed
 
-- **Warm White Background**: Adjusted Light Theme background to `oklch(96% 0.012 85)` for enhanced comfort.
-- **Terminal Synchronization**: Unified terminal colors with the core design system for 100% parity.
-- **Hygge & Lagom Logic**: Implemented new derivation rules for all semantic tokens.
-- **Role Swap**: Swapped `bg` and `surface` in Light mode for better visual hierarchy.
+- Warm White Background: Adjusted Light Theme background to `oklch(96% 0.012 85)` for enhanced comfort.
+- Terminal Synchronization: Unified terminal colors with the core design system for 100% parity.
+- Hygge & Lagom Logic: Implemented new derivation rules for all semantic tokens.
+- Role Swap: Swapped `bg` and `surface` in Light mode for better visual hierarchy.
 
 ## [0.0.19] - 2025-12-26
 

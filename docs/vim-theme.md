@@ -4,9 +4,9 @@ Candi provides OKLCH-based colorschemes for terminal and GUI Vim.
 
 ## Installation
 
-### From Release Artifact (Recommended)
+### Release Artifacts
 
-Download `vim.zip` from the [latest release](https://github.com/wtasg/candi/releases) and extract:
+Download `vim.zip` from the latest GitHub release and extract:
 
 ```bash
 unzip vim.zip
@@ -32,7 +32,7 @@ cp vim/colors/*.vim ~/.vim/colors/
 
 ### Plugin Manager
 
-Using **vim-plug**:
+Using vim-plug:
 
 ```vim
 Plug 'wtasg/candi', { 'rtp': 'vim/' }

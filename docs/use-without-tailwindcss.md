@@ -1,14 +1,13 @@
 # Pure CSS Integration
 
-Use the Candi design system with standard CSS.
+Integrate the Candi design system using standard CSS variables.
 
 ## Installation
 
-### Option 1: npm
+### Package Manager
 
 > [!IMPORTANT]
-> This package is published to **GitHub Packages**. You must authenticate before installing.
-> See the [GitHub Packages Authentication Guide](../README.md#quick-setup-github-packages-authentication) for setup instructions.
+> The `@wtasnorg/candi` package is published to GitHub Packages. Authentication is required before installation.
 
 ```bash
 npm install @wtasnorg/candi
@@ -69,9 +68,9 @@ document.documentElement.classList.toggle('dark');
 
 The system includes pre-built classes:
 
-- **Cards**: `.candi-card`, `.candi-card-elevated`
-- **Buttons**: `.candi-btn-primary`, `.candi-btn-secondary`, `.candi-btn-ghost`
-- **Forms**: `.candi-input`, `.candi-label`, `.candi-input-group`
+- Cards: `.candi-card`, `.candi-card-elevated`
+- Buttons: `.candi-btn-primary`, `.candi-btn-secondary`, `.candi-btn-ghost`
+- Forms: `.candi-input`, `.candi-label`, `.candi-input-group`
 
 Example:
 
@@ -85,6 +84,6 @@ Example:
 
 ## Spacing & Radius
 
-- **Padding**: `.candi-p-cozy` (1.5rem), `.candi-p-relaxed` (2.5rem)
-- **Radius**: `.candi-rounded` (0.75rem), `.candi-rounded-lg` (1.0rem)
-- **Shadows**: `.candi-shadow`, `.candi-shadow-md`
+- Padding: `.candi-p-cozy` (1.5rem), `.candi-p-relaxed` (2.5rem)
+- Radius: `.candi-rounded` (0.75rem), `.candi-rounded-lg` (1.0rem)
+- Shadows: `.candi-shadow`, `.candi-shadow-md`

@@ -4,9 +4,9 @@ Candi provides color schemes for KDE Plasma desktop environments, supporting ver
 
 ## Installation
 
-### From Release Artifact (Recommended)
+### Release Artifacts
 
-1. Download `kde.zip` from the [latest release](https://github.com/wtasg/candi/releases)
+1. Download `kde.zip` from the latest GitHub release.
 
 2. Extract the archive:
 
@@ -16,13 +16,13 @@ Candi provides color schemes for KDE Plasma desktop environments, supporting ver
 
 3. Install based on your Plasma version:
 
-   **Plasma 5 or 6:**
+   Plasma 5 or 6:
 
    ```bash
    cp kde/v5/*.colors ~/.local/share/color-schemes/
    ```
 
-   **Plasma 4:**
+   Plasma 4:
 
    ```bash
    cp kde/v4/*.colors ~/.kde4/share/apps/color-schemes/
@@ -54,17 +54,17 @@ See [Using Release Artifacts](using-release-artifacts.md) for more installation 
 
 ## Applying the Theme
 
-1. Open **System Settings**
-2. Navigate to **Appearance → Colors**
-3. Select **Candi Light** or **Candi Dark** from the list
-4. Click **Apply**
+1. Open System Settings
+2. Navigate to Appearance → Colors
+3. Select Candi Light or Candi Dark from the list
+4. Click Apply
 
 The theme will be applied to all KDE applications and window decorations.
 
 ## Available Themes
 
-- **Candi Light** - Warm, soft light theme with hygge aesthetics
-- **Candi Dark** - Balanced dark theme with comfortable contrast
+- Candi Light - Warm, soft light theme with hygge aesthetics
+- Candi Dark - Balanced dark theme with comfortable contrast
 
 ## Color Scheme Structure
 
@@ -72,14 +72,14 @@ The `.colors` files define colors for:
 
 | Section | Elements |
 | :--- | :--- |
-| **Windows** | Backgrounds, borders, and chrome |
-| **Buttons** | All button states and controls |
-| **Selection** | Text selection and highlights |
-| **Views** | Lists, tables, and tree views |
-| **Tooltips** | Hover tooltips |
-| **Headers** | Title bars and headers |
-| **Complementary** | Sidebars and secondary areas |
-| **Window Manager** | Title bars and window decorations |
+| Windows | Backgrounds, borders, and chrome |
+| Buttons | All button states and controls |
+| Selection | Text selection and highlights |
+| Views | Lists, tables, and tree views |
+| Tooltips | Hover tooltips |
+| Headers | Title bars and headers |
+| Complementary | Sidebars and secondary areas |
+| Window Manager | Title bars and window decorations |
 
 All colors are derived from the Candi Design System's OKLCH color space and converted to RGB for KDE compatibility.
 
@@ -88,11 +88,11 @@ All colors are derived from the Candi Design System's OKLCH color space and conv
 > [!IMPORTANT]
 > While the color scheme format remains compatible across Plasma 5 and 6, color schemes should be updated to include new Plasma 6 color roles for optimal compatibility.
 
-**What this means:**
+What this means:
 
-- **Plasma 5 users**: Full support with no known issues
-- **Plasma 6 users**: Themes work but may display minor visual regressions if new color roles aren't defined
-- **Recommended**: Use the theme version matching your Plasma version
+- Plasma 5 users: Full support with no known issues
+- Plasma 6 users: Themes work but may display minor visual regressions if new color roles aren't defined
+- Recommended: Use the theme version matching your Plasma version
 
 The Candi color schemes are actively maintained for Plasma 6 and include definitions for new color roles introduced in that version.
 

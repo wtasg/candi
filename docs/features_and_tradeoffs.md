@@ -1,23 +1,23 @@
-# Candi Design System: Features & Trade-offs Analysis
+# Features and Tradeoffs
 
-This document analyzes the architectural decisions, features, and trade-offs inherent in the Candi Design System's current implementation.
+This document outlines the design decisions, technical features, and inherent tradeoffs of the Candi design system.
 
-## 1. Single Source of Truth ([src/data/colors.js](file:///home/anubhav/src/gh/wtasg/candi/src/data/colors.js))
+## 1. Single Source of Truth
 
-The core architectural pillar is defining all color tokens in a single JavaScript object using OKLCH values, which is then compiled to various platform formats.
+The core architectural pillar is defining all color tokens in the Palette Assembly and Derivation Engine, ensuring consistency across platforms.
 
 ### Features
 
-* **Absolute Consistency**: Guarantees that "Accent Blue" is mathematically identical on a Flutter mobile app, a React web dashboard, and a VS Code editor window.
-* **Automated Validation**: Enables build-time checks for accessibility (WCAG contrast ratios) before themes are even generated.
-* **scalability**: Adding a new color token (e.g., `terminalCyan`) in one place propagates it to 7+ different platforms automatically.
-* **Metadata-Rich**: The data structure includes `name` and `usage` documentation alongside values, allowing docs to be auto-generated from code.
+- Absolute Consistency: Guarantees that color tokens are mathematically identical across all supported platforms.
+- Automated Validation: Enables build-time checks for accessibility (WCAG contrast ratios) before themes are generated.
+- Scalability: Centralized token definitions propagate changes to all platforms automatically.
+- Metadata-Rich: Includes name and usage documentation, facilitating automated documentation generation.
 
 ### Trade-offs
 
-* **Build Step Dependency**: Developers cannot simply "tweak a hex code" in a CSS file. Changing a color requires modifying the JS source and running a build script (`npm run build:all`).
-* **Abstraction Overhead**: New contributors must understand the data structure schema in [colors.js](file:///home/anubhav/src/gh/wtasg/candi/src/data/colors.js) rather than standard CSS/Sass.
-* **Rigidity**: Platform-specific tweaks (e.g., "Make this button slightly darker *only* on VS Code because of its rendering engine") require either complicating the schema or hacking the build script, violating the "clean" architecture.
+- Build Step Dependency: Changing a color requires modifying the source and running a build script.
+- Abstraction Overhead: Requires understanding the Palette Assembly structure rather than standard CSS.
+- Rigidity: Overrides for specific platforms can complicate the simplified single-source model.
 
 ## 2. OKLCH Color Space
 
@@ -25,14 +25,14 @@ Candi uses the OKLCH color model exclusively for definition, converting to other
 
 ### Features
 
-* **Perceptual Uniformity**: A 10% change in Lightness `L` is perceived as a 10% change by the human eye, unlike HSL or RGB. This makes generating accessible hover/active states capability predictable.
-* **Gamut capabilities**: Access to P3 and Rec.2020 colors that are impossible to represent in standard sRGB hex codes.
-* **Predictable Gradients**: Gradients interpolate naturally without the "gray dead zone" often seen in sRGB gradients.
+- Perceptual Uniformity: Lightness adjustments are visually consistent, aiding predictable accessibility outcomes.
+- Wide Gamut Capability: Access to P3 and Rec.2020 colors beyond standard sRGB.
+- Interpolation Quality: Gradients remain vibrant without "gray dead zones."
 
 ### Trade-offs
 
-* **Tooling Friction**: Most design tools and developer color pickers still default to Hex/RGB. Developers may need specific converters (like the one built into Candi's docs).
-* **Browser/Platform Support**: While modern Web/CSS support is good, older platforms or rigid frameworks may require fallback conversions (RGB approximation), potentially losing the vividness of the original color.
+- Tooling Friction: Requires specialized color converters as most legacy tools default to sRGB/HSL.
+- Legacy Compatibility: Older platforms may require approximate RGB fallbacks.
 
 ## 3. Multi-Platform Monorepo Strategy
 
@@ -40,13 +40,13 @@ The project houses the core design system and all platform implementations (Flut
 
 ### Features
 
-* **Synchronized Releases**: A single version bump (e.g., `0.0.23`) applies to the entire ecosystem, preventing version drift between the web app and the mobile app.
-* **Shared Tooling**: Scripts like `color-conv.js` are shared across build processes, ensuring that the algorithm to convert OKLCH to Hex for Vim is the exact same one used for VS Code.
+- Synchronized Releases: Centralized versioning prevents platform drift.
+- Shared Tooling: Core conversion logic is consistent across all platform generators.
 
 ### Trade-offs
 
-* **Heavy Checkout**: Developers working solely on the Flutter package still pull down the web, Vim, and KDE code.
-* **Complex CI/CD**: The build pipeline is complex (`npm run build:all`), and a failure in one platform's build script (e.g., a breaking change in a generic XML parser for KDE) can theoretically block releases for all other platforms.
+- Checkout Size: Developers receive code for all platforms regardless of specific focus.
+- Build Complexity: Orchestrating builds for multiple platforms requires robust CI/CD logic.
 
 ## 4. CSS-in-JS / Tailwind Plugin Approach
 
@@ -54,15 +54,15 @@ For the web, Candi opts for a Tailwind plugin + CSS Variables approach rather th
 
 ### Features
 
-* **Framework Agnostic**: The output ([base.css](file:///home/anubhav/src/gh/wtasg/candi/src/css/base.css) or Tailwind classes) works with React, Vue, Svelte, or plain HTML. It is not tied to a specific JavaScript framework's component lifecycle.
-* **Low Bundle Size**: Shipping CSS variables and utility generators is significantly lighter than shipping a full component library runtime.
-* **Vivid Customization**: Tailwind v4 integration allows usage of the `@theme` directive for native-feeling integration.
+- Framework Agnostic: Pure CSS variable distribution works with any web stack.
+- Minimal Bundle Size: Native CSS variables avoid heavy runtime library overhead.
+- Native Tailwind v4 support: Direct integration with the `@theme` directive.
 
 ### Trade-offs
 
-* **No Pre-built Components**: Developers get *color tokens* and *utilities*, not *components*. You still have to build your own standard `<Button>` or `<Card>` component to apply these styles consistently.
-* **Class Name Verbosity**: Users must adopt semantic class names (e.g., `bg-candi-surface text-candi-text`) which can be verbose compared to a pre-styled `<CandiCard>`.
+- Asset Library Only: Provides tokens and utilities rather than pre-built UI components.
+- Semantic Verbosity: Class names are descriptive and detailed.
 
 ## Summary
 
-Candi prioritizes **correctness, consistency, and maintenance** over **initial ease of setup** for ad-hoc projects. It is designed for organizations that need strict brand alignment across a diverse technology stack, accepting the trade-off of a build-driven workflow.
+Candi prioritizes correctness, consistency, and maintenance over initial ease of setup for ad-hoc projects. It is designed for organizations that need strict brand alignment across a diverse technology stack, accepting the trade-off of a build-driven workflow.

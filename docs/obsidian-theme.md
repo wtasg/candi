@@ -6,7 +6,7 @@ Candi theme for Obsidian, featuring light and dark modes with OKLCH-derived colo
 
 ## Installation
 
-### Option 1: Manual Installation
+### Manual Installation
 
 1. Download `obsidian.zip` from the [latest release](https://github.com/wtasg/candi/releases)
 2. Extract the contents
@@ -36,9 +36,9 @@ Copy the generated `obsidian/` directory to your vault's themes folder.
 ## Enabling the Theme
 
 1. Open Obsidian
-2. Go to **Settings** > **Appearance**
-3. Under **Themes**, click the dropdown
-4. Select **Candi**
+2. Go to Settings > Appearance
+3. Under Themes, click the dropdown
+4. Select Candi
 5. Toggle between light and dark mode using Obsidian's base theme setting
 
 ---
@@ -79,7 +79,7 @@ You can override specific colors by creating a CSS snippet in your vault:
 }
 ```
 
-1. Enable the snippet in **Settings** > **Appearance** > **CSS snippets**
+1. Enable the snippet in Settings > Appearance > CSS snippets
 
 ---
 

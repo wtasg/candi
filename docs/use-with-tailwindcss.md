@@ -5,8 +5,7 @@ This guide covers integrating the Candi design system into a Tailwind CSS projec
 ## Installation
 
 > [!IMPORTANT]
-> This package is published to **GitHub Packages**. You must authenticate before installing.
-> See the [GitHub Packages Authentication Guide](../README.md#quick-setup-github-packages-authentication) for setup instructions.
+> The `@wtasnorg/candi` package is published to GitHub Packages. Authentication is required before installation.
 
 ```bash
 npm install @wtasnorg/candi

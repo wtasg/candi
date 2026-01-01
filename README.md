@@ -1,10 +1,10 @@
 # Candi Design System
 
-A multi-platform design system based on Nordic/Scandinavian design principles: Hygge (warmth) and Lagom (balance).
+A multi-platform design system based on the Nordic design principles of Hygge (warmth) and Lagom (balance).
 
-Candi provides a single source of truth for colors using the OKLCH color space, synchronized across Web, Flutter, VS Code, Vim, KDE, GNOME, and Obsidian.
+Candi provides a unified system for colors using the OKLCH color space, synchronized across Web, Flutter, VS Code, Vim, KDE, GNOME, and Obsidian.
 
-**[View Documentation Website](https://wtasg.github.io/candi/)** - Interactive color explorer, component playground, and comprehensive guides.
+[View Documentation Website](https://wtasg.github.io/candi/) - Interactive color explorer, component playground, and comprehensive guides.
 
 ---
 
@@ -12,14 +12,14 @@ Candi provides a single source of truth for colors using the OKLCH color space, 
 
 | Platform | Support | Integration |
 | :--- | :--- | :--- |
-| **Web** | Full | Tailwind CSS Plugin & CSS Variables |
-| **Flutter** | Full | Type-safe `CandiColors` with OKLCH metadata |
-| **VS Code** | Full | Light & Dark themes with unified syntax highlighting |
-| **Vim** | Full | Standalone `.vim` colorschemes (GUI & Terminal) |
-| **KDE Plasma** | Full | Color schemes for KDE 4, 5 & 6 |
-| **GNOME** | Full | GTK3 & GTK4 themes for X11 and Wayland |
-| **Obsidian** | Full | Light & Dark themes with 60+ CSS variables |
-| **Showcase App** | Full | Interactive Flutter gallery & playground |
+| Web | Full | Tailwind CSS Plugin & CSS Variables |
+| Flutter | Full | Type-safe `CandiColors` with OKLCH metadata |
+| VS Code | Full | Light & Dark themes with unified syntax highlighting |
+| Vim | Full | Standalone `.vim` colorschemes (GUI & Terminal) |
+| KDE Plasma | Full | Color schemes for KDE 4, 5 & 6 |
+| GNOME | Full | GTK3 & GTK4 themes for X11 and Wayland |
+| Obsidian | Full | Light & Dark themes with 60+ CSS variables |
+| Showcase App | Full | Interactive Flutter gallery & playground |
 
 ---
 
@@ -27,41 +27,41 @@ Candi provides a single source of truth for colors using the OKLCH color space, 
 
 ### Single Source of Truth
 
-All colors are defined in `src/data/colors.js`. This file is the canonical source for the entire design system.
+The Single Source of Truth (SSOT) in Candi is a unified structure composed of two parts with disparate responsibilities: the Derivation Engine (rules and anchors) and the Palette Assembly (neutrals and composition). This model ensures that the SSOT remains robust while following the Single Responsibility Principle (SRP) for both automated generation and manual tuning.
 
 ```text
-src/data/colors.js (Source of Truth)
-        │
-        ▼
-scripts/gen-oklch-primitives.js (Derivation Engine)
-        │
-        ▼
-scripts/sync-colors.js (Generator)
-        │
-        ├── src/css/base.css (CSS Variables)
-        ├── src/v4/theme.css (Tailwind v4 @theme)
-        └── dist/colors.json (Data export)
+Derivation Engine (scripts/gen-oklch-primitives.js)
+    │ (Rules & Anchors)
+    ▼
+Palette Assembly (src/data/colors.js)
+    │ (Neutrals & Composition)
+    ▼
+Synchronization (scripts/sync-colors.js)
+    │
+    ├── src/css/base.css (CSS Variables)
+    ├── src/v4/theme.css (Tailwind v4 @theme)
+    └── dist/colors.json (Data export)
 
-Platform Builds (all consume colors.js & derivation engine):
+Platform Builds (Consuming Assembly & Engine):
 ├── build-flutter.js → flutter/lib/candi_colors.dart
 ├── build-vscode.js  → vscode/themes/*.json
 ├── build-vim.js     → vim/colors/*.vim
 ├── build-kde.js     → kde/v4,v5/*.colors
 ├── build-gnome.js   → gnome/gtk-*/*.css
 ├── build-obsidian.js → obsidian/theme.css
-└── build-showcase.js → showcase_flutter/ (Vite/Web build)
+└── build-showcase.js → showcase_flutter/
 ```
 
 ### OKLCH Color Space
 
 Candi uses OKLCH as its primary color space instead of Hex codes:
 
-- **Perceptual Uniformity**: Consistent contrast and brightness across the palette
-- **Synchronized Themes**: Updates to `src/data/colors.js` propagate to all platforms via `npm run build:all`
-- **Shared Logic**: Centralized conversion in `scripts/color-conv.js` ensures color accuracy
-- **Automated Accessibility**: Integrated WCAG 2.1 contrast ratio validation
+- Perceptual Uniformity: Consistent contrast and brightness across the palette
+- Synchronized Themes: Updates to `src/data/colors.js` propagate to all platforms via `npm run build:all`
+- Shared Logic: Centralized conversion in `scripts/color-conv.js` ensures color accuracy
+- Automated Accessibility: Integrated WCAG 2.1 contrast ratio validation
 
-**[Learn more about OKLCH color conversion](docs/color-conversion.md)**
+[Learn more about OKLCH color conversion](docs/color-conversion.md)
 
 ---
 
@@ -69,19 +69,25 @@ Candi uses OKLCH as its primary color space instead of Hex codes:
 
 ```text
 candi/
+├── ARCHITECTURE.md         # System architecture and SSOT design
+├── Knowledge.md            # Lessons learned and development notes
 ├── src/                    # Source files for npm package
 │   ├── css/                # CSS files (base, components, utilities)
 │   ├── data/               # Source of truth (colors.js)
-│   ├── v4/                 # Tailwind v4 theme
+│   ├── v4/                 # Tailwind v4 @theme
 │   ├── index.js            # Main entry point
 │   ├── plugin.js           # Tailwind v3 plugin
-│   └── theme.js            # Tailwind v3 theme extension
-├── scripts/                # Build and test scripts
+│   ├── theme.js            # Tailwind v3 theme extension
+│   └── types.d.ts          # TypeScript type definitions
+├── scripts/                # Build, test, and utility scripts
 │   ├── build.js            # Main npm package build
 │   ├── build-*.js          # Platform-specific builds
 │   ├── test-*.js           # Platform-specific tests
 │   ├── sync-colors.js      # Color synchronization
-│   └── color-conv.js       # OKLCH/RGB conversion utilities
+│   ├── color-conv.js       # Color conversion utilities
+│   ├── gen-oklch-primitives.js  # Derivation engine
+│   └── package-artifacts.js  # Release packaging script
+├── schemas/                # JSON Schemas for token validation
 ├── dist/                   # Built output (git-ignored)
 ├── docs/                   # Documentation guides
 ├── website/                # Documentation site (Vite + React)
@@ -143,7 +149,7 @@ candi/
 
 Download ready-to-use artifacts from GitHub releases (recommended for most users).
 
-**[Using Prebuilt Releases Guide](docs/using-release-artifacts.md)**
+[Using Prebuilt Releases Guide](docs/using-release-artifacts.md)
 
 ### Web (npm Package)
 
@@ -151,7 +157,7 @@ Download ready-to-use artifacts from GitHub releases (recommended for most users
 npm install @wtasnorg/candi
 ```
 
-**Tailwind v4** (Recommended):
+Tailwind v4 (Recommended):
 
 ```css
 /* In your CSS */
@@ -159,7 +165,7 @@ npm install @wtasnorg/candi
 @import "@wtasnorg/candi/v4";
 ```
 
-**Tailwind v3**:
+Tailwind v3:
 
 ```js
 // tailwind.config.js
@@ -170,7 +176,7 @@ module.exports = {
 };
 ```
 
-**[Full Web Setup Guide](docs/use-with-tailwindcss.md)** | **[Use Without Tailwind](docs/use-without-tailwindcss.md)**
+[Full Web Setup Guide](docs/use-with-tailwindcss.md) | [Use Without Tailwind](docs/use-without-tailwindcss.md)
 
 ### Platform Guides
 
@@ -201,7 +207,7 @@ module.exports = {
 | `warning` | Amber | Lighter amber | Warning states |
 | `error` | Coral red | Lighter coral | Error states |
 
-**[Customize Colors](docs/customizing-colors.md)**
+[Customize Colors](docs/customizing-colors.md)
 
 ---
 
@@ -209,9 +215,9 @@ module.exports = {
 
 Candi prioritizes accessibility through automated validation:
 
-- **WCAG Compliance**: Contrast ratios are validated programmatically during the color extraction pipeline.
-- **Primary Text**: Targets **4.5:1** (WCAG AA) for standard text.
-- **UI Elements**: Accents and state indicators target **3.0:1** (WCAG Graphical Objects).
+- WCAG Compliance: Contrast ratios are validated programmatically during the color extraction pipeline.
+- Primary Text: Targets 4.5:1 (WCAG AA) for standard text.
+- UI Elements: Accents and state indicators target 3.0:1 (WCAG Graphical Objects).
 
 ---
 
