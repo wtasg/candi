@@ -312,24 +312,19 @@ class _GalleryScreenState extends State<GalleryScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text('Radio Options'),
-                    Row(
-                      children: [
-                        Radio<int>(
-                          value: 0,
-                          groupValue: _radioValue,
-                          onChanged: (value) =>
-                              setState(() => _radioValue = value ?? 0),
-                        ),
-                        const Text('Option A'),
-                        const SizedBox(width: 16),
-                        Radio<int>(
-                          value: 1,
-                          groupValue: _radioValue,
-                          onChanged: (value) =>
-                              setState(() => _radioValue = value ?? 0),
-                        ),
-                        const Text('Option B'),
-                      ],
+                    RadioGroup<int>(
+                      groupValue: _radioValue,
+                      onChanged: (value) =>
+                          setState(() => _radioValue = value ?? 0),
+                      child: Row(
+                        children: [
+                          Radio<int>(value: 0),
+                          const Text('Option A'),
+                          const SizedBox(width: 16),
+                          Radio<int>(value: 1),
+                          const Text('Option B'),
+                        ],
+                      ),
                     ),
                   ],
                 ),
