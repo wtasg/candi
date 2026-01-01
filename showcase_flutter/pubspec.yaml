@@ -9,8 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  candi_colors:
-    path: ../flutter
+  candi_colors: ^0.0.27
   phosphor_flutter: ^2.1.0
 
 dev_dependencies:
