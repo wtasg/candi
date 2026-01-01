@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.27
+
+- Maintenance release with synchronized versioning across all Candi packages.
+- No functional changes.
+
 ## 0.0.26
 
 - **Terminal Parity**: Synchronized terminal color definitions with the core design system.

@@ -2,6 +2,18 @@
 
 All notable changes to the Candi Design System will be documented in this file.
 
+## 0.0.27
+
+### Added
+
+- Web support for the Flutter showcase application.
+- Improved build process and package metadata.
+
+### Fixed
+
+- Resolved test failures in the Flutter showcase application.
+- Fixed markdown linting issues across the documentation.
+
 ## 0.0.26
 
 ### Added
