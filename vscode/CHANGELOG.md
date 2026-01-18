@@ -1,83 +1,14 @@
 # Changelog
 
-All notable changes to the Candi VSCode theme will be documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
-## [0.0.27] - 2026-01-01
-
-### Changed
-
-- Synchronization release across all Candi platforms.
-
-## [0.0.26] - 2026-01-01
+## 0.0.32
 
 ### Added
 
-- JSON Schema Validation: Ensuring theme integrity via automated checks.
-- Platform Tests: Added regression tests for theme generation.
+- **Theme Completion**:
+  - **Deep Dive UI**: Diff Editor, Merge Conflicts, Notebooks, Minimap, Keybinding Labels, Charts.
+  - **Semantic Highlighting**: Enabled for TypeScript, Python, Rust.
+  - **Syntax Tokens**: Granular mapping for `punctuation`, `meta`, `entity`, etc.
+  
+## 0.0.31
 
-### Changed
-
-- Warm White Background: Adjusted Light Theme background to `oklch(96% 0.012 85)` for enhanced comfort.
-- Terminal Synchronization: Unified terminal colors with the core design system for 100% parity.
-- Hygge & Lagom Logic: Implemented new derivation rules for all semantic tokens.
-- Role Swap: Swapped `bg` and `surface` in Light mode for better visual hierarchy.
-
-## [0.0.19] - 2025-12-26
-
-### Changed
-
-- Version synchronization update
-- No functional changes
-
-## [0.0.18] - 2025-12-26
-
-### Changed
-
-- Version synchronization update
-- No functional changes
-
-## [0.0.17] - 2025-12-26
-
-### Added
-
-- Comprehensive UI color coverage with 96 new color definitions
-  - Extended list states (active selection icons, inactive selection, hover, focus)
-  - Input controls (background, border, foreground, placeholder, validation states)
-  - Dropdown controls (background, border, foreground)
-  - Badge styling (background, foreground)
-  - Panel controls (background, border, title states)
-  - Peek view (border, editor, results, title)
-  - Git decorations (modified, deleted, untracked, ignored, conflicting)
-  - Breadcrumbs (foreground, background, focus, active selection)
-  - Menu styling (background, foreground, selection, separator)
-  - Notifications (center, header, toast, links)
-  - Scrollbar styling (shadow, slider states)
-  - Progress bar
-  - Editor widgets (suggest, hover)
-- Enhanced token color scopes
-  - Documentation comments (`comment.block.documentation`, `comment.documentation`)
-  - Exception classes (`entity.name.exception`)
-  - CSS important keyword (`keyword.other.important`)
-  - Markup errors (`markup.error`)
-  - Granular diff support (`meta.diff.range`, `meta.diff.index`, `meta.separator`)
-  - Diff file headers (`meta.diff.header.from-file`, `meta.diff.header.to-file`)
-
-### Changed
-
-- Improved theme completeness from 37 to 133 UI colors
-- Enhanced syntax highlighting from 40 to 47 token scopes
-- Better semantic color usage throughout the theme
-
-## [0.0.16] - Previous Release
-
-### Added
-
-- Initial Candi Light and Candi Dark themes
-- Basic UI color coverage (37 colors)
-- Comprehensive token color definitions (40 scopes)
-- Terminal color support
-- Syntax highlighting for major languages
-- Support for markup, CSS, HTML, and diff files
+- **Synchronization**: Version bump.
