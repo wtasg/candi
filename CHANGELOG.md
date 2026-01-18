@@ -2,6 +2,28 @@
 
 All notable changes to the Candi Design System will be documented in this file.
 
+## 0.0.32
+
+### Added
+
+- **VS Code Theme Completion**:
+  - Deep Dive coverage: Diff Editor, Merge Conflicts, Notebooks, Minimap, Keybinding Labels, Charts.
+  - Semantic Highlighting enabled for TypeScript, Python, Rust.
+  - Granular syntax token mappings.
+- **Vim/Neovim Theme Completion**:
+  - Full Neovim UI support (Floating windows, WinBar, Messages).
+  - Native Treesitter highlighting (guarded for standard Vim compatibility).
+  - Plugin support: Telescope, Gitsigns, Nvim-Tree, Airline, Lightline.
+  - "On" color primitives exposed.
+- **Build System**:
+  - "Silent Success, Roaring Failures" logging pattern implemented across all scripts.
+  - `npm run install:local` support extensions.
+
+### Fixed
+
+- **Vim Light Theme**: Restored high-contrast Sapphire Blue statusline for proper legibility (reverted beige regression).
+- **Vim Compatibility**: Resolved `W18` invalid group name error in standard Vim by guarding Neovim-specific groups.
+
 ## 0.0.31
 
 ### Added
