@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.0.31
+
+### Added
+
+- **Primitive Colors**: 10 color families with 6 variants each (60 new tokens)
+  - Families: red, blue, green, yellow, magenta, cyan, teal, pink, gold, silver
+  - Variants: base, subtle, soft, strong, outline, on*
+- **Regression Tests**: 7 new Flutter tests for primitive color coverage
+- **Documentation**: Primitive colors section in README with usage examples
+- **Example Updates**: Primitive colors showcase in example app
+
+### Changed
+
+- Expanded palette from 63 to 123 colors per mode
+- Import standardization: `candi.dart` is the recommended entry point
+- Updated showcase with primitive color swatches
+
 ## 0.0.27
 
 - Maintenance release with synchronized versioning across all Candi packages.

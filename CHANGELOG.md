@@ -2,17 +2,34 @@
 
 All notable changes to the Candi Design System will be documented in this file.
 
+## 0.0.31
+
+### Added
+
+- **Primitive Colors**: 10 color families with 6 variants each (60 new tokens)
+  - Families: red, blue, green, yellow, magenta, cyan, teal, pink, gold, silver
+  - Variants: base, subtle, soft, strong, outline, on*
+- **Version Management System**:
+  - `published_versions.json` for per-project version tracking
+  - `scripts/mark-published.sh` to mark versions after release
+  - `scripts/build-docs.js` for placeholder injection in documentation
+  - `docs/dev_versioning.md` with workflow diagrams
+- **VSCode Bracket Colorization**: 6 distinct primitive colors for bracket pair highlighting
+- **COLOR_REFERENCE.md**: Complete color token reference for VSCode extension
+- **Regression Tests**: 7 new Flutter tests for primitive color coverage
+
+### Changed
+
+- Expanded palette from 63 to 123 colors per mode
+- Added `showcase_flutter` to `package-install.sh` (now 5 components)
+- Excluded `.dart_tool` from markdown linting
+
 ## 0.0.27
 
 ### Added
 
 - Web support for the Flutter showcase application.
 - Improved build process and package metadata.
-
-### Fixed
-
-- Resolved test failures in the Flutter showcase application.
-- Fixed markdown linting issues across the documentation.
 
 ## 0.0.26
 
