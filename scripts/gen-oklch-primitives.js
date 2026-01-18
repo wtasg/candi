@@ -1,9 +1,9 @@
 /**
  * Semantic Color Generator
- * 
+ *
  * Implements the "Derivation Contract" to generate a deterministic palette
  * from a small set of hand-tuned Anchor Colors.
- * 
+ *
  * Rules:
  * 1. Anchors are the ONLY freeform OKLCH values.
  * 2. All variants (subtle, soft, strong, outline, on) are mathematically derived.
@@ -11,26 +11,27 @@
  */
 
 const { oklchToRgb, parseOklch, toHex6 } = require('./color-conv');
+const logger = require('./logger');
 
 // =============================================================================
 // 1. Define Anchor Colors (Hand-Tuned Singles Source of Truth)
 // =============================================================================
 const ANCHORS = {
     light: {
-        accent: 'oklch(52% 0.14 275)',    // Vibrant Identity
-        secondary: 'oklch(60% 0.10 15)',  // Warm Companion
-        success: 'oklch(50% 0.08 145)',   // Readable Moss
-        warning: 'oklch(60% 0.10 75)',    // Readable Ochre
-        error: 'oklch(50% 0.10 25)',      // Readable Brick
-        info: 'oklch(50% 0.08 225)',      // Readable Slate
+        accent: 'oklch(52% 0.08 250)',    // Muted Identity
+        secondary: 'oklch(60% 0.07 15)',  // Muted Companion
+        success: 'oklch(50% 0.06 145)',   // Muted Moss
+        warning: 'oklch(60% 0.07 75)',    // Muted Ochre
+        error: 'oklch(50% 0.08 25)',      // Muted Brick
+        info: 'oklch(50% 0.06 225)',      // Muted Slate
     },
     dark: {
-        accent: 'oklch(65% 0.13 275)',    // Vibrant Identity
-        secondary: 'oklch(70% 0.10 15)',  // Warm Companion
-        success: 'oklch(75% 0.08 145)',   // Light Moss
-        warning: 'oklch(80% 0.10 75)',    // Light Ochre
-        error: 'oklch(75% 0.10 25)',      // Light Brick
-        info: 'oklch(75% 0.08 225)',      // Light Slate
+        accent: 'oklch(65% 0.08 250)',    // Muted Identity
+        secondary: 'oklch(70% 0.07 15)',  // Muted Companion
+        success: 'oklch(75% 0.06 145)',   // Muted Moss
+        warning: 'oklch(80% 0.07 75)',    // Muted Ochre
+        error: 'oklch(75% 0.08 25)',      // Muted Brick
+        info: 'oklch(75% 0.06 225)',      // Muted Slate
     }
 };
 
@@ -42,20 +43,20 @@ const ANCHORS = {
 // =============================================================================
 // Light Mode: "Subtle" means lighter but VIBRANT (Hygge).
 const VARIANTS_LIGHT = {
-    subtle: { dl: +0.33, dc: 0.80 },
-    soft: { dl: +0.10, dc: 0.90 },
+    subtle: { dl: +0.33, dc: 0.60 },
+    soft: { dl: +0.10, dc: 0.80 },
     base: { dl: 0, dc: 1.00 },
     strong: { dl: -0.10, dc: 1.10 },
-    outline: { dl: -0.15, dc: 0.90 },
+    outline: { dl: -0.15, dc: 0.70 },
 };
 
-// Dark Mode: "Subtle" means darker but WARM.
+// Dark Mode: "Subtle" means darker and restrained.
 const VARIANTS_DARK = {
-    subtle: { dl: -0.27, dc: 0.80 },
-    soft: { dl: +0.10, dc: 0.90 },
+    subtle: { dl: -0.27, dc: 0.60 },
+    soft: { dl: +0.10, dc: 0.80 },
     base: { dl: 0, dc: 1.00 },
     strong: { dl: -0.10, dc: 1.10 },
-    outline: { dl: -0.15, dc: 0.90 },
+    outline: { dl: -0.15, dc: 0.70 },
 };
 
 const VARIANTS = {
@@ -186,10 +187,10 @@ function generatePalette({ verbose = false } = {}) {
 
     ['light', 'dark'].forEach(mode => {
         palette[mode] = {};
-        if (verbose) console.log(`\n--- Generating [${mode}] ---`);
+        if (verbose || logger.isVerbose) logger.log(`\n--- Generating [${mode}] ---`);
 
         Object.entries(ANCHORS[mode]).forEach(([name, anchorValue]) => {
-            if (verbose) console.log(`Anchor: ${name} (${anchorValue})`);
+            if (verbose || logger.isVerbose) logger.log(`Anchor: ${name} (${anchorValue})`);
 
             // 1. Base (Direct anchor)
             palette[mode][name] = {
@@ -211,7 +212,7 @@ function generatePalette({ verbose = false } = {}) {
                     name: `${name} ${variantName}`,
                     usage: `Derived ${variantName} of ${name}`
                 };
-                if (verbose) console.log(`  -> ${keyName.padEnd(20)}: ${derived.oklch}`);
+                if (verbose || logger.isVerbose) logger.log(`  -> ${keyName.padEnd(20)}: ${derived.oklch}`);
             });
 
             // 3. On-Color
@@ -223,9 +224,9 @@ function generatePalette({ verbose = false } = {}) {
                 usage: `Text on ${name}`
             };
 
-            if (verbose) {
+            if (verbose || logger.isVerbose) {
                 const status = onResult.warning ? 'WARN (<4.5)' : 'PASS';
-                console.log(`  -> ${onKeyName.padEnd(20)}: ${onResult.oklch} [Contrast: ${onResult.contrast.toFixed(2)} ${status}]`);
+                logger.log(`  -> ${onKeyName.padEnd(20)}: ${onResult.oklch} [Contrast: ${onResult.contrast.toFixed(2)} ${status}]`);
             }
         });
     });
@@ -236,8 +237,13 @@ function generatePalette({ verbose = false } = {}) {
 // Run if executed directly
 if (require.main === module) {
     const generated = generatePalette();
-    console.log('\n--- Generated JSON Structure (Preview) ---');
-    console.log(JSON.stringify(generated, null, 2));
+    logger.log('\n--- Generated JSON Structure (Preview) ---');
+    logger.log(JSON.stringify(generated, null, 2));
+    if (logger.isVerbose) {
+        logger.log('\nGeneration complete.');
+    } else {
+        console.log('Semantic color generation complete.');
+    }
 }
 
 module.exports = { generatePalette, ANCHORS, VARIANTS };

@@ -7,14 +7,15 @@
 
 const fs = require('fs');
 const path = require('path');
+const logger = require('./logger');
 
 const PROJECT_ROOT = path.join(__dirname, '..');
 
 let errors = 0;
 let passed = 0;
 
-function pass(msg) { console.log(`[✓] ${msg}`); passed++; }
-function fail(msg) { console.error(`[✗] ${msg}`); errors++; }
+function pass(msg) { logger.log(`[✓] ${msg}`); passed++; }
+function fail(msg) { logger.error(`[✗] ${msg}`); errors++; }
 
 function readFile(filePath) {
     return fs.readFileSync(path.join(PROJECT_ROOT, filePath), 'utf8');
@@ -24,7 +25,7 @@ function readFile(filePath) {
 // Source vs Output Token Count
 // =============================================================================
 
-console.log('\n--- Token Count Verification ---\n');
+logger.log('\n--- Token Count Verification ---\n');
 
 const sourceColors = require('../src/data/colors');
 const sourceLightKeys = Object.keys(sourceColors.light);
@@ -59,7 +60,7 @@ if (distDarkKeys.length === sourceDarkKeys.length) {
 // CSS Variable Format Validation
 // =============================================================================
 
-console.log('\n--- CSS Variable Format ---\n');
+logger.log('\n--- CSS Variable Format ---\n');
 
 const baseCss = readFile('dist/base.css');
 
@@ -91,7 +92,7 @@ if (baseCss.includes('.dark') || baseCss.includes('[data-theme="dark"]')) {
 // Tailwind v4 Theme Validation
 // =============================================================================
 
-console.log('\n--- Tailwind v4 Theme ---\n');
+logger.log('\n--- Tailwind v4 Theme ---\n');
 
 const v4Theme = readFile('dist/v4/theme.css');
 
@@ -116,7 +117,7 @@ if (utilities.length >= 50) {
 // JavaScript/ESM Export Validation
 // =============================================================================
 
-console.log('\n--- JS/ESM Exports ---\n');
+logger.log('\n--- JS/ESM Exports ---\n');
 
 // Check dist/colors.js exists and has exports
 const colorsJs = readFile('dist/colors.js');
@@ -138,7 +139,7 @@ if (colorsMjs.includes('export ')) {
 // Key Name Consistency
 // =============================================================================
 
-console.log('\n--- Key Name Consistency ---\n');
+logger.log('\n--- Key Name Consistency ---\n');
 
 // Check that all keys follow naming convention
 const invalidKeys = sourceLightKeys.filter(key => !/^[a-zA-Z][a-zA-Z0-9]*$/.test(key));
@@ -164,7 +165,7 @@ if (lightOnly.length === 0 && darkOnly.length === 0) {
 // Required Token Presence
 // =============================================================================
 
-console.log('\n--- Required Tokens ---\n');
+logger.log('\n--- Required Tokens ---\n');
 
 const requiredTokens = [
     // Core UI
@@ -194,16 +195,19 @@ if (missingTokens.length === 0) {
 // Summary
 // =============================================================================
 
-console.log('\n' + '='.repeat(50));
-console.log('  SYNC COLORS TEST SUMMARY');
-console.log('='.repeat(50));
-console.log(`Passed: ${passed}`);
-console.log(`Failed: ${errors}`);
+logger.log('\n' + '='.repeat(50));
+logger.log('  SYNC COLORS TEST SUMMARY');
+logger.log('='.repeat(50));
+logger.log(`Passed: ${passed}`);
+logger.log(`Failed: ${errors}`);
 
 if (errors > 0) {
-    console.log('\n[✗] Sync colors tests FAILED');
+    logger.dump();
+    logger.error('\n[✗] Sync colors tests FAILED');
     process.exit(1);
 } else {
-    console.log('\n[✓] Sync colors tests PASSED');
+    if (logger.isVerbose) {
+        logger.log('\n[✓] Sync colors tests PASSED');
+    }
     process.exit(0);
 }

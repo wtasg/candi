@@ -7,20 +7,21 @@
 
 const fs = require('fs');
 const path = require('path');
+const logger = require('./logger');
 
 const PROJECT_ROOT = path.join(__dirname, '..');
 
 let errors = 0;
 let passed = 0;
 
-function pass(msg) { console.log(`[✓] ${msg}`); passed++; }
-function fail(msg) { console.error(`[✗] ${msg}`); errors++; }
+function pass(msg) { logger.log(`[✓] ${msg}`); passed++; }
+function fail(msg) { logger.error(`[✗] ${msg}`); errors++; }
 
 // =============================================================================
 // Token Schema Tests
 // =============================================================================
 
-console.log('\n--- Token Schema Validation ---\n');
+logger.log('\n--- Token Schema Validation ---\n');
 
 // Load source colors
 const colors = require('../src/data/colors');
@@ -53,7 +54,7 @@ if (JSON.stringify(lightKeys) === JSON.stringify(darkKeys)) {
 // Required Token Tests
 // =============================================================================
 
-console.log('\n--- Required Tokens ---\n');
+logger.log('\n--- Required Tokens ---\n');
 
 const requiredTokens = [
     // Core UI
@@ -96,7 +97,7 @@ if (missingDark.length === 0) {
 // Token Value Format Tests
 // =============================================================================
 
-console.log('\n--- Token Value Format ---\n');
+logger.log('\n--- Token Value Format ---\n');
 
 // Check token structure
 let validStructure = 0;
@@ -145,7 +146,7 @@ if (oklchInvalid.length === 0) {
 // Primitive Color Variants Tests
 // =============================================================================
 
-console.log('\n--- Primitive Color Variants ---\n');
+logger.log('\n--- Primitive Color Variants ---\n');
 
 const primitives = ['red', 'blue', 'green', 'yellow', 'magenta', 'cyan', 'teal', 'pink', 'gold', 'silver'];
 const variants = ['Subtle', 'Soft', 'Strong', 'Outline'];
@@ -171,16 +172,19 @@ if (missingVariants.length === 0) {
 // Summary
 // =============================================================================
 
-console.log('\n' + '='.repeat(50));
-console.log('  LINT TOKENS TEST SUMMARY');
-console.log('='.repeat(50));
-console.log(`Passed: ${passed}`);
-console.log(`Failed: ${errors}`);
+logger.log('\n' + '='.repeat(50));
+logger.log('  LINT TOKENS TEST SUMMARY');
+logger.log('='.repeat(50));
+logger.log(`Passed: ${passed}`);
+logger.log(`Failed: ${errors}`);
 
 if (errors > 0) {
-    console.log('\n[✗] Lint tokens tests FAILED');
+    logger.dump();
+    logger.error('\n[✗] Lint tokens tests FAILED');
     process.exit(1);
 } else {
-    console.log('\n[✓] Lint tokens tests PASSED');
+    if (logger.isVerbose) {
+        logger.log('\n[✓] Lint tokens tests PASSED');
+    }
     process.exit(0);
 }

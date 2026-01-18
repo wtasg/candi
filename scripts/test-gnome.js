@@ -7,6 +7,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const logger = require('./logger');
 
 const gnomeDir = path.join(__dirname, '..', 'gnome');
 const gtk3Dir = path.join(gnomeDir, 'gtk-3.0');
@@ -17,10 +18,10 @@ let exitCode = 0;
 function test(name, fn) {
     try {
         fn();
-        console.log(`[✓] ${name}`);
+        logger.log(`[✓] ${name}`);
     } catch (err) {
-        console.error(`[✗] ${name}`);
-        console.error(`    ${err.message}`);
+        logger.error(`[✗] ${name}`);
+        logger.error(`    ${err.message}`);
         exitCode = 1;
     }
 }
@@ -74,7 +75,7 @@ test('GTK4 dark theme exists', () => {
 test('index.theme has correct format', () => {
     const indexPath = path.join(gnomeDir, 'index.theme');
     const content = fs.readFileSync(indexPath, 'utf8');
-    
+
     assert(content.includes('[Desktop Entry]'), 'Should have [Desktop Entry] section');
     assert(content.includes('Type=X-GNOME-Metatheme'), 'Should have Type=X-GNOME-Metatheme');
     assert(content.includes('Name=Candi'), 'Should have Name=Candi');
@@ -85,7 +86,7 @@ test('index.theme has correct format', () => {
 test('GTK3 light theme has color definitions', () => {
     const themePath = path.join(gtk3Dir, 'gtk.css');
     const content = fs.readFileSync(themePath, 'utf8');
-    
+
     assert(content.includes('@define-color theme_bg_color'), 'Should define theme_bg_color');
     assert(content.includes('@define-color theme_fg_color'), 'Should define theme_fg_color');
     assert(content.includes('@define-color theme_selected_bg_color'), 'Should define theme_selected_bg_color');
@@ -95,7 +96,7 @@ test('GTK3 light theme has color definitions', () => {
 test('GTK3 dark theme has color definitions', () => {
     const themePath = path.join(gtk3Dir, 'gtk-dark.css');
     const content = fs.readFileSync(themePath, 'utf8');
-    
+
     assert(content.includes('@define-color theme_bg_color'), 'Should define theme_bg_color');
     assert(content.includes('@define-color theme_fg_color'), 'Should define theme_fg_color');
     assert(content.includes('Candi Dark Theme'), 'Should be labeled as Dark theme');
@@ -104,7 +105,7 @@ test('GTK3 dark theme has color definitions', () => {
 test('GTK3 light theme has widget styles', () => {
     const themePath = path.join(gtk3Dir, 'gtk.css');
     const content = fs.readFileSync(themePath, 'utf8');
-    
+
     assert(content.includes('button'), 'Should have button styles');
     assert(content.includes('entry'), 'Should have entry styles');
     assert(content.includes('headerbar'), 'Should have headerbar styles');
@@ -117,7 +118,7 @@ test('GTK4 themes match GTK3 themes', () => {
     const gtk4Light = fs.readFileSync(path.join(gtk4Dir, 'gtk.css'), 'utf8');
     const gtk3Dark = fs.readFileSync(path.join(gtk3Dir, 'gtk-dark.css'), 'utf8');
     const gtk4Dark = fs.readFileSync(path.join(gtk4Dir, 'gtk-dark.css'), 'utf8');
-    
+
     assert(gtk3Light === gtk4Light, 'GTK3 and GTK4 light themes should match');
     assert(gtk3Dark === gtk4Dark, 'GTK3 and GTK4 dark themes should match');
 });
@@ -126,13 +127,13 @@ test('GTK4 themes match GTK3 themes', () => {
 test('Colors are in valid RGB format', () => {
     const themePath = path.join(gtk3Dir, 'gtk.css');
     const content = fs.readFileSync(themePath, 'utf8');
-    
+
     // Check for valid rgb() format
     const rgbPattern = /rgb\(\d{1,3},\s*\d{1,3},\s*\d{1,3}\)/g;
     const matches = content.match(rgbPattern);
-    
+
     assert(matches && matches.length > 0, 'Should contain rgb() color definitions');
-    
+
     // Validate RGB values are in range 0-255
     matches.forEach(rgb => {
         const values = rgb.match(/\d+/g).map(Number);
@@ -146,7 +147,7 @@ test('Colors are in valid RGB format', () => {
 test('Generated files have reasonable sizes', () => {
     const gtk3LightSize = fs.statSync(path.join(gtk3Dir, 'gtk.css')).size;
     const gtk3DarkSize = fs.statSync(path.join(gtk3Dir, 'gtk-dark.css')).size;
-    
+
     assert(gtk3LightSize > 1000, 'GTK3 light theme should be > 1KB');
     assert(gtk3LightSize < 100000, 'GTK3 light theme should be < 100KB');
     assert(gtk3DarkSize > 1000, 'GTK3 dark theme should be > 1KB');
@@ -157,7 +158,7 @@ test('Generated files have reasonable sizes', () => {
 test('GTK themes define essential color names', () => {
     const themePath = path.join(gtk3Dir, 'gtk.css');
     const content = fs.readFileSync(themePath, 'utf8');
-    
+
     const essentialColors = [
         'theme_bg_color',
         'theme_fg_color',
@@ -171,7 +172,7 @@ test('GTK themes define essential color names', () => {
         'success_color',
         'link_color'
     ];
-    
+
     essentialColors.forEach(colorName => {
         assert(
             content.includes(`@define-color ${colorName}`),
@@ -181,11 +182,15 @@ test('GTK themes define essential color names', () => {
 });
 
 // Summary
-console.log('\n---');
+logger.log('\n---');
 if (exitCode === 0) {
-    console.log('All tests passed! ✓');
+    if (logger.isVerbose) {
+        logger.log('All tests passed! ✓');
+        logger.log('GNOME theme validation passed.');
+    }
 } else {
-    console.log('Some tests failed. ✗');
+    logger.dump();
+    logger.error('Some tests failed. ✗');
 }
 
 process.exit(exitCode);

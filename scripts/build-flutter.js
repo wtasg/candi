@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const palette = require('../src/data/colors');
+const logger = require('./logger');
 
 const dartColorsPath = path.join(__dirname, '..', 'flutter', 'lib', 'candi_colors.dart');
 
@@ -11,7 +12,7 @@ function getColors(mode) {
     for (const [key, data] of Object.entries(palette[mode])) {
         const value = data.oklch || data.value;
         if (!value) {
-            console.warn(`[WARN] ${mode}.${key}: No oklch or value defined, skipping`);
+            logger.warn(`[WARN] ${mode}.${key}: No oklch or value defined, skipping`);
             continue;
         }
         const parsed = parseOklch(value);
@@ -25,7 +26,7 @@ function getColors(mode) {
                 oklch: value
             };
         } else {
-            console.warn(`[WARN] ${mode}.${key}: Could not parse '${value}'`);
+            logger.warn(`[WARN] ${mode}.${key}: Could not parse '${value}'`);
         }
     }
     return colors;
@@ -394,12 +395,12 @@ ${generatePaletteMembers()}
       onSecondaryContainer: text,
       tertiary: info,
       onTertiary: onInfo,
-      tertiaryContainer: info,
-      onTertiaryContainer: onInfo,
+      tertiaryContainer: infoSubtle,
+      onTertiaryContainer: text,
       error: error,
       onError: onError,
-      errorContainer: error,
-      onErrorContainer: onError,
+      errorContainer: errorSubtle,
+      onErrorContainer: text,
       surface: surface,
       onSurface: text,
       onSurfaceVariant: textSubtle,
@@ -563,5 +564,9 @@ ${generatePalette(darkColors)}
 
 fs.writeFileSync(dartColorsPath, dartTemplate);
 
-console.log('Build complete!');
-console.log(`  - Generated flutter/lib/candi_colors.dart (${colorKeys.length} colors per palette)`);
+logger.log('Build complete!');
+logger.log(`  - Generated flutter/lib/candi_colors.dart (${colorKeys.length} colors per palette)`);
+
+if (logger.isVerbose) {
+    logger.log('Flutter build successful.');
+}

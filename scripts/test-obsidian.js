@@ -7,6 +7,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const logger = require('./logger');
 
 const obsidianDir = path.join(__dirname, '..', 'obsidian');
 
@@ -15,10 +16,10 @@ let exitCode = 0;
 function test(name, fn) {
     try {
         fn();
-        console.log(`[✓] ${name}`);
+        logger.log(`[✓] ${name}`);
     } catch (err) {
-        console.error(`[✗] ${name}`);
-        console.error(`    ${err.message}`);
+        logger.error(`[✗] ${name}`);
+        logger.error(`    ${err.message}`);
         exitCode = 1;
     }
 }
@@ -162,11 +163,14 @@ test('Light and dark modes define same variables', () => {
 });
 
 // Summary
-console.log('\n---');
-if (exitCode === 0) {
-    console.log('All tests passed! ✓');
+logger.log('\n---');
+if (exitCode > 0) {
+    logger.dump();
+    logger.error('\n[✗] Obsidian theme validation FAILED');
+    process.exit(1);
 } else {
-    console.log('Some tests failed. ✗');
+    if (logger.isVerbose) {
+        logger.log('\n[✓] Obsidian theme validation PASSED');
+    }
+    process.exit(0);
 }
-
-process.exit(exitCode);

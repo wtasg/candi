@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const palette = require('../src/data/colors');
+const logger = require('./logger');
 
 const obsidianDir = path.join(__dirname, '..', 'obsidian');
 
@@ -404,6 +405,9 @@ const manifest = generateManifest();
 fs.writeFileSync(path.join(obsidianDir, 'theme.css'), themeCss);
 fs.writeFileSync(path.join(obsidianDir, 'manifest.json'), manifest);
 
-console.log('Build complete!');
-console.log('  - Generated obsidian/manifest.json');
-console.log('  - Generated obsidian/theme.css');
+if (logger.isVerbose) {
+    logger.log('Build complete!');
+    logger.log('  - Generated obsidian/manifest.json');
+    logger.log('  - Generated obsidian/theme.css');
+    logger.log('Obsidian build successful.');
+}

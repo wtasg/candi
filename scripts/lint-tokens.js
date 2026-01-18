@@ -13,27 +13,28 @@
 
 const fs = require('fs');
 const path = require('path');
+const logger = require('./logger');
 
 const colorsPath = path.join(__dirname, '..', 'src', 'data', 'colors.js');
 const schemaPath = path.join(__dirname, '..', 'schemas', 'token-schema.json');
 
-console.log('=== Token Schema Validation ===\n');
+logger.log('=== Token Schema Validation ===\n');
 
 let errors = [];
 let warnings = [];
 
 function error(msg) {
     errors.push(msg);
-    console.error(`[✗] ${msg}`);
+    logger.error(`[✗] ${msg}`);
 }
 
 function warn(msg) {
     warnings.push(msg);
-    console.log(`[WARN] ${msg}`);
+    logger.warn(`[WARN] ${msg}`);
 }
 
 function pass(msg) {
-    console.log(`[✓] ${msg}`);
+    logger.log(`[✓] ${msg}`);
 }
 
 // Load colors.js
@@ -42,6 +43,7 @@ try {
     palette = require(colorsPath);
     pass('colors.js loaded successfully');
 } catch (err) {
+    logger.dump();
     error(`Failed to load colors.js: ${err.message}`);
     process.exit(1);
 }
@@ -52,6 +54,7 @@ try {
     schema = JSON.parse(fs.readFileSync(schemaPath, 'utf8'));
     pass('token-schema.json loaded successfully');
 } catch (err) {
+    logger.dump();
     error(`Failed to load token-schema.json: ${err.message}`);
     process.exit(1);
 }
@@ -59,7 +62,7 @@ try {
 // ============================================================
 // Validation 1: Light and dark palettes exist
 // ============================================================
-console.log('\n--- Structure Validation ---');
+logger.log('\n--- Structure Validation ---');
 
 if (!palette.light || typeof palette.light !== 'object') {
     error('Missing or invalid "light" palette');
@@ -76,7 +79,7 @@ if (errors.length === 0) {
 // ============================================================
 // Validation 2: Light/Dark key parity
 // ============================================================
-console.log('\n--- Key Parity Validation ---');
+logger.log('\n--- Key Parity Validation ---');
 
 const lightKeys = Object.keys(palette.light || {}).sort();
 const darkKeys = Object.keys(palette.dark || {}).sort();
@@ -99,7 +102,7 @@ if (onlyInLight.length === 0 && onlyInDark.length === 0) {
 // ============================================================
 // Validation 3: Required tokens from schema
 // ============================================================
-console.log('\n--- Required Tokens Validation ---');
+logger.log('\n--- Required Tokens Validation ---');
 
 const requiredTokens = schema.definitions?.Palette?.required || [];
 
@@ -119,7 +122,7 @@ if (errors.length === 0) {
 // ============================================================
 // Validation 4: Token structure (name, usage, oklch/value)
 // ============================================================
-console.log('\n--- Token Structure Validation ---');
+logger.log('\n--- Token Structure Validation ---');
 
 const oklchRegex = /^oklch\(\d+(\.\d+)?%\s+\d+(\.\d+)?\s+\d+(\.\d+)?(\s*\/\s*\d+(\.\d+)?)?\)$/;
 
@@ -176,7 +179,7 @@ if (structureErrors === 0) {
 // ============================================================
 // Validation 5: No additional properties at root level
 // ============================================================
-console.log('\n--- Root Structure Validation ---');
+logger.log('\n--- Root Structure Validation ---');
 
 const allowedRootKeys = ['light', 'dark'];
 const extraRootKeys = Object.keys(palette).filter(k => !allowedRootKeys.includes(k));
@@ -190,23 +193,25 @@ if (extraRootKeys.length > 0) {
 // ============================================================
 // Summary
 // ============================================================
-console.log('\n' + '='.repeat(50));
-console.log('SUMMARY');
-console.log('='.repeat(50));
-console.log(`Tokens validated: ${lightKeys.length} per palette`);
-console.log(`Errors: ${errors.length}`);
-console.log(`Warnings: ${warnings.length}`);
+logger.log('\n' + '='.repeat(50));
+logger.log('SUMMARY');
+logger.log('='.repeat(50));
+logger.log(`Tokens validated: ${lightKeys.length} per palette`);
+logger.log(`Errors: ${errors.length}`);
+logger.log(`Warnings: ${warnings.length}`);
 
 if (errors.length > 0) {
-    console.log('\n[✗] Token validation FAILED');
-    console.log('\nErrors:');
-    errors.forEach((e, i) => console.log(`  ${i + 1}. ${e}`));
+    logger.dump();
+    logger.error('\n[✗] Token validation FAILED');
+    logger.error('\nErrors:');
+    errors.forEach((e, i) => logger.error(`  ${i + 1}. ${e}`));
     process.exit(1);
 } else {
-    console.log('\n[✓] Token validation PASSED');
-
-    if (warnings.length > 0) {
-        console.log('\nWarnings (non-blocking):');
-        warnings.forEach((w, i) => console.log(`  ${i + 1}. ${w}`));
+    if (logger.isVerbose) {
+        logger.log('Token validation passed.');
+    }
+    if (warnings.length > 0 && logger.isVerbose) {
+        logger.log('\nWarnings (non-blocking):');
+        warnings.forEach((w, i) => logger.log(`  ${i + 1}. ${w}`));
     }
 }

@@ -15,14 +15,18 @@ PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 
 # Parse arguments
 DRY_RUN=true
+VERBOSE=false
 for arg in "$@"; do
     case $arg in
         --execute)
             DRY_RUN=false
-            shift
+            ;;
+        -v|--verbose)
+            VERBOSE=true
             ;;
     esac
 done
+shift $((OPTIND-1)) || true
 
 # Colors for output
 RED='\033[0;31m'
@@ -33,9 +37,9 @@ MAGENTA='\033[0;35m'
 NC='\033[0m' # No Color
 
 # Log to stderr to avoid capturing in $(...)
-info() { echo -e "${BLUE}[INFO]${NC} $1" >&2; }
-success() { echo -e "${GREEN}[✓]${NC} $1" >&2; }
-warn() { echo -e "${YELLOW}[WARN]${NC} $1" >&2; }
+info() { if [ "$DRY_RUN" = true ] || [ "$VERBOSE" = true ]; then echo -e "${BLUE}[INFO]${NC} $1" >&2; fi; }
+success() { if [ "$DRY_RUN" = true ] || [ "$VERBOSE" = true ]; then echo -e "${GREEN}[✓]${NC} $1" >&2; fi; }
+warn() { if [ "$DRY_RUN" = true ] || [ "$VERBOSE" = true ]; then echo -e "${YELLOW}[WARN]${NC} $1" >&2; fi; }
 error() { echo -e "${RED}[ERROR]${NC} $1" >&2; }
 dry() { echo -e "${MAGENTA}[DRY-RUN]${NC} $1" >&2; }
 
@@ -48,13 +52,15 @@ run_cmd() {
     fi
 }
 
-echo "=============================================" >&2
-echo "  Candi Design System - Local Installation" >&2
-echo "=============================================" >&2
-if [ "$DRY_RUN" = true ]; then
-    echo -e "${MAGENTA}  DRY-RUN MODE (use --execute to install)${NC}" >&2
+if [ "$DRY_RUN" = true ] || [ "$VERBOSE" = true ]; then
+    echo "=============================================" >&2
+    echo "  Candi Design System - Local Installation" >&2
+    echo "=============================================" >&2
+    if [ "$DRY_RUN" = true ]; then
+        echo -e "${MAGENTA}  DRY-RUN MODE (use --execute to install)${NC}" >&2
+    fi
+    echo "" >&2
 fi
-echo "" >&2
 
 # Get version from package.json
 VERSION=$(node -p "require('$PROJECT_DIR/package.json').version")
@@ -306,29 +312,34 @@ install_vscode
 # -----------------------------------------------------------------------------
 # Summary
 # -----------------------------------------------------------------------------
-echo "" >&2
-echo "=============================================" >&2
-echo "  Installation Summary" >&2
-echo "=============================================" >&2
+if [ "$DRY_RUN" = true ] || [ "$VERBOSE" = true ]; then
+    echo "" >&2
+    echo "=============================================" >&2
+    echo "  Installation Summary" >&2
+    echo "=============================================" >&2
+fi
 
 if [ ${#INSTALLED[@]} -gt 0 ]; then
     if [ "$DRY_RUN" = true ]; then
         echo -e "${MAGENTA}Would install:${NC} ${INSTALLED[*]}" >&2
-    else
+    elif [ "$VERBOSE" = true ]; then
         echo -e "${GREEN}Installed:${NC} ${INSTALLED[*]}" >&2
     fi
 fi
 
-if [ ${#SKIPPED[@]} -gt 0 ]; then
+if [ ${#SKIPPED[@]} -gt 0 ] && ([ "$DRY_RUN" = true ] || [ "$VERBOSE" = true ]); then
     echo -e "${YELLOW}Skipped:${NC} ${SKIPPED[*]}" >&2
 fi
 
-echo "" >&2
+if [ "$DRY_RUN" = true ] || [ "$VERBOSE" = true ]; then
+    echo "" >&2
+fi
+
 if [ "$DRY_RUN" = true ]; then
     echo -e "${MAGENTA}This was a dry-run. To actually install, run:${NC}" >&2
     echo "  npm run install:local -- --execute" >&2
     echo "" >&2
-else
+elif [ "$VERBOSE" = true ]; then
     echo "To apply themes, you may need to:" >&2
     echo "  - KDE: System Settings → Appearance → Colors" >&2
     echo "  - Konsole: Settings → Edit Current Profile → Appearance" >&2
@@ -337,4 +348,6 @@ else
     echo "  - Obsidian: Settings → Appearance → Themes" >&2
     echo "  - VSCode: Ctrl+K Ctrl+T → Select 'Candi Dark' or 'Candi Light'" >&2
     echo "" >&2
+else
+    echo "Successfully installed ${#INSTALLED[@]} themes/extensions."
 fi

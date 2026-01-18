@@ -1,6 +1,6 @@
 {
     "name": "@wtasnorg/candi",
-    "version": "0.0.31",
+    "version": "0.0.32",
     "description": "A Tailwind CSS theme inspired by Nordic/Scandinavian Hygge & Lagom design principles",
     "keywords": [
         "tailwindcss",
@@ -62,10 +62,10 @@
         "build:konsole": "node scripts/build-konsole.js",
         "build:gnome": "node scripts/build-gnome.js",
         "build:obsidian": "node scripts/build-obsidian.js",
-        "build:showcase": "cd showcase_flutter && flutter build web",
+        "build:showcase": "cd showcase_flutter && flutter build web --no-wasm-dry-run > /dev/null",
         "build:docs": "node scripts/build-docs.js",
-        "build:all": "npm run build && npm run build:flutter && npm run build:vscode && npm run build:vim && npm run build:kde && npm run build:konsole && npm run build:gnome && npm run build:obsidian && npm run build:docs && npm run build:showcase",
-        "format:flutter": "cd flutter && dart format lib",
+        "build:all": "echo 'Building Core...' && npm run build -s && echo 'Building Flutter...' && npm run build:flutter -s && echo 'Building VS Code...' && npm run build:vscode -s && echo 'Building Vim...' && npm run build:vim -s && echo 'Building KDE...' && npm run build:kde -s && echo 'Building Konsole...' && npm run build:konsole -s && echo 'Building Gnome...' && npm run build:gnome -s && echo 'Building Obsidian...' && npm run build:obsidian -s && echo 'Building Docs...' && npm run build:docs -s && echo 'Building Showcase...' && npm run build:showcase -s",
+        "format:flutter": "cd flutter && dart format lib > /dev/null",
         "prepublishOnly": "npm run build:all",
         "test:color": "node scripts/test-color.js",
         "test:colors": "node scripts/test-color-conversions.js",
@@ -86,7 +86,7 @@
         "test:build-docs": "node scripts/test-build-docs.js",
         "test:package-artifacts": "node scripts/test-package-artifacts.js",
         "test:guard-semantics": "node scripts/test-guard-semantics.js",
-        "test:all": "npm run test:src && npm run test:color && npm run test:colors && npm run test:conv && npm run test:sync && npm run test:lint-tokens && npm run test:gen-primitives && npm run test:build-docs && npm run test:guard-semantics && npm run test:flutter && npm run test:vscode && npm run test:vim && npm run test:kde && npm run test:konsole && npm run test:gnome && npm run test:obsidian && npm run test:showcase && npm run test:scripts && npm run test:package-artifacts",
+        "test:all": "echo 'Testing Core...' && npm run test:src -s && npm run test:color -s && npm run test:colors -s && npm run test:conv -s && npm run test:sync -s && npm run test:lint-tokens -s && npm run test:gen-primitives -s && npm run test:build-docs -s && npm run test:guard-semantics -s && echo 'Testing Flutter...' && npm run test:flutter -s && echo 'Testing VS Code...' && npm run test:vscode -s && echo 'Testing Vim...' && npm run test:vim -s && echo 'Testing KDE...' && npm run test:kde -s && echo 'Testing Konsole...' && npm run test:konsole -s && echo 'Testing Gnome...' && npm run test:gnome -s && echo 'Testing Obsidian...' && npm run test:obsidian -s && echo 'Testing Showcase...' && npm run test:showcase -s && echo 'Testing Scripts...' && npm run test:scripts -s && echo 'Testing Packaging...' && npm run test:package-artifacts -s",
         "test": "npm run test:all",
         "vscode:package": "cd vscode && npx -y @vscode/vsce package",
         "flutter:pub": "cd flutter && flutter pub get",
@@ -99,7 +99,7 @@
         "lint:tokens": "node scripts/lint-tokens.js",
         "lint:md": "markdownlint-cli2 \"**/*.md\" \"!node_modules\" \"!website/node_modules\" \"!**/.dart_tool\"",
         "lint:md:fix": "markdownlint-cli2 --fix \"**/*.md\" \"!node_modules\" \"!website/node_modules\"",
-        "lint:all": "npm run lint:tokens && npm run lint:dart && npm run lint:md",
+        "lint:all": "echo 'Linting Tokens...' && npm run lint:tokens -s && echo 'Linting Dart...' && npm run lint:dart -s && echo 'Linting Markdown...' && npm run lint:md -s",
         "install:local": "bash scripts/install-local.sh"
     },
     "peerDependencies": {

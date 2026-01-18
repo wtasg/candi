@@ -6,12 +6,13 @@
  */
 
 const { parseOklch, toHex6, oklchToRgb } = require('./color-conv');
+const logger = require('./logger');
 
 let errors = 0;
 let passed = 0;
 
-function pass(msg) { console.log(`[✓] ${msg}`); passed++; }
-function fail(msg) { console.error(`[✗] ${msg}`); errors++; }
+function pass(msg) { logger.log(`[✓] ${msg}`); passed++; }
+function fail(msg) { logger.error(`[✗] ${msg}`); errors++; }
 
 function assertEqual(actual, expected, msg) {
     if (actual === expected) {
@@ -49,7 +50,7 @@ function assertNull(value, msg) {
 // parseOklch Tests
 // =============================================================================
 
-console.log('\n--- parseOklch() Tests ---\n');
+logger.log('\n--- parseOklch() Tests ---\n');
 
 // Basic parsing - NOTE: parseOklch expects L as 0-100 scale (percentage)
 const basic = parseOklch('oklch(50 0.15 30)');
@@ -90,7 +91,7 @@ assertNull(parseOklch(''), 'parseOklch returns null for empty string');
 // toHex6 Tests
 // =============================================================================
 
-console.log('\n--- toHex6() Tests ---\n');
+logger.log('\n--- toHex6() Tests ---\n');
 
 // Basic conversions
 assertEqual(toHex6({ r: 0, g: 0, b: 0 }), '#000000', 'toHex6 converts black');
@@ -111,7 +112,7 @@ assertNotNull(rounded, 'toHex6 handles floating point RGB');
 // oklchToRgb Tests
 // =============================================================================
 
-console.log('\n--- oklchToRgb() Tests ---\n');
+logger.log('\n--- oklchToRgb() Tests ---\n');
 
 // Test known colors
 const rgbBlack = oklchToRgb(0, 0, 0);
@@ -143,7 +144,7 @@ if (testColor.r >= 0 && testColor.r <= 255 &&
 // Integration: parseOklch + toHex6
 // =============================================================================
 
-console.log('\n--- Integration Tests ---\n');
+logger.log('\n--- Integration Tests ---\n');
 
 // Parse and convert a known color
 const parsed = parseOklch('oklch(0.5 0 0)');
@@ -187,16 +188,19 @@ if (allValid) {
 // Summary
 // =============================================================================
 
-console.log('\n' + '='.repeat(50));
-console.log('  COLOR CONVERSION UNIT TEST SUMMARY');
-console.log('='.repeat(50));
-console.log(`Passed: ${passed}`);
-console.log(`Failed: ${errors}`);
+logger.log('\n' + '='.repeat(50));
+logger.log('  COLOR CONVERSION UNIT TEST SUMMARY');
+logger.log('='.repeat(50));
+logger.log(`Passed: ${passed}`);
+logger.log(`Failed: ${errors}`);
 
 if (errors > 0) {
-    console.log('\n[✗] Color conversion tests FAILED');
+    logger.dump();
+    logger.error('\n[✗] Color conversion unit tests FAILED');
     process.exit(1);
 } else {
-    console.log('\n[✓] Color conversion tests PASSED');
+    if (logger.isVerbose) {
+        logger.log('\n[✓] Color conversion unit tests PASSED');
+    }
     process.exit(0);
 }

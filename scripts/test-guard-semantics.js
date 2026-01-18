@@ -7,20 +7,21 @@
 
 const fs = require('fs');
 const path = require('path');
+const logger = require('./logger');
 
 const PROJECT_ROOT = path.join(__dirname, '..');
 
 let errors = 0;
 let passed = 0;
 
-function pass(msg) { console.log(`[✓] ${msg}`); passed++; }
-function fail(msg) { console.error(`[✗] ${msg}`); errors++; }
+function pass(msg) { logger.log(`[✓] ${msg}`); passed++; }
+function fail(msg) { logger.error(`[✗] ${msg}`); errors++; }
 
 // =============================================================================
 // Guard Semantics Script Tests
 // =============================================================================
 
-console.log('\n--- Guard Semantics Script Tests ---\n');
+logger.log('\n--- Guard Semantics Script Tests ---\n');
 
 // Check guard-semantics.js exists
 const scriptPath = path.join(PROJECT_ROOT, 'scripts', 'guard-semantics.js');
@@ -58,7 +59,7 @@ if (fs.existsSync(scriptPath)) {
 // Colors.js Integrity Tests
 // =============================================================================
 
-console.log('\n--- Colors.js Integrity Tests ---\n');
+logger.log('\n--- Colors.js Integrity Tests ---\n');
 
 const colorsPath = path.join(PROJECT_ROOT, 'src', 'data', 'colors.js');
 if (fs.existsSync(colorsPath)) {
@@ -94,7 +95,7 @@ if (fs.existsSync(colorsPath)) {
 // Palette Validation Tests
 // =============================================================================
 
-console.log('\n--- Palette Validation Tests ---\n');
+logger.log('\n--- Palette Validation Tests ---\n');
 
 // Load colors and validate structure
 try {
@@ -129,16 +130,19 @@ try {
 // Summary
 // =============================================================================
 
-console.log('\n' + '='.repeat(50));
-console.log('  GUARD SEMANTICS TEST SUMMARY');
-console.log('='.repeat(50));
-console.log(`Passed: ${passed}`);
-console.log(`Failed: ${errors}`);
+logger.log('\n' + '='.repeat(50));
+logger.log('  GUARD SEMANTICS TEST SUMMARY');
+logger.log('='.repeat(50));
+logger.log(`Passed: ${passed}`);
+logger.log(`Failed: ${errors}`);
 
 if (errors > 0) {
-    console.log('\n[✗] Guard semantics tests FAILED');
+    logger.dump();
+    logger.error('\n[✗] Guard semantics tests FAILED');
     process.exit(1);
 } else {
-    console.log('\n[✓] Guard semantics tests PASSED');
+    if (logger.isVerbose) {
+        logger.log('\n[✓] Guard semantics tests PASSED');
+    }
     process.exit(0);
 }

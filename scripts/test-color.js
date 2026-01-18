@@ -6,40 +6,40 @@
  */
 
 const { oklchToRgb, toHex6: toHex, parseOklch } = require('./color-conv');
+const logger = require('./logger');
 const fs = require('fs');
 const path = require('path');
 
 const testCases = [
     { name: 'Accent (Steel Blue)', l: 0.52, c: 0.06, h: 230, expected: '#437085' },
-    { name: 'Background (Warm White)', l: 0.98, c: 0.008, h: 85, expected: '#FBF8F2' },
-    { name: 'Text (Warm Charcoal)', l: 0.28, c: 0.015, h: 250, expected: '#232A30' },
+    { name: 'Background (Cool White)', l: 0.98, c: 0.005, h: 250, expected: '#F6F9FC' },
+    { name: 'Text (Cool Charcoal)', l: 0.28, c: 0.015, h: 250, expected: '#232A30' },
     { name: 'Secondary (Terracotta)', l: 0.58, c: 0.12, h: 55, expected: '#B0652A' },
     { name: 'Success (Sage)', l: 0.52, c: 0.08, h: 145, expected: '#4A754C' },
     { name: 'Pure White', l: 1.0, c: 0, h: 0, expected: '#FFFFFF' },
     { name: 'Dark Mode Bg', l: 0.18, c: 0.015, h: 250, expected: '#0D1218' }
 ];
 
-console.log('--- OKLCH to sRGB Hex Tests ---');
+logger.log('--- OKLCH to sRGB Hex Tests ---');
 let passed = 0;
 
 testCases.forEach(tc => {
     const result = toHex(oklchToRgb(tc.l, tc.c, tc.h));
     const status = result === tc.expected ? '[✓]' : '[✗]';
     if (result === tc.expected) passed++;
-    console.log(`${status} ${tc.name}: expected ${tc.expected}, got ${result}`);
+    logger.log(`${status} ${tc.name}: expected ${tc.expected}, got ${result}`);
 });
 
-console.log(`\nResult: ${passed}/${testCases.length} tests passed.`);
-
 if (passed === testCases.length) {
-    console.log('All color conversions align with browser standards.');
+    if (logger.isVerbose) logger.log(`\nResult: ${passed}/${testCases.length} tests passed.`);
 } else {
-    console.error('! Conversion discrepancy detected.');
+    logger.dump();
+    logger.error('! Conversion discrepancy detected.');
     process.exit(1);
 }
 
 // WCAG Contrast Ratio Tests
-console.log('\n--- WCAG Contrast Ratio Tests ---');
+logger.log('\n--- WCAG Contrast Ratio Tests ---');
 
 /**
  * Calculate relative luminance for WCAG contrast
@@ -111,15 +111,18 @@ contrastTests.forEach(tc => {
         wcagIssues.push(`${tc.mode} mode: ${tc.name} (${ratio.toFixed(2)}:1 < ${tc.minRatio}:1)`);
     }
 
-    console.log(`${status} ${tc.mode} mode: ${tc.name} - ${ratio.toFixed(2)}:1 (min: ${tc.minRatio}:1)`);
+    logger.log(`${status} ${tc.mode} mode: ${tc.name} - ${ratio.toFixed(2)}:1 (min: ${tc.minRatio}:1)`);
 });
 
-console.log(`\nResult: ${contrastPassed}/${contrastTests.length} contrast tests passed.`);
-
 if (wcagIssues.length > 0) {
-    console.log('\n[WARN] WCAG Contrast Issues Found:');
-    wcagIssues.forEach(issue => console.log(`  - ${issue}`));
-    console.log('\nNote: Some contrast issues may be acceptable for non-text elements.');
+    logger.dump();
+    logger.error(`\nResult: ${contrastPassed}/${contrastTests.length} contrast tests passed.`);
+    logger.log('\n[WARN] WCAG Contrast Issues Found:');
+    wcagIssues.forEach(issue => logger.log(`  - ${issue}`));
+    logger.log('\nNote: Some contrast issues may be acceptable for non-text elements.');
 } else {
-    console.log('All contrast ratios meet WCAG standards.');
+    if (logger.isVerbose) {
+        logger.log(`\nResult: ${contrastPassed}/${contrastTests.length} contrast tests passed.`);
+        logger.log('All contrast ratios meet WCAG standards.');
+    }
 }

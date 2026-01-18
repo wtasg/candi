@@ -20,12 +20,34 @@
 set -e
 
 REPO="wtasg/candi"
-ARTIFACT="${1:-theme}"
-VERSION="${2:-latest}"
+ARTIFACT="theme"
+VERSION="latest"
+VERBOSE=false
+
+# Parse arguments
+while [[ "$#" -gt 0 ]]; do
+    case $1 in
+        -v|--verbose) VERBOSE=true ;;
+        theme|vim|kde|docs|vscode) ARTIFACT="$1" ;;
+        latest|[0-9]*) VERSION="$1" ;;
+    esac
+    shift
+done
+
+log() {
+    if [ "$VERBOSE" = true ]; then
+        echo "$@"
+    fi
+}
+
+REDIRECT_OUT="/dev/null"
+if [ "$VERBOSE" = true ]; then
+    REDIRECT_OUT="/dev/stdout"
+fi
 
 # Fetch latest version from GitHub API if needed
 if [ "$VERSION" = "latest" ]; then
-  echo "Fetching latest release version..."
+  log "Fetching latest release version..."
   VERSION=$(curl -s "https://api.github.com/repos/${REPO}/releases/latest" |
     grep '"tag_name"' |
     sed -E 's/.*"v([^"]+)".*/\1/')
@@ -34,7 +56,7 @@ if [ "$VERSION" = "latest" ]; then
     echo "Error: Could not determine latest version"
     exit 1
   fi
-  echo "Latest version: v${VERSION}"
+  log "Latest version: v${VERSION}"
 fi
 
 # Construct download URL based on artifact type
@@ -54,11 +76,15 @@ esac
 
 URL="https://github.com/${REPO}/releases/download/v${VERSION}/${FILENAME}"
 
-echo "Downloading: $URL"
-curl -L -O --fail "$URL"
+log "Downloading: $URL"
+curl -L -O --fail --silent --show-error "$URL"
 
 if [ $? -eq 0 ]; then
-  echo "Downloaded: $FILENAME"
+  if [ "$VERBOSE" = true ]; then
+      echo "Downloaded: $FILENAME"
+  else
+      echo "Successfully downloaded $FILENAME."
+  fi
 else
   echo "Error: Download failed"
   exit 1

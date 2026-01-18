@@ -12,6 +12,7 @@
 const fs = require('fs');
 const path = require('path');
 const palette = require('../src/data/colors');
+const logger = require('./logger');
 
 const baseCssPath = path.join(__dirname, '..', 'src', 'css', 'base.css');
 const v4ThemePath = path.join(__dirname, '..', 'src', 'v4', 'theme.css');
@@ -30,7 +31,7 @@ function replaceBetween(content, startMarker, endMarker, replacement) {
     const startIdx = content.indexOf(startMarker);
     const endIdx = content.indexOf(endMarker);
     if (startIdx === -1 || endIdx === -1) {
-        console.warn(`Markers ${startMarker} or ${endMarker} not found.`);
+        logger.warn(`Markers ${startMarker} or ${endMarker} not found.`);
         return content;
     }
     return content.substring(0, startIdx + startMarker.length) + '\n' + replacement + '    ' + content.substring(endIdx);
@@ -96,4 +97,4 @@ fs.writeFileSync(path.join(distDir, 'colors.json'), paletteJson);
 fs.writeFileSync(path.join(distDir, 'colors.js'), `module.exports = ${paletteJson};\n`);
 fs.writeFileSync(path.join(distDir, 'colors.mjs'), `export default ${paletteJson};\n`);
 
-console.log('Colors synchronized successfully!');
+logger.log('Colors synchronized successfully!');

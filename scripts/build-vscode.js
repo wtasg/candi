@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const palette = require('../src/data/colors');
+const logger = require('./logger');
 
 const vscodeDir = path.join(__dirname, '..', 'vscode');
 const themesDir = path.join(vscodeDir, 'themes');
@@ -14,14 +15,14 @@ function getColors(mode) {
     for (const [key, data] of Object.entries(palette[mode])) {
         const value = data.oklch || data.value;
         if (!value) {
-            console.warn(`[WARN] ${mode}.${key}: No oklch or value defined, skipping`);
+            logger.warn(`[WARN] ${mode}.${key}: No oklch or value defined, skipping`);
             continue;
         }
         const parsed = parseOklch(value);
         if (parsed) {
             colors[toKebab(key)] = toHex(parsed);
         } else {
-            console.warn(`[WARN] ${mode}.${key}: Could not parse '${value}'`);
+            logger.warn(`[WARN] ${mode}.${key}: Could not parse '${value}'`);
         }
     }
     return colors;
@@ -41,10 +42,16 @@ function generateTheme(name, type, palette) {
             // General
             "focusBorder": palette['accent'],
             "foreground": palette['text'],
-            "widget.shadow": palette['border'],
-            "selection.background": palette['accent'] + "40", // 25% opacity
+            "widget.shadow": palette['shadow-color'],
+            "selection.background": palette['accent'] + "40",
             "descriptionForeground": palette['text-subtle'],
             "errorForeground": palette['error'],
+            "icon.foreground": palette['text-subtle'],
+            "sash.hoverBorder": palette['accent'],
+
+            // Window
+            "window.activeBorder": palette['border'],
+            "window.inactiveBorder": palette['divider'],
 
             // Terminal
             "terminal.background": palette['bg'],
@@ -57,25 +64,35 @@ function generateTheme(name, type, palette) {
             "terminal.ansiMagenta": palette['terminal-magenta'],
             "terminal.ansiCyan": palette['terminal-cyan'],
             "terminal.ansiWhite": palette['terminal-white'],
+            "terminalCursor.background": palette['bg'],
+            "terminalCursor.foreground": palette['accent'],
 
             // Buttons
             "button.background": palette['accent'],
-            "button.foreground": palette['elevated'],
-            "button.hoverBackground": palette['accent'], // Should ideally be slightly different
+            "button.foreground": palette['on-accent'],
+            "button.hoverBackground": palette['accent-strong'] || palette['accent'],
+            "button.secondaryBackground": palette['surface'],
+            "button.secondaryForeground": palette['text'],
+            "button.secondaryHoverBackground": palette['surface'],
 
             // Editor
-            "editor.background": type === 'light' ? palette['surface'] : palette['bg'],
+            "editor.background": palette['bg'],
             "editor.foreground": palette['text'],
             "editorLineNumber.foreground": palette['text-muted'],
             "editorLineNumber.activeForeground": palette['text'],
             "editorCursor.foreground": palette['accent'],
             "editor.selectionBackground": palette['accent'] + "30",
-            "editor.lineHighlightBackground": type === 'light' ? palette['border'] : palette['surface'],
+            "editor.inactiveSelectionBackground": palette['accent'] + "15",
+            "editor.lineHighlightBackground": palette['surface'],
+            "editor.lineHighlightBorder": palette['divider'] + "00",
             "editorIndentGuide.background1": palette['border'],
             "editorIndentGuide.activeBackground1": palette['border-strong'],
+            "editorWhitespace.foreground": palette['border'],
+            "editorRuler.foreground": palette['divider'],
+            "editorCodeLens.foreground": palette['text-muted'],
 
             // Sidebar
-            "sideBar.background": type === 'light' ? palette['bg'] : palette['surface'],
+            "sideBar.background": palette['surface'],
             "sideBar.foreground": palette['text-subtle'],
             "sideBar.border": palette['border'],
             "sideBarTitle.foreground": palette['text'],
@@ -84,25 +101,31 @@ function generateTheme(name, type, palette) {
             "sideBarSectionHeader.border": palette['border'],
 
             // Activity Bar
-            "activityBar.background": type === 'light' ? palette['surface'] : palette['bg'],
+            "activityBar.background": palette['bg'],
             "activityBar.foreground": palette['text'],
             "activityBar.inactiveForeground": palette['text-muted'],
             "activityBar.border": palette['border'],
             "activityBar.activeBorder": palette['accent'],
+            "activityBarBadge.background": palette['accent'],
+            "activityBarBadge.foreground": palette['on-accent'],
 
             // Tabs
-            "editorGroupHeader.tabsBackground": type === 'light' ? palette['bg'] : palette['surface'],
-            "tab.activeBackground": type === 'light' ? palette['surface'] : palette['bg'],
+            "editorGroupHeader.tabsBackground": palette['surface'],
+            "tab.activeBackground": palette['bg'],
             "tab.activeForeground": palette['text'],
-            "tab.inactiveBackground": type === 'light' ? palette['bg'] : palette['surface'],
+            "tab.inactiveBackground": palette['surface'],
             "tab.inactiveForeground": palette['text-muted'],
             "tab.border": palette['border'],
             "tab.activeBorderTop": palette['accent'],
+            "tab.unfocusedActiveBorderTop": palette['divider'],
 
             // Status Bar
             "statusBar.background": palette['bg'],
             "statusBar.foreground": palette['text-subtle'],
             "statusBar.border": palette['border'],
+            "statusBar.debuggingBackground": palette['warning'],
+            "statusBar.debuggingForeground": palette['on-warning'],
+            "statusBar.noFolderBackground": palette['surface'],
 
             // Title Bar
             "titleBar.activeBackground": palette['bg'],
@@ -112,7 +135,7 @@ function generateTheme(name, type, palette) {
             "titleBar.border": palette['border'],
 
             // Lists
-            "list.activeSelectionBackground": palette['accent'] + "20",
+            "list.activeSelectionBackground": palette['accent'] + "25",
             "list.activeSelectionForeground": palette['text'],
             "list.activeSelectionIconForeground": palette['accent'],
             "list.inactiveSelectionBackground": palette['surface'],
@@ -121,6 +144,7 @@ function generateTheme(name, type, palette) {
             "list.hoverForeground": palette['text'],
             "list.focusBackground": palette['accent'] + "20",
             "list.focusForeground": palette['text'],
+            "list.focusOutline": palette['accent'],
 
             // Input Controls
             "input.background": palette['surface'],
@@ -151,10 +175,10 @@ function generateTheme(name, type, palette) {
             // Peek View
             "peekView.border": palette['accent'],
             "peekViewEditor.background": palette['surface'],
-            "peekViewEditor.matchHighlightBackground": palette['warning'] + "30",
+            "peekViewEditor.matchHighlightBackground": palette['warning'] + "40",
             "peekViewResult.background": palette['surface'],
-            "peekViewResult.matchHighlightBackground": palette['warning'] + "30",
-            "peekViewResult.selectionBackground": palette['accent'] + "20",
+            "peekViewResult.matchHighlightBackground": palette['warning'] + "40",
+            "peekViewResult.selectionBackground": palette['accent'] + "25",
             "peekViewTitle.background": palette['surface'],
             "peekViewTitleDescription.foreground": palette['text-subtle'],
             "peekViewTitleLabel.foreground": palette['text'],
@@ -165,6 +189,7 @@ function generateTheme(name, type, palette) {
             "gitDecoration.untrackedResourceForeground": palette['success'],
             "gitDecoration.ignoredResourceForeground": palette['text-muted'],
             "gitDecoration.conflictingResourceForeground": palette['error'],
+            "gitDecoration.submoduleResourceForeground": palette['secondary'],
 
             // Breadcrumbs
             "breadcrumb.foreground": palette['text-subtle'],
@@ -175,7 +200,7 @@ function generateTheme(name, type, palette) {
             // Menu
             "menu.background": palette['surface'],
             "menu.foreground": palette['text'],
-            "menu.selectionBackground": palette['accent'] + "20",
+            "menu.selectionBackground": palette['accent'] + "25",
             "menu.selectionForeground": palette['text'],
             "menu.separatorBackground": palette['border'],
 
@@ -189,9 +214,46 @@ function generateTheme(name, type, palette) {
             "notifications.border": palette['border'],
             "notificationLink.foreground": palette['accent'],
 
+            // Debug
+            "debugIcon.breakpointForeground": palette['error'],
+            "debugIcon.breakpointDisabledForeground": palette['disabled'],
+            "debugIcon.startForeground": palette['success'],
+            "debugIcon.pauseForeground": palette['warning'],
+            "debugIcon.stopForeground": palette['error'],
+            "debugConsole.infoForeground": palette['info'],
+            "debugConsole.errorForeground": palette['error'],
+            "debugConsole.sourceForeground": palette['text-subtle'],
+            "debugConsoleInputIcon.foreground": palette['accent'],
+
+            // Testing
+            "testing.iconPassed": palette['success'],
+            "testing.iconFailed": palette['error'],
+            "testing.iconErrored": palette['error'],
+            "testing.iconQueued": palette['warning'],
+            "testing.iconUnset": palette['text-muted'],
+            "testing.iconSkipped": palette['disabled'],
+            "testing.runAction": palette['success'],
+
+            // Settings
+            "settings.headerForeground": palette['text'],
+            "settings.modifiedItemIndicator": palette['accent'],
+            "settings.dropdownBackground": palette['surface'],
+            "settings.dropdownBorder": palette['border'],
+            "settings.checkboxBackground": palette['surface'],
+            "settings.checkboxBorder": palette['border'],
+            "settings.textInputBackground": palette['surface'],
+            "settings.textInputHeight": palette['border'],
+            "settings.numberInputBackground": palette['surface'],
+            "settings.numberInputHeight": palette['border'],
+
+            // Banner
+            "banner.background": palette['accent'],
+            "banner.foreground": palette['on-accent'],
+            "banner.iconForeground": palette['on-accent'],
+
             // Scrollbar
-            "scrollbar.shadow": palette['border'],
-            "scrollbarSlider.background": palette['border'] + "80",
+            "scrollbar.shadow": palette['border'] + "40",
+            "scrollbarSlider.background": palette['border'] + "60",
             "scrollbarSlider.hoverBackground": palette['border-strong'] + "80",
             "scrollbarSlider.activeBackground": palette['border-strong'],
 
@@ -206,12 +268,46 @@ function generateTheme(name, type, palette) {
             "editorSuggestWidget.border": palette['border'],
             "editorSuggestWidget.foreground": palette['text'],
             "editorSuggestWidget.highlightForeground": palette['accent'],
-            "editorSuggestWidget.selectedBackground": palette['accent'] + "20",
+            "editorSuggestWidget.selectedBackground": palette['accent'] + "25",
 
             // Editor Hover
             "editorHoverWidget.background": palette['surface'],
             "editorHoverWidget.border": palette['border'],
             "editorHoverWidget.foreground": palette['text'],
+
+            // Symbol Icons
+            "symbolIcon.arrayForeground": palette['text'],
+            "symbolIcon.booleanForeground": palette['syntax-const'],
+            "symbolIcon.classForeground": palette['syntax-type'],
+            "symbolIcon.constantForeground": palette['syntax-const'],
+            "symbolIcon.constructorForeground": palette['syntax-type'],
+            "symbolIcon.enumeratorForeground": palette['syntax-type'],
+            "symbolIcon.enumeratorMemberForeground": palette['syntax-const'],
+            "symbolIcon.eventForeground": palette['warning'],
+            "symbolIcon.fieldForeground": palette['secondary'],
+            "symbolIcon.fileForeground": palette['text-subtle'],
+            "symbolIcon.folderForeground": palette['text-subtle'],
+            "symbolIcon.functionForeground": palette['syntax-func'],
+            "symbolIcon.interfaceForeground": palette['syntax-type'],
+            "symbolIcon.keyForeground": palette['text'],
+            "symbolIcon.keywordForeground": palette['syntax-keyword'],
+            "symbolIcon.methodForeground": palette['syntax-func'],
+            "symbolIcon.moduleForeground": palette['secondary'],
+            "symbolIcon.namespaceForeground": palette['secondary'],
+            "symbolIcon.nullForeground": palette['syntax-const'],
+            "symbolIcon.numberForeground": palette['syntax-const'],
+            "symbolIcon.objectForeground": palette['text'],
+            "symbolIcon.operatorForeground": palette['text'],
+            "symbolIcon.packageForeground": palette['secondary'],
+            "symbolIcon.propertyForeground": palette['secondary'],
+            "symbolIcon.referenceForeground": palette['text'],
+            "symbolIcon.snippetForeground": palette['text-muted'],
+            "symbolIcon.stringForeground": palette['syntax-string'],
+            "symbolIcon.structForeground": palette['syntax-type'],
+            "symbolIcon.textForeground": palette['text'],
+            "symbolIcon.typeParameterForeground": palette['syntax-type'],
+            "symbolIcon.unitForeground": palette['text'],
+            "symbolIcon.variableForeground": palette['syntax-var'],
 
             // Bracket Pair Colorization (using primitives)
             "editorBracketHighlight.foreground1": palette['blue'],
@@ -229,23 +325,94 @@ function generateTheme(name, type, palette) {
             "editorBracketPairGuide.activeBackground4": palette['yellow'] + "80",
             "editorBracketPairGuide.activeBackground5": palette['green'] + "80",
             "editorBracketPairGuide.activeBackground6": palette['red'] + "80",
+
+            // Diff Editor
+            "diffEditor.insertedTextBackground": palette['success'] + "15",
+            "diffEditor.removedTextBackground": palette['error'] + "15",
+            "diffEditor.diagonalFill": palette['border'] + "40",
+            "diffEditor.insertedLineBackground": palette['success'] + "10",
+            "diffEditor.removedLineBackground": palette['error'] + "10",
+            "diffEditorGutter.insertedLineBackground": palette['success'] + "20",
+            "diffEditorGutter.removedLineBackground": palette['error'] + "20",
+            "diffEditorOverview.insertedForeground": palette['success'] + "80",
+            "diffEditorOverview.removedForeground": palette['error'] + "80",
+
+            // Merge Conflicts
+            "merge.currentHeaderBackground": palette['success'] + "40",
+            "merge.currentContentBackground": palette['success'] + "10",
+            "merge.incomingHeaderBackground": palette['accent'] + "40",
+            "merge.incomingContentBackground": palette['accent'] + "10",
+            "merge.commonHeaderBackground": palette['warning'] + "40",
+            "merge.commonContentBackground": palette['warning'] + "10",
+            "editorOverviewRuler.currentContentForeground": palette['success'],
+            "editorOverviewRuler.incomingContentForeground": palette['accent'],
+            "editorOverviewRuler.commonContentForeground": palette['warning'],
+
+            // Minimap
+            "minimap.findMatchHighlight": palette['warning'],
+            "minimap.errorHighlight": palette['error'],
+            "minimap.warningHighlight": palette['warning'],
+            "minimap.selectionHighlight": palette['accent'] + "40",
+            "minimap.background": palette['bg'],
+            "minimapSlider.background": palette['border'] + "40",
+            "minimapSlider.hoverBackground": palette['border'] + "60",
+            "minimapSlider.activeBackground": palette['border-strong'] + "80",
+
+            // Command Center
+            "commandCenter.foreground": palette['text'],
+            "commandCenter.activeBackground": palette['surface'],
+            "commandCenter.background": palette['bg'],
+            "commandCenter.border": palette['border'],
+
+            // Keybinding Label
+            "keybindingLabel.background": palette['surface'],
+            "keybindingLabel.foreground": palette['text'],
+            "keybindingLabel.border": palette['border'],
+            "keybindingLabel.bottomBorder": palette['border-strong'],
+
+            // Notebooks
+            "notebook.cellBorderColor": palette['border'],
+            "notebook.focusedCellBorder": palette['accent'],
+            "notebook.cellEditorBackground": palette['bg'],
+            "notebook.outputContainerBackgroundColor": palette['surface'],
+            "notebook.cellToolbarSeparator": palette['border'],
+            "notebookStatusErrorIcon.foreground": palette['error'],
+            "notebookStatusRunningIcon.foreground": palette['success'],
+            "notebookStatusSuccessIcon.foreground": palette['success'],
+
+            // Charts
+            "charts.foreground": palette['text'],
+            "charts.lines": palette['border'],
+            "charts.red": palette['red'],
+            "charts.blue": palette['blue'],
+            "charts.yellow": palette['yellow'],
+            "charts.orange": palette['red-soft'] || palette['warning'],
+            "charts.green": palette['green'],
+            "charts.purple": palette['magenta'],
+
+            // Inline Chat
+            "inlineChat.background": palette['surface'],
+            "inlineChat.border": palette['border'],
+            "inlineChat.shadow": palette['shadow-color'],
+            "inlineChat.regionHighlight": palette['accent'] + "20",
         },
+        "semanticHighlighting": true,
         "tokenColors": [
             {
                 "scope": ["comment", "punctuation.definition.comment"],
                 "settings": { "foreground": palette['text-muted'], "fontStyle": "italic" }
             },
             {
-                "scope": ["string", "punctuation.definition.string"],
-                "settings": { "foreground": palette['success'] }
+                "scope": ["string", "punctuation.definition.string", "string.quoted.double", "string.quoted.single"],
+                "settings": { "foreground": palette['syntax-string'] || palette['success'] }
             },
             {
-                "scope": ["keyword", "storage.type", "storage.modifier"],
-                "settings": { "foreground": palette['accent'], "fontStyle": "bold" }
+                "scope": ["keyword", "storage.type", "storage.modifier", "keyword.control", "keyword.operator.new", "keyword.operator.expression", "keyword.operator.logical", "keyword.operator.word"],
+                "settings": { "foreground": palette['syntax-keyword'] || palette['accent'], "fontStyle": "bold" }
             },
             {
-                "scope": ["constant.numeric", "constant.language", "constant.character", "constant.other"],
-                "settings": { "foreground": palette['secondary'] }
+                "scope": ["constant.numeric", "constant.language", "constant.character", "constant.other", "variable.other.constant"],
+                "settings": { "foreground": palette['syntax-const'] || palette['secondary'] }
             },
             {
                 "scope": ["variable", "variable.other", "variable.language"],
@@ -253,14 +420,14 @@ function generateTheme(name, type, palette) {
             },
             {
                 "scope": ["variable.parameter", "meta.parameters"],
-                "settings": { "foreground": palette['text-subtle'] }
+                "settings": { "foreground": palette['syntax-var'] || palette['text-subtle'] }
             },
             {
-                "scope": ["entity.name.function", "support.function"],
+                "scope": ["entity.name.function", "support.function", "meta.function-call"],
                 "settings": { "foreground": palette['syntax-func'] }
             },
             {
-                "scope": ["entity.name.type", "entity.name.class", "support.type", "support.class"],
+                "scope": ["entity.name.type", "entity.name.class", "support.type", "support.class", "entity.name.type.class", "entity.name.type.enum"],
                 "settings": { "foreground": palette['syntax-type'] }
             },
             {
@@ -276,8 +443,12 @@ function generateTheme(name, type, palette) {
                 "settings": { "foreground": palette['syntax-type'] }
             },
             {
-                "scope": ["punctuation.separator", "punctuation.terminator", "punctuation.accessor"],
+                "scope": ["punctuation.separator", "punctuation.terminator", "punctuation.accessor", "punctuation.section.embedded"],
                 "settings": { "foreground": palette['text-subtle'] }
+            },
+            {
+                "scope": ["punctuation.definition.parameters", "punctuation.definition.block", "punctuation.definition.bracket"],
+                "settings": { "foreground": palette['text-muted'] }
             },
             {
                 "scope": ["markup.heading", "entity.name.section"],
@@ -293,7 +464,7 @@ function generateTheme(name, type, palette) {
             },
             {
                 "scope": ["markup.inline.raw", "markup.fenced_code"],
-                "settings": { "foreground": palette['success'] }
+                "settings": { "foreground": palette['syntax-string'] || palette['success'] }
             },
             {
                 "scope": ["markup.quote"],
@@ -316,7 +487,7 @@ function generateTheme(name, type, palette) {
                 "settings": { "foreground": palette['warning'] }
             },
             {
-                "scope": ["support.constant", "meta.property-name"],
+                "scope": ["support.constant", "meta.property-name", "meta.object-literal.key"],
                 "settings": { "foreground": palette['text'] }
             },
             {
@@ -325,7 +496,7 @@ function generateTheme(name, type, palette) {
             },
             {
                 "scope": ["storage", "storage.type.function"],
-                "settings": { "foreground": palette['accent'] }
+                "settings": { "foreground": palette['accent'], "fontStyle": "bold" }
             },
             {
                 "scope": ["support.variable", "variable.other.readwrite"],
@@ -344,7 +515,7 @@ function generateTheme(name, type, palette) {
                 "settings": { "foreground": palette['text'] }
             },
             {
-                "scope": ["support.type.property-name", "meta.object-literal.key"],
+                "scope": ["support.type.property-name"],
                 "settings": { "foreground": palette['text'] }
             },
             {
@@ -428,7 +599,7 @@ function generateTheme(name, type, palette) {
                 "settings": { "foreground": palette['text-muted'] }
             },
             {
-                "scope": ["comment.block.documentation", "comment.documentation"],
+                "scope": ["comment.block.documentation", "comment.documentation", "string.quoted.docstring"],
                 "settings": { "foreground": palette['text-subtle'], "fontStyle": "italic" }
             },
             {
@@ -501,5 +672,7 @@ const extensionPackage = {
 
 fs.writeFileSync(path.join(vscodeDir, 'package.json'), JSON.stringify(extensionPackage, null, 4));
 
-console.log('Build complete!');
-console.log('  - Generated vscode/ extension');
+if (logger.isVerbose) {
+    logger.log('\nBuild complete!');
+    logger.log('  - Generated vscode/ extension');
+}

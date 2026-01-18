@@ -7,6 +7,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const logger = require('./logger');
 
 const PROJECT_ROOT = path.join(__dirname, '..');
 
@@ -19,9 +20,9 @@ const PRIMITIVE_FAMILIES = [
 let errors = 0;
 let warnings = 0;
 
-function pass(msg) { console.log(`[✓] ${msg}`); }
-function fail(msg) { console.error(`[✗] ${msg}`); errors++; }
-function warn(msg) { console.warn(`[!] ${msg}`); warnings++; }
+function pass(msg) { logger.log(`[✓] ${msg}`); }
+function fail(msg) { logger.error(`[✗] ${msg}`); errors++; }
+function warn(msg) { logger.warn(`[!] ${msg}`); warnings++; }
 
 // =============================================================================
 // Test Helpers
@@ -45,7 +46,7 @@ function countMatches(content, pattern) {
 // =============================================================================
 
 function testBuildOutputs() {
-    console.log('\n--- Build Output Existence Tests ---\n');
+    logger.log('\n--- Build Output Existence Tests ---\n');
 
     const expectedFiles = {
         // Core dist
@@ -109,7 +110,7 @@ function testBuildOutputs() {
 // =============================================================================
 
 function testPrimitiveColorsInVSCode() {
-    console.log('\n--- VSCode Primitive Colors ---\n');
+    logger.log('\n--- VSCode Primitive Colors ---\n');
 
     const darkTheme = readFile('vscode/themes/Candi Dark-color-theme.json');
     const theme = JSON.parse(darkTheme);
@@ -138,7 +139,7 @@ function testPrimitiveColorsInVSCode() {
 }
 
 function testPrimitiveColorsInVim() {
-    console.log('\n--- Vim Primitive Colors ---\n');
+    logger.log('\n--- Vim Primitive Colors ---\n');
 
     const darkVim = readFile('vim/colors/candi-dark.vim');
 
@@ -160,7 +161,7 @@ function testPrimitiveColorsInVim() {
 }
 
 function testPrimitiveColorsInKDE() {
-    console.log('\n--- KDE Primitive Colors ---\n');
+    logger.log('\n--- KDE Primitive Colors ---\n');
 
     const kdeDark = readFile('kde/v5/CandiDark.colors');
 
@@ -186,7 +187,7 @@ function testPrimitiveColorsInKDE() {
 }
 
 function testPrimitiveColorsInKonsole() {
-    console.log('\n--- Konsole Primitive Colors ---\n');
+    logger.log('\n--- Konsole Primitive Colors ---\n');
 
     const konsoleDark = readFile('kde/konsole/CandiDark.colorscheme');
 
@@ -212,7 +213,7 @@ function testPrimitiveColorsInKonsole() {
 }
 
 function testPrimitiveColorsInGNOME() {
-    console.log('\n--- GNOME Primitive Colors ---\n');
+    logger.log('\n--- GNOME Primitive Colors ---\n');
 
     const gtkDark = readFile('gnome/gtk-3.0/gtk-dark.css');
 
@@ -231,7 +232,7 @@ function testPrimitiveColorsInGNOME() {
 }
 
 function testPrimitiveColorsInObsidian() {
-    console.log('\n--- Obsidian Primitive Colors ---\n');
+    logger.log('\n--- Obsidian Primitive Colors ---\n');
 
     const obsidianTheme = readFile('obsidian/theme.css');
 
@@ -258,7 +259,7 @@ function testPrimitiveColorsInObsidian() {
 }
 
 function testPrimitiveColorsInFlutter() {
-    console.log('\n--- Flutter Primitive Colors ---\n');
+    logger.log('\n--- Flutter Primitive Colors ---\n');
 
     const flutterLib = readFile('flutter/lib/candi_colors.dart');
 
@@ -296,7 +297,7 @@ function testPrimitiveColorsInFlutter() {
 // =============================================================================
 
 function testColorCountConsistency() {
-    console.log('\n--- Color Count Consistency ---\n');
+    logger.log('\n--- Color Count Consistency ---\n');
 
     // Load source colors
     const colorsJs = require('../src/data/colors');
@@ -333,7 +334,7 @@ function testColorCountConsistency() {
 // =============================================================================
 
 function testBuildScriptSyntax() {
-    console.log('\n--- Build Script Syntax Validation ---\n');
+    logger.log('\n--- Build Script Syntax Validation ---\n');
 
     const buildScripts = [
         'build.js',
@@ -376,9 +377,9 @@ function testBuildScriptSyntax() {
 // Main Test Runner
 // =============================================================================
 
-console.log('='.repeat(60));
-console.log('  SCRIPT REGRESSION TESTS');
-console.log('='.repeat(60));
+logger.log('='.repeat(60));
+logger.log('  SCRIPT REGRESSION TESTS');
+logger.log('='.repeat(60));
 
 testBuildOutputs();
 testBuildScriptSyntax();
@@ -392,16 +393,19 @@ testPrimitiveColorsInObsidian();
 testPrimitiveColorsInFlutter();
 
 // Summary
-console.log('\n' + '='.repeat(60));
-console.log('  SUMMARY');
-console.log('='.repeat(60));
-console.log(`Errors: ${errors}`);
-console.log(`Warnings: ${warnings}`);
+logger.log('\n' + '='.repeat(60));
+logger.log('  SUMMARY');
+logger.log('='.repeat(60));
+logger.log(`Errors: ${errors}`);
+logger.log(`Warnings: ${warnings}`);
 
 if (errors > 0) {
-    console.log('\n[✗] Script regression tests FAILED');
+    logger.dump();
+    logger.error(`\n[✗] Script regression tests FAILED (${errors} errors)`);
     process.exit(1);
 } else {
-    console.log('\n[✓] Script regression tests PASSED');
+    if (logger.isVerbose) {
+        logger.log('\n[✓] All script regression tests PASSED');
+    }
     process.exit(0);
 }

@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const palette = require('../src/data/colors');
+const logger = require('./logger');
 
 const { toHex6: toHex, parseOklch } = require('./color-conv');
 
@@ -203,6 +204,10 @@ fs.writeFileSync(
     generateKonsoleTheme('Dark', 'dark', darkColors)
 );
 
-console.log('Build complete!');
-console.log('  - Generated kde/konsole/CandiLight.colorscheme');
-console.log('  - Generated kde/konsole/CandiDark.colorscheme');
+logger.log('Build complete!');
+logger.log('  - Generated kde/konsole/CandiLight.colorscheme');
+logger.log('  - Generated kde/konsole/CandiDark.colorscheme');
+
+if (logger.isVerbose) {
+    logger.log('Konsole build successful.');
+}

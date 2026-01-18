@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const palette = require('../src/data/colors');
+const logger = require('./logger');
 
 const vimDir = path.join(__dirname, '..', 'vim');
 const colorsDir = path.join(vimDir, 'colors');
@@ -10,13 +11,13 @@ const { toHex6: toHex, parseOklch } = require('./color-conv');
 const toKebab = (str) => str.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
 
 function getColors(mode) {
-  const colors = {};
-  for (const [key, data] of Object.entries(palette[mode])) {
-    const value = data.oklch || data.value;
-    const parsed = parseOklch(value);
-    if (parsed) colors[toKebab(key)] = toHex(parsed);
-  }
-  return colors;
+    const colors = {};
+    for (const [key, data] of Object.entries(palette[mode])) {
+        const value = data.oklch || data.value;
+        const parsed = parseOklch(value);
+        if (parsed) colors[toKebab(key)] = toHex(parsed);
+    }
+    return colors;
 }
 
 
@@ -27,70 +28,66 @@ const darkColors = getColors('dark');
  * Get the last modified date from existing file, or use current date if file doesn't exist
  */
 function getLastModifiedDate(filePath) {
-  if (fs.existsSync(filePath)) {
-    const content = fs.readFileSync(filePath, 'utf8');
-    const match = content.match(/Last Modified: (\d{4}-\d{2}-\d{2})/);
-    if (match) {
-      return match[1];
+    if (fs.existsSync(filePath)) {
+        const content = fs.readFileSync(filePath, 'utf8');
+        const match = content.match(/Last Modified: (\d{4}-\d{2}-\d{2})/);
+        if (match) {
+            return match[1];
+        }
+        // If file exists but no date found, or if the file is being regenerated
+        // This log is for when a file exists but its content doesn't have the date,
+        // or if the file is being overwritten with new content.
+        if (logger.isVerbose) {
+            const relPath = path.relative(process.cwd(), filePath);
+            logger.log(`  - ${relPath} unchanged`);
+        }
     }
-  }
-  return new Date().toISOString().split('T')[0];
+    return new Date().toISOString().split('T')[0];
 }
 
 /**
  * Convert hex color to nearest xterm-256 color code
  */
 function hexToXterm256(hex) {
-  const r = parseInt(hex.slice(1, 3), 16);
-  const g = parseInt(hex.slice(3, 5), 16);
-  const b = parseInt(hex.slice(5, 7), 16);
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
 
-  const avg = (r + g + b) / 3;
-  const isGray = Math.abs(r - avg) < 10 && Math.abs(g - avg) < 10 && Math.abs(b - avg) < 10;
+    const avg = (r + g + b) / 3;
+    const isGray = Math.abs(r - avg) < 10 && Math.abs(g - avg) < 10 && Math.abs(b - avg) < 10;
 
-  if (isGray) {
-    if (avg < 8) return 16;
-    if (avg > 248) return 231;
-    return Math.min(255, Math.round(232 + (avg - 8) / 10));
-  }
+    if (isGray) {
+        if (avg < 8) return 16;
+        if (avg > 248) return 231;
+        return Math.min(255, Math.round(232 + (avg - 8) / 10));
+    }
 
-  const rIndex = Math.round(r / 255 * 5);
-  const gIndex = Math.round(g / 255 * 5);
-  const bIndex = Math.round(b / 255 * 5);
+    const rIndex = Math.round(r / 255 * 5);
+    const gIndex = Math.round(g / 255 * 5);
+    const bIndex = Math.round(b / 255 * 5);
 
-  return 16 + (36 * rIndex) + (6 * gIndex) + bIndex;
+    return 16 + (36 * rIndex) + (6 * gIndex) + bIndex;
 }
 
 function generateVimTheme(name, background, palette, lastModified) {
-  const isDark = background === 'dark';
+    const isDark = background === 'dark';
 
-  // Helper to generate highlight group
-  const hi = (group, fgKey, bgKey = null, attr = 'NONE') => {
-    const fg = fgKey ? palette[fgKey] : null;
-    const bg = bgKey ? palette[bgKey] : null;
-    let line = `hi ${group.padEnd(24)}`;
+    // Helper to generate highlight group
+    const hi = (group, fgKey, bgKey = null, attr = 'NONE') => {
+        const fg = fgKey ? palette[fgKey] : 'NONE';
+        const bg = bgKey ? palette[bgKey] : 'NONE';
+        const cfg = fgKey ? hexToXterm256(palette[fgKey]) : 'NONE';
+        const cbg = bgKey ? hexToXterm256(palette[bgKey]) : 'NONE';
 
-    if (fg) {
-      line += ` guifg=${fg} ctermfg=${hexToXterm256(fg)}`;
-    } else {
-      line += ` guifg=NONE ctermfg=NONE`;
-    }
-    if (bg) {
-      line += ` guibg=${bg} ctermbg=${hexToXterm256(bg)}`;
-    } else {
-      line += ` guibg=NONE ctermbg=NONE`;
-    }
-    if (attr !== 'NONE') {
-      line += ` gui=${attr} cterm=${attr}`;
-    } else {
-      line += ` gui=NONE cterm=NONE`;
-    }
-    return line;
-  };
+        if (attr.startsWith('s:')) {
+            return `execute "hi ${group.padEnd(24)} guifg=${fg} guibg=${bg} ctermfg=${cfg} ctermbg=${cbg} gui=" . ${attr} . " cterm=" . ${attr}`;
+        }
+        return `hi ${group.padEnd(24)} guifg=${fg} ctermfg=${cfg} guibg=${bg} ctermbg=${cbg} gui=${attr} cterm=${attr}`;
+    };
 
-  const link = (from, to) => `hi! link ${from.padEnd(24)} ${to}`;
+    const link = (from, to) => `hi! link ${from.padEnd(24)} ${to}`;
 
-  return `" =============================================================================
+    return `" =============================================================================
 " DO NOT EDIT THIS FILE DIRECTLY
 " This file is auto-generated by scripts/build-vim.js
 " Edit the source at src/data/colors.js and run: npm run build:vim
@@ -203,7 +200,7 @@ ${hi('SignColumn', null, 'bg')}
 ${hi('FoldColumn', 'text-muted', 'bg')}
 ${hi('Folded', 'text-subtle', 'surface', 's:italic')}
 
-${hi('Visual', null, 'accent-subtle', 's:inverse')}
+${hi('Visual', null, 'accent-soft')}
 ${link('VisualNOS', 'Visual')}
 
 ${hi('Search', 'on-warning', 'warning')}
@@ -211,14 +208,27 @@ ${hi('IncSearch', 'on-accent', 'accent', 's:bold')}
 
 ${hi('MatchParen', 'accent', 'surface', 's:bold')}
 
-${hi('StatusLine', 'text', 'surface', 's:inverse')}
-${hi('StatusLineNC', 'text-muted', 'border', 's:inverse')}
+${hi('StatusLine', isDark ? 'text' : 'on-accent', isDark ? 'accent-subtle' : 'accent', 's:bold')}
+${hi('StatusLineNC', 'text-subtle', 'surface')}
+${hi('StatusLineTerm', 'on-accent', 'accent', 's:bold')}
+${hi('StatusLineTermNC', 'text-muted', 'surface')}
 ${hi('VertSplit', 'border', 'bg')}
 ${hi('WildMenu', 'on-accent', 'accent', 's:bold')}
 
 ${hi('TabLine', 'text-muted', 'surface')}
 ${hi('TabLineFill', 'border', 'surface')}
-${hi('TabLineSel', 'text', 'bg', 's:bold')}
+${hi('TabLineSel', 'on-accent', 'accent', 's:bold')}
+
+" Statusline segments (commonly used by plugins like Airline/Lightline)
+${hi('User1', 'on-accent', 'accent', 's:bold')}
+${hi('User2', 'on-secondary', 'secondary', 's:bold')}
+${hi('User3', 'on-success', 'success', 's:bold')}
+${hi('User4', 'on-success', 'success')}
+${hi('User5', 'on-warning', 'warning', 's:bold')}
+${hi('User6', 'on-error', 'error', 's:bold')}
+${hi('User7', isDark ? 'text' : 'on-accent', isDark ? 'accent-subtle' : 'accent', 's:bold')}
+${hi('User8', 'text', isDark ? 'accent-subtle' : 'surface')}
+${hi('User9', 'text-muted', isDark ? 'accent-subtle' : 'surface')}
 
 ${hi('Title', 'accent', null, 's:bold')}
 ${hi('Directory', 'accent', null, 's:bold')}
@@ -240,6 +250,8 @@ ${hi('Cursor', null, null, 's:inverse')}
 ${link('lCursor', 'Cursor')}
 ${link('iCursor', 'Cursor')}
 ${link('vCursor', 'Cursor')}
+${hi('TermCursor', 'accent', null, 's:inverse')}
+${hi('TermCursorNC', 'text-muted', null, 's:inverse')}
 
 " }}}
 " Completion Menu: {{{
@@ -322,6 +334,34 @@ ${hi('Ignore', 'text-muted')}
 
 " }}}
 " Plugin Support: {{{
+" Statusline Plugins: {{{
+" Support for Airline, Lightline, and Lualine
+"
+" Main segments (Mode, Filename, Info)
+" Mode indicator (Normal/Insert/etc.)
+${hi('Airlinea', 'on-accent', 'accent', 's:bold')}
+${hi('Airlinez', 'on-accent', 'accent', 's:bold')}
+
+" Secondary segments (Branch, Filetype)
+${hi('Airlineb', 'text', isDark ? 'accent-subtle' : 'surface')}
+${hi('Airliney', 'text', isDark ? 'accent-subtle' : 'surface')}
+
+" Middle segment (Filename)
+${hi('Airlinec', 'text', 'bg')}
+
+" Inactive statusline
+${hi('Airlinea_inactive', 'text-muted', 'surface')}
+${hi('Airlineb_inactive', 'text-muted', 'surface')}
+${hi('Airlinec_inactive', 'text-muted', 'bg')}
+
+" Lightline mappings
+${hi('LightlineLeft_active_0', 'on-accent', 'accent', 's:bold')}
+${hi('LightlineLeft_active_1', 'text', isDark ? 'accent-subtle' : 'surface')}
+${hi('LightlineMiddle_active', 'text-subtle', 'bg')}
+${hi('LightlineRight_active_0', 'on-accent', 'accent', 's:bold')}
+${hi('LightlineRight_active_1', 'text', isDark ? 'accent-subtle' : 'surface')}
+
+" }}}
 " GitGutter: {{{
 
 ${link('GitGutterAdd', 'DiffAdd')}
@@ -361,6 +401,135 @@ ${hi('CocErrorHighlight', null, null, 's:undercurl')}
 ${hi('CocWarningHighlight', null, null, 's:undercurl')}
 ${hi('CocInfoHighlight', null, null, 's:undercurl')}
 ${hi('CocHintHighlight', null, null, 's:undercurl')}
+
+" Neovim UI: {{{
+" Floating Windows, Modern Separators, and Messages
+
+${hi('NormalFloat', 'text', 'elevated')}
+${hi('FloatBorder', 'border-strong', 'elevated')}
+${hi('FloatTitle', 'accent', 'elevated', 's:bold')}
+${hi('MsgArea', 'text', 'bg')}
+${hi('MsgSeparator', 'divider', 'bg')}
+${hi('WinSeparator', 'border', 'bg')}
+${hi('Substitute', 'on-warning', 'warning', 's:bold')}
+${hi('CurSearch', 'on-accent', 'accent', 's:bold')}
+${hi('Question', 'secondary', null, 's:bold')}
+${hi('QuickFixLine', null, 'accent-soft', 's:bold')}
+${hi('WinBar', 'text', 'bg', 's:bold')}
+${hi('WinBarNC', 'text-muted', 'bg')}
+
+" }}}
+" Neovim LSP: {{{
+
+${hi('DiagnosticError', 'error')}
+${hi('DiagnosticWarn', 'warning')}
+${hi('DiagnosticInfo', 'info')}
+${hi('DiagnosticHint', 'teal')}
+${hi('DiagnosticOk', 'success')}
+
+${hi('DiagnosticVirtualTextError', 'error', 'error-subtle')}
+${hi('DiagnosticVirtualTextWarn', 'warning', 'warning-subtle')}
+${hi('DiagnosticVirtualTextInfo', 'info', 'info-subtle')}
+${hi('DiagnosticVirtualTextHint', 'teal', 'teal-subtle')}
+
+${hi('DiagnosticUnderlineError', null, null, 's:undercurl')}
+${hi('DiagnosticUnderlineWarn', null, null, 's:undercurl')}
+${hi('DiagnosticUnderlineInfo', null, null, 's:undercurl')}
+${hi('DiagnosticUnderlineHint', null, null, 's:undercurl')}
+
+${hi('LspSignatureActiveParameter', 'accent', null, 's:bold')}
+${hi('LspReferenceText', null, 'surface')}
+${hi('LspReferenceRead', null, 'surface')}
+${hi('LspReferenceWrite', null, 'surface')}
+
+" }}}
+" Neovim Treesitter: {{{
+" Standard @capture links to existing Candi syntax groups
+" Guarded for Neovim only as standard Vim doesn't support '@' in group names
+
+if has('nvim')
+${link('@variable', 'Identifier')}
+${link('@variable.builtin', 'Identifier')}
+${hi('@variable.parameter', 'syntax-var')}
+${hi('@variable.member', 'secondary')}
+
+${link('@function', 'Function')}
+${link('@function.builtin', 'Function')}
+${link('@function.call', 'Function')}
+${link('@function.macro', 'Macro')}
+
+${hi('@method', 'syntax-func', null, 's:bold')}
+${hi('@method.call', 'syntax-func')}
+
+${link('@keyword', 'Keyword')}
+${link('@keyword.function', 'Keyword')}
+${link('@keyword.return', 'Keyword')}
+${link('@keyword.operator', 'Operator')}
+
+${link('@type', 'Type')}
+${link('@type.builtin', 'Type')}
+${link('@type.definition', 'Type')}
+
+${link('@constant', 'Constant')}
+${link('@constant.builtin', 'Constant')}
+${link('@constant.macro', 'Constant')}
+
+${link('@string', 'String')}
+${link('@string.regex', 'String')}
+${link('@string.escape', 'Special')}
+
+${link('@number', 'Number')}
+${link('@boolean', 'Boolean')}
+${link('@float', 'Float')}
+
+${link('@property', 'Identifier')}
+${hi('@field', 'secondary')}
+${link('@constructor', 'Type')}
+
+${hi('@attribute', 'accent')}
+${link('@label', 'Label')}
+${link('@operator', 'Operator')}
+${link('@exception', 'Exception')}
+
+${link('@comment', 'Comment')}
+${link('@punctuation', 'Delimiter')}
+${link('@punctuation.bracket', 'Delimiter')}
+${link('@punctuation.delimiter', 'Delimiter')}
+
+${link('@tag', 'Tag')}
+${link('@tag.attribute', 'Identifier')}
+${link('@tag.delimiter', 'Delimiter')}
+endif
+
+" }}}
+" Modern Plugins (Telescope, Gitsigns, etc.): {{{
+
+" Gitsigns
+${hi('GitSignsAdd', 'success', 'bg')}
+${hi('GitSignsChange', 'warning', 'bg')}
+${hi('GitSignsDelete', 'error', 'bg')}
+
+" Telescope
+${hi('TelescopeBorder', 'border-strong')}
+${hi('TelescopePromptBorder', 'accent')}
+${hi('TelescopeResultsBorder', 'border')}
+${hi('TelescopePreviewBorder', 'border')}
+${hi('TelescopeMatching', 'accent', null, 's:bold')}
+${hi('TelescopeSelection', 'text', 'surface', 's:bold')}
+
+" Bufferline
+${hi('BufferLineIndicatorSelected', 'accent')}
+${hi('BufferLineFill', null, 'bg')}
+
+" Nvim-Tree
+${hi('NvimTreeRootFolder', 'accent', null, 's:bold')}
+${hi('NvimTreeFolderName', 'accent')}
+${hi('NvimTreeOpenedFolderName', 'accent', null, 's:italic')}
+${hi('NvimTreeEmptyFolderName', 'text-muted')}
+${hi('NvimTreeIndentMarker', 'border')}
+${hi('NvimTreeVertSplit', 'border', 'bg')}
+
+" }}}
 
 " }}}
 " NERDTree: {{{
@@ -501,33 +670,43 @@ ${link('RainbowDelimiterOrange', 'rainbowcol7')}
 ${hi('CandiRed', 'red')}
 ${hi('CandiRedSubtle', 'red-subtle')}
 ${hi('CandiRedStrong', 'red-strong')}
+${hi('CandiOnRed', 'on-red')}
 ${hi('CandiBlue', 'blue')}
 ${hi('CandiBlueSubtle', 'blue-subtle')}
 ${hi('CandiBlueStrong', 'blue-strong')}
+${hi('CandiOnBlue', 'on-blue')}
 ${hi('CandiGreen', 'green')}
 ${hi('CandiGreenSubtle', 'green-subtle')}
 ${hi('CandiGreenStrong', 'green-strong')}
+${hi('CandiOnGreen', 'on-green')}
 ${hi('CandiYellow', 'yellow')}
 ${hi('CandiYellowSubtle', 'yellow-subtle')}
 ${hi('CandiYellowStrong', 'yellow-strong')}
+${hi('CandiOnYellow', 'on-yellow')}
 ${hi('CandiMagenta', 'magenta')}
 ${hi('CandiMagentaSubtle', 'magenta-subtle')}
 ${hi('CandiMagentaStrong', 'magenta-strong')}
+${hi('CandiOnMagenta', 'on-magenta')}
 ${hi('CandiCyan', 'cyan')}
 ${hi('CandiCyanSubtle', 'cyan-subtle')}
 ${hi('CandiCyanStrong', 'cyan-strong')}
+${hi('CandiOnCyan', 'on-cyan')}
 ${hi('CandiTeal', 'teal')}
 ${hi('CandiTealSubtle', 'teal-subtle')}
 ${hi('CandiTealStrong', 'teal-strong')}
+${hi('CandiOnTeal', 'on-teal')}
 ${hi('CandiPink', 'pink')}
 ${hi('CandiPinkSubtle', 'pink-subtle')}
 ${hi('CandiPinkStrong', 'pink-strong')}
+${hi('CandiOnPink', 'on-pink')}
 ${hi('CandiGold', 'gold')}
 ${hi('CandiGoldSubtle', 'gold-subtle')}
 ${hi('CandiGoldStrong', 'gold-strong')}
+${hi('CandiOnGold', 'on-gold')}
 ${hi('CandiSilver', 'silver')}
 ${hi('CandiSilverSubtle', 'silver-subtle')}
 ${hi('CandiSilverStrong', 'silver-strong')}
+${hi('CandiOnSilver', 'on-silver')}
 
 " }}}
 
@@ -551,38 +730,45 @@ const darkTheme = generateVimTheme('Dark', 'dark', darkColors, darkLastModified)
 
 // Only write if content has changed (excluding the Last Modified line)
 const shouldWrite = (filePath, newContent) => {
-  if (!fs.existsSync(filePath)) return true;
+    if (!fs.existsSync(filePath)) return true;
 
-  const existingContent = fs.readFileSync(filePath, 'utf8');
-  const stripDate = (content) => content.replace(/Last Modified: \d{4}-\d{2}-\d{2}/, 'Last Modified: XXXX-XX-XX');
+    const existingContent = fs.readFileSync(filePath, 'utf8');
+    const stripDate = (content) => content.replace(/Last Modified: \d{4}-\d{2}-\d{2}/, 'Last Modified: XXXX-XX-XX');
 
-  return stripDate(existingContent) !== stripDate(newContent);
+    return stripDate(existingContent) !== stripDate(newContent);
 };
 
 // Write light theme
 if (shouldWrite(lightThemePath, lightTheme)) {
-  // Update the last modified date only if content changed
-  const updatedLightTheme = lightTheme.replace(
-    /Last Modified: \d{4}-\d{2}-\d{2}/,
-    `Last Modified: ${new Date().toISOString().split('T')[0]}`
-  );
-  fs.writeFileSync(lightThemePath, updatedLightTheme);
-  console.log('  - Updated vim/colors/candi-light.vim');
+    // Update the last modified date only if content changed
+    const updatedLightTheme = lightTheme.replace(
+        /Last Modified: \d{4}-\d{2}-\d{2}/,
+        `Last Modified: ${new Date().toISOString().split('T')[0]}`
+    );
+    fs.writeFileSync(lightThemePath, updatedLightTheme);
+    console.log('  - Updated vim/colors/candi-light.vim');
 } else {
-  console.log('  - vim/colors/candi-light.vim unchanged');
+    if (logger.isVerbose) {
+        console.log('  - vim/colors/candi-light.vim unchanged');
+    }
 }
 
 // Write dark theme
 if (shouldWrite(darkThemePath, darkTheme)) {
-  // Update the last modified date only if content changed
-  const updatedDarkTheme = darkTheme.replace(
-    /Last Modified: \d{4}-\d{2}-\d{2}/,
-    `Last Modified: ${new Date().toISOString().split('T')[0]}`
-  );
-  fs.writeFileSync(darkThemePath, updatedDarkTheme);
-  console.log('  - Updated vim/colors/candi-dark.vim');
+    // Update the last modified date only if content changed
+    const updatedDarkTheme = darkTheme.replace(
+        /Last Modified: \d{4}-\d{2}-\d{2}/,
+        `Last Modified: ${new Date().toISOString().split('T')[0]}`
+    );
+    fs.writeFileSync(darkThemePath, updatedDarkTheme);
+    logger.log('  - Updated vim/colors/candi-dark.vim');
 } else {
-  console.log('  - vim/colors/candi-dark.vim unchanged');
+    if (logger.isVerbose) {
+        logger.log('  - vim/colors/candi-dark.vim unchanged');
+    }
 }
 
-console.log('Build complete!');
+logger.log('Build complete!');
+if (logger.isVerbose) {
+    logger.log('Vim build successful.');
+}

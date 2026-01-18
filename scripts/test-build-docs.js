@@ -7,20 +7,21 @@
 
 const fs = require('fs');
 const path = require('path');
+const logger = require('./logger');
 
 const PROJECT_ROOT = path.join(__dirname, '..');
 
 let errors = 0;
 let passed = 0;
 
-function pass(msg) { console.log(`[✓] ${msg}`); passed++; }
-function fail(msg) { console.error(`[✗] ${msg}`); errors++; }
+function pass(msg) { logger.log(`[✓] ${msg}`); passed++; }
+function fail(msg) { logger.error(`[✗] ${msg}`); errors++; }
 
 // =============================================================================
 // Version Files Tests
 // =============================================================================
 
-console.log('\n--- Version Files Tests ---\n');
+logger.log('\n--- Version Files Tests ---\n');
 
 // Check package.json has version
 const packageJson = require('../package.json');
@@ -61,7 +62,7 @@ if (fs.existsSync(pubVersionsPath)) {
 // Documentation Placeholder Tests
 // =============================================================================
 
-console.log('\n--- Documentation Placeholder Tests ---\n');
+logger.log('\n--- Documentation Placeholder Tests ---\n');
 
 // Check docs directory exists
 const docsDir = path.join(PROJECT_ROOT, 'docs');
@@ -101,7 +102,7 @@ if (fs.existsSync(releaseArtifactsPath)) {
 // Build Docs Script Tests
 // =============================================================================
 
-console.log('\n--- Build Docs Script Tests ---\n');
+logger.log('\n--- Build Docs Script Tests ---\n');
 
 // Check build-docs.js exists
 const buildDocsPath = path.join(PROJECT_ROOT, 'scripts', 'build-docs.js');
@@ -133,16 +134,19 @@ if (fs.existsSync(buildDocsPath)) {
 // Summary
 // =============================================================================
 
-console.log('\n' + '='.repeat(50));
-console.log('  BUILD DOCS TEST SUMMARY');
-console.log('='.repeat(50));
-console.log(`Passed: ${passed}`);
-console.log(`Failed: ${errors}`);
+logger.log('\n' + '='.repeat(50));
+logger.log('  BUILD DOCS TEST SUMMARY');
+logger.log('='.repeat(50));
+logger.log(`Passed: ${passed}`);
+logger.log(`Failed: ${errors}`);
 
 if (errors > 0) {
-    console.log('\n[✗] Build docs tests FAILED');
+    logger.dump();
+    logger.error('\n[✗] Build docs tests FAILED');
     process.exit(1);
 } else {
-    console.log('\n[✓] Build docs tests PASSED');
+    if (logger.isVerbose) {
+        logger.log('\n[✓] Build docs tests PASSED');
+    }
     process.exit(0);
 }

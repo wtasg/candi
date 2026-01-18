@@ -84,117 +84,132 @@ if has('nvim')
   let g:terminal_color_4  = '#7987DE'
   let g:terminal_color_5  = '#D5848A'
   let g:terminal_color_6  = '#84A4B1'
-  let g:terminal_color_7  = '#E8E4DD'
-  let g:terminal_color_8  = '#7C7A76'
-  let g:terminal_color_9  = '#E7958E'
-  let g:terminal_color_10 = '#8EBC8F'
-  let g:terminal_color_11 = '#E4B572'
-  let g:terminal_color_12 = '#7987DE'
+  let g:terminal_color_7  = '#E0E5EB'
+  let g:terminal_color_8  = '#83878B'
+  let g:terminal_color_9  = '#DC9A94'
+  let g:terminal_color_10 = '#97B997'
+  let g:terminal_color_11 = '#D9B88B'
+  let g:terminal_color_12 = '#6993BE'
   let g:terminal_color_13 = '#E7729B'
   let g:terminal_color_14 = '#53C1C7'
-  let g:terminal_color_15 = '#E8E4DD'
+  let g:terminal_color_15 = '#E0E5EB'
 endif
 
 " }}}
 " Vanilla Colorscheme: {{{
 " General UI: {{{
 
-hi Normal                   guifg=#E8E4DD ctermfg=254 guibg=#15110A ctermbg=233 gui=NONE cterm=NONE
-hi CursorLine               guifg=NONE ctermfg=NONE guibg=#1D1A14 ctermbg=234 gui=NONE cterm=NONE
-hi CursorColumn             guifg=NONE ctermfg=NONE guibg=#1D1A14 ctermbg=234 gui=NONE cterm=NONE
-hi ColorColumn              guifg=NONE ctermfg=NONE guibg=#1D1A14 ctermbg=234 gui=NONE cterm=NONE
-hi Conceal                  guifg=#7987DE ctermfg=110 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi Normal                   guifg=#E0E5EB ctermfg=254 guibg=#0D1218 ctermbg=233 gui=NONE cterm=NONE
+hi CursorLine               guifg=NONE ctermfg=NONE guibg=#161B20 ctermbg=234 gui=NONE cterm=NONE
+hi CursorColumn             guifg=NONE ctermfg=NONE guibg=#161B20 ctermbg=234 gui=NONE cterm=NONE
+hi ColorColumn              guifg=NONE ctermfg=NONE guibg=#161B20 ctermbg=234 gui=NONE cterm=NONE
+hi Conceal                  guifg=#6993BE ctermfg=110 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 
-hi LineNr                   guifg=#7C7A76 ctermfg=243 guibg=#15110A ctermbg=233 gui=NONE cterm=NONE
-hi CursorLineNr             guifg=#7987DE ctermfg=110 guibg=#15110A ctermbg=233 gui=s:bold cterm=s:bold
-hi SignColumn               guifg=NONE ctermfg=NONE guibg=#15110A ctermbg=233 gui=NONE cterm=NONE
-hi FoldColumn               guifg=#7C7A76 ctermfg=243 guibg=#15110A ctermbg=233 gui=NONE cterm=NONE
-hi Folded                   guifg=#A7A49F ctermfg=248 guibg=#1D1A14 ctermbg=234 gui=s:italic cterm=s:italic
+hi LineNr                   guifg=#83878B ctermfg=245 guibg=#0D1218 ctermbg=233 gui=NONE cterm=NONE
+execute "hi CursorLineNr             guifg=#6993BE guibg=#0D1218 ctermfg=110 ctermbg=233 gui=" . s:bold . " cterm=" . s:bold
+hi SignColumn               guifg=NONE ctermfg=NONE guibg=#0D1218 ctermbg=233 gui=NONE cterm=NONE
+hi FoldColumn               guifg=#83878B ctermfg=245 guibg=#0D1218 ctermbg=233 gui=NONE cterm=NONE
+execute "hi Folded                   guifg=#A9AFB4 guibg=#161B20 ctermfg=249 ctermbg=234 gui=" . s:italic . " cterm=" . s:italic
 
-hi Visual                   guifg=NONE ctermfg=NONE guibg=#333B79 ctermbg=60 gui=s:inverse cterm=s:inverse
+hi Visual                   guifg=NONE ctermfg=NONE guibg=#90B2D6 ctermbg=146 gui=NONE cterm=NONE
 hi! link VisualNOS                Visual
 
-hi Search                   guifg=#000000 ctermfg=16 guibg=#E4B572 ctermbg=186 gui=NONE cterm=NONE
-hi IncSearch                guifg=#000000 ctermfg=16 guibg=#7987DE ctermbg=110 gui=s:bold cterm=s:bold
+hi Search                   guifg=#000000 ctermfg=16 guibg=#D9B88B ctermbg=187 gui=NONE cterm=NONE
+execute "hi IncSearch                guifg=#000000 guibg=#6993BE ctermfg=16 ctermbg=110 gui=" . s:bold . " cterm=" . s:bold
 
-hi MatchParen               guifg=#7987DE ctermfg=110 guibg=#1D1A14 ctermbg=234 gui=s:bold cterm=s:bold
+execute "hi MatchParen               guifg=#6993BE guibg=#161B20 ctermfg=110 ctermbg=234 gui=" . s:bold . " cterm=" . s:bold
 
-hi StatusLine               guifg=#E8E4DD ctermfg=254 guibg=#1D1A14 ctermbg=234 gui=s:inverse cterm=s:inverse
-hi StatusLineNC             guifg=#7C7A76 ctermfg=243 guibg=#302D28 ctermbg=236 gui=s:inverse cterm=s:inverse
-hi VertSplit                guifg=#302D28 ctermfg=236 guibg=#15110A ctermbg=233 gui=NONE cterm=NONE
-hi WildMenu                 guifg=#000000 ctermfg=16 guibg=#7987DE ctermbg=110 gui=s:bold cterm=s:bold
+execute "hi StatusLine               guifg=#E0E5EB guibg=#2E445B ctermfg=254 ctermbg=60 gui=" . s:bold . " cterm=" . s:bold
+hi StatusLineNC             guifg=#A9AFB4 ctermfg=249 guibg=#161B20 ctermbg=234 gui=NONE cterm=NONE
+execute "hi StatusLineTerm           guifg=#000000 guibg=#6993BE ctermfg=16 ctermbg=110 gui=" . s:bold . " cterm=" . s:bold
+hi StatusLineTermNC         guifg=#83878B ctermfg=245 guibg=#161B20 ctermbg=234 gui=NONE cterm=NONE
+hi VertSplit                guifg=#373B40 ctermfg=237 guibg=#0D1218 ctermbg=233 gui=NONE cterm=NONE
+execute "hi WildMenu                 guifg=#000000 guibg=#6993BE ctermfg=16 ctermbg=110 gui=" . s:bold . " cterm=" . s:bold
 
-hi TabLine                  guifg=#7C7A76 ctermfg=243 guibg=#1D1A14 ctermbg=234 gui=NONE cterm=NONE
-hi TabLineFill              guifg=#302D28 ctermfg=236 guibg=#1D1A14 ctermbg=234 gui=NONE cterm=NONE
-hi TabLineSel               guifg=#E8E4DD ctermfg=254 guibg=#15110A ctermbg=233 gui=s:bold cterm=s:bold
+hi TabLine                  guifg=#83878B ctermfg=245 guibg=#161B20 ctermbg=234 gui=NONE cterm=NONE
+hi TabLineFill              guifg=#373B40 ctermfg=237 guibg=#161B20 ctermbg=234 gui=NONE cterm=NONE
+execute "hi TabLineSel               guifg=#000000 guibg=#6993BE ctermfg=16 ctermbg=110 gui=" . s:bold . " cterm=" . s:bold
 
-hi Title                    guifg=#7987DE ctermfg=110 guibg=NONE ctermbg=NONE gui=s:bold cterm=s:bold
-hi Directory                guifg=#7987DE ctermfg=110 guibg=NONE ctermbg=NONE gui=s:bold cterm=s:bold
+" Statusline segments (commonly used by plugins like Airline/Lightline)
+execute "hi User1                    guifg=#000000 guibg=#6993BE ctermfg=16 ctermbg=110 gui=" . s:bold . " cterm=" . s:bold
+execute "hi User2                    guifg=#000000 guibg=#C68D90 ctermfg=16 ctermbg=181 gui=" . s:bold . " cterm=" . s:bold
+execute "hi User3                    guifg=#000000 guibg=#97B997 ctermfg=16 ctermbg=151 gui=" . s:bold . " cterm=" . s:bold
+hi User4                    guifg=#000000 ctermfg=16 guibg=#97B997 ctermbg=151 gui=NONE cterm=NONE
+execute "hi User5                    guifg=#000000 guibg=#D9B88B ctermfg=16 ctermbg=187 gui=" . s:bold . " cterm=" . s:bold
+execute "hi User6                    guifg=#000000 guibg=#DC9A94 ctermfg=16 ctermbg=181 gui=" . s:bold . " cterm=" . s:bold
+execute "hi User7                    guifg=#E0E5EB guibg=#2E445B ctermfg=254 ctermbg=60 gui=" . s:bold . " cterm=" . s:bold
+hi User8                    guifg=#E0E5EB ctermfg=254 guibg=#2E445B ctermbg=60 gui=NONE cterm=NONE
+hi User9                    guifg=#83878B ctermfg=245 guibg=#2E445B ctermbg=60 gui=NONE cterm=NONE
 
-hi ErrorMsg                 guifg=#000000 ctermfg=16 guibg=#E7958E ctermbg=217 gui=s:bold cterm=s:bold
-hi WarningMsg               guifg=#000000 ctermfg=16 guibg=#E4B572 ctermbg=186 gui=s:bold cterm=s:bold
-hi ModeMsg                  guifg=#7987DE ctermfg=110 guibg=NONE ctermbg=NONE gui=s:bold cterm=s:bold
-hi MoreMsg                  guifg=#8EBC8F ctermfg=151 guibg=NONE ctermbg=NONE gui=s:bold cterm=s:bold
-hi Question                 guifg=#D5848A ctermfg=181 guibg=NONE ctermbg=NONE gui=s:bold cterm=s:bold
+execute "hi Title                    guifg=#6993BE guibg=NONE ctermfg=110 ctermbg=NONE gui=" . s:bold . " cterm=" . s:bold
+execute "hi Directory                guifg=#6993BE guibg=NONE ctermfg=110 ctermbg=NONE gui=" . s:bold . " cterm=" . s:bold
 
-hi NonText                  guifg=#302D28 ctermfg=236 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi SpecialKey               guifg=#7C7A76 ctermfg=243 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi Whitespace               guifg=#302D28 ctermfg=236 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+execute "hi ErrorMsg                 guifg=#000000 guibg=#DC9A94 ctermfg=16 ctermbg=181 gui=" . s:bold . " cterm=" . s:bold
+execute "hi WarningMsg               guifg=#000000 guibg=#D9B88B ctermfg=16 ctermbg=187 gui=" . s:bold . " cterm=" . s:bold
+execute "hi ModeMsg                  guifg=#6993BE guibg=NONE ctermfg=110 ctermbg=NONE gui=" . s:bold . " cterm=" . s:bold
+execute "hi MoreMsg                  guifg=#97B997 guibg=NONE ctermfg=151 ctermbg=NONE gui=" . s:bold . " cterm=" . s:bold
+execute "hi Question                 guifg=#C68D90 guibg=NONE ctermfg=181 ctermbg=NONE gui=" . s:bold . " cterm=" . s:bold
+
+hi NonText                  guifg=#373B40 ctermfg=237 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi SpecialKey               guifg=#83878B ctermfg=245 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi Whitespace               guifg=#373B40 ctermfg=237 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 
 " }}}
 " Cursor: {{{
 
-hi Cursor                   guifg=NONE ctermfg=NONE guibg=NONE ctermbg=NONE gui=s:inverse cterm=s:inverse
+execute "hi Cursor                   guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE gui=" . s:inverse . " cterm=" . s:inverse
 hi! link lCursor                  Cursor
 hi! link iCursor                  Cursor
 hi! link vCursor                  Cursor
+execute "hi TermCursor               guifg=#6993BE guibg=NONE ctermfg=110 ctermbg=NONE gui=" . s:inverse . " cterm=" . s:inverse
+execute "hi TermCursorNC             guifg=#83878B guibg=NONE ctermfg=245 ctermbg=NONE gui=" . s:inverse . " cterm=" . s:inverse
 
 " }}}
 " Completion Menu: {{{
 
-hi Pmenu                    guifg=#E8E4DD ctermfg=254 guibg=#1D1A14 ctermbg=234 gui=NONE cterm=NONE
-hi PmenuSel                 guifg=#000000 ctermfg=16 guibg=#7987DE ctermbg=110 gui=s:bold cterm=s:bold
-hi PmenuSbar                guifg=NONE ctermfg=NONE guibg=#1D1A14 ctermbg=234 gui=NONE cterm=NONE
-hi PmenuThumb               guifg=NONE ctermfg=NONE guibg=#4B4740 ctermbg=238 gui=NONE cterm=NONE
+hi Pmenu                    guifg=#E0E5EB ctermfg=254 guibg=#161B20 ctermbg=234 gui=NONE cterm=NONE
+execute "hi PmenuSel                 guifg=#000000 guibg=#6993BE ctermfg=16 ctermbg=110 gui=" . s:bold . " cterm=" . s:bold
+hi PmenuSbar                guifg=NONE ctermfg=NONE guibg=#161B20 ctermbg=234 gui=NONE cterm=NONE
+hi PmenuThumb               guifg=NONE ctermfg=NONE guibg=#50565C ctermbg=240 gui=NONE cterm=NONE
 
 " }}}
 " Diffs: {{{
 
-hi DiffAdd                  guifg=#8EBC8F ctermfg=151 guibg=#15110A ctermbg=233 gui=s:inverse cterm=s:inverse
-hi DiffChange               guifg=#E4B572 ctermfg=186 guibg=#15110A ctermbg=233 gui=s:inverse cterm=s:inverse
-hi DiffDelete               guifg=#E7958E ctermfg=217 guibg=#15110A ctermbg=233 gui=s:inverse cterm=s:inverse
-hi DiffText                 guifg=#7987DE ctermfg=110 guibg=#15110A ctermbg=233 gui=s:inverse cterm=s:inverse
+execute "hi DiffAdd                  guifg=#97B997 guibg=#0D1218 ctermfg=151 ctermbg=233 gui=" . s:inverse . " cterm=" . s:inverse
+execute "hi DiffChange               guifg=#D9B88B guibg=#0D1218 ctermfg=187 ctermbg=233 gui=" . s:inverse . " cterm=" . s:inverse
+execute "hi DiffDelete               guifg=#DC9A94 guibg=#0D1218 ctermfg=181 ctermbg=233 gui=" . s:inverse . " cterm=" . s:inverse
+execute "hi DiffText                 guifg=#6993BE guibg=#0D1218 ctermfg=110 ctermbg=233 gui=" . s:inverse . " cterm=" . s:inverse
 
 " }}}
 " Spelling: {{{
 
 if has("spell")
-  hi SpellBad                 guifg=NONE ctermfg=NONE guibg=NONE ctermbg=NONE gui=s:undercurl cterm=s:undercurl
-  hi SpellCap                 guifg=NONE ctermfg=NONE guibg=NONE ctermbg=NONE gui=s:undercurl cterm=s:undercurl
-  hi SpellLocal               guifg=NONE ctermfg=NONE guibg=NONE ctermbg=NONE gui=s:undercurl cterm=s:undercurl
-  hi SpellRare                guifg=NONE ctermfg=NONE guibg=NONE ctermbg=NONE gui=s:undercurl cterm=s:undercurl
+  execute "hi SpellBad                 guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE gui=" . s:undercurl . " cterm=" . s:undercurl
+  execute "hi SpellCap                 guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE gui=" . s:undercurl . " cterm=" . s:undercurl
+  execute "hi SpellLocal               guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE gui=" . s:undercurl . " cterm=" . s:undercurl
+  execute "hi SpellRare                guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE gui=" . s:undercurl . " cterm=" . s:undercurl
 endif
 
 " }}}
 " }}}
 " Syntax Highlighting: {{{
 
-hi Comment                  guifg=#7C7A76 ctermfg=243 guibg=NONE ctermbg=NONE gui=s:italic_comments cterm=s:italic_comments
-hi Todo                     guifg=#000000 ctermfg=16 guibg=#7987DE ctermbg=110 gui=s:bold cterm=s:bold
-hi Error                    guifg=#000000 ctermfg=16 guibg=#E7958E ctermbg=217 gui=s:bold cterm=s:bold
+execute "hi Comment                  guifg=#83878B guibg=NONE ctermfg=245 ctermbg=NONE gui=" . s:italic_comments . " cterm=" . s:italic_comments
+execute "hi Todo                     guifg=#000000 guibg=#6993BE ctermfg=16 ctermbg=110 gui=" . s:bold . " cterm=" . s:bold
+execute "hi Error                    guifg=#000000 guibg=#DC9A94 ctermfg=16 ctermbg=181 gui=" . s:bold . " cterm=" . s:bold
 
 " Generic statement
-hi Statement                guifg=#E7729B ctermfg=211 guibg=NONE ctermbg=NONE gui=s:bold cterm=s:bold
+execute "hi Statement                guifg=#E7729B guibg=NONE ctermfg=211 ctermbg=NONE gui=" . s:bold . " cterm=" . s:bold
 hi Conditional              guifg=#E7729B ctermfg=211 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi Repeat                   guifg=#E7729B ctermfg=211 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi Label                    guifg=#E7729B ctermfg=211 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi Exception                guifg=#E7958E ctermfg=217 guibg=NONE ctermbg=NONE gui=s:bold cterm=s:bold
-hi Operator                 guifg=#E8E4DD ctermfg=254 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi Keyword                  guifg=#E7729B ctermfg=211 guibg=NONE ctermbg=NONE gui=s:bold cterm=s:bold
+execute "hi Exception                guifg=#DC9A94 guibg=NONE ctermfg=181 ctermbg=NONE gui=" . s:bold . " cterm=" . s:bold
+hi Operator                 guifg=#E0E5EB ctermfg=254 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+execute "hi Keyword                  guifg=#E7729B guibg=NONE ctermfg=211 ctermbg=NONE gui=" . s:bold . " cterm=" . s:bold
 
 " Variable name
-hi Identifier               guifg=#E8E4DD ctermfg=254 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi Function                 guifg=#3D98D1 ctermfg=74 guibg=NONE ctermbg=NONE gui=s:bold cterm=s:bold
+hi Identifier               guifg=#E0E5EB ctermfg=254 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+execute "hi Function                 guifg=#3D98D1 guibg=NONE ctermfg=74 ctermbg=NONE gui=" . s:bold . " cterm=" . s:bold
 
 " Generic preprocessor
 hi PreProc                  guifg=#9FA5F9 ctermfg=147 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
@@ -206,30 +221,58 @@ hi PreCondit                guifg=#9FA5F9 ctermfg=147 guibg=NONE ctermbg=NONE gu
 " Generic constant
 hi Constant                 guifg=#FFA167 ctermfg=216 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi Character                guifg=#FFA167 ctermfg=216 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi String                   guifg=#75B168 ctermfg=108 guibg=NONE ctermbg=NONE gui=s:italic_strings cterm=s:italic_strings
+execute "hi String                   guifg=#75B168 guibg=NONE ctermfg=108 ctermbg=NONE gui=" . s:italic_strings . " cterm=" . s:italic_strings
 hi Boolean                  guifg=#FFA167 ctermfg=216 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi Number                   guifg=#FFA167 ctermfg=216 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi Float                    guifg=#FFA167 ctermfg=216 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 
 " Generic type
-hi Type                     guifg=#9FA5F9 ctermfg=147 guibg=NONE ctermbg=NONE gui=s:bold cterm=s:bold
+execute "hi Type                     guifg=#9FA5F9 guibg=NONE ctermfg=147 ctermbg=NONE gui=" . s:bold . " cterm=" . s:bold
 hi StorageClass             guifg=#E7729B ctermfg=211 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi Structure                guifg=#9FA5F9 ctermfg=147 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi Typedef                  guifg=#9FA5F9 ctermfg=147 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 
 " Generic special
-hi Special                  guifg=#D5848A ctermfg=181 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi SpecialChar              guifg=#D5848A ctermfg=181 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi Tag                      guifg=#7987DE ctermfg=110 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi Delimiter                guifg=#A7A49F ctermfg=248 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi SpecialComment           guifg=#A7A49F ctermfg=248 guibg=NONE ctermbg=NONE gui=s:italic cterm=s:italic
-hi Debug                    guifg=#E7958E ctermfg=217 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi Special                  guifg=#C68D90 ctermfg=181 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi SpecialChar              guifg=#C68D90 ctermfg=181 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi Tag                      guifg=#6993BE ctermfg=110 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi Delimiter                guifg=#A9AFB4 ctermfg=249 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+execute "hi SpecialComment           guifg=#A9AFB4 guibg=NONE ctermfg=249 ctermbg=NONE gui=" . s:italic . " cterm=" . s:italic
+hi Debug                    guifg=#DC9A94 ctermfg=181 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 
-hi Underlined               guifg=#A68C54 ctermfg=144 guibg=NONE ctermbg=NONE gui=s:underline cterm=s:underline
-hi Ignore                   guifg=#7C7A76 ctermfg=243 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+execute "hi Underlined               guifg=#6993BE guibg=NONE ctermfg=110 ctermbg=NONE gui=" . s:underline . " cterm=" . s:underline
+hi Ignore                   guifg=#83878B ctermfg=245 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 
 " }}}
 " Plugin Support: {{{
+" Statusline Plugins: {{{
+" Support for Airline, Lightline, and Lualine
+"
+" Main segments (Mode, Filename, Info)
+" Mode indicator (Normal/Insert/etc.)
+execute "hi Airlinea                 guifg=#000000 guibg=#6993BE ctermfg=16 ctermbg=110 gui=" . s:bold . " cterm=" . s:bold
+execute "hi Airlinez                 guifg=#000000 guibg=#6993BE ctermfg=16 ctermbg=110 gui=" . s:bold . " cterm=" . s:bold
+
+" Secondary segments (Branch, Filetype)
+hi Airlineb                 guifg=#E0E5EB ctermfg=254 guibg=#2E445B ctermbg=60 gui=NONE cterm=NONE
+hi Airliney                 guifg=#E0E5EB ctermfg=254 guibg=#2E445B ctermbg=60 gui=NONE cterm=NONE
+
+" Middle segment (Filename)
+hi Airlinec                 guifg=#E0E5EB ctermfg=254 guibg=#0D1218 ctermbg=233 gui=NONE cterm=NONE
+
+" Inactive statusline
+hi Airlinea_inactive        guifg=#83878B ctermfg=245 guibg=#161B20 ctermbg=234 gui=NONE cterm=NONE
+hi Airlineb_inactive        guifg=#83878B ctermfg=245 guibg=#161B20 ctermbg=234 gui=NONE cterm=NONE
+hi Airlinec_inactive        guifg=#83878B ctermfg=245 guibg=#0D1218 ctermbg=233 gui=NONE cterm=NONE
+
+" Lightline mappings
+execute "hi LightlineLeft_active_0   guifg=#000000 guibg=#6993BE ctermfg=16 ctermbg=110 gui=" . s:bold . " cterm=" . s:bold
+hi LightlineLeft_active_1   guifg=#E0E5EB ctermfg=254 guibg=#2E445B ctermbg=60 gui=NONE cterm=NONE
+hi LightlineMiddle_active   guifg=#A9AFB4 ctermfg=249 guibg=#0D1218 ctermbg=233 gui=NONE cterm=NONE
+execute "hi LightlineRight_active_0  guifg=#000000 guibg=#6993BE ctermfg=16 ctermbg=110 gui=" . s:bold . " cterm=" . s:bold
+hi LightlineRight_active_1  guifg=#E0E5EB ctermfg=254 guibg=#2E445B ctermbg=60 gui=NONE cterm=NONE
+
+" }}}
 " GitGutter: {{{
 
 hi! link GitGutterAdd             DiffAdd
@@ -247,99 +290,228 @@ hi! link SignifySignDelete        DiffDelete
 " }}}
 " ALE (Asynchronous Lint Engine): {{{
 
-hi ALEError                 guifg=NONE ctermfg=NONE guibg=NONE ctermbg=NONE gui=s:undercurl cterm=s:undercurl
-hi ALEWarning               guifg=NONE ctermfg=NONE guibg=NONE ctermbg=NONE gui=s:undercurl cterm=s:undercurl
-hi ALEInfo                  guifg=NONE ctermfg=NONE guibg=NONE ctermbg=NONE gui=s:undercurl cterm=s:undercurl
-hi ALEErrorSign             guifg=#E7958E ctermfg=217 guibg=#15110A ctermbg=233 gui=NONE cterm=NONE
-hi ALEWarningSign           guifg=#E4B572 ctermfg=186 guibg=#15110A ctermbg=233 gui=NONE cterm=NONE
-hi ALEInfoSign              guifg=#74B9D4 ctermfg=116 guibg=#15110A ctermbg=233 gui=NONE cterm=NONE
+execute "hi ALEError                 guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE gui=" . s:undercurl . " cterm=" . s:undercurl
+execute "hi ALEWarning               guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE gui=" . s:undercurl . " cterm=" . s:undercurl
+execute "hi ALEInfo                  guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE gui=" . s:undercurl . " cterm=" . s:undercurl
+hi ALEErrorSign             guifg=#DC9A94 ctermfg=181 guibg=#0D1218 ctermbg=233 gui=NONE cterm=NONE
+hi ALEWarningSign           guifg=#D9B88B ctermfg=187 guibg=#0D1218 ctermbg=233 gui=NONE cterm=NONE
+hi ALEInfoSign              guifg=#85B7CB ctermfg=152 guibg=#0D1218 ctermbg=233 gui=NONE cterm=NONE
 
 " }}}
 " COC (Conquer of Completion): {{{
 
-hi CocErrorSign             guifg=#E7958E ctermfg=217 guibg=#15110A ctermbg=233 gui=NONE cterm=NONE
-hi CocWarningSign           guifg=#E4B572 ctermfg=186 guibg=#15110A ctermbg=233 gui=NONE cterm=NONE
-hi CocInfoSign              guifg=#74B9D4 ctermfg=116 guibg=#15110A ctermbg=233 gui=NONE cterm=NONE
-hi CocHintSign              guifg=#7987DE ctermfg=110 guibg=#15110A ctermbg=233 gui=NONE cterm=NONE
-hi CocErrorFloat            guifg=#E7958E ctermfg=217 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi CocWarningFloat          guifg=#E4B572 ctermfg=186 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi CocInfoFloat             guifg=#74B9D4 ctermfg=116 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi CocHintFloat             guifg=#7987DE ctermfg=110 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi CocErrorHighlight        guifg=NONE ctermfg=NONE guibg=NONE ctermbg=NONE gui=s:undercurl cterm=s:undercurl
-hi CocWarningHighlight      guifg=NONE ctermfg=NONE guibg=NONE ctermbg=NONE gui=s:undercurl cterm=s:undercurl
-hi CocInfoHighlight         guifg=NONE ctermfg=NONE guibg=NONE ctermbg=NONE gui=s:undercurl cterm=s:undercurl
-hi CocHintHighlight         guifg=NONE ctermfg=NONE guibg=NONE ctermbg=NONE gui=s:undercurl cterm=s:undercurl
+hi CocErrorSign             guifg=#DC9A94 ctermfg=181 guibg=#0D1218 ctermbg=233 gui=NONE cterm=NONE
+hi CocWarningSign           guifg=#D9B88B ctermfg=187 guibg=#0D1218 ctermbg=233 gui=NONE cterm=NONE
+hi CocInfoSign              guifg=#85B7CB ctermfg=152 guibg=#0D1218 ctermbg=233 gui=NONE cterm=NONE
+hi CocHintSign              guifg=#6993BE ctermfg=110 guibg=#0D1218 ctermbg=233 gui=NONE cterm=NONE
+hi CocErrorFloat            guifg=#DC9A94 ctermfg=181 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CocWarningFloat          guifg=#D9B88B ctermfg=187 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CocInfoFloat             guifg=#85B7CB ctermfg=152 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CocHintFloat             guifg=#6993BE ctermfg=110 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+execute "hi CocErrorHighlight        guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE gui=" . s:undercurl . " cterm=" . s:undercurl
+execute "hi CocWarningHighlight      guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE gui=" . s:undercurl . " cterm=" . s:undercurl
+execute "hi CocInfoHighlight         guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE gui=" . s:undercurl . " cterm=" . s:undercurl
+execute "hi CocHintHighlight         guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE gui=" . s:undercurl . " cterm=" . s:undercurl
+
+" Neovim UI: {{{
+" Floating Windows, Modern Separators, and Messages
+
+hi NormalFloat              guifg=#E0E5EB ctermfg=254 guibg=#1C2229 ctermbg=235 gui=NONE cterm=NONE
+hi FloatBorder              guifg=#50565C ctermfg=240 guibg=#1C2229 ctermbg=235 gui=NONE cterm=NONE
+execute "hi FloatTitle               guifg=#6993BE guibg=#1C2229 ctermfg=110 ctermbg=235 gui=" . s:bold . " cterm=" . s:bold
+hi MsgArea                  guifg=#E0E5EB ctermfg=254 guibg=#0D1218 ctermbg=233 gui=NONE cterm=NONE
+hi MsgSeparator             guifg=#303337 ctermfg=236 guibg=#0D1218 ctermbg=233 gui=NONE cterm=NONE
+hi WinSeparator             guifg=#373B40 ctermfg=237 guibg=#0D1218 ctermbg=233 gui=NONE cterm=NONE
+execute "hi Substitute               guifg=#000000 guibg=#D9B88B ctermfg=16 ctermbg=187 gui=" . s:bold . " cterm=" . s:bold
+execute "hi CurSearch                guifg=#000000 guibg=#6993BE ctermfg=16 ctermbg=110 gui=" . s:bold . " cterm=" . s:bold
+execute "hi Question                 guifg=#C68D90 guibg=NONE ctermfg=181 ctermbg=NONE gui=" . s:bold . " cterm=" . s:bold
+execute "hi QuickFixLine             guifg=NONE guibg=#90B2D6 ctermfg=NONE ctermbg=146 gui=" . s:bold . " cterm=" . s:bold
+execute "hi WinBar                   guifg=#E0E5EB guibg=#0D1218 ctermfg=254 ctermbg=233 gui=" . s:bold . " cterm=" . s:bold
+hi WinBarNC                 guifg=#83878B ctermfg=245 guibg=#0D1218 ctermbg=233 gui=NONE cterm=NONE
+
+" }}}
+" Neovim LSP: {{{
+
+hi DiagnosticError          guifg=#DC9A94 ctermfg=181 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi DiagnosticWarn           guifg=#D9B88B ctermfg=187 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi DiagnosticInfo           guifg=#85B7CB ctermfg=152 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi DiagnosticHint           guifg=#65AF9C ctermfg=109 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi DiagnosticOk             guifg=#97B997 ctermfg=151 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+
+hi DiagnosticVirtualTextError guifg=#DC9A94 ctermfg=181 guibg=#775350 ctermbg=102 gui=NONE cterm=NONE
+hi DiagnosticVirtualTextWarn guifg=#D9B88B ctermfg=187 guibg=#7A6951 ctermbg=102 gui=NONE cterm=NONE
+hi DiagnosticVirtualTextInfo guifg=#85B7CB ctermfg=152 guibg=#48626D ctermbg=66 gui=NONE cterm=NONE
+hi DiagnosticVirtualTextHint guifg=#65AF9C ctermfg=109 guibg=#1D5246 ctermbg=65 gui=NONE cterm=NONE
+
+execute "hi DiagnosticUnderlineError guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE gui=" . s:undercurl . " cterm=" . s:undercurl
+execute "hi DiagnosticUnderlineWarn  guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE gui=" . s:undercurl . " cterm=" . s:undercurl
+execute "hi DiagnosticUnderlineInfo  guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE gui=" . s:undercurl . " cterm=" . s:undercurl
+execute "hi DiagnosticUnderlineHint  guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE gui=" . s:undercurl . " cterm=" . s:undercurl
+
+execute "hi LspSignatureActiveParameter guifg=#6993BE guibg=NONE ctermfg=110 ctermbg=NONE gui=" . s:bold . " cterm=" . s:bold
+hi LspReferenceText         guifg=NONE ctermfg=NONE guibg=#161B20 ctermbg=234 gui=NONE cterm=NONE
+hi LspReferenceRead         guifg=NONE ctermfg=NONE guibg=#161B20 ctermbg=234 gui=NONE cterm=NONE
+hi LspReferenceWrite        guifg=NONE ctermfg=NONE guibg=#161B20 ctermbg=234 gui=NONE cterm=NONE
+
+" }}}
+" Neovim Treesitter: {{{
+" Standard @capture links to existing Candi syntax groups
+" Guarded for Neovim only as standard Vim doesn't support '@' in group names
+
+if has('nvim')
+hi! link @variable                Identifier
+hi! link @variable.builtin        Identifier
+hi @variable.parameter      guifg=#53C1C7 ctermfg=116 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi @variable.member         guifg=#C68D90 ctermfg=181 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+
+hi! link @function                Function
+hi! link @function.builtin        Function
+hi! link @function.call           Function
+hi! link @function.macro          Macro
+
+execute "hi @method                  guifg=#3D98D1 guibg=NONE ctermfg=74 ctermbg=NONE gui=" . s:bold . " cterm=" . s:bold
+hi @method.call             guifg=#3D98D1 ctermfg=74 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+
+hi! link @keyword                 Keyword
+hi! link @keyword.function        Keyword
+hi! link @keyword.return          Keyword
+hi! link @keyword.operator        Operator
+
+hi! link @type                    Type
+hi! link @type.builtin            Type
+hi! link @type.definition         Type
+
+hi! link @constant                Constant
+hi! link @constant.builtin        Constant
+hi! link @constant.macro          Constant
+
+hi! link @string                  String
+hi! link @string.regex            String
+hi! link @string.escape           Special
+
+hi! link @number                  Number
+hi! link @boolean                 Boolean
+hi! link @float                   Float
+
+hi! link @property                Identifier
+hi @field                   guifg=#C68D90 ctermfg=181 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi! link @constructor             Type
+
+hi @attribute               guifg=#6993BE ctermfg=110 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi! link @label                   Label
+hi! link @operator                Operator
+hi! link @exception               Exception
+
+hi! link @comment                 Comment
+hi! link @punctuation             Delimiter
+hi! link @punctuation.bracket     Delimiter
+hi! link @punctuation.delimiter   Delimiter
+
+hi! link @tag                     Tag
+hi! link @tag.attribute           Identifier
+hi! link @tag.delimiter           Delimiter
+endif
+
+" }}}
+" Modern Plugins (Telescope, Gitsigns, etc.): {{{
+
+" Gitsigns
+hi GitSignsAdd              guifg=#97B997 ctermfg=151 guibg=#0D1218 ctermbg=233 gui=NONE cterm=NONE
+hi GitSignsChange           guifg=#D9B88B ctermfg=187 guibg=#0D1218 ctermbg=233 gui=NONE cterm=NONE
+hi GitSignsDelete           guifg=#DC9A94 ctermfg=181 guibg=#0D1218 ctermbg=233 gui=NONE cterm=NONE
+
+" Telescope
+hi TelescopeBorder          guifg=#50565C ctermfg=240 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi TelescopePromptBorder    guifg=#6993BE ctermfg=110 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi TelescopeResultsBorder   guifg=#373B40 ctermfg=237 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi TelescopePreviewBorder   guifg=#373B40 ctermfg=237 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+execute "hi TelescopeMatching        guifg=#6993BE guibg=NONE ctermfg=110 ctermbg=NONE gui=" . s:bold . " cterm=" . s:bold
+execute "hi TelescopeSelection       guifg=#E0E5EB guibg=#161B20 ctermfg=254 ctermbg=234 gui=" . s:bold . " cterm=" . s:bold
+
+" Bufferline
+hi BufferLineIndicatorSelected guifg=#6993BE ctermfg=110 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi BufferLineFill           guifg=NONE ctermfg=NONE guibg=#0D1218 ctermbg=233 gui=NONE cterm=NONE
+
+" Nvim-Tree
+execute "hi NvimTreeRootFolder       guifg=#6993BE guibg=NONE ctermfg=110 ctermbg=NONE gui=" . s:bold . " cterm=" . s:bold
+hi NvimTreeFolderName       guifg=#6993BE ctermfg=110 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+execute "hi NvimTreeOpenedFolderName guifg=#6993BE guibg=NONE ctermfg=110 ctermbg=NONE gui=" . s:italic . " cterm=" . s:italic
+hi NvimTreeEmptyFolderName  guifg=#83878B ctermfg=245 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi NvimTreeIndentMarker     guifg=#373B40 ctermfg=237 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi NvimTreeVertSplit        guifg=#373B40 ctermfg=237 guibg=#0D1218 ctermbg=233 gui=NONE cterm=NONE
+
+" }}}
 
 " }}}
 " NERDTree: {{{
 
-hi NERDTreeDir              guifg=#7987DE ctermfg=110 guibg=NONE ctermbg=NONE gui=s:bold cterm=s:bold
-hi NERDTreeDirSlash         guifg=#7987DE ctermfg=110 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi NERDTreeFile             guifg=#E8E4DD ctermfg=254 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi NERDTreeExecFile         guifg=#8EBC8F ctermfg=151 guibg=NONE ctermbg=NONE gui=s:bold cterm=s:bold
-hi NERDTreeOpenable         guifg=#D5848A ctermfg=181 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi NERDTreeClosable         guifg=#D5848A ctermfg=181 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi NERDTreeUp               guifg=#7C7A76 ctermfg=243 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi NERDTreeCWD              guifg=#7987DE ctermfg=110 guibg=NONE ctermbg=NONE gui=s:bold cterm=s:bold
+execute "hi NERDTreeDir              guifg=#6993BE guibg=NONE ctermfg=110 ctermbg=NONE gui=" . s:bold . " cterm=" . s:bold
+hi NERDTreeDirSlash         guifg=#6993BE ctermfg=110 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi NERDTreeFile             guifg=#E0E5EB ctermfg=254 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+execute "hi NERDTreeExecFile         guifg=#97B997 guibg=NONE ctermfg=151 ctermbg=NONE gui=" . s:bold . " cterm=" . s:bold
+hi NERDTreeOpenable         guifg=#C68D90 ctermfg=181 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi NERDTreeClosable         guifg=#C68D90 ctermfg=181 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi NERDTreeUp               guifg=#83878B ctermfg=245 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+execute "hi NERDTreeCWD              guifg=#6993BE guibg=NONE ctermfg=110 ctermbg=NONE gui=" . s:bold . " cterm=" . s:bold
 
 " }}}
 " CtrlP: {{{
 
-hi CtrlPMatch               guifg=#7987DE ctermfg=110 guibg=NONE ctermbg=NONE gui=s:bold cterm=s:bold
-hi CtrlPNoEntries           guifg=#E7958E ctermfg=217 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi CtrlPMode1               guifg=#000000 ctermfg=16 guibg=#7987DE ctermbg=110 gui=s:bold cterm=s:bold
-hi CtrlPMode2               guifg=#E8E4DD ctermfg=254 guibg=#1D1A14 ctermbg=234 gui=s:bold cterm=s:bold
+execute "hi CtrlPMatch               guifg=#6993BE guibg=NONE ctermfg=110 ctermbg=NONE gui=" . s:bold . " cterm=" . s:bold
+hi CtrlPNoEntries           guifg=#DC9A94 ctermfg=181 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+execute "hi CtrlPMode1               guifg=#000000 guibg=#6993BE ctermfg=16 ctermbg=110 gui=" . s:bold . " cterm=" . s:bold
+execute "hi CtrlPMode2               guifg=#E0E5EB guibg=#161B20 ctermfg=254 ctermbg=234 gui=" . s:bold . " cterm=" . s:bold
 
 " }}}
 " }}}
 " Filetype Specific: {{{
 " Markdown: {{{
 
-hi markdownH1               guifg=#7987DE ctermfg=110 guibg=NONE ctermbg=NONE gui=s:bold cterm=s:bold
-hi markdownH2               guifg=#7987DE ctermfg=110 guibg=NONE ctermbg=NONE gui=s:bold cterm=s:bold
-hi markdownH3               guifg=#D5848A ctermfg=181 guibg=NONE ctermbg=NONE gui=s:bold cterm=s:bold
-hi markdownH4               guifg=#D5848A ctermfg=181 guibg=NONE ctermbg=NONE gui=s:bold cterm=s:bold
-hi markdownH5               guifg=#D5848A ctermfg=181 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi markdownH6               guifg=#D5848A ctermfg=181 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+execute "hi markdownH1               guifg=#6993BE guibg=NONE ctermfg=110 ctermbg=NONE gui=" . s:bold . " cterm=" . s:bold
+execute "hi markdownH2               guifg=#6993BE guibg=NONE ctermfg=110 ctermbg=NONE gui=" . s:bold . " cterm=" . s:bold
+execute "hi markdownH3               guifg=#C68D90 guibg=NONE ctermfg=181 ctermbg=NONE gui=" . s:bold . " cterm=" . s:bold
+execute "hi markdownH4               guifg=#C68D90 guibg=NONE ctermfg=181 ctermbg=NONE gui=" . s:bold . " cterm=" . s:bold
+hi markdownH5               guifg=#C68D90 ctermfg=181 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi markdownH6               guifg=#C68D90 ctermfg=181 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi markdownCode             guifg=#75B168 ctermfg=108 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi markdownCodeBlock        guifg=#75B168 ctermfg=108 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi markdownCodeDelimiter    guifg=#75B168 ctermfg=108 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi markdownBlockquote       guifg=#A7A49F ctermfg=248 guibg=NONE ctermbg=NONE gui=s:italic cterm=s:italic
-hi markdownListMarker       guifg=#7987DE ctermfg=110 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi markdownOrderedListMarker guifg=#7987DE ctermfg=110 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi markdownRule             guifg=#302D28 ctermfg=236 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi markdownLinkText         guifg=#A68C54 ctermfg=144 guibg=NONE ctermbg=NONE gui=s:underline cterm=s:underline
-hi markdownUrl              guifg=#A68C54 ctermfg=144 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+execute "hi markdownBlockquote       guifg=#A9AFB4 guibg=NONE ctermfg=249 ctermbg=NONE gui=" . s:italic . " cterm=" . s:italic
+hi markdownListMarker       guifg=#6993BE ctermfg=110 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi markdownOrderedListMarker guifg=#6993BE ctermfg=110 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi markdownRule             guifg=#373B40 ctermfg=237 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+execute "hi markdownLinkText         guifg=#6993BE guibg=NONE ctermfg=110 ctermbg=NONE gui=" . s:underline . " cterm=" . s:underline
+hi markdownUrl              guifg=#6993BE ctermfg=110 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi! link markdownIdDeclaration    markdownLinkText
 
 " }}}
 " HTML: {{{
 
-hi htmlTag                  guifg=#A7A49F ctermfg=248 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi htmlEndTag               guifg=#A7A49F ctermfg=248 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi htmlTagName              guifg=#7987DE ctermfg=110 guibg=NONE ctermbg=NONE gui=s:bold cterm=s:bold
-hi htmlArg                  guifg=#D5848A ctermfg=181 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi htmlTag                  guifg=#A9AFB4 ctermfg=249 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi htmlEndTag               guifg=#A9AFB4 ctermfg=249 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+execute "hi htmlTagName              guifg=#6993BE guibg=NONE ctermfg=110 ctermbg=NONE gui=" . s:bold . " cterm=" . s:bold
+hi htmlArg                  guifg=#C68D90 ctermfg=181 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi htmlSpecialChar          guifg=#FFA167 ctermfg=216 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi htmlLink                 guifg=#A68C54 ctermfg=144 guibg=NONE ctermbg=NONE gui=s:underline cterm=s:underline
-hi htmlBold                 guifg=NONE ctermfg=NONE guibg=NONE ctermbg=NONE gui=s:bold cterm=s:bold
-hi htmlItalic               guifg=NONE ctermfg=NONE guibg=NONE ctermbg=NONE gui=s:italic cterm=s:italic
+execute "hi htmlLink                 guifg=#6993BE guibg=NONE ctermfg=110 ctermbg=NONE gui=" . s:underline . " cterm=" . s:underline
+execute "hi htmlBold                 guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE gui=" . s:bold . " cterm=" . s:bold
+execute "hi htmlItalic               guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE gui=" . s:italic . " cterm=" . s:italic
 
 " }}}
 " CSS: {{{
 
-hi cssBraces                guifg=#A7A49F ctermfg=248 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi cssBraces                guifg=#A9AFB4 ctermfg=249 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi cssFunctionName          guifg=#3D98D1 ctermfg=74 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi cssIdentifier            guifg=#7987DE ctermfg=110 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi cssClassName             guifg=#7987DE ctermfg=110 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi cssIdentifier            guifg=#6993BE ctermfg=110 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi cssClassName             guifg=#6993BE ctermfg=110 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi cssColor                 guifg=#FFA167 ctermfg=216 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi cssImportant             guifg=#E7958E ctermfg=217 guibg=NONE ctermbg=NONE gui=s:bold cterm=s:bold
-hi cssProp                  guifg=#E8E4DD ctermfg=254 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+execute "hi cssImportant             guifg=#DC9A94 guibg=NONE ctermfg=181 ctermbg=NONE gui=" . s:bold . " cterm=" . s:bold
+hi cssProp                  guifg=#E0E5EB ctermfg=254 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 
 " }}}
 " JavaScript: {{{
 
-hi javaScriptBraces         guifg=#A7A49F ctermfg=248 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi javaScriptFunction       guifg=#E7729B ctermfg=211 guibg=NONE ctermbg=NONE gui=s:bold cterm=s:bold
+hi javaScriptBraces         guifg=#A9AFB4 ctermfg=249 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+execute "hi javaScriptFunction       guifg=#E7729B guibg=NONE ctermfg=211 ctermbg=NONE gui=" . s:bold . " cterm=" . s:bold
 hi javaScriptIdentifier     guifg=#E7729B ctermfg=211 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi javaScriptNumber         guifg=#FFA167 ctermfg=216 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi javaScriptNull           guifg=#FFA167 ctermfg=216 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
@@ -348,28 +520,28 @@ hi javaScriptNull           guifg=#FFA167 ctermfg=216 guibg=NONE ctermbg=NONE gu
 " Python: {{{
 
 hi pythonBuiltin            guifg=#3D98D1 ctermfg=74 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi pythonFunction           guifg=#3D98D1 ctermfg=74 guibg=NONE ctermbg=NONE gui=s:bold cterm=s:bold
-hi pythonDecorator          guifg=#D5848A ctermfg=181 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+execute "hi pythonFunction           guifg=#3D98D1 guibg=NONE ctermfg=74 ctermbg=NONE gui=" . s:bold . " cterm=" . s:bold
+hi pythonDecorator          guifg=#C68D90 ctermfg=181 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi pythonInclude            guifg=#E7729B ctermfg=211 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi pythonOperator           guifg=#E7729B ctermfg=211 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi pythonException          guifg=#E7958E ctermfg=217 guibg=NONE ctermbg=NONE gui=s:bold cterm=s:bold
+execute "hi pythonException          guifg=#DC9A94 guibg=NONE ctermfg=181 ctermbg=NONE gui=" . s:bold . " cterm=" . s:bold
 
 " }}}
 " JSON: {{{
 
-hi jsonKeyword              guifg=#7987DE ctermfg=110 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi jsonQuote                guifg=#A7A49F ctermfg=248 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi jsonBraces               guifg=#A7A49F ctermfg=248 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi jsonKeyword              guifg=#6993BE ctermfg=110 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi jsonQuote                guifg=#A9AFB4 ctermfg=249 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi jsonBraces               guifg=#A9AFB4 ctermfg=249 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi jsonString               guifg=#75B168 ctermfg=108 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 
 " }}}
 " Vim: {{{
 
-hi vimCommentTitle          guifg=#A7A49F ctermfg=248 guibg=NONE ctermbg=NONE gui=s:bold cterm=s:bold
-hi vimNotation              guifg=#D5848A ctermfg=181 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi vimBracket               guifg=#D5848A ctermfg=181 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi vimMapModKey             guifg=#D5848A ctermfg=181 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi vimCommand               guifg=#E7729B ctermfg=211 guibg=NONE ctermbg=NONE gui=s:bold cterm=s:bold
+execute "hi vimCommentTitle          guifg=#A9AFB4 guibg=NONE ctermfg=249 ctermbg=NONE gui=" . s:bold . " cterm=" . s:bold
+hi vimNotation              guifg=#C68D90 ctermfg=181 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi vimBracket               guifg=#C68D90 ctermfg=181 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi vimMapModKey             guifg=#C68D90 ctermfg=181 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+execute "hi vimCommand               guifg=#E7729B guibg=NONE ctermfg=211 ctermbg=NONE gui=" . s:bold . " cterm=" . s:bold
 
 " }}}
 " }}}
@@ -409,33 +581,43 @@ hi! link RainbowDelimiterOrange   rainbowcol7
 hi CandiRed                 guifg=#DF7F78 ctermfg=174 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi CandiRedSubtle           guifg=#742E2B ctermfg=95 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi CandiRedStrong           guifg=#C25D58 ctermfg=174 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiOnRed               guifg=#000000 ctermfg=16 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi CandiBlue                guifg=#6DA3DA ctermfg=110 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi CandiBlueSubtle          guifg=#1D456B ctermfg=60 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi CandiBlueStrong          guifg=#4984BF ctermfg=74 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiOnBlue              guifg=#000000 ctermfg=16 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi CandiGreen               guifg=#76AF77 ctermfg=108 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi CandiGreenSubtle         guifg=#29532B ctermfg=65 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi CandiGreenStrong         guifg=#539156 ctermfg=108 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiOnGreen             guifg=#000000 ctermfg=16 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi CandiYellow              guifg=#ECCA6C ctermfg=222 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi CandiYellowSubtle        guifg=#796006 ctermfg=100 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi CandiYellowStrong        guifg=#CEAA3E ctermfg=179 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiOnYellow            guifg=#000000 ctermfg=16 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi CandiMagenta             guifg=#D179CA ctermfg=176 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi CandiMagentaSubtle       guifg=#6A2A66 ctermfg=96 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi CandiMagentaStrong       guifg=#B654B0 ctermfg=175 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiOnMagenta           guifg=#000000 ctermfg=16 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi CandiCyan                guifg=#6CBEC2 ctermfg=116 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi CandiCyanSubtle          guifg=#255F62 ctermfg=66 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi CandiCyanStrong          guifg=#3EA0A5 ctermfg=73 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiOnCyan              guifg=#000000 ctermfg=16 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi CandiTeal                guifg=#65AF9C ctermfg=109 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi CandiTealSubtle          guifg=#1D5246 ctermfg=65 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi CandiTealStrong          guifg=#3A927D ctermfg=72 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiOnTeal              guifg=#000000 ctermfg=16 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi CandiPink                guifg=#F3A3BB ctermfg=218 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi CandiPinkSubtle          guifg=#824A5C ctermfg=132 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi CandiPinkStrong          guifg=#D6809C ctermfg=181 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiOnPink              guifg=#000000 ctermfg=16 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi CandiGold                guifg=#E7B375 ctermfg=222 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi CandiGoldSubtle          guifg=#7A5526 ctermfg=101 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi CandiGoldStrong          guifg=#CA924C ctermfg=179 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiOnGold              guifg=#000000 ctermfg=16 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi CandiSilver              guifg=#7C8186 ctermfg=244 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi CandiSilverSubtle        guifg=#373B3F ctermfg=237 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi CandiSilverStrong        guifg=#5E646A ctermfg=241 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiOnSilver            guifg=#FFFFFF ctermfg=231 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 
 " }}}
 

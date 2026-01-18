@@ -10,15 +10,16 @@
 
 const fs = require('fs');
 const path = require('path');
+const logger = require('./logger');
 const assert = require('assert').strict;
 const { parseOklch, oklchToRgb, toHex6, toHex8 } = require('./color-conv');
 
 const baseCssPath = path.join(__dirname, '..', 'src', 'css', 'base.css');
 
-console.log('=== Comprehensive Color Conversion Tests ===\n');
+logger.log('=== Comprehensive Color Conversion Tests ===\n');
 
 // Test 1: Extract all colors from base.css
-console.log('[Test 1] Extracting all OKLCH colors from base.css...');
+logger.log('[Test 1] Extracting all OKLCH colors from base.css...');
 const css = fs.readFileSync(baseCssPath, 'utf8');
 
 const allColors = [];
@@ -40,10 +41,10 @@ function extractColors(content, mode) {
 if (rootMatch) extractColors(rootMatch[1], 'light');
 if (darkMatch) extractColors(darkMatch[1], 'dark');
 
-console.log(`[✓] Extracted ${allColors.length} colors (${allColors.filter(c => c.mode === 'light').length} light, ${allColors.filter(c => c.mode === 'dark').length} dark)\n`);
+logger.log(`[✓] Extracted ${allColors.length} colors (${allColors.filter(c => c.mode === 'light').length} light, ${allColors.filter(c => c.mode === 'dark').length} dark)\n`);
 
 // Test 2: All colors convert without errors
-console.log('[Test 2] Verifying all colors convert without errors...');
+logger.log('[Test 2] Verifying all colors convert without errors...');
 let errorCount = 0;
 const conversions = [];
 
@@ -60,21 +61,22 @@ for (const color of allColors) {
             result
         });
     } catch (err) {
-        console.error(`[✗] Failed to convert ${color.mode}:${color.name} (${color.oklch})`);
-        console.error(`   Error: ${err.message}`);
+        logger.error(`[✗] Failed to convert ${color.mode}:${color.name} (${color.oklch})`);
+        logger.error(`   Error: ${err.message}`);
         errorCount++;
     }
 }
 
 if (errorCount === 0) {
-    console.log(`[✓] All ${allColors.length} colors converted successfully\n`);
+    logger.log(`[✓] All ${allColors.length} colors converted successfully\n`);
 } else {
-    console.error(`[✗] ${errorCount} colors failed to convert\n`);
+    logger.dump();
+    logger.error(`[✗] ${errorCount} colors failed to convert\n`);
     process.exit(1);
 }
 
 // Test 3: RGB outputs are within valid range [0, 255]
-console.log('[Test 3] Verifying RGB values are within valid range [0, 255]...');
+logger.log('[Test 3] Verifying RGB values are within valid range [0, 255]...');
 let rangeErrors = 0;
 
 for (const conv of conversions) {
@@ -89,20 +91,21 @@ for (const conv of conversions) {
         rangeErrors++;
     }
     if (b < 0 || b > 255) {
-        console.error(`[✗] ${conv.mode}:${conv.name} - Blue out of range: ${b}`);
+        logger.error(`[✗] ${conv.mode}:${conv.name} - Blue out of range: ${b}`);
         rangeErrors++;
     }
 }
 
 if (rangeErrors === 0) {
-    console.log(`[✓] All RGB values within valid range\n`);
+    logger.log(`[✓] All RGB values within valid range\n`);
 } else {
-    console.error(`[✗] ${rangeErrors} RGB values out of range\n`);
+    logger.dump();
+    logger.error(`[✗] ${rangeErrors} RGB values out of range\n`);
     process.exit(1);
 }
 
 // Test 4: Detect gamut clipping
-console.log('[Test 4] Detecting sRGB gamut clipping...');
+logger.log('[Test 4] Detecting sRGB gamut clipping...');
 
 function detectClipping(l, c, h) {
     // Convert without the final clamping to detect clipping
@@ -142,28 +145,28 @@ for (const conv of conversions) {
     const clipping = detectClipping(l, c, h);
 
     if (clipping.clipped) {
-        console.log(`[WARN] ${conv.mode}:${conv.name} - Out of sRGB gamut (clipped)`);
-        console.log(`   OKLCH: ${conv.oklch}`);
-        console.log(`   Pre-clamp RGB: ${clipping.r.toFixed(4)}, ${clipping.g.toFixed(4)}, ${clipping.b.toFixed(4)}`);
+        logger.log(`[WARN] ${conv.mode}:${conv.name} - Out of sRGB gamut (clipped)`);
+        logger.log(`   OKLCH: ${conv.oklch}`);
+        logger.log(`   Pre-clamp RGB: ${clipping.r.toFixed(4)}, ${clipping.g.toFixed(4)}, ${clipping.b.toFixed(4)}`);
         clippedCount++;
     }
 }
 
 if (clippedCount === 0) {
-    console.log(`[✓] All colors within sRGB gamut (no clipping)\n`);
+    logger.log(`[✓] All colors within sRGB gamut (no clipping)\n`);
 } else {
-    console.log(`[WARN] ${clippedCount} colors required gamut clipping\n`);
+    logger.log(`[WARN] ${clippedCount} colors required gamut clipping\n`);
 }
 
 // Test 5: Known reference conversions
-console.log('[Test 5] Verifying known reference conversions...');
+logger.log('[Test 5] Verifying known reference conversions...');
 
 const referenceTests = [
-    { oklch: 'oklch(18% 0.015 85)', expected: { r: 21, g: 17, b: 10 }, name: 'dark-bg' },
-    { oklch: 'oklch(92% 0.01 85)', expected: { r: 232, g: 228, b: 221 }, name: 'dark-text' },
-    { oklch: 'oklch(96% 0.012 85)', expected: { r: 245, g: 241, b: 233 }, name: 'light-bg' },
-    { oklch: 'oklch(25% 0.02 250)', expected: { r: 26, g: 34, b: 43 }, name: 'light-text' },
-    { oklch: 'oklch(62% 0.08 275)', expected: { r: 120, g: 130, b: 183 }, name: 'dark-accent' },
+    { oklch: 'oklch(18% 0.015 250)', expected: { r: 13, g: 18, b: 24 }, name: 'dark-bg' },
+    { oklch: 'oklch(92% 0.01 250)', expected: { r: 224, g: 229, b: 235 }, name: 'dark-text' },
+    { oklch: 'oklch(98% 0.005 250)', expected: { r: 246, g: 249, b: 252 }, name: 'light-bg' },
+    { oklch: 'oklch(28% 0.015 250)', expected: { r: 35, g: 42, b: 48 }, name: 'light-text' },
+    { oklch: 'oklch(65% 0.08 250)', expected: { r: 105, g: 147, b: 190 }, name: 'dark-accent' },
     { oklch: 'oklch(52% 0.06 230)', expected: { r: 67, g: 112, b: 133 }, name: 'light-accent' },
 ];
 
@@ -172,23 +175,24 @@ for (const test of referenceTests) {
     const result = parseOklch(test.oklch);
 
     if (result.r === test.expected.r && result.g === test.expected.g && result.b === test.expected.b) {
-        console.log(`[✓] ${test.name}: rgb(${result.r}, ${result.g}, ${result.b})`);
+        logger.log(`[✓] ${test.name}: rgb(${result.r}, ${result.g}, ${result.b})`);
     } else {
-        console.error(`[✗] ${test.name}:`);
-        console.error(`   Expected: rgb(${test.expected.r}, ${test.expected.g}, ${test.expected.b})`);
-        console.error(`   Got:      rgb(${result.r}, ${result.g}, ${result.b})`);
+        logger.error(`[✗] ${test.name}:`);
+        logger.error(`   Expected: rgb(${test.expected.r}, ${test.expected.g}, ${test.expected.b})`);
+        logger.error(`   Got:      rgb(${result.r}, ${result.g}, ${result.b})`);
         refErrors++;
     }
 }
 
 if (refErrors > 0) {
-    console.error(`\n[✗] ${refErrors} reference tests failed`);
+    logger.dump();
+    logger.error(`\n[✗] ${refErrors} reference tests failed`);
     process.exit(1);
 }
 console.log();
 
 // Test 6: Round-trip conversion (approximate)
-console.log('[Test 6] Testing round-trip conversion accuracy...');
+logger.log('[Test 6] Testing round-trip conversion accuracy...');
 
 function rgbToOklch(r, g, b) {
     // Inverse sRGB gamma
@@ -243,38 +247,43 @@ for (const conv of conversions.slice(0, 10)) { // Test first 10 colors
     const bDiff = Math.abs(b - roundTrip.b);
 
     if (rDiff <= tolerance && gDiff <= tolerance && bDiff <= tolerance) {
-        console.log(`[✓] ${conv.mode}:${conv.name} - Round-trip within tolerance`);
+        logger.log(`[✓] ${conv.mode}:${conv.name} - Round-trip within tolerance`);
     } else {
-        console.log(`[WARN] ${conv.mode}:${conv.name} - Round-trip difference: ΔR=${rDiff}, ΔG=${gDiff}, ΔB=${bDiff}`);
+        logger.log(`[WARN] ${conv.mode}:${conv.name} - Round-trip difference: ΔR=${rDiff}, ΔG=${gDiff}, ΔB=${bDiff}`);
         roundTripErrors++;
     }
 }
 
 if (roundTripErrors > 0) {
-    console.log(`\n[WARN] ${roundTripErrors} colors had round-trip differences > \u00b1${tolerance}\n`);
+    logger.log(`\n[WARN] ${roundTripErrors} colors had round-trip differences > \u00b1${tolerance}\n`);
 } else {
-    console.log(`\n[✓] All tested colors round-trip within \u00b1${tolerance} tolerance\n`);
+    logger.log(`\n[✓] All tested colors round-trip within \u00b1${tolerance} tolerance\n`);
 }
 
 // Test 7: Hex formatting
-console.log('[Test 7] Verifying hex formatting functions...');
+logger.log('[Test 7] Verifying hex formatting functions...');
 const testColor = parseOklch('oklch(52% 0.06 230)');
 const hex6 = toHex6(testColor);
 const hex8 = toHex8(testColor);
 
 assert.strictEqual(hex6, '#437085', 'toHex6 should format correctly');
 assert.strictEqual(hex8, '0XFF437085', 'toHex8 should format correctly (Flutter format)');
-console.log(`[✓] toHex6: ${hex6}`);
-console.log(`[✓] toHex8: ${hex8}\n`);
+logger.log(`[✓] toHex6: ${hex6}`);
+logger.log(`[✓] toHex8: ${hex8}\n`);
 
 // Summary
-console.log('='.repeat(50));
-console.log('SUMMARY');
-console.log('='.repeat(50));
-console.log(`Total colors tested: ${allColors.length}`);
-console.log(`Conversion errors: 0`);
-console.log(`Range violations: 0`);
-console.log(`Colors clipped to sRGB gamut: ${clippedCount}`);
-console.log(`Reference test failures: 0`);
-console.log(`Round-trip tests: 10 (tolerance: ±${tolerance})`);
-console.log('\n[✓] All color conversion tests passed!\n');
+logger.log('='.repeat(50));
+logger.log('SUMMARY');
+logger.log('='.repeat(50));
+logger.log(`Total colors tested: ${allColors.length}`);
+logger.log(`Conversion errors: 0`);
+logger.log(`Range violations: 0`);
+logger.log(`Colors clipped to sRGB gamut: ${clippedCount}`);
+logger.log(`Reference test failures: 0`);
+logger.log(`Round-trip tests: 10 (tolerance: ±${tolerance})`);
+
+if (!logger.isVerbose) {
+    // Silent
+} else {
+    logger.log('\n[✓] All color conversion tests passed!\n');
+}
