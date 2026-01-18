@@ -37,6 +37,22 @@ export default function Colors() {
       title: 'UI Feedback',
       description: 'Dynamic colors for interactive states and feedback.',
       keys: ['hover', 'active']
+    },
+    {
+      title: 'Primitive Colors',
+      description: 'Pure color primitives with Tailwind-like variations for creative flexibility.',
+      keys: [
+        'red', 'redSubtle', 'redSoft', 'redStrong', 'redOutline', 'onRed',
+        'blue', 'blueSubtle', 'blueSoft', 'blueStrong', 'blueOutline', 'onBlue',
+        'green', 'greenSubtle', 'greenSoft', 'greenStrong', 'greenOutline', 'onGreen',
+        'yellow', 'yellowSubtle', 'yellowSoft', 'yellowStrong', 'yellowOutline', 'onYellow',
+        'magenta', 'magentaSubtle', 'magentaSoft', 'magentaStrong', 'magentaOutline', 'onMagenta',
+        'cyan', 'cyanSubtle', 'cyanSoft', 'cyanStrong', 'cyanOutline', 'onCyan',
+        'teal', 'tealSubtle', 'tealSoft', 'tealStrong', 'tealOutline', 'onTeal',
+        'pink', 'pinkSubtle', 'pinkSoft', 'pinkStrong', 'pinkOutline', 'onPink',
+        'gold', 'goldSubtle', 'goldSoft', 'goldStrong', 'goldOutline', 'onGold',
+        'silver', 'silverSubtle', 'silverSoft', 'silverStrong', 'silverOutline', 'onSilver'
+      ]
     }
   ];
 

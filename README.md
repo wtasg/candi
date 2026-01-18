@@ -207,6 +207,23 @@ module.exports = {
 | `warning` | Amber | Lighter amber | Warning states |
 | `error` | Coral red | Lighter coral | Error states |
 
+### Primitive Colors
+
+Each primitive color includes 6 variants for flexible usage:
+
+| Base | Subtle | Soft | Strong | Outline | On |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `red` | `red-subtle` | `red-soft` | `red-strong` | `red-outline` | `on-red` |
+| `blue` | `blue-subtle` | `blue-soft` | `blue-strong` | `blue-outline` | `on-blue` |
+| `green` | `green-subtle` | `green-soft` | `green-strong` | `green-outline` | `on-green` |
+| `yellow` | `yellow-subtle` | `yellow-soft` | `yellow-strong` | `yellow-outline` | `on-yellow` |
+| `magenta` | `magenta-subtle` | `magenta-soft` | `magenta-strong` | `magenta-outline` | `on-magenta` |
+| `cyan` | `cyan-subtle` | `cyan-soft` | `cyan-strong` | `cyan-outline` | `on-cyan` |
+| `teal` | `teal-subtle` | `teal-soft` | `teal-strong` | `teal-outline` | `on-teal` |
+| `pink` | `pink-subtle` | `pink-soft` | `pink-strong` | `pink-outline` | `on-pink` |
+| `gold` | `gold-subtle` | `gold-soft` | `gold-strong` | `gold-outline` | `on-gold` |
+| `silver` | `silver-subtle` | `silver-soft` | `silver-strong` | `silver-outline` | `on-silver` |
+
 [Customize Colors](docs/customizing-colors.md)
 
 ---

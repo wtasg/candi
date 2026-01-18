@@ -132,7 +132,20 @@
         "editorSuggestWidget.selectedBackground": "#7987DE20",
         "editorHoverWidget.background": "#1D1A14",
         "editorHoverWidget.border": "#302D28",
-        "editorHoverWidget.foreground": "#E8E4DD"
+        "editorHoverWidget.foreground": "#E8E4DD",
+        "editorBracketHighlight.foreground1": "#6DA3DA",
+        "editorBracketHighlight.foreground2": "#D179CA",
+        "editorBracketHighlight.foreground3": "#6CBEC2",
+        "editorBracketHighlight.foreground4": "#ECCA6C",
+        "editorBracketHighlight.foreground5": "#76AF77",
+        "editorBracketHighlight.foreground6": "#DF7F78",
+        "editorBracketHighlight.unexpectedBracket.foreground": "#E7958E",
+        "editorBracketPairGuide.activeBackground1": "#6DA3DA80",
+        "editorBracketPairGuide.activeBackground2": "#D179CA80",
+        "editorBracketPairGuide.activeBackground3": "#6CBEC280",
+        "editorBracketPairGuide.activeBackground4": "#ECCA6C80",
+        "editorBracketPairGuide.activeBackground5": "#76AF7780",
+        "editorBracketPairGuide.activeBackground6": "#DF7F7880"
     },
     "tokenColors": [
         {

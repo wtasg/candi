@@ -1,6 +1,6 @@
 {
     "name": "@wtasnorg/candi",
-    "version": "0.0.27",
+    "version": "0.0.31",
     "description": "A Tailwind CSS theme inspired by Nordic/Scandinavian Hygge & Lagom design principles",
     "keywords": [
         "tailwindcss",
@@ -63,7 +63,8 @@
         "build:gnome": "node scripts/build-gnome.js",
         "build:obsidian": "node scripts/build-obsidian.js",
         "build:showcase": "cd showcase_flutter && flutter build web",
-        "build:all": "npm run build && npm run build:flutter && npm run build:vscode && npm run build:vim && npm run build:kde && npm run build:konsole && npm run build:gnome && npm run build:obsidian && npm run build:showcase",
+        "build:docs": "node scripts/build-docs.js",
+        "build:all": "npm run build && npm run build:flutter && npm run build:vscode && npm run build:vim && npm run build:kde && npm run build:konsole && npm run build:gnome && npm run build:obsidian && npm run build:docs && npm run build:showcase",
         "format:flutter": "cd flutter && dart format lib",
         "prepublishOnly": "npm run build:all",
         "test:color": "node scripts/test-color.js",
@@ -88,7 +89,7 @@
         "artifact": "node scripts/package-artifacts.js",
         "lint:dart": "node scripts/lint-dart.js",
         "lint:tokens": "node scripts/lint-tokens.js",
-        "lint:md": "markdownlint-cli2 \"**/*.md\" \"!node_modules\" \"!website/node_modules\"",
+        "lint:md": "markdownlint-cli2 \"**/*.md\" \"!node_modules\" \"!website/node_modules\" \"!**/.dart_tool\"",
         "lint:md:fix": "markdownlint-cli2 --fix \"**/*.md\" \"!node_modules\" \"!website/node_modules\"",
         "lint:all": "npm run lint:tokens && npm run lint:dart && npm run lint:md"
     },

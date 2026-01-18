@@ -25,3 +25,8 @@ Thumbs.db
 ## artifacts
 *.zip
 *.vsix
+
+tmp
+know.repo
+gen-docs
+sec-docs

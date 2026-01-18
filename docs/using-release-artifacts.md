@@ -19,12 +19,12 @@ Each GitHub release includes the following versioned artifacts:
 ### Via Browser
 
 1. Visit the [Candi Releases page](https://github.com/wtasg/candi/releases)
-2. Choose the latest release (or a specific version like [v0.0.10](https://github.com/wtasg/candi/releases/tag/v0.0.10))
+2. Choose the latest release (or a specific version like [v0.0.27](https://github.com/wtasg/candi/releases/tag/v0.0.27))
 3. Download the artifact(s) you need from the Assets section
 
 ### Via Command Line
 
-Download artifacts directly using `curl` or `wget`. Replace `VERSION` with the desired version (e.g., `0.0.10`):
+Download artifacts directly using `curl` or `wget`. Replace `VERSION` with the desired version (e.g., `0.0.27`):
 
 Using curl:
 
@@ -32,19 +32,19 @@ The `-L` flag follows redirects (GitHub uses redirects for release downloads) an
 
 ```bash
 # Download theme
-curl -LO https://github.com/wtasg/candi/releases/download/v0.0.10/theme_0.0.10.zip
+curl -LO https://github.com/wtasg/candi/releases/download/v0.0.27/theme_0.0.27.zip
 
 # Download vim colorschemes
-curl -LO https://github.com/wtasg/candi/releases/download/v0.0.10/vim_0.0.10.zip
+curl -LO https://github.com/wtasg/candi/releases/download/v0.0.27/vim_0.0.27.zip
 
 # Download KDE color schemes
-curl -LO https://github.com/wtasg/candi/releases/download/v0.0.10/kde_0.0.10.zip
+curl -LO https://github.com/wtasg/candi/releases/download/v0.0.27/kde_0.0.27.zip
 
 # Download VS Code extension
-curl -LO https://github.com/wtasg/candi/releases/download/v0.0.10/vscode-theme-candi-0.0.10.vsix
+curl -LO https://github.com/wtasg/candi/releases/download/v0.0.27/vscode-theme-candi-0.0.27.vsix
 
 # Download documentation
-curl -LO https://github.com/wtasg/candi/releases/download/v0.0.10/docs_0.0.10.zip
+curl -LO https://github.com/wtasg/candi/releases/download/v0.0.27/docs_0.0.27.zip
 ```
 
 Using wget:
@@ -53,11 +53,11 @@ Using wget:
 
 ```bash
 # Download theme
-wget https://github.com/wtasg/candi/releases/download/v0.0.10/theme_0.0.10.zip
+wget https://github.com/wtasg/candi/releases/download/v0.0.27/theme_0.0.27.zip
 
 # Download all artifacts at once
-wget https://github.com/wtasg/candi/releases/download/v0.0.10/{theme,vim,kde,docs}_0.0.10.zip
-wget https://github.com/wtasg/candi/releases/download/v0.0.10/vscode-theme-candi-0.0.10.vsix
+wget https://github.com/wtasg/candi/releases/download/v0.0.27/{theme,vim,kde,docs}_0.0.27.zip
+wget https://github.com/wtasg/candi/releases/download/v0.0.27/vscode-theme-candi-0.0.27.vsix
 ```
 
 Get latest release version programmatically:
@@ -97,7 +97,7 @@ VS Code (specific version):
 Downloads the `.vsix` extension file and installs it using VS Code's CLI `--install-extension` flag:
 
 ```bash
-curl -LO https://github.com/wtasg/candi/releases/download/v0.0.10/vscode-theme-candi-0.0.10.vsix && code --install-extension vscode-theme-candi-0.0.10.vsix
+curl -LO https://github.com/wtasg/candi/releases/download/v0.0.27/vscode-theme-candi-0.0.27.vsix && code --install-extension vscode-theme-candi-0.0.27.vsix
 ```
 
 ## Installation Guides by Platform
@@ -109,7 +109,7 @@ For Tailwind CSS projects:
 1. Extract `theme_VERSION.zip`:
 
    ```bash
-   unzip theme_0.0.10.zip
+   unzip theme_0.0.27.zip
    ```
 
 2. Copy the `dist/` folder to your project or install via npm:
@@ -130,7 +130,7 @@ For vanilla CSS projects:
 1. Extract and copy the CSS file:
 
    ```bash
-   unzip theme_0.0.10.zip
+   unzip theme_0.0.27.zip
    cp dist/theme.css your-project/styles/
    ```
 
@@ -149,7 +149,7 @@ See [Use with Tailwind CSS](use-with-tailwindcss.md) and [Use without Tailwind C
 1. Extract `vim_VERSION.zip`:
 
    ```bash
-   unzip vim_0.0.10.zip
+   unzip vim_0.0.27.zip
    ```
 
 2. Copy colorschemes to your Vim colors directory:
@@ -182,7 +182,7 @@ See [Vim Theme Guide](vim-theme.md) for additional configuration options.
 1. Extract `kde_VERSION.zip`:
 
    ```bash
-   unzip kde_0.0.10.zip
+   unzip kde_0.0.27.zip
    ```
 
 2. Install color schemes based on your Plasma version:
@@ -241,7 +241,7 @@ The `docs_VERSION.zip` artifact contains a static build of the documentation web
 1. Extract `docs_VERSION.zip`:
 
    ```bash
-   unzip docs_0.0.10.zip
+   unzip docs_0.0.27.zip
    ```
 
 2. Open in a browser:
@@ -343,14 +343,14 @@ Using wget ([download-artifact-wget.sh](../scripts/download-artifact-wget.sh)):
 This wget-based alternative supports downloading all artifacts at once with the `all` option:
 
 ```bash
-./scripts/download-artifact-wget.sh all 0.0.10  # Download everything
+./scripts/download-artifact-wget.sh all 0.0.27  # Download everything
 ```
 
 Usage examples:
 
 ```bash
 ./scripts/download-artifact.sh theme          # Download latest theme
-./scripts/download-artifact.sh vim 0.0.10     # Download specific version
+./scripts/download-artifact.sh vim 0.0.27     # Download specific version
 ./scripts/download-artifact.sh vscode latest  # Download latest VS Code extension
 ./scripts/download-artifact-wget.sh all       # Download all latest artifacts
 ```

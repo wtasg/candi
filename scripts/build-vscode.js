@@ -212,6 +212,23 @@ function generateTheme(name, type, palette) {
             "editorHoverWidget.background": palette['surface'],
             "editorHoverWidget.border": palette['border'],
             "editorHoverWidget.foreground": palette['text'],
+
+            // Bracket Pair Colorization (using primitives)
+            "editorBracketHighlight.foreground1": palette['blue'],
+            "editorBracketHighlight.foreground2": palette['magenta'],
+            "editorBracketHighlight.foreground3": palette['cyan'],
+            "editorBracketHighlight.foreground4": palette['yellow'],
+            "editorBracketHighlight.foreground5": palette['green'],
+            "editorBracketHighlight.foreground6": palette['red'],
+            "editorBracketHighlight.unexpectedBracket.foreground": palette['error'],
+
+            // Bracket Pair Guides
+            "editorBracketPairGuide.activeBackground1": palette['blue'] + "80",
+            "editorBracketPairGuide.activeBackground2": palette['magenta'] + "80",
+            "editorBracketPairGuide.activeBackground3": palette['cyan'] + "80",
+            "editorBracketPairGuide.activeBackground4": palette['yellow'] + "80",
+            "editorBracketPairGuide.activeBackground5": palette['green'] + "80",
+            "editorBracketPairGuide.activeBackground6": palette['red'] + "80",
         },
         "tokenColors": [
             {

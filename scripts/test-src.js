@@ -71,7 +71,18 @@ const expectedTokens = [
     'syntaxKeyword', 'syntaxType', 'syntaxVar', 'syntaxConst', 'syntaxFunc', 'syntaxString',
     'hover', 'active',
     'terminalBlack', 'terminalRed', 'terminalGreen', 'terminalYellow',
-    'terminalBlue', 'terminalMagenta', 'terminalCyan', 'terminalWhite'
+    'terminalBlue', 'terminalMagenta', 'terminalCyan', 'terminalWhite',
+    // Primitive Colors with variations
+    'red', 'redSubtle', 'redSoft', 'redStrong', 'redOutline', 'onRed',
+    'blue', 'blueSubtle', 'blueSoft', 'blueStrong', 'blueOutline', 'onBlue',
+    'green', 'greenSubtle', 'greenSoft', 'greenStrong', 'greenOutline', 'onGreen',
+    'yellow', 'yellowSubtle', 'yellowSoft', 'yellowStrong', 'yellowOutline', 'onYellow',
+    'magenta', 'magentaSubtle', 'magentaSoft', 'magentaStrong', 'magentaOutline', 'onMagenta',
+    'cyan', 'cyanSubtle', 'cyanSoft', 'cyanStrong', 'cyanOutline', 'onCyan',
+    'teal', 'tealSubtle', 'tealSoft', 'tealStrong', 'tealOutline', 'onTeal',
+    'pink', 'pinkSubtle', 'pinkSoft', 'pinkStrong', 'pinkOutline', 'onPink',
+    'gold', 'goldSubtle', 'goldSoft', 'goldStrong', 'goldOutline', 'onGold',
+    'silver', 'silverSubtle', 'silverSoft', 'silverStrong', 'silverOutline', 'onSilver'
 ];
 
 let lightMissing = [];
