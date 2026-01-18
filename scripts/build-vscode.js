@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const palette = require('../src/data/colors');
+const logger = require('./logger');
 
 const vscodeDir = path.join(__dirname, '..', 'vscode');
 const themesDir = path.join(vscodeDir, 'themes');
@@ -14,14 +15,14 @@ function getColors(mode) {
     for (const [key, data] of Object.entries(palette[mode])) {
         const value = data.oklch || data.value;
         if (!value) {
-            console.warn(`[WARN] ${mode}.${key}: No oklch or value defined, skipping`);
+            logger.warn(`[WARN] ${mode}.${key}: No oklch or value defined, skipping`);
             continue;
         }
         const parsed = parseOklch(value);
         if (parsed) {
             colors[toKebab(key)] = toHex(parsed);
         } else {
-            console.warn(`[WARN] ${mode}.${key}: Could not parse '${value}'`);
+            logger.warn(`[WARN] ${mode}.${key}: Could not parse '${value}'`);
         }
     }
     return colors;
@@ -501,5 +502,7 @@ const extensionPackage = {
 
 fs.writeFileSync(path.join(vscodeDir, 'package.json'), JSON.stringify(extensionPackage, null, 4));
 
-console.log('Build complete!');
-console.log('  - Generated vscode/ extension');
+if (logger.isVerbose) {
+    logger.log('\nBuild complete!');
+    logger.log('  - Generated vscode/ extension');
+}

@@ -5,7 +5,9 @@
  * Shows how the validation catches missing color keys
  */
 
-console.log('=== KDE Palette Validation Demo ===\n');
+const logger = require('./logger');
+
+logger.log('=== KDE Palette Validation Demo ===\n');
 
 // Simulate the validation function from build-kde.js
 function validatePalette(palette, themeName) {
@@ -18,11 +20,11 @@ function validatePalette(palette, themeName) {
     const missingKeys = requiredKeys.filter(key => !palette[key]);
 
     if (missingKeys.length > 0) {
-        console.error(`\x1b[31mError: Missing required color keys in ${themeName} palette:\x1b[0m`);
+        logger.error(`\x1b[31mError: Missing required color keys in ${themeName} palette:\x1b[0m`);
         missingKeys.forEach(key => {
-            console.error(`  - --candi-${key}`);
+            logger.error(`  - --candi-${key}`);
         });
-        console.error('\nPlease ensure all required color variables are defined in src/css/base.css');
+        logger.error('\nPlease ensure all required color variables are defined in src/css/base.css');
         return false;
     }
 
@@ -30,7 +32,7 @@ function validatePalette(palette, themeName) {
     requiredKeys.forEach(key => {
         const color = palette[key];
         if (color && (color.r === undefined || color.g === undefined || color.b === undefined)) {
-            console.warn(`\x1b[33mWarning: Color '${key}' has undefined RGB values\x1b[0m`);
+            logger.warn(`\x1b[33mWarning: Color '${key}' has undefined RGB values\x1b[0m`);
         }
     });
 
@@ -38,7 +40,7 @@ function validatePalette(palette, themeName) {
 }
 
 // Test Case 1: Complete palette (should pass)
-console.log('Test 1: Complete palette');
+logger.log('Test 1: Complete palette');
 const completePalette = {
     'bg': { r: 251, g: 248, b: 242 },
     'surface': { r: 249, g: 247, b: 243 },
@@ -58,11 +60,11 @@ const completePalette = {
 };
 
 if (validatePalette(completePalette, 'Complete')) {
-    console.log('\x1b[32m[✓] Validation passed\x1b[0m\n');
+    logger.log('\x1b[32m[✓] Validation passed\x1b[0m\n');
 }
 
 // Test Case 2: Incomplete palette (should fail)
-console.log('Test 2: Incomplete palette');
+logger.log('Test 2: Incomplete palette');
 const incompletePalette = {
     'bg': { r: 251, g: 248, b: 242 },
     'text': { r: 35, g: 42, b: 48 },
@@ -71,11 +73,11 @@ const incompletePalette = {
 };
 
 if (!validatePalette(incompletePalette, 'Incomplete')) {
-    console.log('\x1b[32m[✓] Validation correctly rejected incomplete palette\x1b[0m\n');
+    logger.log('\x1b[32m[✓] Validation correctly rejected incomplete palette\x1b[0m\n');
 }
 
 // Test Case 3: Palette with undefined RGB values (should warn)
-console.log('Test 3: Palette with undefined RGB values');
+logger.log('Test 3: Palette with undefined RGB values');
 const invalidRgbPalette = {
     'bg': { r: 251, g: 248, b: 242 },
     'surface': { r: 249, g: 247, b: 243 },
@@ -95,11 +97,17 @@ const invalidRgbPalette = {
 };
 
 if (validatePalette(invalidRgbPalette, 'InvalidRGB')) {
-    console.log('\x1b[32m[✓] Warning displayed for undefined RGB values\x1b[0m\n');
+    logger.log('\x1b[32m[✓] Warning displayed for undefined RGB values\x1b[0m\n');
 }
 
-console.log('=== Demo Complete ===');
-console.log('\nThe validation ensures that:');
-console.log('1. All 15 required color keys are present');
-console.log('2. RGB values are properly defined');
-console.log('3. Invalid palettes are caught before theme generation');
+logger.log('=== Demo Complete ===');
+logger.log('\nThe validation ensures that:');
+logger.log('1. All 15 required color keys are present');
+logger.log('2. RGB values are properly defined');
+logger.log('3. Invalid palettes are caught before theme generation');
+
+if (logger.isVerbose) {
+    logger.log('\nDemo finished successfully.');
+} else {
+    console.log('KDE validation demo complete.');
+}

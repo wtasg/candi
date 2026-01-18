@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const palette = require('../src/data/colors');
+const logger = require('./logger');
 
 const vimDir = path.join(__dirname, '..', 'vim');
 const colorsDir = path.join(vimDir, 'colors');
@@ -32,6 +33,13 @@ function getLastModifiedDate(filePath) {
         const match = content.match(/Last Modified: (\d{4}-\d{2}-\d{2})/);
         if (match) {
             return match[1];
+        }
+        // If file exists but no date found, or if the file is being regenerated
+        // This log is for when a file exists but its content doesn't have the date,
+        // or if the file is being overwritten with new content.
+        if (logger.isVerbose) {
+            const relPath = path.relative(process.cwd(), filePath);
+            logger.log(`  - ${relPath} unchanged`);
         }
     }
     return new Date().toISOString().split('T')[0];
@@ -558,7 +566,9 @@ if (shouldWrite(lightThemePath, lightTheme)) {
     fs.writeFileSync(lightThemePath, updatedLightTheme);
     console.log('  - Updated vim/colors/candi-light.vim');
 } else {
-    console.log('  - vim/colors/candi-light.vim unchanged');
+    if (logger.isVerbose) {
+        console.log('  - vim/colors/candi-light.vim unchanged');
+    }
 }
 
 // Write dark theme
@@ -569,9 +579,14 @@ if (shouldWrite(darkThemePath, darkTheme)) {
         `Last Modified: ${new Date().toISOString().split('T')[0]}`
     );
     fs.writeFileSync(darkThemePath, updatedDarkTheme);
-    console.log('  - Updated vim/colors/candi-dark.vim');
+    logger.log('  - Updated vim/colors/candi-dark.vim');
 } else {
-    console.log('  - vim/colors/candi-dark.vim unchanged');
+    if (logger.isVerbose) {
+        logger.log('  - vim/colors/candi-dark.vim unchanged');
+    }
 }
 
-console.log('Build complete!');
+logger.log('Build complete!');
+if (logger.isVerbose) {
+    logger.log('Vim build successful.');
+}

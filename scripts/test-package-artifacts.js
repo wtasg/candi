@@ -7,20 +7,21 @@
 
 const fs = require('fs');
 const path = require('path');
+const logger = require('./logger');
 
 const PROJECT_ROOT = path.join(__dirname, '..');
 
 let errors = 0;
 let passed = 0;
 
-function pass(msg) { console.log(`[✓] ${msg}`); passed++; }
-function fail(msg) { console.error(`[✗] ${msg}`); errors++; }
+function pass(msg) { logger.log(`[✓] ${msg}`); passed++; }
+function fail(msg) { logger.error(`[✗] ${msg}`); errors++; }
 
 // =============================================================================
 // Package Artifacts Script Tests
 // =============================================================================
 
-console.log('\n--- Package Artifacts Script Tests ---\n');
+logger.log('\n--- Package Artifacts Script Tests ---\n');
 
 // Check package-artifacts.js exists
 const scriptPath = path.join(PROJECT_ROOT, 'scripts', 'package-artifacts.js');
@@ -63,7 +64,7 @@ if (fs.existsSync(scriptPath)) {
 // Generated Artifact Tests
 // =============================================================================
 
-console.log('\n--- Generated Artifact Tests ---\n');
+logger.log('\n--- Generated Artifact Tests ---\n');
 
 const version = require('../package.json').version;
 
@@ -110,7 +111,7 @@ if (fs.existsSync(vscodeDir)) {
 // Artifact Content Validation
 // =============================================================================
 
-console.log('\n--- Artifact Content Validation ---\n');
+logger.log('\n--- Artifact Content Validation ---\n');
 
 // If theme zip exists, check it has expected contents
 const themeZip = path.join(PROJECT_ROOT, `theme_${version}.zip`);
@@ -148,16 +149,19 @@ if (fs.existsSync(distDir)) {
 // Summary
 // =============================================================================
 
-console.log('\n' + '='.repeat(50));
-console.log('  PACKAGE ARTIFACTS TEST SUMMARY');
-console.log('='.repeat(50));
-console.log(`Passed: ${passed}`);
-console.log(`Failed: ${errors}`);
+logger.log('\n' + '='.repeat(50));
+logger.log('  PACKAGE ARTIFACTS TEST SUMMARY');
+logger.log('='.repeat(50));
+logger.log(`Passed: ${passed}`);
+logger.log(`Failed: ${errors}`);
 
 if (errors > 0) {
-    console.log('\n[✗] Package artifacts tests FAILED');
+    logger.dump();
+    logger.error('\n[✗] Package artifacts tests FAILED');
     process.exit(1);
 } else {
-    console.log('\n[✓] Package artifacts tests PASSED');
+    if (logger.isVerbose) {
+        logger.log('\n[✓] Package artifacts tests PASSED');
+    }
     process.exit(0);
 }

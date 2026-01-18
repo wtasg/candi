@@ -7,12 +7,15 @@
 const fs = require('fs');
 const path = require('path');
 const assert = require('assert').strict;
+const logger = require('./logger');
 
 const vimColorsDir = path.join(__dirname, '..', 'vim', 'colors');
 const lightThemePath = path.join(vimColorsDir, 'candi-light.vim');
 const darkThemePath = path.join(vimColorsDir, 'candi-dark.vim');
 
-console.log('--- Vim Theme Validation ---');
+if (logger.isVerbose) {
+    console.log('--- Vim Theme Validation ---');
+}
 
 function testVimTheme() {
     try {
@@ -20,7 +23,7 @@ function testVimTheme() {
         assert.ok(fs.existsSync(vimColorsDir), 'vim/colors directory should exist');
         assert.ok(fs.existsSync(lightThemePath), 'candi-light.vim should exist');
         assert.ok(fs.existsSync(darkThemePath), 'candi-dark.vim should exist');
-        console.log('[✓] Structure verified');
+        logger.log('[✓] Structure verified');
 
         // 2. Validate dark theme contents
         const darkContent = fs.readFileSync(darkThemePath, 'utf8');
@@ -45,7 +48,7 @@ function testVimTheme() {
         // Check terminal colors are present
         assert.ok(darkContent.includes('ctermfg=') && darkContent.includes('ctermbg='), 'Terminal colors should be present');
 
-        console.log('[✓] Dark theme mappings verified');
+        if (logger.isVerbose) logger.log('[✓] Dark theme mappings verified');
 
         // 3. Validate light theme contents
         const lightContent = fs.readFileSync(lightThemePath, 'utf8');
@@ -53,12 +56,17 @@ function testVimTheme() {
         assert.ok(lightContent.includes('set background=light'), 'Should set background');
         assert.ok(lightContent.includes('hi Normal') && lightContent.includes('guifg=#232A30') && lightContent.includes('guibg=#F6F9FC'), 'Light Normal highlight mapping mismatch');
 
-        console.log('[✓] Light theme mappings verified');
-
-        console.log('\nResult: All Vim validation tests passed.');
+        if (logger.isVerbose) {
+            logger.log('[✓] Light theme mappings verified');
+            logger.log('\n--- Vim Theme Validation ---');
+            logger.log(`[✓] ${lightVim} verified`);
+            logger.log(`[✓] ${darkVim} verified`);
+            logger.log('Theme validation complete.');
+        }
         return true;
     } catch (err) {
-        console.error('\n[✗] Validation failed:', err.message);
+        logger.dump();
+        logger.error('\n[✗] Validation failed:', err.message);
         process.exit(1);
     }
 }

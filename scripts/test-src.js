@@ -8,11 +8,12 @@
 
 const fs = require('fs');
 const path = require('path');
+const logger = require('./logger');
 const assert = require('assert').strict;
 
 const srcDir = path.join(__dirname, '..', 'src');
 
-console.log('=== Source File Regression Tests ===\n');
+logger.log('=== Source File Regression Tests ===\n');
 
 let totalTests = 0;
 let passedTests = 0;
@@ -22,22 +23,22 @@ let knownIssues = [];
 function pass(message) {
     totalTests++;
     passedTests++;
-    console.log(`[✓] ${message}`);
+    logger.log(`[✓] ${message}`);
 }
 
 function fail(message) {
     totalTests++;
     failedTests++;
-    console.error(`[✗] ${message}`);
+    logger.error(`[✗] ${message}`);
 }
 
 function knownIssue(message) {
     knownIssues.push(message);
-    console.log(`[KNOWN ISSUE] ${message}`);
+    logger.log(`[KNOWN ISSUE] ${message}`);
 }
 
 function section(name) {
-    console.log(`\n--- ${name} ---`);
+    logger.log(`\n--- ${name} ---`);
 }
 
 // ============================================================
@@ -636,25 +637,27 @@ if (fs.existsSync(vscodeFiles[1])) {
     }
 }
 
-// ============================================================
 // Summary
-// ============================================================
-console.log('\n' + '='.repeat(50));
-console.log('SUMMARY');
-console.log('='.repeat(50));
-console.log(`Total tests: ${totalTests}`);
-console.log(`Passed: ${passedTests}`);
-console.log(`Failed: ${failedTests}`);
-console.log(`Known issues: ${knownIssues.length}`);
+logger.log('\n' + '='.repeat(50));
+logger.log('SUMMARY');
+logger.log('='.repeat(50));
+logger.log(`Total tests: ${totalTests}`);
+logger.log(`Passed: ${passedTests}`);
+logger.log(`Failed: ${failedTests}`);
+logger.log(`Known issues: ${knownIssues.length}`);
 
 if (knownIssues.length > 0) {
-    console.log('\nKnown Issues (documented, not failures):');
-    knownIssues.forEach((issue, i) => console.log(`  ${i + 1}. ${issue}`));
+    logger.log('\nKnown Issues (documented, not failures):');
+    knownIssues.forEach((issue, i) => logger.log(`  ${i + 1}. ${issue}`));
 }
 
 if (failedTests > 0) {
-    console.log('\n[✗] Some tests failed!');
+    logger.dump();
+    logger.error(`\n[✗] Source file regression tests FAILED (${failedTests} errors)`);
     process.exit(1);
 } else {
-    console.log('\n[✓] All tests passed!');
+    if (logger.isVerbose) {
+        logger.log('\n[✓] All source file regression tests PASSED');
+    }
+    process.exit(0);
 }

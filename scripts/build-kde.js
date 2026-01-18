@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const palette = require('../src/data/colors');
+const logger = require('./logger');
 
 const kdeDir = path.join(__dirname, '..', 'kde');
 const v4Dir = path.join(kdeDir, 'v4');
@@ -286,8 +287,12 @@ fs.writeFileSync(path.join(v4Dir, 'CandiDark.colors'), darkTheme);
 fs.writeFileSync(path.join(v5Dir, 'CandiLight.colors'), lightTheme);
 fs.writeFileSync(path.join(v5Dir, 'CandiDark.colors'), darkTheme);
 
-console.log('Build complete!');
-console.log('  - Generated kde/v4/CandiLight.colors');
-console.log('  - Generated kde/v4/CandiDark.colors');
-console.log('  - Generated kde/v5/CandiLight.colors');
-console.log('  - Generated kde/v5/CandiDark.colors');
+logger.log('Build complete!');
+logger.log('  - Generated kde/v4/CandiLight.colors');
+logger.log('  - Generated kde/v4/CandiDark.colors');
+logger.log('  - Generated kde/v5/CandiLight.colors');
+logger.log('  - Generated kde/v5/CandiDark.colors');
+
+if (logger.isVerbose) {
+    logger.log('KDE build successful.');
+}

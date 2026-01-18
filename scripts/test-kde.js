@@ -6,6 +6,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const logger = require('./logger');
 const assert = require('assert').strict;
 
 const kdeDir = path.join(__dirname, '..', 'kde');
@@ -17,22 +18,23 @@ const v4DarkPath = path.join(v4Dir, 'CandiDark.colors');
 const v5LightPath = path.join(v5Dir, 'CandiLight.colors');
 const v5DarkPath = path.join(v5Dir, 'CandiDark.colors');
 
-console.log('--- KDE Theme Validation ---');
+logger.log('--- KDE Theme Validation ---');
 
 function testKdeTheme() {
+    let errors = 0;
     try {
         // 1. Check directory structure
         assert.ok(fs.existsSync(kdeDir), 'kde directory should exist');
         assert.ok(fs.existsSync(v4Dir), 'kde/v4 directory should exist');
         assert.ok(fs.existsSync(v5Dir), 'kde/v5 directory should exist');
-        console.log('[✓] Directory structure verified');
+        logger.log('[✓] Directory structure verified');
 
         // 2. Check file existence
         assert.ok(fs.existsSync(v4LightPath), 'kde/v4/CandiLight.colors should exist');
         assert.ok(fs.existsSync(v4DarkPath), 'kde/v4/CandiDark.colors should exist');
         assert.ok(fs.existsSync(v5LightPath), 'kde/v5/CandiLight.colors should exist');
         assert.ok(fs.existsSync(v5DarkPath), 'kde/v5/CandiDark.colors should exist');
-        console.log('[✓] All theme files exist');
+        logger.log('[✓] All theme files exist');
 
         // 3. Validate dark theme contents
         const darkContent = fs.readFileSync(v4DarkPath, 'utf8');
@@ -94,7 +96,7 @@ function testKdeTheme() {
         const wmActive = extractRgb(darkContent, 'activeBackground');
         assert.ok(wmActive, 'WM activeBackground should have valid RGB format');
 
-        console.log('[✓] Dark theme color format and semantics verified');
+        logger.log('[✓] Dark theme color format and semantics verified');
 
         // 4. Validate light theme contents
         const lightContent = fs.readFileSync(v4LightPath, 'utf8');
@@ -119,7 +121,7 @@ function testKdeTheme() {
         assert.ok(lightBgLuminance > lightFgLuminance + 100,
             `Light theme background should be significantly lighter than foreground for contrast`);
 
-        console.log('[✓] Light theme color format and semantics verified');
+        logger.log('[✓] Light theme color format and semantics verified');
 
         // 5. Verify v4 and v5 files are identical (same format)
         const v5DarkContent = fs.readFileSync(v5DarkPath, 'utf8');
@@ -128,12 +130,16 @@ function testKdeTheme() {
         assert.strictEqual(darkContent, v5DarkContent, 'v4 and v5 dark themes should be identical');
         assert.strictEqual(lightContent, v5LightContent, 'v4 and v5 light themes should be identical');
 
-        console.log('[✓] v4 and v5 themes are identical');
+        logger.log('[✓] v4 and v5 themes are identical');
 
-        console.log('\nResult: All KDE validation tests passed.');
-        return true;
+        // All tests passed
+        if (logger.isVerbose) {
+            logger.log('\n[✓] KDE theme validation PASSED');
+        }
+        process.exit(0);
     } catch (err) {
-        console.error('\n[✗] Validation failed:', err.message);
+        logger.dump();
+        logger.error('\n[✗] Validation failed:', err.message);
         process.exit(1);
     }
 }
@@ -142,7 +148,7 @@ function testKdeTheme() {
  * Test that base.css defines all required color keys
  */
 function testPaletteCompleteness() {
-    console.log('\n--- Palette Completeness Validation ---');
+    logger.log('\n--- Palette Completeness Validation ---');
 
     const palette = require('../src/data/colors');
 
@@ -180,7 +186,7 @@ function testPaletteCompleteness() {
         process.exit(1);
     }
 
-    console.log(`[✓] All ${requiredKeys.length} required color keys found in colors.js`);
+    logger.log(`[✓] All ${requiredKeys.length} required color keys found in colors.js`);
 }
 
 testPaletteCompleteness();

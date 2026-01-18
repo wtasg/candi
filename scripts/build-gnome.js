@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const palette = require('../src/data/colors');
+const logger = require('./logger');
 
 const gnomeDir = path.join(__dirname, '..', 'gnome');
 const gtk3Dir = path.join(gnomeDir, 'gtk-3.0');
@@ -599,9 +600,13 @@ fs.writeFileSync(path.join(gtk4Dir, 'gtk-dark.css'), darkGtkCss);
 // Write index.theme
 fs.writeFileSync(path.join(gnomeDir, 'index.theme'), indexTheme);
 
-console.log('Build complete!');
-console.log('  - Generated gnome/index.theme');
-console.log('  - Generated gnome/gtk-3.0/gtk.css');
-console.log('  - Generated gnome/gtk-3.0/gtk-dark.css');
-console.log('  - Generated gnome/gtk-4.0/gtk.css');
-console.log('  - Generated gnome/gtk-4.0/gtk-dark.css');
+logger.log('Build complete!');
+logger.log('  - Generated gnome/index.theme');
+logger.log('  - Generated gnome/gtk-3.0/gtk.css');
+logger.log('  - Generated gnome/gtk-3.0/gtk-dark.css');
+logger.log('  - Generated gnome/gtk-4.0/gtk.css');
+logger.log('  - Generated gnome/gtk-4.0/gtk-dark.css');
+
+if (logger.isVerbose) {
+    logger.log('Gnome build successful.');
+}

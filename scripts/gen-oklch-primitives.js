@@ -11,6 +11,7 @@
  */
 
 const { oklchToRgb, parseOklch, toHex6 } = require('./color-conv');
+const logger = require('./logger');
 
 // =============================================================================
 // 1. Define Anchor Colors (Hand-Tuned Singles Source of Truth)
@@ -186,10 +187,10 @@ function generatePalette({ verbose = false } = {}) {
 
     ['light', 'dark'].forEach(mode => {
         palette[mode] = {};
-        if (verbose) console.log(`\n--- Generating [${mode}] ---`);
+        if (verbose || logger.isVerbose) logger.log(`\n--- Generating [${mode}] ---`);
 
         Object.entries(ANCHORS[mode]).forEach(([name, anchorValue]) => {
-            if (verbose) console.log(`Anchor: ${name} (${anchorValue})`);
+            if (verbose || logger.isVerbose) logger.log(`Anchor: ${name} (${anchorValue})`);
 
             // 1. Base (Direct anchor)
             palette[mode][name] = {
@@ -211,7 +212,7 @@ function generatePalette({ verbose = false } = {}) {
                     name: `${name} ${variantName}`,
                     usage: `Derived ${variantName} of ${name}`
                 };
-                if (verbose) console.log(`  -> ${keyName.padEnd(20)}: ${derived.oklch}`);
+                if (verbose || logger.isVerbose) logger.log(`  -> ${keyName.padEnd(20)}: ${derived.oklch}`);
             });
 
             // 3. On-Color
@@ -223,9 +224,9 @@ function generatePalette({ verbose = false } = {}) {
                 usage: `Text on ${name}`
             };
 
-            if (verbose) {
+            if (verbose || logger.isVerbose) {
                 const status = onResult.warning ? 'WARN (<4.5)' : 'PASS';
-                console.log(`  -> ${onKeyName.padEnd(20)}: ${onResult.oklch} [Contrast: ${onResult.contrast.toFixed(2)} ${status}]`);
+                logger.log(`  -> ${onKeyName.padEnd(20)}: ${onResult.oklch} [Contrast: ${onResult.contrast.toFixed(2)} ${status}]`);
             }
         });
     });
@@ -236,8 +237,13 @@ function generatePalette({ verbose = false } = {}) {
 // Run if executed directly
 if (require.main === module) {
     const generated = generatePalette();
-    console.log('\n--- Generated JSON Structure (Preview) ---');
-    console.log(JSON.stringify(generated, null, 2));
+    logger.log('\n--- Generated JSON Structure (Preview) ---');
+    logger.log(JSON.stringify(generated, null, 2));
+    if (logger.isVerbose) {
+        logger.log('\nGeneration complete.');
+    } else {
+        console.log('Semantic color generation complete.');
+    }
 }
 
 module.exports = { generatePalette, ANCHORS, VARIANTS };

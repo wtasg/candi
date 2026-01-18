@@ -1,6 +1,6 @@
 /**
  * Candi Color Comparison Script
- * 
+ *
  * Compares the new "Derived" palette against the old "Hand-Tuned" palette.
  * shows DeltaE or simple visual diffs for L/C/H.
  */
@@ -8,6 +8,7 @@
 const oldPalette = require('../src/data/colors.js');
 const { generatePalette } = require('./gen-oklch-primitives');
 const { parseOklch } = require('./color-conv');
+const logger = require('./logger');
 
 const newPalette = generatePalette();
 
@@ -28,12 +29,12 @@ function formatDiff(oldVal, newVal) {
     return `${L} | ${C} | ${H}`;
 }
 
-console.log('=== DERIVATION COMPARISON ===\n');
+logger.log('=== DERIVATION COMPARISON ===\n');
 
 ['light', 'dark'].forEach(mode => {
-    console.log(`\n--- MODE: ${mode.toUpperCase()} ---`);
-    console.log(`Token`.padEnd(25) + `Old Value`.padEnd(25) + `New Value`.padEnd(25) + `Diff`);
-    console.log('-'.repeat(100));
+    logger.log(`\n--- MODE: ${mode.toUpperCase()} ---`);
+    logger.log(`Token`.padEnd(25) + `Old Value`.padEnd(25) + `New Value`.padEnd(25) + `Diff`);
+    logger.log('-'.repeat(100));
 
     const oldMode = oldPalette[mode];
     const newMode = newPalette[mode];
@@ -44,14 +45,20 @@ console.log('=== DERIVATION COMPARISON ===\n');
         const newToken = newMode[key];
 
         if (!oldToken) {
-            console.log(`${key.padEnd(25)} [NEW TOKEN]              ${newToken.oklch}`);
+            logger.log(`${key.padEnd(25)} [NEW TOKEN]              ${newToken.oklch}`);
             return;
         }
 
         if (oldToken.oklch === newToken.oklch) {
-            console.log(`${key.padEnd(25)} [MATCH]                  ${newToken.oklch}`);
+            logger.log(`${key.padEnd(25)} [MATCH]                  ${newToken.oklch}`);
         } else {
-            console.log(`${key.padEnd(25)} ${oldToken.oklch.padEnd(24)} ${newToken.oklch.padEnd(24)} ${formatDiff(oldToken.oklch, newToken.oklch)}`);
+            logger.log(`${key.padEnd(25)} ${oldToken.oklch.padEnd(24)} ${newToken.oklch.padEnd(24)} ${formatDiff(oldToken.oklch, newToken.oklch)}`);
         }
     });
 });
+
+if (logger.isVerbose) {
+    logger.log('\nComparison complete.');
+} else {
+    console.log('Derivation comparison complete.');
+}

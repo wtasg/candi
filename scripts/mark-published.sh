@@ -15,17 +15,32 @@ set -e
 VERSION="$1"
 shift || true
 
+# Parse optional arguments for projects and verbose flag
+PROJECTS_INPUT=()
+VERBOSE=false
+
+while [[ "$#" -gt 0 ]]; do
+    case $1 in
+        -v|--verbose) VERBOSE=true ;;
+        *) PROJECTS_INPUT+=("$1") ;;
+    esac
+    shift
+done
+
 if [ -z "$VERSION" ]; then
-    echo "Usage: $0 <version> [--all | --project | project1 project2 ...]"
+    echo "Usage: $0 <version> [-v|--verbose] [--all | --project | project1 project2 ...]"
     echo ""
     echo "Examples:"
     echo "  $0 0.0.28 --all         # Update all projects to 0.0.28"
     echo "  $0 0.0.28 --npm         # Update only npm to 0.0.28"
-    echo "  $0 0.0.28 npm flutter   # Update npm and flutter to 0.0.28"
-    echo ""
-    echo "Projects: github, npm, flutter, vscode, kde, gnome, obsidian, vim"
     exit 1
 fi
+
+log() {
+    if [ "$VERBOSE" = true ]; then
+        echo "$@"
+    fi
+}
 
 PUBLISHED_FILE="./published_versions.json"
 
@@ -37,7 +52,13 @@ fi
 # Determine which projects to update
 PROJECTS=()
 
-case "$1" in
+if [ ${#PROJECTS_INPUT[@]} -eq 0 ]; then
+    echo "Error: No projects specified"
+    echo "Use --all to update all projects, or specify project names"
+    exit 1
+fi
+
+case "${PROJECTS_INPUT[0]}" in
     --all)
         PROJECTS=(github npm flutter vscode kde gnome obsidian vim)
         ;;
@@ -66,8 +87,7 @@ case "$1" in
         PROJECTS=(vim)
         ;;
     *)
-        # Accept project names as positional arguments
-        PROJECTS=("$@")
+        PROJECTS=("${PROJECTS_INPUT[@]}")
         ;;
 esac
 
@@ -77,8 +97,8 @@ if [ ${#PROJECTS[@]} -eq 0 ]; then
     exit 1
 fi
 
-echo "Marking version $VERSION as published for: ${PROJECTS[*]}"
-echo ""
+log "Marking version $VERSION as published for: ${PROJECTS[*]}"
+log ""
 
 # Update each project using Node.js for JSON manipulation
 for PROJECT in "${PROJECTS[@]}"; do
@@ -86,16 +106,21 @@ for PROJECT in "${PROJECTS[@]}"; do
         const fs = require('fs');
         const file = '$PUBLISHED_FILE';
         const data = JSON.parse(fs.readFileSync(file, 'utf-8'));
+        const verbose = $VERBOSE;
         if (data.hasOwnProperty('$PROJECT')) {
             const old = data['$PROJECT'];
             data['$PROJECT'] = '$VERSION';
             fs.writeFileSync(file, JSON.stringify(data, null, 4) + '\n');
-            console.log('  [✓] $PROJECT: ' + old + ' → $VERSION');
+            if (verbose) console.log('  [✓] $PROJECT: ' + old + ' → $VERSION');
         } else {
-            console.log('  [!] $PROJECT: not found in published_versions.json');
+            if (verbose) console.log('  [!] $PROJECT: not found in published_versions.json');
         }
     "
 done
 
-echo ""
-echo "Done! Run 'npm run build:docs' to inject versions into documentation."
+log ""
+log "Done! Run 'npm run build:docs' to inject versions into documentation."
+
+if [ "$VERBOSE" = false ]; then
+    echo "Version $VERSION marked as published for selected projects."
+fi

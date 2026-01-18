@@ -2,6 +2,7 @@ const { oklchToRgb, toHex6: toHex, parseOklch } = require('./color-conv');
 const fs = require('fs');
 const path = require('path');
 const palette = require('../src/data/colors');
+const logger = require('./logger');
 
 function getRelativeLuminance(r, g, b) {
     const [rs, gs, bs] = [r, g, b].map(c => {
@@ -62,24 +63,26 @@ const tests = [
     { fg: 'borderStrong', bg: 'bg', min: 2.0 },
 ];
 
-console.log('--- Rigorous Contrast Audit ---');
+logger.log('--- Rigorous Contrast Audit ---');
 let allPassed = true;
 
 ['light', 'dark'].forEach(mode => {
-    console.log(`\nMode: ${mode.toUpperCase()}`);
+    logger.log(`\nMode: ${mode.toUpperCase()}`);
     tests.forEach(t => {
         const result = checkContrast(mode, t.fg, t.bg, t.min);
         if (result) {
             const status = result.passes ? '[✓]' : '[✗]';
             if (!result.passes) allPassed = false;
-            console.log(`${status} ${result.fgKey.padEnd(15)} on ${result.bgKey.padEnd(10)}: ${result.ratio.toFixed(2)}:1 (min: ${result.minRatio}:1)`);
+            logger.log(`${status} ${result.fgKey.padEnd(15)} on ${result.bgKey.padEnd(10)}: ${result.ratio.toFixed(2)}:1 (min: ${result.minRatio}:1)`);
         }
     });
 });
 
 if (!allPassed) {
-    console.error('\n[!] Contrast issues detected! Please refine the palette.');
+    logger.dump();
+    logger.error('\n[!] Contrast issues detected! Please refine the palette.');
     process.exit(1);
 } else {
-    console.log('\n[✓] All rigorous contrast tests passed!');
+    if (logger.isVerbose) logger.log('\n[✓] All rigorous contrast tests passed!');
+    console.log('Rigorous contrast tests passed.');
 }

@@ -19,12 +19,29 @@
 set -e
 
 REPO="wtasg/candi"
-ARTIFACT="${1:-theme}"
-VERSION="${2:-latest}"
+ARTIFACT="theme"
+VERSION="latest"
+VERBOSE=false
+
+# Parse arguments
+while [[ "$#" -gt 0 ]]; do
+    case $1 in
+        -v|--verbose) VERBOSE=true ;;
+        theme|vim|kde|docs|vscode|all) ARTIFACT="$1" ;;
+        latest|[0-9]*) VERSION="$1" ;;
+    esac
+    shift
+done
+
+log() {
+    if [ "$VERBOSE" = true ]; then
+        echo "$@"
+    fi
+}
 
 # Fetch latest version from GitHub API if needed
 if [ "$VERSION" = "latest" ]; then
-  echo "Fetching latest release version..."
+  log "Fetching latest release version..."
   VERSION=$(wget -qO- "https://api.github.com/repos/${REPO}/releases/latest" |
     grep '"tag_name"' |
     sed -E 's/.*"v([^"]+)".*/\1/')
@@ -33,7 +50,7 @@ if [ "$VERSION" = "latest" ]; then
     echo "Error: Could not determine latest version"
     exit 1
   fi
-  echo "Latest version: v${VERSION}"
+  log "Latest version: v${VERSION}"
 fi
 
 BASE_URL="https://github.com/${REPO}/releases/download/v${VERSION}"
@@ -41,8 +58,12 @@ BASE_URL="https://github.com/${REPO}/releases/download/v${VERSION}"
 download_file() {
   local filename="$1"
   local url="${BASE_URL}/${filename}"
-  echo "Downloading: $url"
-  wget --content-disposition "$url"
+  log "Downloading: $url"
+  if [ "$VERBOSE" = true ]; then
+      wget --content-disposition "$url"
+  else
+      wget -q --content-disposition "$url"
+  fi
 }
 
 case "$ARTIFACT" in
@@ -62,7 +83,7 @@ vscode)
   download_file "vscode-theme-candi-${VERSION}.vsix"
   ;;
 all)
-  echo "Downloading all artifacts..."
+  log "Downloading all artifacts..."
   download_file "theme_${VERSION}.zip"
   download_file "vim_${VERSION}.zip"
   download_file "kde_${VERSION}.zip"
@@ -76,4 +97,8 @@ all)
   ;;
 esac
 
-echo "Download complete!"
+log "Download complete!"
+
+if [ "$VERBOSE" = false ]; then
+    echo "Artifact(s) downloaded successfully."
+fi

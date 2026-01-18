@@ -15,6 +15,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const logger = require('./logger');
 
 const ROOT = path.join(__dirname, '..');
 const VERSION_FILE = path.join(ROOT, 'version');
@@ -35,7 +36,7 @@ function getVersions() {
     if (fs.existsSync(VERSION_FILE)) {
         versions.VERSION = fs.readFileSync(VERSION_FILE, 'utf-8').trim();
     } else {
-        console.warn('[WARN] version file not found, using package.json');
+        logger.warn('[WARN] version file not found, using package.json');
         versions.VERSION = require(path.join(ROOT, 'package.json')).version;
     }
 
@@ -45,7 +46,7 @@ function getVersions() {
         try {
             published = JSON.parse(fs.readFileSync(PUBLISHED_FILE, 'utf-8'));
         } catch (e) {
-            console.error(`[ERROR] Invalid JSON in ${PUBLISHED_FILE}: ${e.message}`);
+            logger.error(`[ERROR] Invalid JSON in ${PUBLISHED_FILE}: ${e.message}`);
             process.exit(1);
         }
         versions.PUBLISHED = published.github || versions.VERSION;
@@ -57,7 +58,7 @@ function getVersions() {
         versions.OBSIDIAN_VERSION = published.obsidian || versions.VERSION;
         versions.VIM_VERSION = published.vim || versions.VERSION;
     } else {
-        console.warn('[WARN] published_versions.json not found, using VERSION for all');
+        logger.warn('[WARN] published_versions.json not found, using VERSION for all');
         versions.PUBLISHED = versions.VERSION;
         versions.NPM_VERSION = versions.VERSION;
         versions.FLUTTER_VERSION = versions.VERSION;
@@ -97,7 +98,7 @@ function processFile(filePath, versions) {
 
     if (count > 0) {
         fs.writeFileSync(filePath, updated, 'utf-8');
-        console.log(`[✓] ${path.relative(ROOT, filePath)} - ${count} replacement(s)`);
+        logger.log(`[✓] ${path.relative(ROOT, filePath)} - ${count} replacement(s)`);
     }
 
     return count;
@@ -105,14 +106,14 @@ function processFile(filePath, versions) {
 
 // Main
 function main() {
-    console.log('Injecting versions into documentation...\n');
+    logger.log('Injecting versions into documentation...\n');
 
     const versions = getVersions();
-    console.log('Versions:');
+    logger.log('Versions:');
     for (const [key, value] of Object.entries(versions)) {
-        console.log(`  ${key}: ${value}`);
+        logger.log(`  ${key}: ${value}`);
     }
-    console.log('');
+    logger.log('');
 
     let totalReplacements = 0;
     let filesProcessed = 0;
@@ -134,9 +135,13 @@ function main() {
         }
     }
 
-    console.log(`\nBuild complete!`);
-    console.log(`  - Files scanned: ${filesProcessed}`);
-    console.log(`  - Replacements: ${totalReplacements}`);
+    logger.log(`\nBuild complete!`);
+    logger.log(`  - Files scanned: ${filesProcessed}`);
+    logger.log(`  - Replacements: ${totalReplacements}`);
+
+    if (logger.isVerbose) {
+        logger.log('Docs build successful.');
+    }
 }
 
 main();

@@ -7,20 +7,21 @@
 
 const fs = require('fs');
 const path = require('path');
+const logger = require('./logger');
 
 const PROJECT_ROOT = path.join(__dirname, '..');
 
 let errors = 0;
 let passed = 0;
 
-function pass(msg) { console.log(`[✓] ${msg}`); passed++; }
-function fail(msg) { console.error(`[✗] ${msg}`); errors++; }
+function pass(msg) { logger.log(`[✓] ${msg}`); passed++; }
+function fail(msg) { logger.error(`[✗] ${msg}`); errors++; }
 
 // =============================================================================
 // Gen OKLCH Primitives Script Tests
 // =============================================================================
 
-console.log('\n--- Gen OKLCH Primitives Script Tests ---\n');
+logger.log('\n--- Gen OKLCH Primitives Script Tests ---\n');
 
 // Check gen-oklch-primitives.js exists
 const genPrimitivesPath = path.join(PROJECT_ROOT, 'scripts', 'gen-oklch-primitives.js');
@@ -70,7 +71,7 @@ if (fs.existsSync(genPrimitivesPath)) {
 // Colors.js Integration Tests
 // =============================================================================
 
-console.log('\n--- Colors.js Integration ---\n');
+logger.log('\n--- Colors.js Integration ---\n');
 
 // Load colors and verify semantic colors exist
 const colors = require('../src/data/colors');
@@ -110,7 +111,7 @@ if (validSemanticStructure === semantics.length) {
 // Light/Dark Semantic Consistency
 // =============================================================================
 
-console.log('\n--- Semantic Consistency ---\n');
+logger.log('\n--- Semantic Consistency ---\n');
 
 // Verify light and dark have same semantic keys
 const lightSemantics = semantics.filter(s => colors.light[s]);
@@ -126,16 +127,19 @@ if (lightSemantics.length === darkSemantics.length) {
 // Summary
 // =============================================================================
 
-console.log('\n' + '='.repeat(50));
-console.log('  GEN OKLCH PRIMITIVES TEST SUMMARY');
-console.log('='.repeat(50));
-console.log(`Passed: ${passed}`);
-console.log(`Failed: ${errors}`);
+logger.log('\n' + '='.repeat(50));
+logger.log('  GEN OKLCH PRIMITIVES TEST SUMMARY');
+logger.log('='.repeat(50));
+logger.log(`Passed: ${passed}`);
+logger.log(`Failed: ${errors}`);
 
 if (errors > 0) {
-    console.log('\n[✗] Gen OKLCH primitives tests FAILED');
+    logger.dump();
+    logger.error('\n[✗] Gen OKLCH primitives tests FAILED');
     process.exit(1);
 } else {
-    console.log('\n[✓] Gen OKLCH primitives tests PASSED');
+    if (logger.isVerbose) {
+        logger.log('\n[✓] Gen OKLCH primitives tests PASSED');
+    }
     process.exit(0);
 }
