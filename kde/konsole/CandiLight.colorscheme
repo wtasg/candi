@@ -5,13 +5,13 @@
 # =============================================================================
 
 [Background]
-Color=246,249,252
+Color=249,247,244
 
 [BackgroundFaint]
-Color=246,249,252
+Color=249,247,244
 
 [BackgroundIntense]
-Color=246,249,252
+Color=249,247,244
 
 [Color0]
 Color=30,34,38
@@ -20,7 +20,7 @@ Color=30,34,38
 Color=30,34,38
 
 [Color0Intense]
-Color=109,114,119
+Color=117,113,107
 
 [Color1]
 Color=183,91,85
@@ -77,22 +77,22 @@ Color=43,161,167
 Color=43,161,167
 
 [Color7]
-Color=35,42,48
+Color=45,40,33
 
 [Color7Faint]
-Color=35,42,48
+Color=45,40,33
 
 [Color7Intense]
-Color=35,42,48
+Color=45,40,33
 
 [Foreground]
-Color=35,42,48
+Color=45,40,33
 
 [ForegroundFaint]
-Color=35,42,48
+Color=45,40,33
 
 [ForegroundIntense]
-Color=35,42,48
+Color=45,40,33
 
 [General]
 Anchor=0.5,0.5

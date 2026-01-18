@@ -17,15 +17,15 @@ const semantics = generatePalette();
 // Define Hand-Tuned Neutrals & Structure
 const neutrals = {
     light: {
-        bg: { oklch: 'oklch(98% 0.005 250)', name: 'Background', usage: 'Page background' },
-        surface: { oklch: 'oklch(95.5% 0.01 250)', name: 'Surface', usage: 'Cards, sections' },
+        bg: { oklch: 'oklch(97.8% 0.005 80)', name: 'Background', usage: 'Page background' },
+        surface: { oklch: 'oklch(95.5% 0.01 80)', name: 'Surface', usage: 'Cards, sections' },
         elevated: { oklch: 'oklch(100% 0 0)', name: 'Elevated', usage: 'Elevated surfaces' },
-        text: { oklch: 'oklch(28% 0.015 250)', name: 'Text', usage: 'Primary text' },
-        textSubtle: { oklch: 'oklch(50% 0.01 250)', name: 'Text Subtle', usage: 'Secondary text' },
-        textMuted: { oklch: 'oklch(55% 0.01 250)', name: 'Text Muted', usage: 'Muted text' },
-        border: { oklch: 'oklch(84% 0.01 250)', name: 'Border', usage: 'Borders' },
-        borderStrong: { oklch: 'oklch(75% 0.01 250)', name: 'Border Strong', usage: 'Strong borders' },
-        divider: { oklch: 'oklch(88% 0.01 250)', name: 'Divider', usage: 'Divider lines' },
+        text: { oklch: 'oklch(28% 0.015 80)', name: 'Text', usage: 'Primary text' },
+        textSubtle: { oklch: 'oklch(50% 0.01 80)', name: 'Text Subtle', usage: 'Secondary text' },
+        textMuted: { oklch: 'oklch(55% 0.01 80)', name: 'Text Muted', usage: 'Muted text' },
+        border: { oklch: 'oklch(84% 0.01 80)', name: 'Border', usage: 'Borders' },
+        borderStrong: { oklch: 'oklch(75% 0.01 80)', name: 'Border Strong', usage: 'Strong borders' },
+        divider: { oklch: 'oklch(88% 0.01 80)', name: 'Divider', usage: 'Divider lines' },
 
         link: { oklch: 'oklch(50% 0.08 230)', name: 'Link', usage: 'Hyperlinks' },
         disabled: { oklch: 'oklch(75% 0.005 250)', name: 'Disabled', usage: 'Disabled UI' },

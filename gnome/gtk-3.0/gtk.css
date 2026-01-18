@@ -10,29 +10,29 @@
  */
 
 /* Color Definitions */
-@define-color theme_bg_color rgb(246, 249, 252);
-@define-color theme_fg_color rgb(35, 42, 48);
+@define-color theme_bg_color rgb(249, 247, 244);
+@define-color theme_fg_color rgb(45, 40, 33);
 @define-color theme_base_color rgb(255, 255, 255);
-@define-color theme_text_color rgb(35, 42, 48);
+@define-color theme_text_color rgb(45, 40, 33);
 @define-color theme_selected_bg_color rgb(68, 108, 149);
 @define-color theme_selected_fg_color rgb(255, 255, 255);
 
-@define-color borders rgb(198, 203, 209);
+@define-color borders rgb(206, 202, 195);
 @define-color warning_color rgb(153, 122, 80);
 @define-color error_color rgb(139, 80, 76);
 @define-color success_color rgb(77, 109, 78);
 
 @define-color link_color rgb(41, 107, 136);
-@define-color theme_unfocused_fg_color rgb(109, 114, 119);
-@define-color theme_unfocused_bg_color rgb(235, 241, 247);
-@define-color theme_unfocused_base_color rgb(235, 241, 247);
-@define-color theme_unfocused_text_color rgb(95, 100, 105);
+@define-color theme_unfocused_fg_color rgb(117, 113, 107);
+@define-color theme_unfocused_bg_color rgb(244, 240, 233);
+@define-color theme_unfocused_base_color rgb(244, 240, 233);
+@define-color theme_unfocused_text_color rgb(102, 99, 93);
 @define-color theme_unfocused_selected_bg_color rgb(183, 209, 237);
-@define-color theme_unfocused_selected_fg_color rgb(95, 100, 105);
+@define-color theme_unfocused_selected_fg_color rgb(102, 99, 93);
 
-@define-color insensitive_bg_color rgb(235, 241, 247);
+@define-color insensitive_bg_color rgb(244, 240, 233);
 @define-color insensitive_fg_color rgb(172, 174, 177);
-@define-color insensitive_base_color rgb(235, 241, 247);
+@define-color insensitive_base_color rgb(244, 240, 233);
 
 /* Primitive Colors (Candi Design System) */
 @define-color candi_red rgb(181, 74, 70);
@@ -54,15 +54,15 @@
 
 window,
 .background {
-    background-color: rgb(246, 249, 252);
-    color: rgb(35, 42, 48);
+    background-color: rgb(249, 247, 244);
+    color: rgb(45, 40, 33);
 }
 
 .view,
 textview text,
 iconview {
     background-color: rgb(255, 255, 255);
-    color: rgb(35, 42, 48);
+    color: rgb(45, 40, 33);
 }
 
 .view:selected,
@@ -78,28 +78,28 @@ iconview:selected:focus {
 /* Headers and Titlebars */
 headerbar,
 .titlebar {
-    background-color: rgb(235, 241, 247);
-    color: rgb(35, 42, 48);
-    border-bottom: 1px solid rgb(198, 203, 209);
+    background-color: rgb(244, 240, 233);
+    color: rgb(45, 40, 33);
+    border-bottom: 1px solid rgb(206, 202, 195);
 }
 
 headerbar:backdrop,
 .titlebar:backdrop {
-    background-color: rgb(235, 241, 247);
-    color: rgb(109, 114, 119);
+    background-color: rgb(244, 240, 233);
+    color: rgb(117, 113, 107);
 }
 
 /* Buttons */
 button {
     background-color: rgb(255, 255, 255);
-    color: rgb(35, 42, 48);
-    border: 1px solid rgb(198, 203, 209);
+    color: rgb(45, 40, 33);
+    border: 1px solid rgb(206, 202, 195);
     border-radius: 3px;
     padding: 6px 12px;
 }
 
 button:hover {
-    background-color: rgb(235, 241, 247);
+    background-color: rgb(244, 240, 233);
     border-color: rgb(68, 108, 149);
 }
 
@@ -111,9 +111,9 @@ button:checked {
 }
 
 button:disabled {
-    background-color: rgb(235, 241, 247);
+    background-color: rgb(244, 240, 233);
     color: rgb(172, 174, 177);
-    border-color: rgb(198, 203, 209);
+    border-color: rgb(206, 202, 195);
 }
 
 button.suggested-action {
@@ -139,8 +139,8 @@ button.destructive-action:hover {
 /* Entry Fields */
 entry {
     background-color: rgb(255, 255, 255);
-    color: rgb(35, 42, 48);
-    border: 1px solid rgb(198, 203, 209);
+    color: rgb(45, 40, 33);
+    border: 1px solid rgb(206, 202, 195);
     border-radius: 3px;
     padding: 6px;
 }
@@ -151,7 +151,7 @@ entry:focus {
 }
 
 entry:disabled {
-    background-color: rgb(235, 241, 247);
+    background-color: rgb(244, 240, 233);
     color: rgb(172, 174, 177);
 }
 
@@ -165,13 +165,13 @@ entry.warning {
 
 /* Notebooks (Tabs) */
 notebook > header {
-    background-color: rgb(235, 241, 247);
-    border-bottom: 1px solid rgb(198, 203, 209);
+    background-color: rgb(244, 240, 233);
+    border-bottom: 1px solid rgb(206, 202, 195);
 }
 
 notebook > header > tabs > tab {
-    background-color: rgb(235, 241, 247);
-    color: rgb(95, 100, 105);
+    background-color: rgb(244, 240, 233);
+    color: rgb(102, 99, 93);
     border: 1px solid transparent;
     padding: 6px 12px;
 }
@@ -182,20 +182,20 @@ notebook > header > tabs > tab:hover {
 
 notebook > header > tabs > tab:checked {
     background-color: rgb(255, 255, 255);
-    color: rgb(35, 42, 48);
+    color: rgb(45, 40, 33);
     border-bottom-color: rgb(68, 108, 149);
 }
 
 /* Scrollbars */
 scrollbar slider {
-    background-color: rgb(109, 114, 119);
+    background-color: rgb(117, 113, 107);
     border-radius: 8px;
     min-width: 6px;
     min-height: 6px;
 }
 
 scrollbar slider:hover {
-    background-color: rgb(95, 100, 105);
+    background-color: rgb(102, 99, 93);
 }
 
 scrollbar slider:active {
@@ -207,8 +207,8 @@ menu,
 .menu,
 .context-menu {
     background-color: rgb(255, 255, 255);
-    color: rgb(35, 42, 48);
-    border: 1px solid rgb(198, 203, 209);
+    color: rgb(45, 40, 33);
+    border: 1px solid rgb(206, 202, 195);
     border-radius: 3px;
     padding: 4px;
 }
@@ -222,7 +222,7 @@ menuitem,
 menuitem:hover,
 .menuitem:hover {
     background-color: rgb(183, 209, 237);
-    color: rgb(35, 42, 48);
+    color: rgb(45, 40, 33);
 }
 
 menuitem:disabled,
@@ -233,17 +233,17 @@ menuitem:disabled,
 popover,
 .popover {
     background-color: rgb(255, 255, 255);
-    color: rgb(35, 42, 48);
-    border: 1px solid rgb(198, 203, 209);
+    color: rgb(45, 40, 33);
+    border: 1px solid rgb(206, 202, 195);
     border-radius: 6px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* Sidebars */
 .sidebar {
-    background-color: rgb(235, 241, 247);
-    color: rgb(35, 42, 48);
-    border-right: 1px solid rgb(198, 203, 209);
+    background-color: rgb(244, 240, 233);
+    color: rgb(45, 40, 33);
+    border-right: 1px solid rgb(206, 202, 195);
 }
 
 .sidebar row {
@@ -252,7 +252,7 @@ popover,
 
 .sidebar row:selected {
     background-color: rgb(183, 209, 237);
-    color: rgb(35, 42, 48);
+    color: rgb(45, 40, 33);
 }
 
 .sidebar row:hover {
@@ -263,7 +263,7 @@ popover,
 list,
 .list {
     background-color: rgb(255, 255, 255);
-    color: rgb(35, 42, 48);
+    color: rgb(45, 40, 33);
 }
 
 list row,
@@ -273,7 +273,7 @@ list row,
 
 list row:hover,
 .list row:hover {
-    background-color: rgb(235, 241, 247);
+    background-color: rgb(244, 240, 233);
 }
 
 list row:selected,
@@ -284,8 +284,8 @@ list row:selected,
 
 /* Switches and Checkboxes */
 switch {
-    background-color: rgb(235, 241, 247);
-    border: 1px solid rgb(198, 203, 209);
+    background-color: rgb(244, 240, 233);
+    border: 1px solid rgb(206, 202, 195);
     border-radius: 12px;
 }
 
@@ -302,7 +302,7 @@ switch slider {
 checkbutton check,
 radiobutton radio {
     background-color: rgb(255, 255, 255);
-    border: 1px solid rgb(198, 203, 209);
+    border: 1px solid rgb(206, 202, 195);
     border-radius: 3px;
 }
 
@@ -319,7 +319,7 @@ radiobutton radio {
 
 /* Progress Bars */
 progressbar trough {
-    background-color: rgb(235, 241, 247);
+    background-color: rgb(244, 240, 233);
     border-radius: 3px;
 }
 
@@ -335,7 +335,7 @@ spinner {
 
 /* Scale (Sliders) */
 scale trough {
-    background-color: rgb(235, 241, 247);
+    background-color: rgb(244, 240, 233);
     border-radius: 3px;
 }
 
@@ -354,7 +354,7 @@ scale slider {
 
 /* Separators */
 separator {
-    background-color: rgb(198, 203, 209);
+    background-color: rgb(206, 202, 195);
     min-width: 1px;
     min-height: 1px;
 }
@@ -362,9 +362,9 @@ separator {
 /* Tooltips */
 tooltip,
 .tooltip {
-    background-color: rgb(235, 241, 247);
-    color: rgb(35, 42, 48);
-    border: 1px solid rgb(198, 203, 209);
+    background-color: rgb(244, 240, 233);
+    color: rgb(45, 40, 33);
+    border: 1px solid rgb(206, 202, 195);
     border-radius: 4px;
     padding: 6px 10px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
@@ -373,7 +373,7 @@ tooltip,
 /* Info Bars */
 .info {
     background-color: rgb(183, 209, 237);
-    color: rgb(35, 42, 48);
+    color: rgb(45, 40, 33);
 }
 
 .warning {

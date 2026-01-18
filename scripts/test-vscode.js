@@ -43,10 +43,15 @@ function testExtension() {
         assert.equal(darkTheme.colors['editorCursor.foreground'], '#6993BE');
         assert.equal(darkTheme.colors['activityBar.activeBorder'], '#6993BE');
 
+        // Deep Dive Check: Diff Editor (palette['success'] + "15") - roughly #SuccessHex + opacity
+        // Just checking existence to avoid fragile hex opacity math in test
+        assert.ok(darkTheme.colors['diffEditor.insertedTextBackground'], 'Diff editor colors should exist');
+
         // Check token colors
         const keywordToken = darkTheme.tokenColors.find(tc => tc.scope.includes('keyword'));
         assert.ok(keywordToken, 'Theme should highlight keywords');
-        assert.equal(keywordToken.settings.foreground.toUpperCase(), '#6993BE');
+        // Final keyword color is syntaxKeyword (#E7729B)
+        assert.equal(keywordToken.settings.foreground.toUpperCase(), '#E7729B');
 
         if (logger.isVerbose) {
             logger.log('[✓] Theme color mappings verified');

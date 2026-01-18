@@ -208,14 +208,27 @@ ${hi('IncSearch', 'on-accent', 'accent', 's:bold')}
 
 ${hi('MatchParen', 'accent', 'surface', 's:bold')}
 
-${hi('StatusLine', 'on-accent', 'accent')}
-${hi('StatusLineNC', 'text-muted', 'surface')}
+${hi('StatusLine', isDark ? 'text' : 'on-accent', isDark ? 'accent-subtle' : 'accent', 's:bold')}
+${hi('StatusLineNC', 'text-subtle', 'surface')}
+${hi('StatusLineTerm', 'on-accent', 'accent', 's:bold')}
+${hi('StatusLineTermNC', 'text-muted', 'surface')}
 ${hi('VertSplit', 'border', 'bg')}
 ${hi('WildMenu', 'on-accent', 'accent', 's:bold')}
 
 ${hi('TabLine', 'text-muted', 'surface')}
 ${hi('TabLineFill', 'border', 'surface')}
-${hi('TabLineSel', 'text', 'bg', 's:bold')}
+${hi('TabLineSel', 'on-accent', 'accent', 's:bold')}
+
+" Statusline segments (commonly used by plugins like Airline/Lightline)
+${hi('User1', 'on-accent', 'accent', 's:bold')}
+${hi('User2', 'on-secondary', 'secondary', 's:bold')}
+${hi('User3', 'on-success', 'success', 's:bold')}
+${hi('User4', 'on-success', 'success')}
+${hi('User5', 'on-warning', 'warning', 's:bold')}
+${hi('User6', 'on-error', 'error', 's:bold')}
+${hi('User7', isDark ? 'text' : 'on-accent', isDark ? 'accent-subtle' : 'accent', 's:bold')}
+${hi('User8', 'text', isDark ? 'accent-subtle' : 'surface')}
+${hi('User9', 'text-muted', isDark ? 'accent-subtle' : 'surface')}
 
 ${hi('Title', 'accent', null, 's:bold')}
 ${hi('Directory', 'accent', null, 's:bold')}
@@ -237,6 +250,8 @@ ${hi('Cursor', null, null, 's:inverse')}
 ${link('lCursor', 'Cursor')}
 ${link('iCursor', 'Cursor')}
 ${link('vCursor', 'Cursor')}
+${hi('TermCursor', 'accent', null, 's:inverse')}
+${hi('TermCursorNC', 'text-muted', null, 's:inverse')}
 
 " }}}
 " Completion Menu: {{{
@@ -319,6 +334,34 @@ ${hi('Ignore', 'text-muted')}
 
 " }}}
 " Plugin Support: {{{
+" Statusline Plugins: {{{
+" Support for Airline, Lightline, and Lualine
+"
+" Main segments (Mode, Filename, Info)
+" Mode indicator (Normal/Insert/etc.)
+${hi('Airlinea', 'on-accent', 'accent', 's:bold')}
+${hi('Airlinez', 'on-accent', 'accent', 's:bold')}
+
+" Secondary segments (Branch, Filetype)
+${hi('Airlineb', 'text', isDark ? 'accent-subtle' : 'surface')}
+${hi('Airliney', 'text', isDark ? 'accent-subtle' : 'surface')}
+
+" Middle segment (Filename)
+${hi('Airlinec', 'text', 'bg')}
+
+" Inactive statusline
+${hi('Airlinea_inactive', 'text-muted', 'surface')}
+${hi('Airlineb_inactive', 'text-muted', 'surface')}
+${hi('Airlinec_inactive', 'text-muted', 'bg')}
+
+" Lightline mappings
+${hi('LightlineLeft_active_0', 'on-accent', 'accent', 's:bold')}
+${hi('LightlineLeft_active_1', 'text', isDark ? 'accent-subtle' : 'surface')}
+${hi('LightlineMiddle_active', 'text-subtle', 'bg')}
+${hi('LightlineRight_active_0', 'on-accent', 'accent', 's:bold')}
+${hi('LightlineRight_active_1', 'text', isDark ? 'accent-subtle' : 'surface')}
+
+" }}}
 " GitGutter: {{{
 
 ${link('GitGutterAdd', 'DiffAdd')}
@@ -358,6 +401,135 @@ ${hi('CocErrorHighlight', null, null, 's:undercurl')}
 ${hi('CocWarningHighlight', null, null, 's:undercurl')}
 ${hi('CocInfoHighlight', null, null, 's:undercurl')}
 ${hi('CocHintHighlight', null, null, 's:undercurl')}
+
+" Neovim UI: {{{
+" Floating Windows, Modern Separators, and Messages
+
+${hi('NormalFloat', 'text', 'elevated')}
+${hi('FloatBorder', 'border-strong', 'elevated')}
+${hi('FloatTitle', 'accent', 'elevated', 's:bold')}
+${hi('MsgArea', 'text', 'bg')}
+${hi('MsgSeparator', 'divider', 'bg')}
+${hi('WinSeparator', 'border', 'bg')}
+${hi('Substitute', 'on-warning', 'warning', 's:bold')}
+${hi('CurSearch', 'on-accent', 'accent', 's:bold')}
+${hi('Question', 'secondary', null, 's:bold')}
+${hi('QuickFixLine', null, 'accent-soft', 's:bold')}
+${hi('WinBar', 'text', 'bg', 's:bold')}
+${hi('WinBarNC', 'text-muted', 'bg')}
+
+" }}}
+" Neovim LSP: {{{
+
+${hi('DiagnosticError', 'error')}
+${hi('DiagnosticWarn', 'warning')}
+${hi('DiagnosticInfo', 'info')}
+${hi('DiagnosticHint', 'teal')}
+${hi('DiagnosticOk', 'success')}
+
+${hi('DiagnosticVirtualTextError', 'error', 'error-subtle')}
+${hi('DiagnosticVirtualTextWarn', 'warning', 'warning-subtle')}
+${hi('DiagnosticVirtualTextInfo', 'info', 'info-subtle')}
+${hi('DiagnosticVirtualTextHint', 'teal', 'teal-subtle')}
+
+${hi('DiagnosticUnderlineError', null, null, 's:undercurl')}
+${hi('DiagnosticUnderlineWarn', null, null, 's:undercurl')}
+${hi('DiagnosticUnderlineInfo', null, null, 's:undercurl')}
+${hi('DiagnosticUnderlineHint', null, null, 's:undercurl')}
+
+${hi('LspSignatureActiveParameter', 'accent', null, 's:bold')}
+${hi('LspReferenceText', null, 'surface')}
+${hi('LspReferenceRead', null, 'surface')}
+${hi('LspReferenceWrite', null, 'surface')}
+
+" }}}
+" Neovim Treesitter: {{{
+" Standard @capture links to existing Candi syntax groups
+" Guarded for Neovim only as standard Vim doesn't support '@' in group names
+
+if has('nvim')
+${link('@variable', 'Identifier')}
+${link('@variable.builtin', 'Identifier')}
+${hi('@variable.parameter', 'syntax-var')}
+${hi('@variable.member', 'secondary')}
+
+${link('@function', 'Function')}
+${link('@function.builtin', 'Function')}
+${link('@function.call', 'Function')}
+${link('@function.macro', 'Macro')}
+
+${hi('@method', 'syntax-func', null, 's:bold')}
+${hi('@method.call', 'syntax-func')}
+
+${link('@keyword', 'Keyword')}
+${link('@keyword.function', 'Keyword')}
+${link('@keyword.return', 'Keyword')}
+${link('@keyword.operator', 'Operator')}
+
+${link('@type', 'Type')}
+${link('@type.builtin', 'Type')}
+${link('@type.definition', 'Type')}
+
+${link('@constant', 'Constant')}
+${link('@constant.builtin', 'Constant')}
+${link('@constant.macro', 'Constant')}
+
+${link('@string', 'String')}
+${link('@string.regex', 'String')}
+${link('@string.escape', 'Special')}
+
+${link('@number', 'Number')}
+${link('@boolean', 'Boolean')}
+${link('@float', 'Float')}
+
+${link('@property', 'Identifier')}
+${hi('@field', 'secondary')}
+${link('@constructor', 'Type')}
+
+${hi('@attribute', 'accent')}
+${link('@label', 'Label')}
+${link('@operator', 'Operator')}
+${link('@exception', 'Exception')}
+
+${link('@comment', 'Comment')}
+${link('@punctuation', 'Delimiter')}
+${link('@punctuation.bracket', 'Delimiter')}
+${link('@punctuation.delimiter', 'Delimiter')}
+
+${link('@tag', 'Tag')}
+${link('@tag.attribute', 'Identifier')}
+${link('@tag.delimiter', 'Delimiter')}
+endif
+
+" }}}
+" Modern Plugins (Telescope, Gitsigns, etc.): {{{
+
+" Gitsigns
+${hi('GitSignsAdd', 'success', 'bg')}
+${hi('GitSignsChange', 'warning', 'bg')}
+${hi('GitSignsDelete', 'error', 'bg')}
+
+" Telescope
+${hi('TelescopeBorder', 'border-strong')}
+${hi('TelescopePromptBorder', 'accent')}
+${hi('TelescopeResultsBorder', 'border')}
+${hi('TelescopePreviewBorder', 'border')}
+${hi('TelescopeMatching', 'accent', null, 's:bold')}
+${hi('TelescopeSelection', 'text', 'surface', 's:bold')}
+
+" Bufferline
+${hi('BufferLineIndicatorSelected', 'accent')}
+${hi('BufferLineFill', null, 'bg')}
+
+" Nvim-Tree
+${hi('NvimTreeRootFolder', 'accent', null, 's:bold')}
+${hi('NvimTreeFolderName', 'accent')}
+${hi('NvimTreeOpenedFolderName', 'accent', null, 's:italic')}
+${hi('NvimTreeEmptyFolderName', 'text-muted')}
+${hi('NvimTreeIndentMarker', 'border')}
+${hi('NvimTreeVertSplit', 'border', 'bg')}
+
+" }}}
 
 " }}}
 " NERDTree: {{{
@@ -498,33 +670,43 @@ ${link('RainbowDelimiterOrange', 'rainbowcol7')}
 ${hi('CandiRed', 'red')}
 ${hi('CandiRedSubtle', 'red-subtle')}
 ${hi('CandiRedStrong', 'red-strong')}
+${hi('CandiOnRed', 'on-red')}
 ${hi('CandiBlue', 'blue')}
 ${hi('CandiBlueSubtle', 'blue-subtle')}
 ${hi('CandiBlueStrong', 'blue-strong')}
+${hi('CandiOnBlue', 'on-blue')}
 ${hi('CandiGreen', 'green')}
 ${hi('CandiGreenSubtle', 'green-subtle')}
 ${hi('CandiGreenStrong', 'green-strong')}
+${hi('CandiOnGreen', 'on-green')}
 ${hi('CandiYellow', 'yellow')}
 ${hi('CandiYellowSubtle', 'yellow-subtle')}
 ${hi('CandiYellowStrong', 'yellow-strong')}
+${hi('CandiOnYellow', 'on-yellow')}
 ${hi('CandiMagenta', 'magenta')}
 ${hi('CandiMagentaSubtle', 'magenta-subtle')}
 ${hi('CandiMagentaStrong', 'magenta-strong')}
+${hi('CandiOnMagenta', 'on-magenta')}
 ${hi('CandiCyan', 'cyan')}
 ${hi('CandiCyanSubtle', 'cyan-subtle')}
 ${hi('CandiCyanStrong', 'cyan-strong')}
+${hi('CandiOnCyan', 'on-cyan')}
 ${hi('CandiTeal', 'teal')}
 ${hi('CandiTealSubtle', 'teal-subtle')}
 ${hi('CandiTealStrong', 'teal-strong')}
+${hi('CandiOnTeal', 'on-teal')}
 ${hi('CandiPink', 'pink')}
 ${hi('CandiPinkSubtle', 'pink-subtle')}
 ${hi('CandiPinkStrong', 'pink-strong')}
+${hi('CandiOnPink', 'on-pink')}
 ${hi('CandiGold', 'gold')}
 ${hi('CandiGoldSubtle', 'gold-subtle')}
 ${hi('CandiGoldStrong', 'gold-strong')}
+${hi('CandiOnGold', 'on-gold')}
 ${hi('CandiSilver', 'silver')}
 ${hi('CandiSilverSubtle', 'silver-subtle')}
 ${hi('CandiSilverStrong', 'silver-strong')}
+${hi('CandiOnSilver', 'on-silver')}
 
 " }}}
 

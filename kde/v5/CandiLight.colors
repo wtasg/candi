@@ -9,10 +9,10 @@ ColorScheme=Candi Light
 Name=Candi Light
 
 [Colors:Window]
-BackgroundNormal=246,249,252
-BackgroundAlternate=235,241,247
-ForegroundNormal=35,42,48
-ForegroundInactive=109,114,119
+BackgroundNormal=249,247,244
+BackgroundAlternate=244,240,233
+ForegroundNormal=45,40,33
+ForegroundInactive=117,113,107
 ForegroundActive=68,108,149
 ForegroundLink=41,107,136
 ForegroundVisited=166,111,115
@@ -24,9 +24,9 @@ DecorationHover=183,209,237
 
 [Colors:Button]
 BackgroundNormal=255,255,255
-BackgroundAlternate=235,241,247
-ForegroundNormal=35,42,48
-ForegroundInactive=109,114,119
+BackgroundAlternate=244,240,233
+ForegroundNormal=45,40,33
+ForegroundInactive=117,113,107
 ForegroundActive=68,108,149
 ForegroundLink=41,107,136
 ForegroundVisited=166,111,115
@@ -40,10 +40,10 @@ DecorationHover=183,209,237
 BackgroundNormal=68,108,149
 BackgroundAlternate=183,209,237
 ForegroundNormal=255,255,255
-ForegroundInactive=109,114,119
+ForegroundInactive=117,113,107
 ForegroundActive=255,255,255
 ForegroundLink=255,255,255
-ForegroundVisited=235,241,247
+ForegroundVisited=244,240,233
 ForegroundNegative=139,80,76
 ForegroundNeutral=153,122,80
 ForegroundPositive=77,109,78
@@ -52,9 +52,9 @@ DecorationHover=183,209,237
 
 [Colors:View]
 BackgroundNormal=255,255,255
-BackgroundAlternate=235,241,247
-ForegroundNormal=35,42,48
-ForegroundInactive=109,114,119
+BackgroundAlternate=244,240,233
+ForegroundNormal=45,40,33
+ForegroundInactive=117,113,107
 ForegroundActive=68,108,149
 ForegroundLink=41,107,136
 ForegroundVisited=166,111,115
@@ -65,10 +65,10 @@ DecorationFocus=68,108,149
 DecorationHover=183,209,237
 
 [Colors:Tooltip]
-BackgroundNormal=235,241,247
-BackgroundAlternate=246,249,252
-ForegroundNormal=35,42,48
-ForegroundInactive=109,114,119
+BackgroundNormal=244,240,233
+BackgroundAlternate=249,247,244
+ForegroundNormal=45,40,33
+ForegroundInactive=117,113,107
 ForegroundActive=68,108,149
 ForegroundLink=41,107,136
 ForegroundVisited=166,111,115
@@ -82,7 +82,7 @@ DecorationHover=183,209,237
 BackgroundNormal=166,111,115
 BackgroundAlternate=183,209,237
 ForegroundNormal=255,255,255
-ForegroundInactive=109,114,119
+ForegroundInactive=117,113,107
 ForegroundActive=68,108,149
 ForegroundLink=41,107,136
 ForegroundVisited=166,111,115
@@ -96,10 +96,10 @@ DecorationHover=183,209,237
 BackgroundNormal=68,108,149
 BackgroundAlternate=183,209,237
 ForegroundNormal=255,255,255
-ForegroundInactive=109,114,119
+ForegroundInactive=117,113,107
 ForegroundActive=255,255,255
 ForegroundLink=255,255,255
-ForegroundVisited=235,241,247
+ForegroundVisited=244,240,233
 ForegroundNegative=139,80,76
 ForegroundNeutral=153,122,80
 ForegroundPositive=77,109,78
@@ -109,10 +109,10 @@ DecorationHover=183,209,237
 [WM]
 activeBackground=68,108,149
 activeForeground=255,255,255
-inactiveBackground=235,241,247
-inactiveForeground=109,114,119
+inactiveBackground=244,240,233
+inactiveForeground=117,113,107
 activeBlend=68,108,149
-inactiveBlend=235,241,247
+inactiveBlend=244,240,233
 
 [Colors:Candi]
 # Primitive colors for custom theming

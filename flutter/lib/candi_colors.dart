@@ -801,29 +801,29 @@ abstract final class CandiColors {
   ///
   /// Optimized for readability with WCAG AA contrast ratios.
   static const light = CandiPalette._(
-    // oklch(98% 0.005 250)
-    bg: CandiColor(0XFFF6F9FC, lightness: 0.98, chroma: 0.005, hue: 250),
-    // oklch(95.5% 0.01 250)
-    surface: CandiColor(0XFFEBF1F7, lightness: 0.955, chroma: 0.01, hue: 250),
+    // oklch(97.8% 0.005 80)
+    bg: CandiColor(0XFFF9F7F4, lightness: 0.978, chroma: 0.005, hue: 80),
+    // oklch(95.5% 0.01 80)
+    surface: CandiColor(0XFFF4F0E9, lightness: 0.955, chroma: 0.01, hue: 80),
     // oklch(100% 0 0)
     elevated: CandiColor(0XFFFFFFFF, lightness: 1, chroma: 0, hue: 0),
-    // oklch(28% 0.015 250)
-    text: CandiColor(0XFF232A30, lightness: 0.28, chroma: 0.015, hue: 250),
-    // oklch(50% 0.01 250)
-    textSubtle: CandiColor(0XFF5F6469, lightness: 0.5, chroma: 0.01, hue: 250),
-    // oklch(55% 0.01 250)
-    textMuted: CandiColor(0XFF6D7277, lightness: 0.55, chroma: 0.01, hue: 250),
-    // oklch(84% 0.01 250)
-    border: CandiColor(0XFFC6CBD1, lightness: 0.84, chroma: 0.01, hue: 250),
-    // oklch(75% 0.01 250)
+    // oklch(28% 0.015 80)
+    text: CandiColor(0XFF2D2821, lightness: 0.28, chroma: 0.015, hue: 80),
+    // oklch(50% 0.01 80)
+    textSubtle: CandiColor(0XFF66635D, lightness: 0.5, chroma: 0.01, hue: 80),
+    // oklch(55% 0.01 80)
+    textMuted: CandiColor(0XFF75716B, lightness: 0.55, chroma: 0.01, hue: 80),
+    // oklch(84% 0.01 80)
+    border: CandiColor(0XFFCECAC3, lightness: 0.84, chroma: 0.01, hue: 80),
+    // oklch(75% 0.01 80)
     borderStrong: CandiColor(
-      0XFFA9AFB4,
+      0XFFB1ADA7,
       lightness: 0.75,
       chroma: 0.01,
-      hue: 250,
+      hue: 80,
     ),
-    // oklch(88% 0.01 250)
-    divider: CandiColor(0XFFD3D8DE, lightness: 0.88, chroma: 0.01, hue: 250),
+    // oklch(88% 0.01 80)
+    divider: CandiColor(0XFFDBD7D0, lightness: 0.88, chroma: 0.01, hue: 80),
     // oklch(52% 0.08 250)
     accent: CandiColor(0XFF446C95, lightness: 0.52, chroma: 0.08, hue: 250),
     // oklch(85% 0.048 250)

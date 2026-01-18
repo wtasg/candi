@@ -12,11 +12,11 @@
 
 .theme-light {
     /* Backgrounds */
-    --background-primary: #F6F9FC;
-    --background-primary-alt: #EBF1F7;
-    --background-secondary: #EBF1F7;
+    --background-primary: #F9F7F4;
+    --background-primary-alt: #F4F0E9;
+    --background-secondary: #F4F0E9;
     --background-secondary-alt: #FFFFFF;
-    --background-modifier-border: #C6CBD1;
+    --background-modifier-border: #CECAC3;
     --background-modifier-form-field: #FFFFFF;
     --background-modifier-form-field-highlighted: #B7D1ED;
     --background-modifier-box-shadow: rgba(0, 0, 0, 0.1);
@@ -26,8 +26,8 @@
     --background-modifier-cover: rgba(0, 0, 0, 0.6);
 
     /* Text */
-    --text-normal: #232A30;
-    --text-muted: #6D7277;
+    --text-normal: #2D2821;
+    --text-muted: #75716B;
     --text-faint: #ACAEB1;
     --text-on-accent: #FFFFFF;
     --text-error: #8B504C;
@@ -39,51 +39,51 @@
 
     /* Interactive elements */
     --interactive-normal: #FFFFFF;
-    --interactive-hover: #EBF1F7;
+    --interactive-hover: #F4F0E9;
     --interactive-accent: #446C95;
     --interactive-accent-rgb: 103, 126, 145;
     --interactive-accent-hover: #296B88;
     --interactive-success: #4D6D4E;
 
     /* Scrollbar */
-    --scrollbar-active-thumb-bg: #6D7277;
-    --scrollbar-bg: #EBF1F7;
-    --scrollbar-thumb-bg: #C6CBD1;
+    --scrollbar-active-thumb-bg: #75716B;
+    --scrollbar-bg: #F4F0E9;
+    --scrollbar-thumb-bg: #CECAC3;
 
     /* UI elements */
-    --divider-color: #C6CBD1;
-    --divider-color-hover: #6D7277;
-    --tab-text-color: #5F6469;
-    --tab-text-color-focused: #232A30;
+    --divider-color: #CECAC3;
+    --divider-color-hover: #75716B;
+    --tab-text-color: #66635D;
+    --tab-text-color-focused: #2D2821;
     --tab-text-color-focused-active: #446C95;
     --tab-background-active: #FFFFFF;
-    --tab-divider-color: #C6CBD1;
+    --tab-divider-color: #CECAC3;
 
     /* Headings */
-    --h1-color: #232A30;
-    --h2-color: #232A30;
-    --h3-color: #232A30;
-    --h4-color: #5F6469;
-    --h5-color: #5F6469;
-    --h6-color: #6D7277;
+    --h1-color: #2D2821;
+    --h2-color: #2D2821;
+    --h3-color: #2D2821;
+    --h4-color: #66635D;
+    --h5-color: #66635D;
+    --h6-color: #75716B;
 
     /* Links */
     --link-color: #296B88;
     --link-color-hover: #446C95;
     --link-external-color: #A66F73;
     --link-external-color-hover: #446C95;
-    --link-unresolved-color: #6D7277;
+    --link-unresolved-color: #75716B;
 
     /* Tags */
     --tag-color: #446C95;
     --tag-color-hover: #296B88;
     --tag-background: #B7D1ED;
-    --tag-background-hover: #EBF1F7;
+    --tag-background-hover: #F4F0E9;
 
     /* Code */
-    --code-normal: #232A30;
-    --code-background: #EBF1F7;
-    --code-comment: #6D7277;
+    --code-normal: #2D2821;
+    --code-background: #F4F0E9;
+    --code-comment: #75716B;
     --code-keyword: #C5547C;
     --code-type: #8186D7;
     --code-var: #2BA1A7;
@@ -94,40 +94,40 @@
     /* Checkbox */
     --checkbox-color: #446C95;
     --checkbox-color-hover: #296B88;
-    --checkbox-border-color: #C6CBD1;
+    --checkbox-border-color: #CECAC3;
 
     /* Blockquote */
     --blockquote-border-color: #446C95;
 
     /* Table */
-    --table-header-background: #EBF1F7;
+    --table-header-background: #F4F0E9;
     --table-header-background-hover: #B7D1ED;
-    --table-row-even-background: #F6F9FC;
-    --table-row-odd-background: #EBF1F7;
+    --table-row-even-background: #F9F7F4;
+    --table-row-odd-background: #F4F0E9;
     --table-row-background-hover: #B7D1ED;
 
     /* Graph */
-    --graph-line: #C6CBD1;
+    --graph-line: #CECAC3;
     --graph-node: #446C95;
     --graph-node-focused: #296B88;
     --graph-node-tag: #A66F73;
     --graph-node-attachment: #4D6D4E;
 
     /* Icons */
-    --icon-color: #5F6469;
-    --icon-color-hover: #232A30;
+    --icon-color: #66635D;
+    --icon-color-hover: #2D2821;
     --icon-color-active: #446C95;
     --icon-color-focused: #446C95;
 
     /* Nav */
-    --nav-item-color: #5F6469;
-    --nav-item-color-hover: #232A30;
+    --nav-item-color: #66635D;
+    --nav-item-color-hover: #2D2821;
     --nav-item-color-active: #446C95;
-    --nav-item-background-hover: #EBF1F7;
+    --nav-item-background-hover: #F4F0E9;
     --nav-item-background-active: #B7D1ED;
 
     /* Prompt/Modal */
-    --prompt-border-color: #C6CBD1;
+    --prompt-border-color: #CECAC3;
 
     /* Focus */
     --shadow-focus: 0 0 0 2px #B7D1ED;

@@ -12,15 +12,15 @@
 
 @theme {
   /* @tokens-start-v4 */
-    --color-candi-bg: oklch(98% 0.005 250);
-    --color-candi-surface: oklch(95.5% 0.01 250);
+    --color-candi-bg: oklch(97.8% 0.005 80);
+    --color-candi-surface: oklch(95.5% 0.01 80);
     --color-candi-elevated: oklch(100% 0 0);
-    --color-candi-text: oklch(28% 0.015 250);
-    --color-candi-text-subtle: oklch(50% 0.01 250);
-    --color-candi-text-muted: oklch(55% 0.01 250);
-    --color-candi-border: oklch(84% 0.01 250);
-    --color-candi-border-strong: oklch(75% 0.01 250);
-    --color-candi-divider: oklch(88% 0.01 250);
+    --color-candi-text: oklch(28% 0.015 80);
+    --color-candi-text-subtle: oklch(50% 0.01 80);
+    --color-candi-text-muted: oklch(55% 0.01 80);
+    --color-candi-border: oklch(84% 0.01 80);
+    --color-candi-border-strong: oklch(75% 0.01 80);
+    --color-candi-divider: oklch(88% 0.01 80);
     --color-candi-link: oklch(50% 0.08 230);
     --color-candi-disabled: oklch(75% 0.005 250);
     --color-candi-overlay: oklch(0% 0 0 / 0.5);
@@ -153,15 +153,15 @@
 /* Backward compatibility and Theme Implementation */
 :root {
   /* @tokens-start-root */
-    --candi-bg: oklch(98% 0.005 250);
-    --candi-surface: oklch(95.5% 0.01 250);
+    --candi-bg: oklch(97.8% 0.005 80);
+    --candi-surface: oklch(95.5% 0.01 80);
     --candi-elevated: oklch(100% 0 0);
-    --candi-text: oklch(28% 0.015 250);
-    --candi-text-subtle: oklch(50% 0.01 250);
-    --candi-text-muted: oklch(55% 0.01 250);
-    --candi-border: oklch(84% 0.01 250);
-    --candi-border-strong: oklch(75% 0.01 250);
-    --candi-divider: oklch(88% 0.01 250);
+    --candi-text: oklch(28% 0.015 80);
+    --candi-text-subtle: oklch(50% 0.01 80);
+    --candi-text-muted: oklch(55% 0.01 80);
+    --candi-border: oklch(84% 0.01 80);
+    --candi-border-strong: oklch(75% 0.01 80);
+    --candi-divider: oklch(88% 0.01 80);
     --candi-link: oklch(50% 0.08 230);
     --candi-disabled: oklch(75% 0.005 250);
     --candi-overlay: oklch(0% 0 0 / 0.5);
