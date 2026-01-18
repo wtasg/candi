@@ -27,16 +27,16 @@ void main() {
   group('CandiPalette', () {
     test('light palette should have correct background', () {
       final light = CandiColors.light;
-      expect(light.bg.lightness, 0.96);
-      expect(light.bg.chroma, 0.012);
-      expect(light.bg.hue, 85.0);
+      expect(light.bg.lightness, 0.98);
+      expect(light.bg.chroma, 0.005);
+      expect(light.bg.hue, 250.0);
     });
 
     test('dark palette should have correct background', () {
       final dark = CandiColors.dark;
       expect(dark.bg.lightness, 0.18);
       expect(dark.bg.chroma, 0.015);
-      expect(dark.bg.hue, 85.0);
+      expect(dark.bg.hue, 250.0);
     });
 
     test('focusRing should have correct opacity', () {

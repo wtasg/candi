@@ -37,10 +37,10 @@ function testVimTheme() {
         const guifg = normalLine.match(/guifg=(#[0-9A-Fa-f]+)/)[1];
         const guibg = normalLine.match(/guibg=(#[0-9A-Fa-f]+)/)[1];
 
-        assert.equal(guifg.toUpperCase(), '#E8E4DD', 'Normal foreground mismatch');
-        assert.equal(guibg.toUpperCase(), '#15110A', 'Normal background mismatch');
-        assert.ok(darkContent.includes('hi CursorLine') && darkContent.includes('guibg=#1D1A14'), 'CursorLine mapping mismatch');
-        assert.ok(darkContent.includes('hi Function') && darkContent.includes('guifg=#7987DE'), 'Function mapping mismatch');
+        assert.equal(guifg.toUpperCase(), '#E0E5EB', 'Normal foreground mismatch');
+        assert.equal(guibg.toUpperCase(), '#0D1218', 'Normal background mismatch');
+        assert.ok(darkContent.includes('hi CursorLine') && darkContent.includes('guibg=#161B20'), 'CursorLine mapping mismatch');
+        assert.ok(darkContent.includes('hi Function') && darkContent.includes('guifg=#3D98D1'), 'Function mapping mismatch');
 
         // Check terminal colors are present
         assert.ok(darkContent.includes('ctermfg=') && darkContent.includes('ctermbg='), 'Terminal colors should be present');
@@ -51,7 +51,7 @@ function testVimTheme() {
         const lightContent = fs.readFileSync(lightThemePath, 'utf8');
         assert.ok(lightContent.includes('let g:colors_name = "candi-light"'), 'Should set colors_name');
         assert.ok(lightContent.includes('set background=light'), 'Should set background');
-        assert.ok(lightContent.includes('hi Normal') && lightContent.includes('guifg=#1A222B') && lightContent.includes('guibg=#F5F1E9'), 'Light Normal highlight mapping mismatch');
+        assert.ok(lightContent.includes('hi Normal') && lightContent.includes('guifg=#232A30') && lightContent.includes('guibg=#F6F9FC'), 'Light Normal highlight mapping mismatch');
 
         console.log('[✓] Light theme mappings verified');
 

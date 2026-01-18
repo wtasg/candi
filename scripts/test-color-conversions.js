@@ -159,11 +159,11 @@ if (clippedCount === 0) {
 console.log('[Test 5] Verifying known reference conversions...');
 
 const referenceTests = [
-    { oklch: 'oklch(18% 0.015 85)', expected: { r: 21, g: 17, b: 10 }, name: 'dark-bg' },
-    { oklch: 'oklch(92% 0.01 85)', expected: { r: 232, g: 228, b: 221 }, name: 'dark-text' },
-    { oklch: 'oklch(96% 0.012 85)', expected: { r: 245, g: 241, b: 233 }, name: 'light-bg' },
-    { oklch: 'oklch(25% 0.02 250)', expected: { r: 26, g: 34, b: 43 }, name: 'light-text' },
-    { oklch: 'oklch(62% 0.08 275)', expected: { r: 120, g: 130, b: 183 }, name: 'dark-accent' },
+    { oklch: 'oklch(18% 0.015 250)', expected: { r: 13, g: 18, b: 24 }, name: 'dark-bg' },
+    { oklch: 'oklch(92% 0.01 250)', expected: { r: 224, g: 229, b: 235 }, name: 'dark-text' },
+    { oklch: 'oklch(98% 0.005 250)', expected: { r: 246, g: 249, b: 252 }, name: 'light-bg' },
+    { oklch: 'oklch(28% 0.015 250)', expected: { r: 35, g: 42, b: 48 }, name: 'light-text' },
+    { oklch: 'oklch(65% 0.08 250)', expected: { r: 105, g: 147, b: 190 }, name: 'dark-accent' },
     { oklch: 'oklch(52% 0.06 230)', expected: { r: 67, g: 112, b: 133 }, name: 'light-accent' },
 ];
 

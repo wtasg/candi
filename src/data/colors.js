@@ -17,15 +17,15 @@ const semantics = generatePalette();
 // Define Hand-Tuned Neutrals & Structure
 const neutrals = {
     light: {
-        bg: { oklch: 'oklch(96% 0.012 85)', name: 'Background', usage: 'Page background' },
-        surface: { oklch: 'oklch(93% 0.015 85)', name: 'Surface', usage: 'Cards, sections' },
+        bg: { oklch: 'oklch(98% 0.005 250)', name: 'Background', usage: 'Page background' },
+        surface: { oklch: 'oklch(95.5% 0.01 250)', name: 'Surface', usage: 'Cards, sections' },
         elevated: { oklch: 'oklch(100% 0 0)', name: 'Elevated', usage: 'Elevated surfaces' },
-        text: { oklch: 'oklch(25% 0.02 250)', name: 'Text', usage: 'Primary text' },
-        textSubtle: { oklch: 'oklch(45% 0.015 250)', name: 'Text Subtle', usage: 'Secondary text' },
-        textMuted: { oklch: 'oklch(60% 0.01 250)', name: 'Text Muted', usage: 'Muted text' },
-        border: { oklch: 'oklch(88% 0.012 85)', name: 'Border', usage: 'Borders' },
-        borderStrong: { oklch: 'oklch(80% 0.015 85)', name: 'Border Strong', usage: 'Strong borders' },
-        divider: { oklch: 'oklch(85% 0.01 85)', name: 'Divider', usage: 'Divider lines' },
+        text: { oklch: 'oklch(28% 0.015 250)', name: 'Text', usage: 'Primary text' },
+        textSubtle: { oklch: 'oklch(50% 0.01 250)', name: 'Text Subtle', usage: 'Secondary text' },
+        textMuted: { oklch: 'oklch(55% 0.01 250)', name: 'Text Muted', usage: 'Muted text' },
+        border: { oklch: 'oklch(84% 0.01 250)', name: 'Border', usage: 'Borders' },
+        borderStrong: { oklch: 'oklch(75% 0.01 250)', name: 'Border Strong', usage: 'Strong borders' },
+        divider: { oklch: 'oklch(88% 0.01 250)', name: 'Divider', usage: 'Divider lines' },
 
         link: { oklch: 'oklch(50% 0.08 230)', name: 'Link', usage: 'Hyperlinks' },
         disabled: { oklch: 'oklch(75% 0.005 250)', name: 'Disabled', usage: 'Disabled UI' },
@@ -34,7 +34,7 @@ const neutrals = {
 
         // Inverse (for SnackBar, tooltips)
         inverseSurface: { oklch: 'oklch(25% 0.015 250)', name: 'Inverse Surface', usage: 'SnackBar background' },
-        inverseText: { oklch: 'oklch(92% 0.01 85)', name: 'Inverse Text', usage: 'SnackBar text' },
+        inverseText: { oklch: 'oklch(92% 0.01 250)', name: 'Inverse Text', usage: 'SnackBar text' },
 
         // Special
         shadow: { value: '0 2px 8px rgba(45, 50, 57, 0.06)', name: 'Shadow', usage: 'Card shadows' },
@@ -147,24 +147,24 @@ const neutrals = {
         onSilver: { oklch: 'oklch(0% 0 0)', name: 'On Silver', usage: 'Text on silver' },
     },
     dark: {
-        bg: { oklch: 'oklch(18% 0.015 85)', name: 'Background', usage: 'Page background' },
-        surface: { oklch: 'oklch(22% 0.012 85)', name: 'Surface', usage: 'Cards, sections' },
-        elevated: { oklch: 'oklch(25% 0.015 85)', name: 'Elevated', usage: 'Elevated surfaces' },
-        text: { oklch: 'oklch(92% 0.01 85)', name: 'Text', usage: 'Primary text' },
-        textSubtle: { oklch: 'oklch(72% 0.008 85)', name: 'Text Subtle', usage: 'Secondary text' },
-        textMuted: { oklch: 'oklch(58% 0.006 85)', name: 'Text Muted', usage: 'Muted text' },
-        border: { oklch: 'oklch(30% 0.01 85)', name: 'Border', usage: 'Borders' },
-        borderStrong: { oklch: 'oklch(40% 0.012 85)', name: 'Border Strong', usage: 'Strong borders' },
-        divider: { oklch: 'oklch(28% 0.008 85)', name: 'Divider', usage: 'Divider lines' },
+        bg: { oklch: 'oklch(18% 0.015 250)', name: 'Background', usage: 'Page background' },
+        surface: { oklch: 'oklch(22% 0.012 250)', name: 'Surface', usage: 'Cards, sections' },
+        elevated: { oklch: 'oklch(25% 0.015 250)', name: 'Elevated', usage: 'Elevated surfaces' },
+        text: { oklch: 'oklch(92% 0.01 250)', name: 'Text', usage: 'Primary text' },
+        textSubtle: { oklch: 'oklch(75% 0.01 250)', name: 'Text Subtle', usage: 'Secondary text' },
+        textMuted: { oklch: 'oklch(62% 0.008 250)', name: 'Text Muted', usage: 'Muted text' },
+        border: { oklch: 'oklch(35% 0.01 250)', name: 'Border', usage: 'Borders' },
+        borderStrong: { oklch: 'oklch(45% 0.012 250)', name: 'Border Strong', usage: 'Strong borders' },
+        divider: { oklch: 'oklch(32% 0.008 250)', name: 'Divider', usage: 'Divider lines' },
 
-        link: { oklch: 'oklch(65% 0.08 85)', name: 'Link', usage: 'Hyperlinks' },
-        disabled: { oklch: 'oklch(45% 0.005 85)', name: 'Disabled', usage: 'Disabled UI' },
+        link: { oklch: 'oklch(65% 0.08 250)', name: 'Link', usage: 'Hyperlinks' },
+        disabled: { oklch: 'oklch(45% 0.005 250)', name: 'Disabled', usage: 'Disabled UI' },
         overlay: { oklch: 'oklch(0% 0 0 / 0.7)', name: 'Overlay', usage: 'Modal backdrops' },
         scrim: { oklch: 'oklch(0% 0 0 / 0.6)', name: 'Scrim', usage: 'Drawer/sheet scrim' },
 
         // Inverse (for SnackBar, tooltips)
-        inverseSurface: { oklch: 'oklch(92% 0.008 85)', name: 'Inverse Surface', usage: 'SnackBar background' },
-        inverseText: { oklch: 'oklch(25% 0.015 275)', name: 'Inverse Text', usage: 'SnackBar text' },
+        inverseSurface: { oklch: 'oklch(92% 0.01 250)', name: 'Inverse Surface', usage: 'SnackBar background' },
+        inverseText: { oklch: 'oklch(25% 0.015 250)', name: 'Inverse Text', usage: 'SnackBar text' },
 
         // Special
         shadow: { value: '0 2px 8px rgba(0, 0, 0, 0.25)', name: 'Shadow', usage: 'Card shadows' },

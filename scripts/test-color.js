@@ -11,8 +11,8 @@ const path = require('path');
 
 const testCases = [
     { name: 'Accent (Steel Blue)', l: 0.52, c: 0.06, h: 230, expected: '#437085' },
-    { name: 'Background (Warm White)', l: 0.98, c: 0.008, h: 85, expected: '#FBF8F2' },
-    { name: 'Text (Warm Charcoal)', l: 0.28, c: 0.015, h: 250, expected: '#232A30' },
+    { name: 'Background (Cool White)', l: 0.98, c: 0.005, h: 250, expected: '#F6F9FC' },
+    { name: 'Text (Cool Charcoal)', l: 0.28, c: 0.015, h: 250, expected: '#232A30' },
     { name: 'Secondary (Terracotta)', l: 0.58, c: 0.12, h: 55, expected: '#B0652A' },
     { name: 'Success (Sage)', l: 0.52, c: 0.08, h: 145, expected: '#4A754C' },
     { name: 'Pure White', l: 1.0, c: 0, h: 0, expected: '#FFFFFF' },

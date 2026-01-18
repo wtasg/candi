@@ -36,14 +36,14 @@ function testExtension() {
         assert.equal(darkTheme.type, 'dark');
 
         // Check key UI colors from base.css (verified hex values)
-        assert.equal(darkTheme.colors['editor.background'], '#15110A');
-        assert.equal(darkTheme.colors['editorCursor.foreground'], '#7987DE');
-        assert.equal(darkTheme.colors['activityBar.activeBorder'], '#7987DE');
+        assert.equal(darkTheme.colors['editor.background'], '#0D1218');
+        assert.equal(darkTheme.colors['editorCursor.foreground'], '#6993BE');
+        assert.equal(darkTheme.colors['activityBar.activeBorder'], '#6993BE');
 
         // Check token colors
         const keywordToken = darkTheme.tokenColors.find(tc => tc.scope.includes('keyword'));
         assert.ok(keywordToken, 'Theme should highlight keywords');
-        assert.equal(keywordToken.settings.foreground, '#7987DE');
+        assert.equal(keywordToken.settings.foreground.toUpperCase(), '#6993BE');
 
         console.log('[✓] Theme color mappings verified');
 
