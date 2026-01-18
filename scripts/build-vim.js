@@ -465,6 +465,71 @@ ${hi('vimCommand', 'syntax-keyword', null, 's:bold')}
 
 " }}}
 " }}}
+" Rainbow Brackets: {{{
+" Used by rainbow parentheses plugins (luochen1990/rainbow, p00f/nvim-ts-rainbow, etc.)
+
+${hi('rainbowcol1', 'blue')}
+${hi('rainbowcol2', 'magenta')}
+${hi('rainbowcol3', 'cyan')}
+${hi('rainbowcol4', 'yellow')}
+${hi('rainbowcol5', 'green')}
+${hi('rainbowcol6', 'red')}
+${hi('rainbowcol7', 'gold')}
+
+" Treesitter rainbow (nvim-ts-rainbow2, rainbow-delimiters.nvim)
+${link('TSRainbowRed', 'rainbowcol6')}
+${link('TSRainbowYellow', 'rainbowcol4')}
+${link('TSRainbowBlue', 'rainbowcol1')}
+${link('TSRainbowGreen', 'rainbowcol5')}
+${link('TSRainbowViolet', 'rainbowcol2')}
+${link('TSRainbowCyan', 'rainbowcol3')}
+${link('TSRainbowOrange', 'rainbowcol7')}
+
+" rainbow-delimiters.nvim
+${link('RainbowDelimiterRed', 'rainbowcol6')}
+${link('RainbowDelimiterYellow', 'rainbowcol4')}
+${link('RainbowDelimiterBlue', 'rainbowcol1')}
+${link('RainbowDelimiterGreen', 'rainbowcol5')}
+${link('RainbowDelimiterViolet', 'rainbowcol2')}
+${link('RainbowDelimiterCyan', 'rainbowcol3')}
+${link('RainbowDelimiterOrange', 'rainbowcol7')}
+
+" }}}
+" Primitive Color Definitions: {{{
+" Direct access to primitive colors for user customization
+
+${hi('CandiRed', 'red')}
+${hi('CandiRedSubtle', 'red-subtle')}
+${hi('CandiRedStrong', 'red-strong')}
+${hi('CandiBlue', 'blue')}
+${hi('CandiBlueSubtle', 'blue-subtle')}
+${hi('CandiBlueStrong', 'blue-strong')}
+${hi('CandiGreen', 'green')}
+${hi('CandiGreenSubtle', 'green-subtle')}
+${hi('CandiGreenStrong', 'green-strong')}
+${hi('CandiYellow', 'yellow')}
+${hi('CandiYellowSubtle', 'yellow-subtle')}
+${hi('CandiYellowStrong', 'yellow-strong')}
+${hi('CandiMagenta', 'magenta')}
+${hi('CandiMagentaSubtle', 'magenta-subtle')}
+${hi('CandiMagentaStrong', 'magenta-strong')}
+${hi('CandiCyan', 'cyan')}
+${hi('CandiCyanSubtle', 'cyan-subtle')}
+${hi('CandiCyanStrong', 'cyan-strong')}
+${hi('CandiTeal', 'teal')}
+${hi('CandiTealSubtle', 'teal-subtle')}
+${hi('CandiTealStrong', 'teal-strong')}
+${hi('CandiPink', 'pink')}
+${hi('CandiPinkSubtle', 'pink-subtle')}
+${hi('CandiPinkStrong', 'pink-strong')}
+${hi('CandiGold', 'gold')}
+${hi('CandiGoldSubtle', 'gold-subtle')}
+${hi('CandiGoldStrong', 'gold-strong')}
+${hi('CandiSilver', 'silver')}
+${hi('CandiSilverSubtle', 'silver-subtle')}
+${hi('CandiSilverStrong', 'silver-strong')}
+
+" }}}
 
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker:
 `;

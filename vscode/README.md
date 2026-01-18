@@ -7,6 +7,28 @@ Scandinavian design theme based on the Candi Design System.
 - **Candi Light**
 - **Candi Dark**
 
+## Features
+
+- 133+ UI color definitions
+- 47 token scopes for syntax highlighting
+- Rainbow bracket pair colorization using primitive colors
+- Complete dark/light mode support
+
+## Primitive Colors
+
+The theme includes 10 primitive color families used for bracket highlights:
+
+| Color   | Usage                          |
+|---------|--------------------------------|
+| Blue    | Bracket level 1                |
+| Magenta | Bracket level 2                |
+| Cyan    | Bracket level 3                |
+| Yellow  | Bracket level 4                |
+| Green   | Bracket level 5                |
+| Red     | Bracket level 6                |
+
+See [COLOR_REFERENCE.md](COLOR_REFERENCE.md) for all available color tokens.
+
 ## Installation
 
 1. Open VS Code and the Extensions view (`Ctrl+Shift+X`).

@@ -8,7 +8,7 @@
 " Description: Scandinavian design colorscheme for Vim
 " Author: Candi Design System
 " Source: https://github.com/wtasg/candi
-" Last Modified: 2025-12-31
+" Last Modified: 2026-01-18
 " -----------------------------------------------------------------------------
 
 " Initialization: {{{
@@ -372,6 +372,71 @@ hi vimMapModKey             guifg=#B4666D ctermfg=174 guibg=NONE ctermbg=NONE gu
 hi vimCommand               guifg=#C5547C ctermfg=174 guibg=NONE ctermbg=NONE gui=s:bold cterm=s:bold
 
 " }}}
+" }}}
+" Rainbow Brackets: {{{
+" Used by rainbow parentheses plugins (luochen1990/rainbow, p00f/nvim-ts-rainbow, etc.)
+
+hi rainbowcol1              guifg=#2266A4 ctermfg=67 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi rainbowcol2              guifg=#A840A2 ctermfg=133 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi rainbowcol3              guifg=#2BA1A7 ctermfg=73 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi rainbowcol4              guifg=#D0A92D ctermfg=179 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi rainbowcol5              guifg=#3E8343 ctermfg=71 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi rainbowcol6              guifg=#B54A46 ctermfg=167 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi rainbowcol7              guifg=#CE9042 ctermfg=179 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+
+" Treesitter rainbow (nvim-ts-rainbow2, rainbow-delimiters.nvim)
+hi! link TSRainbowRed             rainbowcol6
+hi! link TSRainbowYellow          rainbowcol4
+hi! link TSRainbowBlue            rainbowcol1
+hi! link TSRainbowGreen           rainbowcol5
+hi! link TSRainbowViolet          rainbowcol2
+hi! link TSRainbowCyan            rainbowcol3
+hi! link TSRainbowOrange          rainbowcol7
+
+" rainbow-delimiters.nvim
+hi! link RainbowDelimiterRed      rainbowcol6
+hi! link RainbowDelimiterYellow   rainbowcol4
+hi! link RainbowDelimiterBlue     rainbowcol1
+hi! link RainbowDelimiterGreen    rainbowcol5
+hi! link RainbowDelimiterViolet   rainbowcol2
+hi! link RainbowDelimiterCyan     rainbowcol3
+hi! link RainbowDelimiterOrange   rainbowcol7
+
+" }}}
+" Primitive Color Definitions: {{{
+" Direct access to primitive colors for user customization
+
+hi CandiRed                 guifg=#B54A46 ctermfg=167 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiRedSubtle           guifg=#FFBBB3 ctermfg=224 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiRedStrong           guifg=#972527 ctermfg=131 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiBlue                guifg=#2266A4 ctermfg=67 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiBlueSubtle          guifg=#95CDFF ctermfg=153 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiBlueStrong          guifg=#00488A ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiGreen               guifg=#3E8343 ctermfg=71 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiGreenSubtle         guifg=#AEE9AF ctermfg=157 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiGreenStrong         guifg=#146720 ctermfg=29 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiYellow              guifg=#D0A92D ctermfg=179 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiYellowSubtle        guifg=#FFEC96 ctermfg=229 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiYellowStrong        guifg=#B38900 ctermfg=178 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiMagenta             guifg=#A840A2 ctermfg=133 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiMagentaSubtle       guifg=#FFB5FF ctermfg=225 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiMagentaStrong       guifg=#8C0888 ctermfg=127 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiCyan                guifg=#2BA1A7 ctermfg=73 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiCyanSubtle          guifg=#9DEFF3 ctermfg=159 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiCyanStrong          guifg=#00848B ctermfg=37 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiTeal                guifg=#11846E ctermfg=36 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiTealSubtle          guifg=#9EE9D4 ctermfg=158 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiTealStrong          guifg=#006852 ctermfg=30 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiPink                guifg=#DA7D9B ctermfg=175 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiPinkSubtle          guifg=#FFC9E2 ctermfg=224 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiPinkStrong          guifg=#BD5B7D ctermfg=174 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiGold                guifg=#CE9042 ctermfg=179 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiGoldSubtle          guifg=#FFD99B ctermfg=223 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiGoldStrong          guifg=#B17000 ctermfg=136 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiSilver              guifg=#A9AFB4 ctermfg=249 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiSilverSubtle        guifg=#E1E5EA ctermfg=254 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi CandiSilverStrong        guifg=#8A9096 ctermfg=246 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+
 " }}}
 
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker:

@@ -78,7 +78,15 @@
         "test:gnome": "node scripts/test-gnome.js",
         "test:obsidian": "node scripts/test-obsidian.js",
         "test:showcase": "cd showcase_flutter && flutter test",
-        "test:all": "npm run test:src && npm run test:color && npm run test:colors && npm run test:flutter && npm run test:vscode && npm run test:vim && npm run test:kde && npm run test:konsole && npm run test:gnome && npm run test:obsidian && npm run test:showcase",
+        "test:scripts": "node scripts/test-scripts.js",
+        "test:conv": "node scripts/test-color-conv.js",
+        "test:sync": "node scripts/test-sync.js",
+        "test:lint-tokens": "node scripts/test-lint-tokens.js",
+        "test:gen-primitives": "node scripts/test-gen-primitives.js",
+        "test:build-docs": "node scripts/test-build-docs.js",
+        "test:package-artifacts": "node scripts/test-package-artifacts.js",
+        "test:guard-semantics": "node scripts/test-guard-semantics.js",
+        "test:all": "npm run test:src && npm run test:color && npm run test:colors && npm run test:conv && npm run test:sync && npm run test:lint-tokens && npm run test:gen-primitives && npm run test:build-docs && npm run test:guard-semantics && npm run test:flutter && npm run test:vscode && npm run test:vim && npm run test:kde && npm run test:konsole && npm run test:gnome && npm run test:obsidian && npm run test:showcase && npm run test:scripts && npm run test:package-artifacts",
         "test": "npm run test:all",
         "vscode:package": "cd vscode && npx -y @vscode/vsce package",
         "flutter:pub": "cd flutter && flutter pub get",
@@ -91,7 +99,8 @@
         "lint:tokens": "node scripts/lint-tokens.js",
         "lint:md": "markdownlint-cli2 \"**/*.md\" \"!node_modules\" \"!website/node_modules\" \"!**/.dart_tool\"",
         "lint:md:fix": "markdownlint-cli2 --fix \"**/*.md\" \"!node_modules\" \"!website/node_modules\"",
-        "lint:all": "npm run lint:tokens && npm run lint:dart && npm run lint:md"
+        "lint:all": "npm run lint:tokens && npm run lint:dart && npm run lint:md",
+        "install:local": "bash scripts/install-local.sh"
     },
     "peerDependencies": {
         "tailwindcss": ">=3.0.0 || >=4.0.0"

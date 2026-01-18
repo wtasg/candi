@@ -103,6 +103,31 @@ Enhanced syntax highlighting for:
 - JSON
 - Vim Script
 
+## Rainbow Brackets
+
+The theme includes 7 rainbow bracket colors compatible with popular plugins:
+
+- [luochen1990/rainbow](https://github.com/luochen1990/rainbow)
+- [p00f/nvim-ts-rainbow](https://github.com/p00f/nvim-ts-rainbow)
+- [HiPhish/rainbow-delimiters.nvim](https://github.com/HiPhish/rainbow-delimiters.nvim)
+
+Rainbow colors: Blue → Magenta → Cyan → Yellow → Green → Red → Gold
+
+## Primitive Colors
+
+The theme defines 30 `Candi*` highlight groups for custom highlighting:
+
+```vim
+" Available groups (base, subtle, strong variants):
+" CandiRed, CandiRedSubtle, CandiRedStrong
+" CandiBlue, CandiBlueSubtle, CandiBlueStrong
+" CandiGreen, CyandiGreenSubtle, CandiGreenStrong
+" (+ Yellow, Magenta, Cyan, Teal, Pink, Gold, Silver)
+
+" Use in your own highlighting:
+hi! link MyCustomGroup CandiGold
+```
+
 ## Color Palette
 
 ### Light Theme

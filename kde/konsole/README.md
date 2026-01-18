@@ -69,6 +69,24 @@ sudo cp kde/konsole/*.colorscheme /usr/share/konsole/
 - Cyan: #3AB3BA
 - White: #E8E4DD
 
+### Primitive Colors
+
+The `[Candi]` section provides 10 primitive colors for custom theming:
+
+```ini
+[Candi]
+Red=223,127,120
+Blue=109,163,218
+Green=118,175,119
+Yellow=236,202,108
+Magenta=209,121,202
+Cyan=108,190,194
+Teal=101,175,156
+Pink=243,163,187
+Gold=231,179,117
+Silver=124,129,134
+```
+
 ## Compatibility
 
 - **Konsole**: All versions

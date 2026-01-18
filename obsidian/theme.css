@@ -131,6 +131,26 @@
 
     /* Focus */
     --shadow-focus: 0 0 0 2px #B8C8FF;
+
+    /* Primitive Colors */
+    --candi-red: #B54A46;
+    --candi-red-subtle: #FFBBB3;
+    --candi-red-strong: #972527;
+    --candi-blue: #2266A4;
+    --candi-blue-subtle: #95CDFF;
+    --candi-blue-strong: #00488A;
+    --candi-green: #3E8343;
+    --candi-green-subtle: #AEE9AF;
+    --candi-green-strong: #146720;
+    --candi-yellow: #D0A92D;
+    --candi-yellow-subtle: #FFEC96;
+    --candi-yellow-strong: #B38900;
+    --candi-magenta: #A840A2;
+    --candi-cyan: #2BA1A7;
+    --candi-teal: #11846E;
+    --candi-pink: #DA7D9B;
+    --candi-gold: #CE9042;
+    --candi-silver: #A9AFB4;
 }
 
 .theme-dark {
@@ -254,4 +274,24 @@
 
     /* Focus */
     --shadow-focus: 0 0 0 2px #333B79;
+
+    /* Primitive Colors */
+    --candi-red: #DF7F78;
+    --candi-red-subtle: #742E2B;
+    --candi-red-strong: #C25D58;
+    --candi-blue: #6DA3DA;
+    --candi-blue-subtle: #1D456B;
+    --candi-blue-strong: #4984BF;
+    --candi-green: #76AF77;
+    --candi-green-subtle: #29532B;
+    --candi-green-strong: #539156;
+    --candi-yellow: #ECCA6C;
+    --candi-yellow-subtle: #796006;
+    --candi-yellow-strong: #CEAA3E;
+    --candi-magenta: #D179CA;
+    --candi-cyan: #6CBEC2;
+    --candi-teal: #65AF9C;
+    --candi-pink: #F3A3BB;
+    --candi-gold: #E7B375;
+    --candi-silver: #7C8186;
 }

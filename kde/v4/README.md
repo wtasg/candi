@@ -38,5 +38,6 @@ The color scheme files define colors for:
 - Views (lists, tables)
 - Tooltips
 - Window manager (title bars)
+- Primitive colors (`[Colors:Candi]` section with Red, Blue, Green, Yellow, Magenta, Cyan, Teal, Pink, Gold, Silver)
 
 All colors are derived from the Candi Design System's OKLCH color space and converted to RGB for KDE compatibility.

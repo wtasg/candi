@@ -82,6 +82,23 @@ gnome/
 - Warning: Gold (#D89A3D)
 - Error: Coral (#C76B66)
 
+### Primitive Colors
+
+The theme includes 10 `@define-color` primitive colors for custom styling:
+
+| Variable        | Light Mode       | Dark Mode        |
+|-----------------|------------------|------------------|
+| candi_red       | rgb(181,74,70)   | rgb(223,127,120) |
+| candi_blue      | rgb(34,102,164)  | rgb(109,163,218) |
+| candi_green     | rgb(62,131,67)   | rgb(118,175,119) |
+| candi_yellow    | rgb(208,169,45)  | rgb(236,202,108) |
+| candi_magenta   | rgb(200,79,121)  | rgb(209,121,202) |
+| candi_cyan      | rgb(47,152,152)  | rgb(108,190,194) |
+| candi_teal      | rgb(52,127,103)  | rgb(101,175,156) |
+| candi_pink      | rgb(235,145,166) | rgb(243,163,187) |
+| candi_gold      | rgb(191,135,72)  | rgb(231,179,117) |
+| candi_silver    | rgb(106,112,118) | rgb(124,129,134) |
+
 ## Compatibility
 
 - **GNOME 40+**: Full support

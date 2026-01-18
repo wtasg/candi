@@ -104,3 +104,16 @@ Opacity=1
 Wallpaper=
 WallpaperFlipType=NoFlip
 WallpaperOpacity=1
+
+[Candi]
+# Primitive colors for custom theming reference
+Red=223,127,120
+Blue=109,163,218
+Green=118,175,119
+Yellow=236,202,108
+Magenta=209,121,202
+Cyan=108,190,194
+Teal=101,175,156
+Pink=243,163,187
+Gold=231,179,117
+Silver=124,129,134

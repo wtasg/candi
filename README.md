@@ -125,6 +125,14 @@ candi/
 | `npm test` | Run all tests |
 | `npm run test:color` | Test color definitions |
 | `npm run test:colors` | Test color conversions |
+| `npm run test:conv` | Unit test color-conv.js functions |
+| `npm run test:sync` | Test sync-colors.js output |
+| `npm run test:lint-tokens` | Validate token schema |
+| `npm run test:gen-primitives` | Test semantic color generation |
+| `npm run test:build-docs` | Test version injection |
+| `npm run test:guard-semantics` | Validate palette integrity |
+| `npm run test:scripts` | Regression test all build outputs |
+| `npm run test:package-artifacts` | Test artifact generation |
 | `npm run test:flutter` | Test Flutter package |
 | `npm run test:vscode` | Test VS Code extension |
 | `npm run test:vim` | Test Vim colorschemes |
@@ -139,6 +147,7 @@ candi/
 | :--- | :--- |
 | `npm run artifact` | Package all platforms into zip archives |
 | `npm run vscode:package` | Generate `.vsix` VS Code extension |
+| `npm run install:local` | Install themes to local system (Dry-run by default, uses artifacts) |
 | `./scripts/package-bump.sh <version>` | Bump version across all packages |
 
 ---

@@ -200,6 +200,26 @@ function generateThemeCss(lightPalette, darkPalette) {
 
     /* Focus */
     --shadow-focus: 0 0 0 2px ${lightPalette['accent-subtle']};
+
+    /* Primitive Colors */
+    --candi-red: ${lightPalette['red'] || lightPalette['error']};
+    --candi-red-subtle: ${lightPalette['red-subtle'] || lightPalette['error']};
+    --candi-red-strong: ${lightPalette['red-strong'] || lightPalette['error']};
+    --candi-blue: ${lightPalette['blue'] || lightPalette['accent']};
+    --candi-blue-subtle: ${lightPalette['blue-subtle'] || lightPalette['accent-subtle']};
+    --candi-blue-strong: ${lightPalette['blue-strong'] || lightPalette['accent']};
+    --candi-green: ${lightPalette['green'] || lightPalette['success']};
+    --candi-green-subtle: ${lightPalette['green-subtle'] || lightPalette['success']};
+    --candi-green-strong: ${lightPalette['green-strong'] || lightPalette['success']};
+    --candi-yellow: ${lightPalette['yellow'] || lightPalette['warning']};
+    --candi-yellow-subtle: ${lightPalette['yellow-subtle'] || lightPalette['warning']};
+    --candi-yellow-strong: ${lightPalette['yellow-strong'] || lightPalette['warning']};
+    --candi-magenta: ${lightPalette['magenta'] || lightPalette['secondary']};
+    --candi-cyan: ${lightPalette['cyan'] || lightPalette['link']};
+    --candi-teal: ${lightPalette['teal'] || lightPalette['link']};
+    --candi-pink: ${lightPalette['pink'] || lightPalette['secondary']};
+    --candi-gold: ${lightPalette['gold'] || lightPalette['warning']};
+    --candi-silver: ${lightPalette['silver'] || lightPalette['text-muted']};
 }
 
 .theme-dark {
@@ -323,6 +343,26 @@ function generateThemeCss(lightPalette, darkPalette) {
 
     /* Focus */
     --shadow-focus: 0 0 0 2px ${darkPalette['accent-subtle']};
+
+    /* Primitive Colors */
+    --candi-red: ${darkPalette['red'] || darkPalette['error']};
+    --candi-red-subtle: ${darkPalette['red-subtle'] || darkPalette['error']};
+    --candi-red-strong: ${darkPalette['red-strong'] || darkPalette['error']};
+    --candi-blue: ${darkPalette['blue'] || darkPalette['accent']};
+    --candi-blue-subtle: ${darkPalette['blue-subtle'] || darkPalette['accent-subtle']};
+    --candi-blue-strong: ${darkPalette['blue-strong'] || darkPalette['accent']};
+    --candi-green: ${darkPalette['green'] || darkPalette['success']};
+    --candi-green-subtle: ${darkPalette['green-subtle'] || darkPalette['success']};
+    --candi-green-strong: ${darkPalette['green-strong'] || darkPalette['success']};
+    --candi-yellow: ${darkPalette['yellow'] || darkPalette['warning']};
+    --candi-yellow-subtle: ${darkPalette['yellow-subtle'] || darkPalette['warning']};
+    --candi-yellow-strong: ${darkPalette['yellow-strong'] || darkPalette['warning']};
+    --candi-magenta: ${darkPalette['magenta'] || darkPalette['secondary']};
+    --candi-cyan: ${darkPalette['cyan'] || darkPalette['link']};
+    --candi-teal: ${darkPalette['teal'] || darkPalette['link']};
+    --candi-pink: ${darkPalette['pink'] || darkPalette['secondary']};
+    --candi-gold: ${darkPalette['gold'] || darkPalette['warning']};
+    --candi-silver: ${darkPalette['silver'] || darkPalette['text-muted']};
 }
 `;
 }

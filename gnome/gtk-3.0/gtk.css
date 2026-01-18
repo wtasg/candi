@@ -34,6 +34,18 @@
 @define-color insensitive_fg_color rgb(172, 174, 177);
 @define-color insensitive_base_color rgb(236, 231, 221);
 
+/* Primitive Colors (Candi Design System) */
+@define-color candi_red rgb(181, 74, 70);
+@define-color candi_blue rgb(34, 102, 164);
+@define-color candi_green rgb(62, 131, 67);
+@define-color candi_yellow rgb(208, 169, 45);
+@define-color candi_magenta rgb(168, 64, 162);
+@define-color candi_cyan rgb(43, 161, 167);
+@define-color candi_teal rgb(17, 132, 110);
+@define-color candi_pink rgb(218, 125, 155);
+@define-color candi_gold rgb(206, 144, 66);
+@define-color candi_silver rgb(169, 175, 180);
+
 /* Window and Base Styling */
 * {
     background-clip: padding-box;

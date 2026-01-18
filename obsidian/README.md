@@ -5,7 +5,8 @@ A professional Scandinavian-inspired theme for Obsidian note-taking app, featuri
 ## Features
 
 - **Light and Dark modes** - Seamless switching between themes
-- **60+ CSS variables** - Comprehensive styling coverage
+- **80+ CSS variables** - Comprehensive styling coverage
+- **22 primitive colors** - Additional color palette for customization
 - **Optimized for reading** - Comfortable typography and spacing
 - **Markdown-focused** - Beautiful rendering of all Markdown elements
 - **Plugin-friendly** - Works well with popular Obsidian plugins

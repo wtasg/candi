@@ -15,14 +15,24 @@ All notable changes to the Candi Design System will be documented in this file.
   - `scripts/build-docs.js` for placeholder injection in documentation
   - `docs/dev_versioning.md` with workflow diagrams
 - **VSCode Bracket Colorization**: 6 distinct primitive colors for bracket pair highlighting
+- **Vim Rainbow Brackets**: 7 rainbow colors + 30 `Candi*` highlight groups for customization
+- **KDE Primitive Colors**: `[Colors:Candi]` section with 10 primitives in color schemes
+- **Konsole Primitive Colors**: `[Candi]` section with 10 primitives in terminal themes
+- **Obsidian Primitive Colors**: 22 CSS custom properties (`--candi-*`) for custom styling
+- **GNOME Primitive Colors**: 10 `@define-color candi_*` variables in GTK themes
 - **COLOR_REFERENCE.md**: Complete color token reference for VSCode extension
 - **Regression Tests**: 7 new Flutter tests for primitive color coverage
+- **Script Regression Tests**: 8 new test files (110+ assertions) for build scripts
+  - `test-scripts.js`, `test-color-conv.js`, `test-sync.js`, `test-lint-tokens.js`
+  - `test-gen-primitives.js`, `test-build-docs.js`, `test-guard-semantics.js`, `test-package-artifacts.js`
+- **Local Install Script**: `npm run install:local` for one-command theme installation
 
 ### Changed
 
 - Expanded palette from 63 to 123 colors per mode
 - Added `showcase_flutter` to `package-install.sh` (now 5 components)
 - Excluded `.dart_tool` from markdown linting
+- Updated README with new test commands table
 
 ## 0.0.27
 

@@ -139,6 +139,18 @@ function generateGtkCss(palette, isDark) {
 @define-color insensitive_fg_color ${disabled};
 @define-color insensitive_base_color ${surface};
 
+/* Primitive Colors (Candi Design System) */
+@define-color candi_red ${formatRgb(palette['red'] || palette['error'])};
+@define-color candi_blue ${formatRgb(palette['blue'] || palette['accent'])};
+@define-color candi_green ${formatRgb(palette['green'] || palette['success'])};
+@define-color candi_yellow ${formatRgb(palette['yellow'] || palette['warning'])};
+@define-color candi_magenta ${formatRgb(palette['magenta'] || palette['secondary'])};
+@define-color candi_cyan ${formatRgb(palette['cyan'] || palette['link'])};
+@define-color candi_teal ${formatRgb(palette['teal'] || palette['link'])};
+@define-color candi_pink ${formatRgb(palette['pink'] || palette['secondary'])};
+@define-color candi_gold ${formatRgb(palette['gold'] || palette['warning'])};
+@define-color candi_silver ${formatRgb(palette['silver'] || palette['text-muted'])};
+
 /* Window and Base Styling */
 * {
     background-clip: padding-box;
