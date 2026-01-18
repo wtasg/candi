@@ -97,6 +97,25 @@ class _GalleryScreenState extends State<GalleryScreen> {
             ColorSwatchCard(color: palette.divider, name: 'Divider'),
           ],
         ),
+        const SizedBox(height: 24),
+        const SectionHeader(title: 'Primitive Colors'),
+        const SizedBox(height: 16),
+        Wrap(
+          spacing: 12,
+          runSpacing: 12,
+          children: [
+            ColorSwatchCard(color: palette.red, name: 'Red'),
+            ColorSwatchCard(color: palette.blue, name: 'Blue'),
+            ColorSwatchCard(color: palette.green, name: 'Green'),
+            ColorSwatchCard(color: palette.yellow, name: 'Yellow'),
+            ColorSwatchCard(color: palette.magenta, name: 'Magenta'),
+            ColorSwatchCard(color: palette.cyan, name: 'Cyan'),
+            ColorSwatchCard(color: palette.teal, name: 'Teal'),
+            ColorSwatchCard(color: palette.pink, name: 'Pink'),
+            ColorSwatchCard(color: palette.gold, name: 'Gold'),
+            ColorSwatchCard(color: palette.silver, name: 'Silver'),
+          ],
+        ),
       ],
     );
   }

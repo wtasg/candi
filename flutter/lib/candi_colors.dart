@@ -25,7 +25,7 @@
 /// ```
 ///
 /// Generated from OKLCH source of truth.
-/// Total colors: 63 per palette
+/// Total colors: 123 per palette
 library;
 
 import 'package:flutter/material.dart';
@@ -166,6 +166,66 @@ class CandiPalette {
     required this.terminalMagenta,
     required this.terminalCyan,
     required this.terminalWhite,
+    required this.red,
+    required this.redSubtle,
+    required this.redSoft,
+    required this.redStrong,
+    required this.redOutline,
+    required this.onRed,
+    required this.blue,
+    required this.blueSubtle,
+    required this.blueSoft,
+    required this.blueStrong,
+    required this.blueOutline,
+    required this.onBlue,
+    required this.green,
+    required this.greenSubtle,
+    required this.greenSoft,
+    required this.greenStrong,
+    required this.greenOutline,
+    required this.onGreen,
+    required this.yellow,
+    required this.yellowSubtle,
+    required this.yellowSoft,
+    required this.yellowStrong,
+    required this.yellowOutline,
+    required this.onYellow,
+    required this.magenta,
+    required this.magentaSubtle,
+    required this.magentaSoft,
+    required this.magentaStrong,
+    required this.magentaOutline,
+    required this.onMagenta,
+    required this.cyan,
+    required this.cyanSubtle,
+    required this.cyanSoft,
+    required this.cyanStrong,
+    required this.cyanOutline,
+    required this.onCyan,
+    required this.teal,
+    required this.tealSubtle,
+    required this.tealSoft,
+    required this.tealStrong,
+    required this.tealOutline,
+    required this.onTeal,
+    required this.pink,
+    required this.pinkSubtle,
+    required this.pinkSoft,
+    required this.pinkStrong,
+    required this.pinkOutline,
+    required this.onPink,
+    required this.gold,
+    required this.goldSubtle,
+    required this.goldSoft,
+    required this.goldStrong,
+    required this.goldOutline,
+    required this.onGold,
+    required this.silver,
+    required this.silverSubtle,
+    required this.silverSoft,
+    required this.silverStrong,
+    required this.silverOutline,
+    required this.onSilver,
   });
 
   /// Page background color.
@@ -356,6 +416,186 @@ class CandiPalette {
 
   /// Terminal ANSI white color.
   final CandiColor terminalWhite;
+
+  /// Primitive red color.
+  final CandiColor red;
+
+  /// Subtle red background tint.
+  final CandiColor redSubtle;
+
+  /// Soft red foreground.
+  final CandiColor redSoft;
+
+  /// Strong/dark red variant.
+  final CandiColor redStrong;
+
+  /// Red outline/border color.
+  final CandiColor redOutline;
+
+  /// Text color on red backgrounds.
+  final CandiColor onRed;
+
+  /// Primitive blue color.
+  final CandiColor blue;
+
+  /// Subtle blue background tint.
+  final CandiColor blueSubtle;
+
+  /// Soft blue foreground.
+  final CandiColor blueSoft;
+
+  /// Strong/dark blue variant.
+  final CandiColor blueStrong;
+
+  /// Blue outline/border color.
+  final CandiColor blueOutline;
+
+  /// Text color on blue backgrounds.
+  final CandiColor onBlue;
+
+  /// Primitive green color.
+  final CandiColor green;
+
+  /// Subtle green background tint.
+  final CandiColor greenSubtle;
+
+  /// Soft green foreground.
+  final CandiColor greenSoft;
+
+  /// Strong/dark green variant.
+  final CandiColor greenStrong;
+
+  /// Green outline/border color.
+  final CandiColor greenOutline;
+
+  /// Text color on green backgrounds.
+  final CandiColor onGreen;
+
+  /// Primitive yellow color.
+  final CandiColor yellow;
+
+  /// Subtle yellow background tint.
+  final CandiColor yellowSubtle;
+
+  /// Soft yellow foreground.
+  final CandiColor yellowSoft;
+
+  /// Strong/dark yellow variant.
+  final CandiColor yellowStrong;
+
+  /// Yellow outline/border color.
+  final CandiColor yellowOutline;
+
+  /// Text color on yellow backgrounds.
+  final CandiColor onYellow;
+
+  /// Primitive magenta color.
+  final CandiColor magenta;
+
+  /// Subtle magenta background tint.
+  final CandiColor magentaSubtle;
+
+  /// Soft magenta foreground.
+  final CandiColor magentaSoft;
+
+  /// Strong/dark magenta variant.
+  final CandiColor magentaStrong;
+
+  /// Magenta outline/border color.
+  final CandiColor magentaOutline;
+
+  /// Text color on magenta backgrounds.
+  final CandiColor onMagenta;
+
+  /// Primitive cyan color.
+  final CandiColor cyan;
+
+  /// Subtle cyan background tint.
+  final CandiColor cyanSubtle;
+
+  /// Soft cyan foreground.
+  final CandiColor cyanSoft;
+
+  /// Strong/dark cyan variant.
+  final CandiColor cyanStrong;
+
+  /// Cyan outline/border color.
+  final CandiColor cyanOutline;
+
+  /// Text color on cyan backgrounds.
+  final CandiColor onCyan;
+
+  /// Primitive teal color.
+  final CandiColor teal;
+
+  /// Subtle teal background tint.
+  final CandiColor tealSubtle;
+
+  /// Soft teal foreground.
+  final CandiColor tealSoft;
+
+  /// Strong/dark teal variant.
+  final CandiColor tealStrong;
+
+  /// Teal outline/border color.
+  final CandiColor tealOutline;
+
+  /// Text color on teal backgrounds.
+  final CandiColor onTeal;
+
+  /// Primitive pink color.
+  final CandiColor pink;
+
+  /// Subtle pink background tint.
+  final CandiColor pinkSubtle;
+
+  /// Soft pink foreground.
+  final CandiColor pinkSoft;
+
+  /// Strong/dark pink variant.
+  final CandiColor pinkStrong;
+
+  /// Pink outline/border color.
+  final CandiColor pinkOutline;
+
+  /// Text color on pink backgrounds.
+  final CandiColor onPink;
+
+  /// Primitive gold color.
+  final CandiColor gold;
+
+  /// Subtle gold background tint.
+  final CandiColor goldSubtle;
+
+  /// Soft gold foreground.
+  final CandiColor goldSoft;
+
+  /// Strong/dark gold variant.
+  final CandiColor goldStrong;
+
+  /// Gold outline/border color.
+  final CandiColor goldOutline;
+
+  /// Text color on gold backgrounds.
+  final CandiColor onGold;
+
+  /// Primitive silver color.
+  final CandiColor silver;
+
+  /// Subtle silver background tint.
+  final CandiColor silverSubtle;
+
+  /// Soft silver foreground.
+  final CandiColor silverSoft;
+
+  /// Strong/dark silver variant.
+  final CandiColor silverStrong;
+
+  /// Silver outline/border color.
+  final CandiColor silverOutline;
+
+  /// Text color on silver backgrounds.
+  final CandiColor onSilver;
 
   // ─────────────────────────────────────────────────────────────────────────
   // Convenience Aliases
@@ -863,6 +1103,196 @@ abstract final class CandiColors {
       chroma: 0.01,
       hue: 85,
     ),
+    // oklch(55% 0.14 25)
+    red: CandiColor(0XFFB54A46, lightness: 0.55, chroma: 0.14, hue: 25),
+    // oklch(88% 0.11 25)
+    redSubtle: CandiColor(0XFFFFBBB3, lightness: 0.88, chroma: 0.11, hue: 25),
+    // oklch(65% 0.13 25)
+    redSoft: CandiColor(0XFFD36C66, lightness: 0.65, chroma: 0.13, hue: 25),
+    // oklch(45% 0.15 25)
+    redStrong: CandiColor(0XFF972527, lightness: 0.45, chroma: 0.15, hue: 25),
+    // oklch(40% 0.13 25)
+    redOutline: CandiColor(0XFF7F2021, lightness: 0.4, chroma: 0.13, hue: 25),
+    // oklch(100% 0 0)
+    onRed: CandiColor(0XFFFFFFFF, lightness: 1, chroma: 0, hue: 0),
+    // oklch(50% 0.12 250)
+    blue: CandiColor(0XFF2266A4, lightness: 0.5, chroma: 0.12, hue: 250),
+    // oklch(83% 0.10 250)
+    blueSubtle: CandiColor(0XFF95CDFF, lightness: 0.83, chroma: 0.1, hue: 250),
+    // oklch(60% 0.11 250)
+    blueSoft: CandiColor(0XFF4984BF, lightness: 0.6, chroma: 0.11, hue: 250),
+    // oklch(40% 0.13 250)
+    blueStrong: CandiColor(0XFF00488A, lightness: 0.4, chroma: 0.13, hue: 250),
+    // oklch(35% 0.11 250)
+    blueOutline: CandiColor(
+      0XFF003B71,
+      lightness: 0.35,
+      chroma: 0.11,
+      hue: 250,
+    ),
+    // oklch(100% 0 0)
+    onBlue: CandiColor(0XFFFFFFFF, lightness: 1, chroma: 0, hue: 0),
+    // oklch(55% 0.12 145)
+    green: CandiColor(0XFF3E8343, lightness: 0.55, chroma: 0.12, hue: 145),
+    // oklch(88% 0.10 145)
+    greenSubtle: CandiColor(0XFFAEE9AF, lightness: 0.88, chroma: 0.1, hue: 145),
+    // oklch(65% 0.11 145)
+    greenSoft: CandiColor(0XFF62A164, lightness: 0.65, chroma: 0.11, hue: 145),
+    // oklch(45% 0.13 145)
+    greenStrong: CandiColor(
+      0XFF146720,
+      lightness: 0.45,
+      chroma: 0.13,
+      hue: 145,
+    ),
+    // oklch(40% 0.11 145)
+    greenOutline: CandiColor(
+      0XFF15561D,
+      lightness: 0.4,
+      chroma: 0.11,
+      hue: 145,
+    ),
+    // oklch(100% 0 0)
+    onGreen: CandiColor(0XFFFFFFFF, lightness: 1, chroma: 0, hue: 0),
+    // oklch(75% 0.14 90)
+    yellow: CandiColor(0XFFD0A92D, lightness: 0.75, chroma: 0.14, hue: 90),
+    // oklch(95% 0.11 90)
+    yellowSubtle: CandiColor(
+      0XFFFFEC96,
+      lightness: 0.95,
+      chroma: 0.11,
+      hue: 90,
+    ),
+    // oklch(82% 0.13 90)
+    yellowSoft: CandiColor(0XFFE5C057, lightness: 0.82, chroma: 0.13, hue: 90),
+    // oklch(65% 0.15 90)
+    yellowStrong: CandiColor(
+      0XFFB38900,
+      lightness: 0.65,
+      chroma: 0.15,
+      hue: 90,
+    ),
+    // oklch(60% 0.13 90)
+    yellowOutline: CandiColor(
+      0XFF9E7B00,
+      lightness: 0.6,
+      chroma: 0.13,
+      hue: 90,
+    ),
+    // oklch(0% 0 0)
+    onYellow: CandiColor(0XFF000000, lightness: 0, chroma: 0, hue: 0),
+    // oklch(55% 0.18 330)
+    magenta: CandiColor(0XFFA840A2, lightness: 0.55, chroma: 0.18, hue: 330),
+    // oklch(88% 0.14 330)
+    magentaSubtle: CandiColor(
+      0XFFFFB5FF,
+      lightness: 0.88,
+      chroma: 0.14,
+      hue: 330,
+    ),
+    // oklch(65% 0.16 330)
+    magentaSoft: CandiColor(
+      0XFFC467BD,
+      lightness: 0.65,
+      chroma: 0.16,
+      hue: 330,
+    ),
+    // oklch(45% 0.20 330)
+    magentaStrong: CandiColor(
+      0XFF8C0888,
+      lightness: 0.45,
+      chroma: 0.2,
+      hue: 330,
+    ),
+    // oklch(40% 0.16 330)
+    magentaOutline: CandiColor(
+      0XFF73176F,
+      lightness: 0.4,
+      chroma: 0.16,
+      hue: 330,
+    ),
+    // oklch(100% 0 0)
+    onMagenta: CandiColor(0XFFFFFFFF, lightness: 1, chroma: 0, hue: 0),
+    // oklch(65% 0.10 200)
+    cyan: CandiColor(0XFF2BA1A7, lightness: 0.65, chroma: 0.1, hue: 200),
+    // oklch(90% 0.08 200)
+    cyanSubtle: CandiColor(0XFF9DEFF3, lightness: 0.9, chroma: 0.08, hue: 200),
+    // oklch(72% 0.09 200)
+    cyanSoft: CandiColor(0XFF56B6BB, lightness: 0.72, chroma: 0.09, hue: 200),
+    // oklch(55% 0.11 200)
+    cyanStrong: CandiColor(0XFF00848B, lightness: 0.55, chroma: 0.11, hue: 200),
+    // oklch(50% 0.09 200)
+    cyanOutline: CandiColor(0XFF007277, lightness: 0.5, chroma: 0.09, hue: 200),
+    // oklch(0% 0 0)
+    onCyan: CandiColor(0XFF000000, lightness: 0, chroma: 0, hue: 0),
+    // oklch(55% 0.10 175)
+    teal: CandiColor(0XFF11846E, lightness: 0.55, chroma: 0.1, hue: 175),
+    // oklch(88% 0.08 175)
+    tealSubtle: CandiColor(0XFF9EE9D4, lightness: 0.88, chroma: 0.08, hue: 175),
+    // oklch(65% 0.09 175)
+    tealSoft: CandiColor(0XFF4BA18C, lightness: 0.65, chroma: 0.09, hue: 175),
+    // oklch(45% 0.11 175)
+    tealStrong: CandiColor(0XFF006852, lightness: 0.45, chroma: 0.11, hue: 175),
+    // oklch(40% 0.09 175)
+    tealOutline: CandiColor(0XFF005745, lightness: 0.4, chroma: 0.09, hue: 175),
+    // oklch(100% 0 0)
+    onTeal: CandiColor(0XFFFFFFFF, lightness: 1, chroma: 0, hue: 0),
+    // oklch(70% 0.12 0)
+    pink: CandiColor(0XFFDA7D9B, lightness: 0.7, chroma: 0.12, hue: 0),
+    // oklch(92% 0.10 0)
+    pinkSubtle: CandiColor(0XFFFFC9E2, lightness: 0.92, chroma: 0.1, hue: 0),
+    // oklch(78% 0.11 0)
+    pinkSoft: CandiColor(0XFFF199B4, lightness: 0.78, chroma: 0.11, hue: 0),
+    // oklch(60% 0.13 0)
+    pinkStrong: CandiColor(0XFFBD5B7D, lightness: 0.6, chroma: 0.13, hue: 0),
+    // oklch(55% 0.11 0)
+    pinkOutline: CandiColor(0XFFA4546F, lightness: 0.55, chroma: 0.11, hue: 0),
+    // oklch(0% 0 0)
+    onPink: CandiColor(0XFF000000, lightness: 0, chroma: 0, hue: 0),
+    // oklch(70% 0.12 70)
+    gold: CandiColor(0XFFCE9042, lightness: 0.7, chroma: 0.12, hue: 70),
+    // oklch(92% 0.10 70)
+    goldSubtle: CandiColor(0XFFFFD99B, lightness: 0.92, chroma: 0.1, hue: 70),
+    // oklch(78% 0.11 70)
+    goldSoft: CandiColor(0XFFE5AB66, lightness: 0.78, chroma: 0.11, hue: 70),
+    // oklch(60% 0.13 70)
+    goldStrong: CandiColor(0XFFB17000, lightness: 0.6, chroma: 0.13, hue: 70),
+    // oklch(55% 0.11 70)
+    goldOutline: CandiColor(0XFF9A6418, lightness: 0.55, chroma: 0.11, hue: 70),
+    // oklch(0% 0 0)
+    onGold: CandiColor(0XFF000000, lightness: 0, chroma: 0, hue: 0),
+    // oklch(75% 0.01 250)
+    silver: CandiColor(0XFFA9AFB4, lightness: 0.75, chroma: 0.01, hue: 250),
+    // oklch(92% 0.008 250)
+    silverSubtle: CandiColor(
+      0XFFE1E5EA,
+      lightness: 0.92,
+      chroma: 0.008,
+      hue: 250,
+    ),
+    // oklch(82% 0.009 250)
+    silverSoft: CandiColor(
+      0XFFC0C5CA,
+      lightness: 0.82,
+      chroma: 0.009,
+      hue: 250,
+    ),
+    // oklch(65% 0.012 250)
+    silverStrong: CandiColor(
+      0XFF8A9096,
+      lightness: 0.65,
+      chroma: 0.012,
+      hue: 250,
+    ),
+    // oklch(60% 0.009 250)
+    silverOutline: CandiColor(
+      0XFF7C8185,
+      lightness: 0.6,
+      chroma: 0.009,
+      hue: 250,
+    ),
+    // oklch(0% 0 0)
+    onSilver: CandiColor(0XFF000000, lightness: 0, chroma: 0, hue: 0),
   );
 
   /// Dark mode palette with cool, muted tones.
@@ -1172,5 +1602,190 @@ abstract final class CandiColors {
       chroma: 0.01,
       hue: 85,
     ),
+    // oklch(70% 0.12 25)
+    red: CandiColor(0XFFDF7F78, lightness: 0.7, chroma: 0.12, hue: 25),
+    // oklch(40% 0.10 25)
+    redSubtle: CandiColor(0XFF742E2B, lightness: 0.4, chroma: 0.1, hue: 25),
+    // oklch(78% 0.11 25)
+    redSoft: CandiColor(0XFFF69B94, lightness: 0.78, chroma: 0.11, hue: 25),
+    // oklch(60% 0.13 25)
+    redStrong: CandiColor(0XFFC25D58, lightness: 0.6, chroma: 0.13, hue: 25),
+    // oklch(55% 0.11 25)
+    redOutline: CandiColor(0XFFA85550, lightness: 0.55, chroma: 0.11, hue: 25),
+    // oklch(0% 0 0)
+    onRed: CandiColor(0XFF000000, lightness: 0, chroma: 0, hue: 0),
+    // oklch(70% 0.10 250)
+    blue: CandiColor(0XFF6DA3DA, lightness: 0.7, chroma: 0.1, hue: 250),
+    // oklch(38% 0.08 250)
+    blueSubtle: CandiColor(0XFF1D456B, lightness: 0.38, chroma: 0.08, hue: 250),
+    // oklch(78% 0.09 250)
+    blueSoft: CandiColor(0XFF8BBCEF, lightness: 0.78, chroma: 0.09, hue: 250),
+    // oklch(60% 0.11 250)
+    blueStrong: CandiColor(0XFF4984BF, lightness: 0.6, chroma: 0.11, hue: 250),
+    // oklch(55% 0.09 250)
+    blueOutline: CandiColor(
+      0XFF4675A4,
+      lightness: 0.55,
+      chroma: 0.09,
+      hue: 250,
+    ),
+    // oklch(0% 0 0)
+    onBlue: CandiColor(0XFF000000, lightness: 0, chroma: 0, hue: 0),
+    // oklch(70% 0.10 145)
+    green: CandiColor(0XFF76AF77, lightness: 0.7, chroma: 0.1, hue: 145),
+    // oklch(40% 0.08 145)
+    greenSubtle: CandiColor(0XFF29532B, lightness: 0.4, chroma: 0.08, hue: 145),
+    // oklch(78% 0.09 145)
+    greenSoft: CandiColor(0XFF93C794, lightness: 0.78, chroma: 0.09, hue: 145),
+    // oklch(60% 0.11 145)
+    greenStrong: CandiColor(0XFF539156, lightness: 0.6, chroma: 0.11, hue: 145),
+    // oklch(55% 0.09 145)
+    greenOutline: CandiColor(
+      0XFF4E7F50,
+      lightness: 0.55,
+      chroma: 0.09,
+      hue: 145,
+    ),
+    // oklch(0% 0 0)
+    onGreen: CandiColor(0XFF000000, lightness: 0, chroma: 0, hue: 0),
+    // oklch(85% 0.12 90)
+    yellow: CandiColor(0XFFECCA6C, lightness: 0.85, chroma: 0.12, hue: 90),
+    // oklch(50% 0.10 90)
+    yellowSubtle: CandiColor(0XFF796006, lightness: 0.5, chroma: 0.1, hue: 90),
+    // oklch(90% 0.11 90)
+    yellowSoft: CandiColor(0XFFFADB86, lightness: 0.9, chroma: 0.11, hue: 90),
+    // oklch(75% 0.13 90)
+    yellowStrong: CandiColor(
+      0XFFCEAA3E,
+      lightness: 0.75,
+      chroma: 0.13,
+      hue: 90,
+    ),
+    // oklch(70% 0.11 90)
+    yellowOutline: CandiColor(
+      0XFFB99B46,
+      lightness: 0.7,
+      chroma: 0.11,
+      hue: 90,
+    ),
+    // oklch(0% 0 0)
+    onYellow: CandiColor(0XFF000000, lightness: 0, chroma: 0, hue: 0),
+    // oklch(70% 0.15 330)
+    magenta: CandiColor(0XFFD179CA, lightness: 0.7, chroma: 0.15, hue: 330),
+    // oklch(40% 0.12 330)
+    magentaSubtle: CandiColor(
+      0XFF6A2A66,
+      lightness: 0.4,
+      chroma: 0.12,
+      hue: 330,
+    ),
+    // oklch(78% 0.14 330)
+    magentaSoft: CandiColor(
+      0XFFE995E2,
+      lightness: 0.78,
+      chroma: 0.14,
+      hue: 330,
+    ),
+    // oklch(60% 0.17 330)
+    magentaStrong: CandiColor(
+      0XFFB654B0,
+      lightness: 0.6,
+      chroma: 0.17,
+      hue: 330,
+    ),
+    // oklch(55% 0.14 330)
+    magentaOutline: CandiColor(
+      0XFF9E4F98,
+      lightness: 0.55,
+      chroma: 0.14,
+      hue: 330,
+    ),
+    // oklch(0% 0 0)
+    onMagenta: CandiColor(0XFF000000, lightness: 0, chroma: 0, hue: 0),
+    // oklch(75% 0.08 200)
+    cyan: CandiColor(0XFF6CBEC2, lightness: 0.75, chroma: 0.08, hue: 200),
+    // oklch(45% 0.06 200)
+    cyanSubtle: CandiColor(0XFF255F62, lightness: 0.45, chroma: 0.06, hue: 200),
+    // oklch(82% 0.07 200)
+    cyanSoft: CandiColor(0XFF8DD2D6, lightness: 0.82, chroma: 0.07, hue: 200),
+    // oklch(65% 0.09 200)
+    cyanStrong: CandiColor(0XFF3EA0A5, lightness: 0.65, chroma: 0.09, hue: 200),
+    // oklch(60% 0.07 200)
+    cyanOutline: CandiColor(0XFF488D91, lightness: 0.6, chroma: 0.07, hue: 200),
+    // oklch(0% 0 0)
+    onCyan: CandiColor(0XFF000000, lightness: 0, chroma: 0, hue: 0),
+    // oklch(70% 0.08 175)
+    teal: CandiColor(0XFF65AF9C, lightness: 0.7, chroma: 0.08, hue: 175),
+    // oklch(40% 0.06 175)
+    tealSubtle: CandiColor(0XFF1D5246, lightness: 0.4, chroma: 0.06, hue: 175),
+    // oklch(78% 0.07 175)
+    tealSoft: CandiColor(0XFF87C7B5, lightness: 0.78, chroma: 0.07, hue: 175),
+    // oklch(60% 0.09 175)
+    tealStrong: CandiColor(0XFF3A927D, lightness: 0.6, chroma: 0.09, hue: 175),
+    // oklch(55% 0.07 175)
+    tealOutline: CandiColor(
+      0XFF407F6F,
+      lightness: 0.55,
+      chroma: 0.07,
+      hue: 175,
+    ),
+    // oklch(0% 0 0)
+    onTeal: CandiColor(0XFF000000, lightness: 0, chroma: 0, hue: 0),
+    // oklch(80% 0.10 0)
+    pink: CandiColor(0XFFF3A3BB, lightness: 0.8, chroma: 0.1, hue: 0),
+    // oklch(48% 0.08 0)
+    pinkSubtle: CandiColor(0XFF824A5C, lightness: 0.48, chroma: 0.08, hue: 0),
+    // oklch(85% 0.09 0)
+    pinkSoft: CandiColor(0XFFFFB5CB, lightness: 0.85, chroma: 0.09, hue: 0),
+    // oklch(70% 0.11 0)
+    pinkStrong: CandiColor(0XFFD6809C, lightness: 0.7, chroma: 0.11, hue: 0),
+    // oklch(65% 0.09 0)
+    pinkOutline: CandiColor(0XFFBD788D, lightness: 0.65, chroma: 0.09, hue: 0),
+    // oklch(0% 0 0)
+    onPink: CandiColor(0XFF000000, lightness: 0, chroma: 0, hue: 0),
+    // oklch(80% 0.10 70)
+    gold: CandiColor(0XFFE7B375, lightness: 0.8, chroma: 0.1, hue: 70),
+    // oklch(48% 0.08 70)
+    goldSubtle: CandiColor(0XFF7A5526, lightness: 0.48, chroma: 0.08, hue: 70),
+    // oklch(85% 0.09 70)
+    goldSoft: CandiColor(0XFFF4C48D, lightness: 0.85, chroma: 0.09, hue: 70),
+    // oklch(70% 0.11 70)
+    goldStrong: CandiColor(0XFFCA924C, lightness: 0.7, chroma: 0.11, hue: 70),
+    // oklch(65% 0.09 70)
+    goldOutline: CandiColor(0XFFB2854F, lightness: 0.65, chroma: 0.09, hue: 70),
+    // oklch(0% 0 0)
+    onGold: CandiColor(0XFF000000, lightness: 0, chroma: 0, hue: 0),
+    // oklch(60% 0.01 250)
+    silver: CandiColor(0XFF7C8186, lightness: 0.6, chroma: 0.01, hue: 250),
+    // oklch(35% 0.008 250)
+    silverSubtle: CandiColor(
+      0XFF373B3F,
+      lightness: 0.35,
+      chroma: 0.008,
+      hue: 250,
+    ),
+    // oklch(68% 0.009 250)
+    silverSoft: CandiColor(
+      0XFF94999E,
+      lightness: 0.68,
+      chroma: 0.009,
+      hue: 250,
+    ),
+    // oklch(50% 0.012 250)
+    silverStrong: CandiColor(
+      0XFF5E646A,
+      lightness: 0.5,
+      chroma: 0.012,
+      hue: 250,
+    ),
+    // oklch(45% 0.009 250)
+    silverOutline: CandiColor(
+      0XFF52565A,
+      lightness: 0.45,
+      chroma: 0.009,
+      hue: 250,
+    ),
+    // oklch(100% 0 0)
+    onSilver: CandiColor(0XFFFFFFFF, lightness: 1, chroma: 0, hue: 0),
   );
 }

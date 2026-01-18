@@ -8,6 +8,7 @@ A Dart package providing Scandinavian design system colors for Flutter applicati
 - **Dynamic Themes**: Predefined light and dark mode palettes.
 - **Zero Runtime Overhead**: OKLCH to sRGB conversion occurs at build-time.
 - **Compatibility**: Supports all platforms (iOS, Android, Web, etc.).
+- **123 Colors**: Including 60 primitive color tokens with variants.
 
 ## Installation
 
@@ -26,17 +27,39 @@ dependencies:
 ```dart
 import 'package:candi_colors/candi.dart';
 
-final theme = CandiColors.light;
+// Quick theming
+MaterialApp(
+  theme: CandiColors.light.toThemeData(),
+  darkTheme: CandiColors.dark.toThemeData(),
+);
 
-Widget build(BuildContext context) {
-  return Container(
-    color: theme.bg,
-    child: Text(
-      'Hygge Style',
-      style: TextStyle(color: theme.text),
-    ),
-  );
-}
+// Direct color access
+Container(color: CandiColors.light.surface);
+Text('Hello', style: TextStyle(color: CandiColors.dark.text));
+```
+
+## Primitive Colors
+
+10 color families with 6 variants each:
+
+| Family  | Base     | Subtle      | Soft      | Strong      | Outline      | On*      |
+|---------|----------|-------------|-----------|-------------|--------------|----------|
+| Red     | `red`    | `redSubtle` | `redSoft` | `redStrong` | `redOutline` | `onRed`  |
+| Blue    | `blue`   | `blueSubtle`| `blueSoft`| `blueStrong`| `blueOutline`| `onBlue` |
+| Green   | `green`  | etc.        |           |             |              |          |
+| Yellow  | `yellow` |             |           |             |              |          |
+| Magenta | `magenta`|             |           |             |              |          |
+| Cyan    | `cyan`   |             |           |             |              |          |
+| Teal    | `teal`   |             |           |             |              |          |
+| Pink    | `pink`   |             |           |             |              |          |
+| Gold    | `gold`   |             |           |             |              |          |
+| Silver  | `silver` |             |           |             |              |          |
+
+```dart
+// Use primitives directly
+Container(color: CandiColors.light.gold);
+Container(color: CandiColors.dark.cyanSubtle);
+Text('Alert', style: TextStyle(color: CandiColors.light.redStrong));
 ```
 
 ## The `CandiColor` Class

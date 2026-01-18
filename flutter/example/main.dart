@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:candi_colors/candi_colors.dart';
+import 'package:candi_colors/candi.dart';
 
 void main() {
   runApp(const MyApp());
@@ -177,6 +177,38 @@ class _MyAppState extends State<MyApp> {
                 ],
               ),
 
+              // Primitive Colors - NEW!
+              _buildSection(
+                'Primitive Colors',
+                palette,
+                [
+                  _ColorCard('red', palette.red),
+                  _ColorCard('blue', palette.blue),
+                  _ColorCard('green', palette.green),
+                  _ColorCard('yellow', palette.yellow),
+                  _ColorCard('magenta', palette.magenta),
+                  _ColorCard('cyan', palette.cyan),
+                  _ColorCard('teal', palette.teal),
+                  _ColorCard('pink', palette.pink),
+                  _ColorCard('gold', palette.gold),
+                  _ColorCard('silver', palette.silver),
+                ],
+              ),
+
+              // Primitive Color Variants (Example: Red)
+              _buildSection(
+                'Red Variants',
+                palette,
+                [
+                  _ColorCard('red', palette.red),
+                  _ColorCard('redSubtle', palette.redSubtle),
+                  _ColorCard('redSoft', palette.redSoft),
+                  _ColorCard('redStrong', palette.redStrong),
+                  _ColorCard('redOutline', palette.redOutline),
+                  _ColorCard('onRed', palette.onRed),
+                ],
+              ),
+
               const SizedBox(height: 32),
 
               // Example Buttons
@@ -314,20 +346,17 @@ class _ColorCard extends StatelessWidget {
                 Text(
                   'L: ${(color.lightness * 100).toStringAsFixed(0)}%',
                   style: TextStyle(
-                      fontSize: 10,
-                      color: textColor.withValues(alpha: 0.7)),
+                      fontSize: 10, color: textColor.withValues(alpha: 0.7)),
                 ),
                 Text(
                   'C: ${color.chroma.toStringAsFixed(3)}',
                   style: TextStyle(
-                      fontSize: 10,
-                      color: textColor.withValues(alpha: 0.7)),
+                      fontSize: 10, color: textColor.withValues(alpha: 0.7)),
                 ),
                 Text(
                   'H: ${color.hue.toStringAsFixed(0)}°',
                   style: TextStyle(
-                      fontSize: 10,
-                      color: textColor.withValues(alpha: 0.7)),
+                      fontSize: 10, color: textColor.withValues(alpha: 0.7)),
                 ),
               ],
             ),
