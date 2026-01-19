@@ -6,7 +6,7 @@
         "type": "git",
         "url": "https://github.com/wtasg/candi.git"
     },
-    "version": "0.0.32",
+    "version": "0.0.33",
     "publisher": "wtasg",
     "engines": {
         "vscode": "^1.0.0"

@@ -93,4 +93,23 @@ The theme uses these primitives for bracket pair colorization:
 
 ---
 
+## Language-Specific Syntax Highlighting
+
+The theme provides semantic token colors and granular token scopes for many languages:
+
+| Language | Semantic Tokens | Token Scopes |
+|----------|-----------------|--------------|
+| TypeScript/JavaScript | Classes, Interfaces, Enums, Namespaces | Types, Imports, Arrow Functions |
+| Python | Classes, Modules, Decorators | Builtins, Docstrings, `self` |
+| Rust | Macros, Namespaces, Lifetimes | Traits, `self`, Attributes |
+| Go | Namespaces | Packages, Builtins, Types |
+| HTML/XML | — | Tags, Attributes, Strings |
+| CSS/SASS | — | Properties, Values, Selectors |
+| JSX/TSX | Components | Attributes, Tags |
+| JSON/YAML | — | Keys, Values, Booleans |
+| Shell | — | Variables, Builtins |
+| SQL | — | Keywords, Table Names |
+
+---
+
 For more information, see the [Candi Documentation](https://github.com/wtasg/candi).

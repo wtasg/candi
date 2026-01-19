@@ -76,7 +76,7 @@ function generateTheme(name, type, palette) {
             "button.secondaryHoverBackground": palette['surface'],
 
             // Editor
-            "editor.background": palette['bg'],
+            "editor.background": type === 'light' ? palette['surface'] : palette['bg'],
             "editor.foreground": palette['text'],
             "editorLineNumber.foreground": palette['text-muted'],
             "editorLineNumber.activeForeground": palette['text'],
@@ -397,6 +397,39 @@ function generateTheme(name, type, palette) {
             "inlineChat.regionHighlight": palette['accent'] + "20",
         },
         "semanticHighlighting": true,
+        "semanticTokenColors": {
+            // TypeScript/JavaScript
+            "class:typescript": palette['syntax-type'],
+            "interface:typescript": palette['syntax-type'],
+            "enum:typescript": palette['syntax-type'],
+            "enumMember:typescript": palette['syntax-const'],
+            "namespace:typescript": palette['secondary'],
+            "variable.defaultLibrary:typescript": palette['syntax-const'],
+            "property.defaultLibrary:typescript": palette['syntax-const'],
+            "class:typescriptreact": palette['syntax-type'],
+            "interface:typescriptreact": palette['syntax-type'],
+            "enum:typescriptreact": palette['syntax-type'],
+            "enumMember:typescriptreact": palette['syntax-const'],
+            "namespace:typescriptreact": palette['secondary'],
+            "variable.defaultLibrary:typescriptreact": palette['syntax-const'],
+            "property.defaultLibrary:typescriptreact": palette['syntax-const'],
+            "variable.defaultLibrary:javascript": palette['syntax-const'],
+            "property.defaultLibrary:javascript": palette['syntax-const'],
+            "variable.defaultLibrary:javascriptreact": palette['syntax-const'],
+            "property.defaultLibrary:javascriptreact": palette['syntax-const'],
+            // Python
+            "intrinsic:python": palette['syntax-const'],
+            "module:python": palette['secondary'],
+            "class:python": palette['syntax-type'],
+            "decorator:python": palette['secondary'],
+            // Rust
+            "macro:rust": palette['syntax-func'],
+            "namespace:rust": palette['secondary'],
+            "selfKeyword:rust": palette['syntax-keyword'],
+            "lifetime:rust": palette['secondary'],
+            // Go
+            "namespace:go": palette['secondary'],
+        },
         "tokenColors": [
             {
                 "scope": ["comment", "punctuation.definition.comment"],
@@ -625,6 +658,246 @@ function generateTheme(name, type, palette) {
             {
                 "scope": ["meta.diff.header.to-file"],
                 "settings": { "foreground": palette['success'] }
+            },
+            // HTML/XML specific
+            {
+                "scope": ["entity.name.tag.html", "entity.name.tag.xml", "entity.name.tag.localname.xml"],
+                "settings": { "foreground": palette['accent'] }
+            },
+            {
+                "scope": ["entity.other.attribute-name.html", "entity.other.attribute-name.xml", "entity.other.attribute-name.localname.xml"],
+                "settings": { "foreground": palette['secondary'] }
+            },
+            {
+                "scope": ["string.quoted.double.html", "string.quoted.single.html", "punctuation.definition.string.begin.html", "punctuation.definition.string.end.html"],
+                "settings": { "foreground": palette['syntax-string'] }
+            },
+            {
+                "scope": ["punctuation.definition.tag.begin.html", "punctuation.definition.tag.end.html", "punctuation.definition.tag.xml"],
+                "settings": { "foreground": palette['text-muted'] }
+            },
+            // CSS specific
+            {
+                "scope": ["entity.other.attribute-name.class.css", "entity.other.attribute-name.id.css"],
+                "settings": { "foreground": palette['accent'] }
+            },
+            {
+                "scope": ["support.type.property-name.css", "meta.property-name.css"],
+                "settings": { "foreground": palette['syntax-var'] }
+            },
+            {
+                "scope": ["support.constant.property-value.css", "meta.property-value.css", "constant.numeric.css"],
+                "settings": { "foreground": palette['syntax-const'] }
+            },
+            {
+                "scope": ["keyword.other.unit.css", "keyword.other.unit"],
+                "settings": { "foreground": palette['secondary'] }
+            },
+            {
+                "scope": ["entity.other.attribute-name.pseudo-class.css", "entity.other.attribute-name.pseudo-element.css"],
+                "settings": { "foreground": palette['syntax-func'] }
+            },
+            {
+                "scope": ["entity.name.tag.css"],
+                "settings": { "foreground": palette['syntax-type'] }
+            },
+            {
+                "scope": ["punctuation.definition.entity.css", "punctuation.separator.key-value.css", "punctuation.terminator.rule.css"],
+                "settings": { "foreground": palette['text-muted'] }
+            },
+            // SASS/SCSS specific
+            {
+                "scope": ["keyword.control.at-rule.include.scss", "keyword.control.at-rule.mixin.scss", "keyword.control.at-rule.extend.scss", "keyword.control.at-rule.import.scss", "keyword.control.at-rule.use.scss"],
+                "settings": { "foreground": palette['syntax-keyword'] }
+            },
+            {
+                "scope": ["variable.scss", "variable.sass"],
+                "settings": { "foreground": palette['syntax-var'] }
+            },
+            // JavaScript specific
+            {
+                "scope": ["storage.type.js", "storage.type.function.arrow.js"],
+                "settings": { "foreground": palette['accent'] }
+            },
+            {
+                "scope": ["punctuation.accessor.js", "keyword.operator.accessor.js"],
+                "settings": { "foreground": palette['text-muted'] }
+            },
+            {
+                "scope": ["punctuation.definition.block.tag.jsdoc"],
+                "settings": { "foreground": palette['secondary'] }
+            },
+            // JSX specific
+            {
+                "scope": ["entity.name.tag.js.jsx", "support.class.component.jsx", "support.class.component.js.jsx"],
+                "settings": { "foreground": palette['syntax-type'] }
+            },
+            {
+                "scope": ["entity.other.attribute-name.jsx", "entity.other.attribute-name.js.jsx"],
+                "settings": { "foreground": palette['secondary'] }
+            },
+            {
+                "scope": ["punctuation.definition.tag.jsx", "punctuation.definition.tag.begin.js.jsx", "punctuation.definition.tag.end.js.jsx"],
+                "settings": { "foreground": palette['text-muted'] }
+            },
+            // TypeScript specific
+            {
+                "scope": ["storage.type.ts", "storage.type.function.arrow.ts", "storage.type.type.ts"],
+                "settings": { "foreground": palette['accent'] }
+            },
+            {
+                "scope": ["entity.name.type.ts", "entity.name.type.interface.ts", "entity.name.type.alias.ts", "entity.name.type.class.ts", "entity.name.type.enum.ts"],
+                "settings": { "foreground": palette['syntax-type'] }
+            },
+            {
+                "scope": ["keyword.control.import.ts", "keyword.control.export.ts", "storage.type.namespace.ts"],
+                "settings": { "foreground": palette['syntax-keyword'] }
+            },
+            {
+                "scope": ["keyword.operator.type.annotation.ts", "punctuation.accessor.ts"],
+                "settings": { "foreground": palette['text-muted'] }
+            },
+            // TSX specific
+            {
+                "scope": ["entity.name.tag.tsx", "support.class.component.tsx"],
+                "settings": { "foreground": palette['syntax-type'] }
+            },
+            {
+                "scope": ["entity.other.attribute-name.tsx"],
+                "settings": { "foreground": palette['secondary'] }
+            },
+            {
+                "scope": ["storage.type.tsx", "storage.type.function.arrow.tsx", "storage.type.type.tsx"],
+                "settings": { "foreground": palette['accent'] }
+            },
+            {
+                "scope": ["entity.name.type.tsx", "entity.name.type.interface.tsx", "entity.name.type.alias.tsx"],
+                "settings": { "foreground": palette['syntax-type'] }
+            },
+            // Python specific
+            {
+                "scope": ["entity.name.function.decorator.python", "punctuation.definition.decorator.python"],
+                "settings": { "foreground": palette['secondary'] }
+            },
+            {
+                "scope": ["support.function.builtin.python", "support.type.python"],
+                "settings": { "foreground": palette['syntax-func'] }
+            },
+            {
+                "scope": ["constant.language.python", "variable.language.special.self.python"],
+                "settings": { "foreground": palette['syntax-keyword'] }
+            },
+            {
+                "scope": ["string.quoted.docstring.multi.python", "string.quoted.docstring.raw.multi.python"],
+                "settings": { "foreground": palette['text-subtle'], "fontStyle": "italic" }
+            },
+            {
+                "scope": ["meta.function-call.generic.python"],
+                "settings": { "foreground": palette['syntax-func'] }
+            },
+            // Go specific
+            {
+                "scope": ["keyword.package.go", "keyword.import.go"],
+                "settings": { "foreground": palette['syntax-keyword'] }
+            },
+            {
+                "scope": ["entity.name.package.go"],
+                "settings": { "foreground": palette['secondary'] }
+            },
+            {
+                "scope": ["support.function.builtin.go"],
+                "settings": { "foreground": palette['syntax-func'] }
+            },
+            {
+                "scope": ["keyword.type.go", "storage.type.go"],
+                "settings": { "foreground": palette['syntax-type'] }
+            },
+            // Rust specific
+            {
+                "scope": ["entity.name.function.macro.rust", "meta.macro.rust"],
+                "settings": { "foreground": palette['syntax-func'] }
+            },
+            {
+                "scope": ["keyword.other.crate.rust", "keyword.other.mod.rust", "keyword.other.use.rust"],
+                "settings": { "foreground": palette['syntax-keyword'] }
+            },
+            {
+                "scope": ["storage.type.rust", "entity.name.type.rust"],
+                "settings": { "foreground": palette['syntax-type'] }
+            },
+            {
+                "scope": ["variable.language.self.rust"],
+                "settings": { "foreground": palette['syntax-keyword'] }
+            },
+            {
+                "scope": ["storage.modifier.lifetime.rust", "entity.name.lifetime.rust", "punctuation.definition.lifetime.rust"],
+                "settings": { "foreground": palette['secondary'] }
+            },
+            {
+                "scope": ["meta.attribute.rust"],
+                "settings": { "foreground": palette['text-subtle'] }
+            },
+            // JSON specific
+            {
+                "scope": ["support.type.property-name.json"],
+                "settings": { "foreground": palette['accent'] }
+            },
+            {
+                "scope": ["string.quoted.double.json"],
+                "settings": { "foreground": palette['syntax-string'] }
+            },
+            {
+                "scope": ["constant.language.json"],
+                "settings": { "foreground": palette['syntax-const'] }
+            },
+            // YAML specific
+            {
+                "scope": ["entity.name.tag.yaml"],
+                "settings": { "foreground": palette['accent'] }
+            },
+            {
+                "scope": ["string.unquoted.plain.out.yaml", "string.quoted.single.yaml", "string.quoted.double.yaml"],
+                "settings": { "foreground": palette['syntax-string'] }
+            },
+            {
+                "scope": ["constant.language.boolean.yaml", "constant.language.null.yaml"],
+                "settings": { "foreground": palette['syntax-const'] }
+            },
+            // Shell/Bash specific
+            {
+                "scope": ["variable.other.normal.shell", "variable.other.positional.shell", "variable.other.special.shell"],
+                "settings": { "foreground": palette['syntax-var'] }
+            },
+            {
+                "scope": ["keyword.control.shell", "keyword.operator.logical.shell"],
+                "settings": { "foreground": palette['syntax-keyword'] }
+            },
+            {
+                "scope": ["support.function.builtin.shell"],
+                "settings": { "foreground": palette['syntax-func'] }
+            },
+            // SQL specific
+            {
+                "scope": ["keyword.other.DML.sql", "keyword.other.DDL.sql", "keyword.other.sql"],
+                "settings": { "foreground": palette['syntax-keyword'] }
+            },
+            {
+                "scope": ["constant.other.database-name.sql", "constant.other.table-name.sql"],
+                "settings": { "foreground": palette['syntax-type'] }
+            },
+            // Dockerfile specific
+            {
+                "scope": ["keyword.other.special-method.dockerfile"],
+                "settings": { "foreground": palette['syntax-keyword'], "fontStyle": "bold" }
+            },
+            // GraphQL specific
+            {
+                "scope": ["keyword.type.graphql", "support.type.graphql"],
+                "settings": { "foreground": palette['syntax-type'] }
+            },
+            {
+                "scope": ["variable.graphql", "variable.arguments.graphql"],
+                "settings": { "foreground": palette['syntax-var'] }
             }
         ]
     };

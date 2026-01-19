@@ -2,6 +2,19 @@
 
 All notable changes to the Candi Design System will be documented in this file.
 
+## 0.0.33
+
+### Added
+
+- **VS Code Language-Specific Syntax Highlighting**:
+  - Semantic token colors for TypeScript, JavaScript, Python, Rust, Go
+  - 55+ new token scopes for HTML, CSS, JS/TS, JSX/TSX, Python, Go, Rust, JSON, YAML, Shell, SQL, Dockerfile, GraphQL
+  - Theme file coverage expanded from ~47 to 100+ token scopes
+
+### Fixed
+
+- **VS Code Light Theme**: Editor background now uses `surface` token for warmer, subtler tone
+
 ## 0.0.32
 
 ### Added

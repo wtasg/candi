@@ -52,4 +52,15 @@ npm run build:vscode
 > [!NOTE]
 > The Light Theme uses a refined background strategy where the `editor.background` uses the `surface` token for a subtler, muted feel, while the sidebar uses the `bg` token.
 
+## Semantic Highlighting
+
+The theme provides language-aware semantic highlighting for:
+
+- **TypeScript/JavaScript**: Classes, interfaces, enums, namespaces
+- **Python**: Modules, classes, decorators, intrinsics
+- **Rust**: Macros, namespaces, lifetimes, `self` keyword
+- **Go**: Namespaces, packages
+
+Additional token scopes cover: HTML, CSS, SASS, JSX/TSX, JSON, YAML, Shell, SQL, Dockerfile, and GraphQL.
+
 Theme files are generated in `vscode/themes/`.
