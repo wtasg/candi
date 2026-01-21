@@ -39,9 +39,15 @@ function testExtension() {
         assert.equal(darkTheme.type, 'dark');
 
         // Check key UI colors from base.css (verified hex values)
-        assert.equal(darkTheme.colors['editor.background'], '#0D1218');
-        assert.equal(darkTheme.colors['editorCursor.foreground'], '#6993BE');
-        assert.equal(darkTheme.colors['activityBar.activeBorder'], '#6993BE');
+        const bg = darkTheme.colors['editor.background'].toUpperCase();
+        const cursor = darkTheme.colors['editorCursor.foreground'].toUpperCase();
+        const border = darkTheme.colors['activityBar.activeBorder'].toUpperCase();
+
+        console.log(`DEBUG_VSCODE: bg='${bg}', cursor='${cursor}', border='${border}'`);
+
+        assert.equal(bg, '#1C2229');
+        assert.equal(cursor, '#78A3CF');
+        assert.equal(border, '#78A3CF');
 
         // Deep Dive Check: Diff Editor (palette['success'] + "15") - roughly #SuccessHex + opacity
         // Just checking existence to avoid fragile hex opacity math in test

@@ -18,20 +18,20 @@ const logger = require('./logger');
 // =============================================================================
 const ANCHORS = {
     light: {
-        accent: 'oklch(52% 0.08 250)',    // Muted Identity
-        secondary: 'oklch(60% 0.07 15)',  // Muted Companion
-        success: 'oklch(50% 0.06 145)',   // Muted Moss
-        warning: 'oklch(60% 0.07 75)',    // Muted Ochre
-        error: 'oklch(50% 0.08 25)',      // Muted Brick
-        info: 'oklch(50% 0.06 225)',      // Muted Slate
+        accent: 'oklch(45% 0.08 250)',    // Muted Identity
+        secondary: 'oklch(50% 0.07 15)',  // Muted Companion
+        success: 'oklch(45% 0.06 145)',   // Muted Moss
+        warning: 'oklch(50% 0.07 75)',    // Muted Ochre
+        error: 'oklch(45% 0.08 25)',      // Muted Brick
+        info: 'oklch(45% 0.06 225)',      // Muted Slate
     },
     dark: {
-        accent: 'oklch(65% 0.08 250)',    // Muted Identity
-        secondary: 'oklch(70% 0.07 15)',  // Muted Companion
-        success: 'oklch(75% 0.06 145)',   // Muted Moss
-        warning: 'oklch(80% 0.07 75)',    // Muted Ochre
-        error: 'oklch(75% 0.08 25)',      // Muted Brick
-        info: 'oklch(75% 0.06 225)',      // Muted Slate
+        accent: 'oklch(70% 0.08 250)',    // Muted Identity
+        secondary: 'oklch(75% 0.07 15)',  // Muted Companion
+        success: 'oklch(80% 0.06 145)',   // Muted Moss
+        warning: 'oklch(85% 0.07 75)',    // Muted Ochre
+        error: 'oklch(80% 0.08 25)',      // Muted Brick
+        info: 'oklch(80% 0.06 225)',      // Muted Slate
     }
 };
 
@@ -45,7 +45,9 @@ const ANCHORS = {
 const VARIANTS_LIGHT = {
     subtle: { dl: +0.33, dc: 0.60 },
     soft: { dl: +0.10, dc: 0.80 },
+    warm: { dl: +0.15, dc: 0.85 },
     base: { dl: 0, dc: 1.00 },
+    hot: { dl: -0.05, dc: 1.15 },
     strong: { dl: -0.10, dc: 1.10 },
     outline: { dl: -0.15, dc: 0.70 },
 };
@@ -54,7 +56,9 @@ const VARIANTS_LIGHT = {
 const VARIANTS_DARK = {
     subtle: { dl: -0.27, dc: 0.60 },
     soft: { dl: +0.10, dc: 0.80 },
+    warm: { dl: -0.15, dc: 0.85 },
     base: { dl: 0, dc: 1.00 },
+    hot: { dl: -0.05, dc: 1.15 },
     strong: { dl: -0.10, dc: 1.10 },
     outline: { dl: -0.15, dc: 0.70 },
 };

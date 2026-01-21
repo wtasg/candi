@@ -18,9 +18,9 @@ export default function Colors() {
       title: 'Derived Variants',
       description: 'Programmatically generated variants (Subtle, Soft, Strong, Outline) enforcing strict offsets and gamut correction.',
       keys: [
-        'accentSubtle', 'accentSoft', 'accentStrong', 'accentOutline', 'onAccent',
-        'secondarySubtle', 'secondarySoft', 'secondaryStrong', 'secondaryOutline', 'onSecondary',
-        'warningSubtle', 'warningSoft', 'warningStrong', 'warningOutline', 'onWarning'
+        'accentSubtle', 'accentSoft', 'accentWarm', 'accentHot', 'accentStrong', 'accentOutline', 'onAccent',
+        'secondarySubtle', 'secondarySoft', 'secondaryWarm', 'secondaryHot', 'secondaryStrong', 'secondaryOutline', 'onSecondary',
+        'warningSubtle', 'warningSoft', 'warningWarm', 'warningHot', 'warningStrong', 'warningOutline', 'onWarning'
       ]
     },
     {
@@ -42,8 +42,8 @@ export default function Colors() {
       title: 'Primitive Colors',
       description: 'Pure color primitives with Tailwind-like variations for creative flexibility.',
       keys: [
-        'red', 'redSubtle', 'redSoft', 'redStrong', 'redOutline', 'onRed',
-        'blue', 'blueSubtle', 'blueSoft', 'blueStrong', 'blueOutline', 'onBlue',
+        'red', 'redSubtle', 'redSoft', 'redWarm', 'redHot', 'redStrong', 'redOutline', 'onRed',
+        'blue', 'blueSubtle', 'blueSoft', 'blueWarm', 'blueHot', 'blueStrong', 'blueOutline', 'onBlue',
         'green', 'greenSubtle', 'greenSoft', 'greenStrong', 'greenOutline', 'onGreen',
         'yellow', 'yellowSubtle', 'yellowSoft', 'yellowStrong', 'yellowOutline', 'onYellow',
         'magenta', 'magentaSubtle', 'magentaSoft', 'magentaStrong', 'magentaOutline', 'onMagenta',

@@ -70,7 +70,7 @@ function testKdeTheme() {
         assert.ok(darkBg, 'Window background should have valid RGB format');
 
         // Dark theme background should have low RGB values (dark colors)
-        assert.ok(darkBg.r < 50 && darkBg.g < 50 && darkBg.b < 50,
+        assert.ok(darkBg.r < 80 && darkBg.g < 80 && darkBg.b < 80,
             `Dark theme background should have low RGB values (got ${darkBg.r},${darkBg.g},${darkBg.b})`);
 
         // Validate ForegroundNormal has valid RGB format
@@ -108,9 +108,9 @@ function testKdeTheme() {
         const lightBg = extractRgb(lightContent, 'BackgroundNormal');
         assert.ok(lightBg, 'Light theme background should have valid RGB format');
 
-        // Light theme background should have high RGB values (light colors)
-        assert.ok(lightBg.r > 200 && lightBg.g > 200 && lightBg.b > 200,
-            `Light theme background should have high RGB values (got ${lightBg.r},${lightBg.g},${lightBg.b})`);
+        // Light theme background should have moderate RGB values for 75% L (Lagom)
+        assert.ok(lightBg.r > 150 && lightBg.g > 150 && lightBg.b > 150,
+            `Light theme background should have moderate RGB values (got ${lightBg.r},${lightBg.g},${lightBg.b})`);
 
         const lightFg = extractRgb(lightContent, 'ForegroundNormal');
         assert.ok(lightFg, 'Light theme foreground should have valid RGB format');
@@ -118,7 +118,7 @@ function testKdeTheme() {
         // Light theme foreground should have lower values than background (readable contrast)
         const lightBgLuminance = (lightBg.r + lightBg.g + lightBg.b) / 3;
         const lightFgLuminance = (lightFg.r + lightFg.g + lightFg.b) / 3;
-        assert.ok(lightBgLuminance > lightFgLuminance + 100,
+        assert.ok(lightBgLuminance > lightFgLuminance + 70,
             `Light theme background should be significantly lighter than foreground for contrast`);
 
         logger.log('[✓] Light theme color format and semantics verified');

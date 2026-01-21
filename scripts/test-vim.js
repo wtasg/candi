@@ -37,14 +37,16 @@ function testVimTheme() {
         const normalLine = darkContent.split('\n').find(line => line.startsWith('hi Normal'));
         assert.ok(normalLine, 'Should have Normal highlight group');
 
-        const guifg = normalLine.match(/guifg=(#[0-9A-Fa-f]+)/)[1];
-        const guibg = normalLine.match(/guibg=(#[0-9A-Fa-f]+)/)[1];
+        const guifg = normalLine.match(/guifg=(#[0-9A-Fa-f]+)/)[1].toUpperCase();
+        const guibg = normalLine.match(/guibg=(#[0-9A-Fa-f]+)/)[1].toUpperCase();
 
-        assert.equal(guifg.toUpperCase(), '#E0E5EB', 'Normal foreground mismatch');
-        assert.equal(guibg.toUpperCase(), '#0D1218', 'Normal background mismatch');
-        assert.ok(darkContent.includes('hi CursorLine') && darkContent.includes('guibg=#161B20'), 'CursorLine mapping mismatch');
+        console.log(`DEBUG_VIM_DARK: guifg='${guifg}', guibg='${guibg}'`);
+
+        assert.equal(guifg, '#C9CED4', 'Normal foreground mismatch');
+        assert.equal(guibg, '#1C2229', 'Normal background mismatch');
+        assert.ok(darkContent.includes('hi CursorLine') && darkContent.includes('guibg=#292E34'), 'CursorLine mapping mismatch');
         assert.ok(darkContent.includes('hi Function') && darkContent.includes('guifg=#3D98D1'), 'Function mapping mismatch');
-        assert.ok(darkContent.includes('hi StatusLine') && darkContent.includes('guifg=#E0E5EB') && darkContent.includes('guibg=#2E445B'), 'StatusLine mapping mismatch');
+        assert.ok(darkContent.includes('hi StatusLine') && darkContent.includes('guifg=#C9CED4') && darkContent.includes('guibg=#3B5269'), 'StatusLine mapping mismatch');
 
         // Check terminal colors are present
         assert.ok(darkContent.includes('ctermfg=') && darkContent.includes('ctermbg='), 'Terminal colors should be present');
@@ -55,11 +57,11 @@ function testVimTheme() {
         const lightContent = fs.readFileSync(lightThemePath, 'utf8');
         assert.ok(lightContent.includes('let g:colors_name = "candi-light"'), 'Should set colors_name');
         assert.ok(lightContent.includes('set background=light'), 'Should set background');
-        assert.ok(lightContent.includes('hi Normal') && lightContent.includes('guifg=#2D2821') && lightContent.includes('guibg=#F9F7F4'), 'Light Normal highlight mapping mismatch');
-        assert.ok(lightContent.includes('hi StatusLine') && lightContent.includes('guifg=#FFFFFF') && lightContent.includes('guibg=#446C95'), 'Light StatusLine mapping mismatch');
-        assert.ok(lightContent.includes('hi User1') && lightContent.includes('guifg=#FFFFFF') && lightContent.includes('guibg=#446C95'), 'Light User1 mapping mismatch');
-        assert.ok(lightContent.includes('hi Airlinea') && lightContent.includes('guifg=#FFFFFF') && lightContent.includes('guibg=#446C95'), 'Light Airlinea mapping mismatch');
-        assert.ok(lightContent.includes('hi Airlineb') && lightContent.includes('guifg=#2D2821') && lightContent.includes('guibg=#F4F0E9'), 'Light Airlineb mapping mismatch');
+        assert.ok(lightContent.includes('hi Normal') && lightContent.includes('guifg=#0E0A05') && lightContent.includes('guibg=#B1ADA7'), 'Light Normal highlight mapping mismatch');
+        assert.ok(lightContent.includes('hi StatusLine') && lightContent.includes('guifg=#FFFFFF') && lightContent.includes('guibg=#305880'), 'Light StatusLine mapping mismatch');
+        assert.ok(lightContent.includes('hi User1') && lightContent.includes('guifg=#FFFFFF') && lightContent.includes('guibg=#305880'), 'Light User1 mapping mismatch');
+        assert.ok(lightContent.includes('hi Airlinea') && lightContent.includes('guifg=#FFFFFF') && lightContent.includes('guibg=#305880'), 'Light Airlinea mapping mismatch');
+        assert.ok(lightContent.includes('hi Airlineb') && lightContent.includes('guifg=#0E0A05') && lightContent.includes('guibg=#C1BDB7'), 'Light Airlineb mapping mismatch');
 
         if (logger.isVerbose) {
             logger.log('[✓] Light theme mappings verified');

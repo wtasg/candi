@@ -113,6 +113,16 @@ export default function ComponentShowcase() {
           <div className="mt-4">
             <Button disabled>Disabled Button</Button>
           </div>
+          <Divider className="my-6" />
+          <h3 className="text-sm font-semibold mb-3">Warm & Hot Variants (New)</h3>
+          <div className="flex flex-wrap gap-4">
+            <Button variant="primary-warm">Primary Warm</Button>
+            <Button variant="primary-hot">Primary Hot</Button>
+            <Button variant="secondary-warm">Secondary Warm</Button>
+            <Button variant="secondary-hot">Secondary Hot</Button>
+            <Button variant="success-warm">Success Warm</Button>
+            <Button variant="success-hot">Success Hot</Button>
+          </div>
         </Card>
       </section>
 

@@ -1,6 +1,6 @@
 {
     "name": "@wtasnorg/candi",
-    "version": "0.0.33",
+    "version": "0.0.34",
     "description": "A Tailwind CSS theme inspired by Nordic/Scandinavian Hygge & Lagom design principles",
     "keywords": [
         "tailwindcss",
@@ -100,7 +100,9 @@
         "lint:md": "markdownlint-cli2 \"**/*.md\" \"!node_modules\" \"!website/node_modules\" \"!**/.dart_tool\"",
         "lint:md:fix": "markdownlint-cli2 --fix \"**/*.md\" \"!node_modules\" \"!website/node_modules\"",
         "lint:all": "echo 'Linting Tokens...' && npm run lint:tokens -s && echo 'Linting Dart...' && npm run lint:dart -s && echo 'Linting Markdown...' && npm run lint:md -s",
-        "install:local": "bash scripts/install-local.sh"
+        "install:local": "bash scripts/install-local.sh",
+        "prepublish:all": "npm run build:all && npm run test:all && npm run lint:all && npm run artifact",
+        "publish:gh": "npm run prepublish:all && cd website && npm run build && npx gh-pages -d dist"
     },
     "peerDependencies": {
         "tailwindcss": ">=3.0.0 || >=4.0.0"

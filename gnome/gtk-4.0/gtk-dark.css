@@ -10,29 +10,29 @@
  */
 
 /* Color Definitions */
-@define-color theme_bg_color rgb(13, 18, 24);
-@define-color theme_fg_color rgb(224, 229, 235);
-@define-color theme_base_color rgb(28, 34, 41);
-@define-color theme_text_color rgb(224, 229, 235);
-@define-color theme_selected_bg_color rgb(105, 147, 190);
-@define-color theme_selected_fg_color rgb(28, 34, 41);
+@define-color theme_bg_color rgb(28, 34, 41);
+@define-color theme_fg_color rgb(201, 206, 212);
+@define-color theme_base_color rgb(53, 59, 66);
+@define-color theme_text_color rgb(201, 206, 212);
+@define-color theme_selected_bg_color rgb(120, 163, 207);
+@define-color theme_selected_fg_color rgb(53, 59, 66);
 
-@define-color borders rgb(55, 59, 64);
-@define-color warning_color rgb(217, 184, 139);
-@define-color error_color rgb(220, 154, 148);
-@define-color success_color rgb(151, 185, 151);
+@define-color borders rgb(68, 72, 77);
+@define-color warning_color rgb(233, 200, 155);
+@define-color error_color rgb(237, 170, 164);
+@define-color success_color rgb(166, 201, 166);
 
 @define-color link_color rgb(105, 147, 190);
-@define-color theme_unfocused_fg_color rgb(131, 135, 139);
-@define-color theme_unfocused_bg_color rgb(22, 27, 32);
-@define-color theme_unfocused_base_color rgb(22, 27, 32);
-@define-color theme_unfocused_text_color rgb(169, 175, 180);
-@define-color theme_unfocused_selected_bg_color rgb(46, 68, 91);
-@define-color theme_unfocused_selected_fg_color rgb(169, 175, 180);
+@define-color theme_unfocused_fg_color rgb(125, 129, 133);
+@define-color theme_unfocused_bg_color rgb(41, 46, 52);
+@define-color theme_unfocused_base_color rgb(41, 46, 52);
+@define-color theme_unfocused_text_color rgb(154, 159, 165);
+@define-color theme_unfocused_selected_bg_color rgb(59, 82, 105);
+@define-color theme_unfocused_selected_fg_color rgb(154, 159, 165);
 
-@define-color insensitive_bg_color rgb(22, 27, 32);
+@define-color insensitive_bg_color rgb(41, 46, 52);
 @define-color insensitive_fg_color rgb(83, 85, 88);
-@define-color insensitive_base_color rgb(22, 27, 32);
+@define-color insensitive_base_color rgb(41, 46, 52);
 
 /* Primitive Colors (Candi Design System) */
 @define-color candi_red rgb(223, 127, 120);
@@ -54,15 +54,15 @@
 
 window,
 .background {
-    background-color: rgb(13, 18, 24);
-    color: rgb(224, 229, 235);
+    background-color: rgb(28, 34, 41);
+    color: rgb(201, 206, 212);
 }
 
 .view,
 textview text,
 iconview {
-    background-color: rgb(28, 34, 41);
-    color: rgb(224, 229, 235);
+    background-color: rgb(53, 59, 66);
+    color: rgb(201, 206, 212);
 }
 
 .view:selected,
@@ -71,65 +71,65 @@ textview text:selected,
 textview text:selected:focus,
 iconview:selected,
 iconview:selected:focus {
-    background-color: rgb(105, 147, 190);
-    color: rgb(28, 34, 41);
+    background-color: rgb(120, 163, 207);
+    color: rgb(53, 59, 66);
 }
 
 /* Headers and Titlebars */
 headerbar,
 .titlebar {
-    background-color: rgb(22, 27, 32);
-    color: rgb(224, 229, 235);
-    border-bottom: 1px solid rgb(55, 59, 64);
+    background-color: rgb(41, 46, 52);
+    color: rgb(201, 206, 212);
+    border-bottom: 1px solid rgb(68, 72, 77);
 }
 
 headerbar:backdrop,
 .titlebar:backdrop {
-    background-color: rgb(22, 27, 32);
-    color: rgb(131, 135, 139);
+    background-color: rgb(41, 46, 52);
+    color: rgb(125, 129, 133);
 }
 
 /* Buttons */
 button {
-    background-color: rgb(28, 34, 41);
-    color: rgb(224, 229, 235);
-    border: 1px solid rgb(55, 59, 64);
+    background-color: rgb(53, 59, 66);
+    color: rgb(201, 206, 212);
+    border: 1px solid rgb(68, 72, 77);
     border-radius: 3px;
     padding: 6px 12px;
 }
 
 button:hover {
-    background-color: rgb(22, 27, 32);
-    border-color: rgb(105, 147, 190);
+    background-color: rgb(41, 46, 52);
+    border-color: rgb(120, 163, 207);
 }
 
 button:active,
 button:checked {
-    background-color: rgb(105, 147, 190);
-    color: rgb(28, 34, 41);
-    border-color: rgb(105, 147, 190);
+    background-color: rgb(120, 163, 207);
+    color: rgb(53, 59, 66);
+    border-color: rgb(120, 163, 207);
 }
 
 button:disabled {
-    background-color: rgb(22, 27, 32);
+    background-color: rgb(41, 46, 52);
     color: rgb(83, 85, 88);
-    border-color: rgb(55, 59, 64);
+    border-color: rgb(68, 72, 77);
 }
 
 button.suggested-action {
-    background-color: rgb(105, 147, 190);
-    color: rgb(28, 34, 41);
-    border-color: rgb(105, 147, 190);
+    background-color: rgb(120, 163, 207);
+    color: rgb(53, 59, 66);
+    border-color: rgb(120, 163, 207);
 }
 
 button.suggested-action:hover {
-    background-color: rgb(46, 68, 91);
+    background-color: rgb(59, 82, 105);
 }
 
 button.destructive-action {
-    background-color: rgb(220, 154, 148);
-    color: rgb(28, 34, 41);
-    border-color: rgb(220, 154, 148);
+    background-color: rgb(237, 170, 164);
+    color: rgb(53, 59, 66);
+    border-color: rgb(237, 170, 164);
 }
 
 button.destructive-action:hover {
@@ -138,77 +138,77 @@ button.destructive-action:hover {
 
 /* Entry Fields */
 entry {
-    background-color: rgb(28, 34, 41);
-    color: rgb(224, 229, 235);
-    border: 1px solid rgb(55, 59, 64);
+    background-color: rgb(53, 59, 66);
+    color: rgb(201, 206, 212);
+    border: 1px solid rgb(68, 72, 77);
     border-radius: 3px;
     padding: 6px;
 }
 
 entry:focus {
-    border-color: rgb(105, 147, 190);
-    box-shadow: 0 0 0 2px rgb(46, 68, 91);
+    border-color: rgb(120, 163, 207);
+    box-shadow: 0 0 0 2px rgb(59, 82, 105);
 }
 
 entry:disabled {
-    background-color: rgb(22, 27, 32);
+    background-color: rgb(41, 46, 52);
     color: rgb(83, 85, 88);
 }
 
 entry.error {
-    border-color: rgb(220, 154, 148);
+    border-color: rgb(237, 170, 164);
 }
 
 entry.warning {
-    border-color: rgb(217, 184, 139);
+    border-color: rgb(233, 200, 155);
 }
 
 /* Notebooks (Tabs) */
 notebook > header {
-    background-color: rgb(22, 27, 32);
-    border-bottom: 1px solid rgb(55, 59, 64);
+    background-color: rgb(41, 46, 52);
+    border-bottom: 1px solid rgb(68, 72, 77);
 }
 
 notebook > header > tabs > tab {
-    background-color: rgb(22, 27, 32);
-    color: rgb(169, 175, 180);
+    background-color: rgb(41, 46, 52);
+    color: rgb(154, 159, 165);
     border: 1px solid transparent;
     padding: 6px 12px;
 }
 
 notebook > header > tabs > tab:hover {
-    background-color: rgb(28, 34, 41);
+    background-color: rgb(53, 59, 66);
 }
 
 notebook > header > tabs > tab:checked {
-    background-color: rgb(28, 34, 41);
-    color: rgb(224, 229, 235);
-    border-bottom-color: rgb(105, 147, 190);
+    background-color: rgb(53, 59, 66);
+    color: rgb(201, 206, 212);
+    border-bottom-color: rgb(120, 163, 207);
 }
 
 /* Scrollbars */
 scrollbar slider {
-    background-color: rgb(131, 135, 139);
+    background-color: rgb(125, 129, 133);
     border-radius: 8px;
     min-width: 6px;
     min-height: 6px;
 }
 
 scrollbar slider:hover {
-    background-color: rgb(169, 175, 180);
+    background-color: rgb(154, 159, 165);
 }
 
 scrollbar slider:active {
-    background-color: rgb(105, 147, 190);
+    background-color: rgb(120, 163, 207);
 }
 
 /* Menus and Popovers */
 menu,
 .menu,
 .context-menu {
-    background-color: rgb(28, 34, 41);
-    color: rgb(224, 229, 235);
-    border: 1px solid rgb(55, 59, 64);
+    background-color: rgb(53, 59, 66);
+    color: rgb(201, 206, 212);
+    border: 1px solid rgb(68, 72, 77);
     border-radius: 3px;
     padding: 4px;
 }
@@ -221,8 +221,8 @@ menuitem,
 
 menuitem:hover,
 .menuitem:hover {
-    background-color: rgb(46, 68, 91);
-    color: rgb(224, 229, 235);
+    background-color: rgb(59, 82, 105);
+    color: rgb(201, 206, 212);
 }
 
 menuitem:disabled,
@@ -232,18 +232,18 @@ menuitem:disabled,
 
 popover,
 .popover {
-    background-color: rgb(28, 34, 41);
-    color: rgb(224, 229, 235);
-    border: 1px solid rgb(55, 59, 64);
+    background-color: rgb(53, 59, 66);
+    color: rgb(201, 206, 212);
+    border: 1px solid rgb(68, 72, 77);
     border-radius: 6px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* Sidebars */
 .sidebar {
-    background-color: rgb(22, 27, 32);
-    color: rgb(224, 229, 235);
-    border-right: 1px solid rgb(55, 59, 64);
+    background-color: rgb(41, 46, 52);
+    color: rgb(201, 206, 212);
+    border-right: 1px solid rgb(68, 72, 77);
 }
 
 .sidebar row {
@@ -251,19 +251,19 @@ popover,
 }
 
 .sidebar row:selected {
-    background-color: rgb(46, 68, 91);
-    color: rgb(224, 229, 235);
+    background-color: rgb(59, 82, 105);
+    color: rgb(201, 206, 212);
 }
 
 .sidebar row:hover {
-    background-color: rgb(28, 34, 41);
+    background-color: rgb(53, 59, 66);
 }
 
 /* Lists */
 list,
 .list {
-    background-color: rgb(28, 34, 41);
-    color: rgb(224, 229, 235);
+    background-color: rgb(53, 59, 66);
+    color: rgb(201, 206, 212);
 }
 
 list row,
@@ -273,44 +273,44 @@ list row,
 
 list row:hover,
 .list row:hover {
-    background-color: rgb(22, 27, 32);
+    background-color: rgb(41, 46, 52);
 }
 
 list row:selected,
 .list row:selected {
-    background-color: rgb(105, 147, 190);
-    color: rgb(28, 34, 41);
+    background-color: rgb(120, 163, 207);
+    color: rgb(53, 59, 66);
 }
 
 /* Switches and Checkboxes */
 switch {
-    background-color: rgb(22, 27, 32);
-    border: 1px solid rgb(55, 59, 64);
+    background-color: rgb(41, 46, 52);
+    border: 1px solid rgb(68, 72, 77);
     border-radius: 12px;
 }
 
 switch:checked {
-    background-color: rgb(105, 147, 190);
-    border-color: rgb(105, 147, 190);
+    background-color: rgb(120, 163, 207);
+    border-color: rgb(120, 163, 207);
 }
 
 switch slider {
-    background-color: rgb(28, 34, 41);
+    background-color: rgb(53, 59, 66);
     border-radius: 50%;
 }
 
 checkbutton check,
 radiobutton radio {
-    background-color: rgb(28, 34, 41);
-    border: 1px solid rgb(55, 59, 64);
+    background-color: rgb(53, 59, 66);
+    border: 1px solid rgb(68, 72, 77);
     border-radius: 3px;
 }
 
 checkbutton:checked check,
 radiobutton:checked radio {
-    background-color: rgb(105, 147, 190);
-    border-color: rgb(105, 147, 190);
-    color: rgb(28, 34, 41);
+    background-color: rgb(120, 163, 207);
+    border-color: rgb(120, 163, 207);
+    color: rgb(53, 59, 66);
 }
 
 radiobutton radio {
@@ -319,34 +319,34 @@ radiobutton radio {
 
 /* Progress Bars */
 progressbar trough {
-    background-color: rgb(22, 27, 32);
+    background-color: rgb(41, 46, 52);
     border-radius: 3px;
 }
 
 progressbar progress {
-    background-color: rgb(105, 147, 190);
+    background-color: rgb(120, 163, 207);
     border-radius: 3px;
 }
 
 /* Spinners */
 spinner {
-    color: rgb(105, 147, 190);
+    color: rgb(120, 163, 207);
 }
 
 /* Scale (Sliders) */
 scale trough {
-    background-color: rgb(22, 27, 32);
+    background-color: rgb(41, 46, 52);
     border-radius: 3px;
 }
 
 scale highlight {
-    background-color: rgb(105, 147, 190);
+    background-color: rgb(120, 163, 207);
     border-radius: 3px;
 }
 
 scale slider {
-    background-color: rgb(28, 34, 41);
-    border: 1px solid rgb(105, 147, 190);
+    background-color: rgb(53, 59, 66);
+    border: 1px solid rgb(120, 163, 207);
     border-radius: 50%;
     min-width: 16px;
     min-height: 16px;
@@ -354,7 +354,7 @@ scale slider {
 
 /* Separators */
 separator {
-    background-color: rgb(55, 59, 64);
+    background-color: rgb(68, 72, 77);
     min-width: 1px;
     min-height: 1px;
 }
@@ -362,9 +362,9 @@ separator {
 /* Tooltips */
 tooltip,
 .tooltip {
-    background-color: rgb(22, 27, 32);
-    color: rgb(224, 229, 235);
-    border: 1px solid rgb(55, 59, 64);
+    background-color: rgb(41, 46, 52);
+    color: rgb(201, 206, 212);
+    border: 1px solid rgb(68, 72, 77);
     border-radius: 4px;
     padding: 6px 10px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
@@ -372,23 +372,23 @@ tooltip,
 
 /* Info Bars */
 .info {
-    background-color: rgb(46, 68, 91);
-    color: rgb(224, 229, 235);
+    background-color: rgb(59, 82, 105);
+    color: rgb(201, 206, 212);
 }
 
 .warning {
-    background-color: rgb(217, 184, 139);
-    color: rgb(28, 34, 41);
+    background-color: rgb(233, 200, 155);
+    color: rgb(53, 59, 66);
 }
 
 .error {
-    background-color: rgb(220, 154, 148);
-    color: rgb(28, 34, 41);
+    background-color: rgb(237, 170, 164);
+    color: rgb(53, 59, 66);
 }
 
 .success {
-    background-color: rgb(151, 185, 151);
-    color: rgb(28, 34, 41);
+    background-color: rgb(166, 201, 166);
+    color: rgb(53, 59, 66);
 }
 
 /* Links */
@@ -399,18 +399,18 @@ link,
 
 link:hover,
 *:link:hover {
-    color: rgb(105, 147, 190);
+    color: rgb(120, 163, 207);
 }
 
 link:visited,
 *:visited {
-    color: rgb(198, 141, 144);
+    color: rgb(215, 156, 160);
 }
 
 /* Selection */
 selection {
-    background-color: rgb(105, 147, 190);
-    color: rgb(28, 34, 41);
+    background-color: rgb(120, 163, 207);
+    color: rgb(53, 59, 66);
 }
 
 /* Backdrop (Unfocused Windows) */
