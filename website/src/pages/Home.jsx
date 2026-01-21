@@ -73,7 +73,7 @@ export default function Home() {
           </div>
 
           <div className="bg-candi-surface border border-candi-border rounded-softer p-8 shadow-hygge">
-            <div className="w-12 h-12 rounded-soft flex items-center justify-center mb-6" style={{backgroundColor: 'oklch(85% 0.04 145)'}}>
+            <div className="w-12 h-12 rounded-soft flex items-center justify-center mb-6" style={{ backgroundColor: 'oklch(85% 0.04 145)' }}>
               <svg className="w-6 h-6 text-candi-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
@@ -141,12 +141,15 @@ MaterialApp(
       <section className="max-w-7xl mx-auto px-6 py-20">
         <h2 className="text-3xl font-bold mb-12 text-center">Platform Support</h2>
 
-        <div className="grid md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {[
             { name: 'Web', icon: '🌐', desc: 'Tailwind CSS Plugin' },
             { name: 'Flutter', icon: '📱', desc: 'Type-safe Colors' },
             { name: 'VS Code', icon: '💻', desc: 'Light & Dark Themes' },
             { name: 'Vim', icon: '⌨️', desc: 'Colorschemes' },
+            { name: 'KDE', icon: '🪟', desc: 'Plasma & Konsole' },
+            { name: 'GNOME', icon: '🐾', desc: 'Shell & GTK Themes' },
+            { name: 'Obsidian', icon: '💎', desc: 'App Themes' },
           ].map(platform => (
             <div key={platform.name} className="text-center p-6 bg-candi-surface rounded-soft border border-candi-border">
               <div className="text-4xl mb-3">{platform.icon}</div>
