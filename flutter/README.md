@@ -12,7 +12,7 @@ A Dart package providing Scandinavian design system colors for Flutter applicati
 
 ## Installation
 
-Add to `pubspec.yaml`:
+The Flutter package is published as `candi_colors`. Add it to `pubspec.yaml`:
 
 ```yaml
 dependencies:
@@ -20,6 +20,36 @@ dependencies:
     git:
       url: https://github.com/wtasg/candi.git
       path: flutter
+```
+
+## Flutter Quick Start
+
+Build a `ThemeData` from a `CandiPalette` so light and dark modes stay in sync:
+
+```dart
+import 'package:candi_colors/candi.dart';
+import 'package:flutter/material.dart';
+
+ThemeData buildTheme(CandiPalette palette, Brightness brightness) {
+  return ThemeData(
+    brightness: brightness,
+    scaffoldBackgroundColor: palette.bg,
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: palette.accent,
+      brightness: brightness,
+    ),
+  );
+}
+
+void main() {
+  runApp(
+    MaterialApp(
+      theme: buildTheme(CandiColors.light, Brightness.light),
+      darkTheme: buildTheme(CandiColors.dark, Brightness.dark),
+      themeMode: ThemeMode.system,
+    ),
+  );
+}
 ```
 
 ## Usage
