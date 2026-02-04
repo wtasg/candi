@@ -4,7 +4,7 @@ The Candi Design System provides a Flutter package for using OKLCH-based colors 
 
 ## Installation
 
-Add the dependency to your `pubspec.yaml`:
+The Flutter package is published as `candi_colors`. Add the dependency to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
@@ -20,6 +20,32 @@ For local development within the monorepo:
 dependencies:
   candi_colors:
     path: ../flutter
+```
+
+## Flutter Quick Start
+
+Build a `ThemeData` from a `CandiPalette` so light and dark modes stay in sync:
+
+```dart
+import 'package:candi_colors/candi.dart';
+import 'package:flutter/material.dart';
+
+ThemeData buildTheme(CandiPalette palette, Brightness brightness) {
+  return ThemeData(
+    brightness: brightness,
+    scaffoldBackgroundColor: palette.bg,
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: palette.accent,
+      brightness: brightness,
+    ),
+  );
+}
+
+MaterialApp(
+  theme: buildTheme(CandiColors.light, Brightness.light),
+  darkTheme: buildTheme(CandiColors.dark, Brightness.dark),
+  themeMode: ThemeMode.system,
+);
 ```
 
 ## Basic Usage
