@@ -43,6 +43,26 @@ export default defineConfig({
 
 That's it! All Candi utilities are now available.
 
+#### Understanding v4 Utility Naming
+
+The v4 theme defines CSS variables with the `--color-candi-` prefix. Tailwind automatically generates utility classes from these variables:
+
+| CSS Variable | Tailwind Utility Class | Example Usage |
+| :--- | :--- | :--- |
+| `--color-candi-bg` | `bg-candi-bg` | `<div className="bg-candi-bg">` |
+| `--color-candi-text` | `text-candi-text` | `<p className="text-candi-text">` |
+| `--color-candi-accent` | `bg-candi-accent`, `text-candi-accent`, `border-candi-accent` | `<button className="bg-candi-accent">` |
+| `--color-candi-surface` | `bg-candi-surface` | `<div className="bg-candi-surface">` |
+
+You can also use CSS variables directly:
+
+```css
+body {
+  background-color: var(--color-candi-bg);
+  color: var(--color-candi-text);
+}
+```
+
 ### Usage
 
 ```jsx
