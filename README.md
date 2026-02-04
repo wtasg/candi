@@ -174,6 +174,20 @@ Tailwind v4 (Recommended):
 @import "@wtasnorg/candi/v4";
 ```
 
+The v4 theme uses the `--color-candi-` prefix for CSS variables (e.g., `--color-candi-bg`), which generates utility classes like `bg-candi-bg`, `text-candi-text`, etc.
+
+Quick start example:
+
+```css
+@import "tailwindcss";
+@import "@wtasnorg/candi/v4";
+
+body {
+  background-color: var(--color-candi-bg);
+  color: var(--color-candi-text);
+}
+```
+
 Tailwind v3:
 
 ```js
