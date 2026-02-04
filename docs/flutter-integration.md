@@ -41,11 +41,15 @@ ThemeData buildTheme(CandiPalette palette, Brightness brightness) {
   );
 }
 
-MaterialApp(
-  theme: buildTheme(CandiColors.light, Brightness.light),
-  darkTheme: buildTheme(CandiColors.dark, Brightness.dark),
-  themeMode: ThemeMode.system,
-);
+void main() {
+  runApp(
+    MaterialApp(
+      theme: buildTheme(CandiColors.light, Brightness.light),
+      darkTheme: buildTheme(CandiColors.dark, Brightness.dark),
+      themeMode: ThemeMode.system,
+    ),
+  );
+}
 ```
 
 ## Basic Usage
