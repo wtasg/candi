@@ -45,29 +45,29 @@ sudo cp kde/konsole/*.colorscheme /usr/share/konsole/
 
 ### Light Theme
 
-- Background: Warm white (#FBF8F2)
-- Foreground: Deep charcoal (#232A30)
+- Background: Warm white (#F8F6F3)
+- Foreground: Deep charcoal (#0D0B07)
 - Black: #1E2226
 - Red: #B75B55
 - Green: #4A754C
 - Yellow: #CB882E
-- Blue: #437085
-- Magenta: #C5547C
+- Blue: #0064A3
+- Magenta: #A840A2
 - Cyan: #2BA1A7
-- White: #232A30
+- White: #0D0B07
 
 ### Dark Theme
 
-- Background: Deep navy (#0D1218)
-- Foreground: Warm white (#E8E4DD)
+- Background: Deep navy (#171614)
+- Foreground: Warm white (#E0DEDA)
 - Black: #0A0D10
-- Red: #C76B66
-- Green: #5CA368
-- Yellow: #D89A3D
-- Blue: #4F8FAD
-- Magenta: #D16890
+- Red: #D47C76
+- Green: #75A776
+- Yellow: #E1AD63
+- Blue: #2098DB
+- Magenta: #D179CA
 - Cyan: #3AB3BA
-- White: #E8E4DD
+- White: #E0DEDA
 
 ### Primitive Colors
 

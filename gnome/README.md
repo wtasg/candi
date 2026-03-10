@@ -64,23 +64,23 @@ gnome/
 
 ### Light Theme
 
-- Background: Warm white (#FBF8F2)
-- Surface: Light beige (#F4F0E7)
-- Text: Deep charcoal (#232A30)
-- Accent: Steel blue (#437085)
+- Background: Warm white (#F8F6F3)
+- Surface: Light beige (#F1EEE9)
+- Text: Deep charcoal (#0D0B07)
+- Accent: Steel blue (#0064A3)
 - Success: Sage green (#4A754C)
 - Warning: Amber (#CB882E)
 - Error: Muted red (#B75B55)
 
 ### Dark Theme
 
-- Background: Deep navy (#0D1218)
-- Surface: Dark slate (#161B20)
-- Text: Warm white (#E8E4DD)
-- Accent: Sky blue (#4F8FAD)
-- Success: Mint green (#5CA368)
-- Warning: Gold (#D89A3D)
-- Error: Coral (#C76B66)
+- Background: Deep navy (#171614)
+- Surface: Dark slate (#252421)
+- Text: Warm white (#E0DEDA)
+- Accent: Sky blue (#2098DB)
+- Success: Mint green (#75A776)
+- Warning: Gold (#E1AD63)
+- Error: Coral (#D47C76)
 
 ### Primitive Colors
 
@@ -92,12 +92,12 @@ The theme includes 10 `@define-color` primitive colors for custom styling:
 | candi_blue      | rgb(34,102,164)  | rgb(109,163,218) |
 | candi_green     | rgb(62,131,67)   | rgb(118,175,119) |
 | candi_yellow    | rgb(208,169,45)  | rgb(236,202,108) |
-| candi_magenta   | rgb(200,79,121)  | rgb(209,121,202) |
-| candi_cyan      | rgb(47,152,152)  | rgb(108,190,194) |
-| candi_teal      | rgb(52,127,103)  | rgb(101,175,156) |
-| candi_pink      | rgb(235,145,166) | rgb(243,163,187) |
-| candi_gold      | rgb(191,135,72)  | rgb(231,179,117) |
-| candi_silver    | rgb(106,112,118) | rgb(124,129,134) |
+| candi_magenta   | rgb(168,64,162)  | rgb(209,121,202) |
+| candi_cyan      | rgb(43,161,167)  | rgb(108,190,194) |
+| candi_teal      | rgb(17,132,110)  | rgb(101,175,156) |
+| candi_pink      | rgb(218,125,155) | rgb(243,163,187) |
+| candi_gold      | rgb(206,144,66)  | rgb(231,179,117) |
+| candi_silver    | rgb(169,175,180) | rgb(124,129,134) |
 
 ## Compatibility
 

@@ -2,6 +2,20 @@
 
 All notable changes to the Candi Design System will be documented in this file.
 
+## 0.0.38
+
+### Added
+
+- **TypeScript Core Library**: New `@wtasnorg/candi-ts` package in `ts/` for shared color science and derivation logic.
+- **Dart Core Library**: New `candi_dart` package in `dart/` providing OKLCH and semantic color derivation for Dart.
+- **Build System**: Updated `build:all`, `test:all`, and `lint:all` to include the new TS and Dart modules.
+- **Documentation**: Comprehensive updates to README and PUBLISH.md reflecting the expanded multi-platform architecture.
+
+### Fixed
+
+- **Version Synchronization**: Improved `package-bump.sh` to handle the new core libraries.
+- **Linting**: Enhanced `lint-dart.js` to support both Flutter and Dart packages.
+
 ## 0.0.36
 
 ### Changed

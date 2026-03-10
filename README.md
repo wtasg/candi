@@ -73,35 +73,26 @@ Candi uses OKLCH as its primary color space instead of Hex codes:
 candi/
 ├── ARCHITECTURE.md         # System architecture and SSOT design
 ├── Knowledge.md            # Lessons learned and development notes
+├── dart/                   # Dart core utilities library
+├── flutter/                # Flutter package
+├── gnome/                  # GTK3/GTK4 themes
+├── kde/                    # KDE Plasma color schemes
+├── obsidian/               # Obsidian theme
+├── schemas/                # JSON Schemas for token validation
+├── scripts/                # Build, test, and utility scripts
+├── showcase_flutter/       # Flutter showcase application
 ├── src/                    # Source files for npm package
 │   ├── css/                # CSS files (base, components, utilities)
 │   ├── data/               # Source of truth (colors.js)
-│   ├── v4/                 # Tailwind v4 @theme
 │   ├── index.js            # Main entry point
 │   ├── plugin.js           # Tailwind v3 plugin
 │   ├── theme.js            # Tailwind v3 theme extension
-│   └── types.d.ts          # TypeScript type definitions
-├── scripts/                # Build, test, and utility scripts
-│   ├── build.js            # Main npm package build
-│   ├── build-*.js          # Platform-specific builds
-│   ├── test-*.js           # Platform-specific tests
-│   ├── sync-colors.js      # Color synchronization
-│   ├── color-conv.js       # Color conversion utilities
-│   ├── gen-oklch-primitives.js  # Derivation engine
-│   └── package-artifacts.js  # Release packaging script
-├── schemas/                # JSON Schemas for token validation
-├── dist/                   # Built output (git-ignored)
-├── docs/                   # Documentation guides
-├── website/                # Documentation site (Vite + React)
+│   ├── types.d.ts          # TypeScript type definitions
+│   └── v4/                 # Tailwind v4 @theme
 ├── ts/                     # TypeScript core utilities library
-├── dart/                   # Dart core utilities library
-├── flutter/                # Flutter package
-├── vscode/                 # VS Code extension
 ├── vim/                    # Vim colorschemes
-├── kde/                    # KDE Plasma color schemes
-├── gnome/                  # GTK3/GTK4 themes
-├── obsidian/               # Obsidian theme
-└── showcase_flutter/       # Flutter showcase application
+├── vscode/                 # VS Code extension
+└── website/                # Documentation site (Vite + React)
 ```
 
 ---

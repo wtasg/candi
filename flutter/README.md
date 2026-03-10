@@ -8,7 +8,7 @@ A Dart package providing Scandinavian design system colors for Flutter applicati
 - **Dynamic Themes**: Predefined light and dark mode palettes.
 - **Zero Runtime Overhead**: OKLCH to sRGB conversion occurs at build-time.
 - **Compatibility**: Supports all platforms (iOS, Android, Web, etc.).
-- **123 Colors**: Including 60 primitive color tokens with variants.
+- **123+ Colors**: Including 60 primitive color tokens with 10 families and 6 variants each.
 
 ## Installation
 

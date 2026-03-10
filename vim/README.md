@@ -132,21 +132,21 @@ hi! link MyCustomGroup CandiGold
 
 ### Light Theme
 
-- Background: Warm white (#FBF8F2)
-- Text: Deep charcoal (#232A30)
-- Accent: Steel blue (#437085)
+- Background: Warm white (#F8F6F3)
+- Text: Deep charcoal (#0D0B07)
+- Accent: Steel blue (#0064A3)
 - Success: Sage green (#4A754C)
 - Warning: Amber (#CB882E)
 - Error: Muted red (#B75B55)
 
 ### Dark Theme
 
-- Background: Deep navy (#0D1218)
-- Text: Warm white (#E8E4DD)
-- Accent: Sky blue (#4F8FAD)
-- Success: Mint green (#5CA368)
-- Warning: Gold (#D89A3D)
-- Error: Coral (#C76B66)
+- Background: Deep navy (#171614)
+- Text: Warm white (#E0DEDA)
+- Accent: Sky blue (#2098DB)
+- Success: Mint green (#75A776)
+- Warning: Gold (#E1AD63)
+- Error: Coral (#D47C76)
 
 ## Comparison with Popular Themes
 

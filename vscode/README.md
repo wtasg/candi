@@ -9,7 +9,7 @@ Scandinavian design theme based on the Candi Design System.
 
 ## Features
 
-- 285+ UI color definitions
+- 323+ UI color definitions
 - 100+ token scopes for syntax highlighting
 - Semantic highlighting for TypeScript, Python, Rust, Go
 - Language-specific syntax for HTML, CSS, JS/TS, JSX/TSX, Python, Go, Rust, and more

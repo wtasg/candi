@@ -1,4 +1,4 @@
-# Candi Flutter Showcase
+# Candi Flutter Showcase (v0.0.38)
 
 An interactive application demonstrating the Candi Design System in Flutter.
 

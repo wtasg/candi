@@ -32,19 +32,19 @@ A professional Scandinavian-inspired theme for Obsidian note-taking app, featuri
 
 ### Light Mode
 
-- Background: Warm white (#FBF8F2)
-- Surface: Light beige (#F4F0E7)
-- Text: Deep charcoal (#232A30)
-- Accent: Steel blue (#437085)
+- Background: Warm white (#F8F6F3)
+- Surface: Light beige (#F1EEE9)
+- Text: Deep charcoal (#0D0B07)
+- Accent: Steel blue (#0064A3)
 - Code blocks: Subtle green background
 - Links: Steel blue with hover effects
 
 ### Dark Mode
 
-- Background: Deep navy (#0D1218)
-- Surface: Dark slate (#161B20)
-- Text: Warm white (#E8E4DD)
-- Accent: Sky blue (#4F8FAD)
+- Background: Deep navy (#171614)
+- Surface: Dark slate (#252421)
+- Text: Warm white (#E0DEDA)
+- Accent: Sky blue (#2098DB)
 - Code blocks: Darker background with syntax highlighting
 - Links: Sky blue with hover effects
 

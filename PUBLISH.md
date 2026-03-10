@@ -92,11 +92,11 @@ The TypeScript implementation of Candi utilities.
    npm run test:ts
    ```
 
-3. **Publish to GitHub Packages / NPM**
+3. **Publish to NPM**
 
    ```bash
    cd ts
-   npm publish
+   npm publish --access public
    ```
 
 ---
@@ -540,16 +540,18 @@ Documentation and demo website.
 
 Use this checklist for a complete release:
 
-- [ ] Update version in all `package.json` files
+- [ ] Update version in all `package.json` files and `pubspec.yaml`
 - [ ] Update all CHANGELOG files
 - [ ] Run `npm run build:all`
 - [ ] Run `npm run test:all`
-- [ ] Run `npm run lint:md`
+- [ ] Run `npm run lint:all`
 - [ ] Update root `CHANGELOG.md`
 - [ ] Commit all changes
 - [ ] Create and push git tag
-- [ ] Publish NPM package
-- [ ] Publish Flutter package
+- [ ] Publish NPM package (`@wtasnorg/candi`)
+- [ ] Publish TypeScript library (`@wtasnorg/candi-ts`)
+- [ ] Publish Dart library (`candi_dart`)
+- [ ] Publish Flutter package (`candi_colors`)
 - [ ] Publish VSCode extension
 - [ ] Create GitHub releases for Vim, KDE, GNOME, Obsidian
 - [ ] Build showcase app (`npm run build:showcase`)

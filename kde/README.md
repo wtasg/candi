@@ -50,21 +50,21 @@ See [konsole/README.md](konsole/README.md) for Konsole-specific installation ins
 
 ### Light Theme
 
-- Background: Warm white (#FBF8F2)
-- Text: Deep charcoal (#232A30)
-- Accent: Steel blue (#437085)
+- Background: Warm white (#F8F6F3)
+- Text: Deep charcoal (#0D0B07)
+- Accent: Steel blue (#0064A3)
 - Success: Sage green (#4A754C)
 - Warning: Amber (#CB882E)
 - Error: Muted red (#B75B55)
 
 ### Dark Theme
 
-- Background: Deep navy (#0D1218)
-- Text: Warm white (#E8E4DD)
-- Accent: Sky blue (#4F8FAD)
-- Success: Mint green (#5CA368)
-- Warning: Gold (#D89A3D)
-- Error: Coral (#C76B66)
+- Background: Deep navy (#171614)
+- Text: Warm white (#E0DEDA)
+- Accent: Sky blue (#2098DB)
+- Success: Mint green (#75A776)
+- Warning: Gold (#E1AD63)
+- Error: Coral (#D47C76)
 
 ### Primitive Colors
 
@@ -72,16 +72,16 @@ The `[Colors:Candi]` section provides 10 primitive colors for custom theming:
 
 | Color   | Light Mode    | Dark Mode     |
 |---------|---------------|---------------|
-| Red     | 183,91,85     | 223,127,120   |
-| Blue    | 67,112,133    | 109,163,218   |
-| Green   | 74,117,76     | 118,175,119   |
-| Yellow  | 203,136,46    | 236,202,108   |
-| Magenta | 197,84,124    | 209,121,202   |
+| Red     | 181,74,70     | 223,127,120   |
+| Blue    | 34,102,164    | 109,163,218   |
+| Green   | 62,131,67     | 118,175,119   |
+| Yellow  | 208,169,45    | 236,202,108   |
+| Magenta | 168,64,162    | 209,121,202   |
 | Cyan    | 43,161,167    | 108,190,194   |
-| Teal    | 55,125,106    | 101,175,156   |
-| Pink    | 235,130,161   | 243,163,187   |
-| Gold    | 191,135,72    | 231,179,117   |
-| Silver  | 106,112,118   | 124,129,134   |
+| Teal    | 17,132,110    | 101,175,156   |
+| Pink    | 218,125,155   | 243,163,187   |
+| Gold    | 206,144,66    | 231,179,117   |
+| Silver  | 169,175,180   | 124,129,134   |
 
 ## Compatibility
 
