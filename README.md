@@ -218,17 +218,17 @@ module.exports = {
 
 | Token | Light | Dark | Usage |
 | :--- | :--- | :--- | :--- |
-| `bg` | Warm white | Warm dark (Hygge) | Page background |
-| `surface` | Soft cream | Warm dark surface | Cards, sections |
-| `elevated` | Pure white | Warm elevated dark | Modals, popups |
+| `bg` | Bright white | Warm dark gray | Page background |
+| `surface` | Warm off-white | Warm dark surface | Cards, sections |
+| `elevated` | Pure near-white | Warm elevated dark | Modals, popups |
 | `text` | Warm charcoal | Off-white | Primary text |
-| `text-subtle` | Medium gray | Light gray | Secondary text |
-| `text-muted` | Light gray | Muted gray | Tertiary text |
-| `accent` | Steel blue | Lighter steel | Primary actions |
-| `secondary` | Terracotta | Lighter terracotta | Secondary actions |
-| `success` | Forest green | Lighter green | Success states |
-| `warning` | Amber | Lighter amber | Warning states |
-| `error` | Coral red | Lighter coral | Error states |
+| `text-subtle` | Medium charcoal | Light gray | Secondary text |
+| `text-muted` | Warm gray | Muted warm gray | Tertiary text |
+| `accent` | Balanced steel blue | Lighter steel | Primary actions |
+| `secondary` | Balanced terracotta | Lighter terracotta | Secondary actions |
+| `success` | Balanced forest | Lighter forest | Success states |
+| `warning` | Balanced amber | Lighter amber | Warning states |
+| `error` | Balanced brick | Lighter brick | Error states |
 
 ### Primitive Colors
 

@@ -331,13 +331,13 @@ This updates:
 
 Creating a cozy, inviting atmosphere through warm color temperatures.
 
-- Implementation: Neutral palette uses Hue 85 (warm) across all themes. Previous cool-blue (Hue 275) variants have been phased out.
+- Implementation: Neutral palette uses Hue 80 (warm) consistently across both light and dark themes with very low chroma (0.003–0.006) to ensure warmth reads as subtle and inviting, not visibly brown. Previous cool-blue (Hue 250/275) variants have been phased out from all modes.
 
 ### Lagom (Balance)
 
 Finding the balance between grayness and over-saturation.
 
-- Implementation: Subtle variants preserve 80% of parent chroma to maintain chromatic richness.
+- Implementation: Semantic anchors use chroma 0.10–0.14 for a balanced, readable appearance that avoids both flatness and over-vibrance. Neutral backgrounds use minimal chroma to stay warm-gray without looking tinted. Subtle variants preserve 60% of parent chroma via the derivation engine.
 - Logic: Defined in `scripts/gen-oklch-primitives.js`.
 
 ---

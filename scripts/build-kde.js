@@ -6,6 +6,7 @@ const logger = require('./logger');
 const kdeDir = path.join(__dirname, '..', 'kde');
 const v4Dir = path.join(kdeDir, 'v4');
 const v5Dir = path.join(kdeDir, 'v5');
+const v6Dir = path.join(kdeDir, 'v6');
 
 const { parseOklch } = require('./color-conv');
 
@@ -213,6 +214,20 @@ ForegroundPositive=${success}
 DecorationFocus=${accent}
 DecorationHover=${accentSubtle}
 
+[Colors:Header][Inactive]
+BackgroundNormal=${surface}
+BackgroundAlternate=${bgNormal}
+ForegroundNormal=${textMuted}
+ForegroundInactive=${disabled}
+ForegroundActive=${textSubtle}
+ForegroundLink=${link}
+ForegroundVisited=${secondary}
+ForegroundNegative=${error}
+ForegroundNeutral=${warning}
+ForegroundPositive=${success}
+DecorationFocus=${accent}
+DecorationHover=${accentSubtle}
+
 [WM]
 activeBackground=${accent}
 activeForeground=${elevated}
@@ -273,6 +288,7 @@ function ensureDir(dirPath) {
 ensureDir(kdeDir);
 ensureDir(v4Dir);
 ensureDir(v5Dir);
+ensureDir(v6Dir);
 
 // 2. Validate palettes before generating themes
 validatePalette(lightColors, 'Light');
@@ -286,12 +302,16 @@ fs.writeFileSync(path.join(v4Dir, 'CandiLight.colors'), lightTheme);
 fs.writeFileSync(path.join(v4Dir, 'CandiDark.colors'), darkTheme);
 fs.writeFileSync(path.join(v5Dir, 'CandiLight.colors'), lightTheme);
 fs.writeFileSync(path.join(v5Dir, 'CandiDark.colors'), darkTheme);
+fs.writeFileSync(path.join(v6Dir, 'CandiLight.colors'), lightTheme);
+fs.writeFileSync(path.join(v6Dir, 'CandiDark.colors'), darkTheme);
 
 logger.log('Build complete!');
 logger.log('  - Generated kde/v4/CandiLight.colors');
 logger.log('  - Generated kde/v4/CandiDark.colors');
 logger.log('  - Generated kde/v5/CandiLight.colors');
 logger.log('  - Generated kde/v5/CandiDark.colors');
+logger.log('  - Generated kde/v6/CandiLight.colors');
+logger.log('  - Generated kde/v6/CandiDark.colors');
 
 if (logger.isVerbose) {
     logger.log('KDE build successful.');

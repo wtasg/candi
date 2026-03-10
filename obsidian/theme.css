@@ -12,78 +12,78 @@
 
 .theme-light {
     /* Backgrounds */
-    --background-primary: #B1ADA7;
-    --background-primary-alt: #C1BDB7;
-    --background-secondary: #C1BDB7;
-    --background-secondary-alt: #D1CDC7;
-    --background-modifier-border: #928F88;
-    --background-modifier-form-field: #D1CDC7;
-    --background-modifier-form-field-highlighted: #A1BAD6;
+    --background-primary: #F8F6F3;
+    --background-primary-alt: #F1EEE9;
+    --background-secondary: #F1EEE9;
+    --background-secondary-alt: #FEFDFB;
+    --background-modifier-border: #CCCAC7;
+    --background-modifier-form-field: #FEFDFB;
+    --background-modifier-form-field-highlighted: #9DCDF7;
     --background-modifier-box-shadow: rgba(0, 0, 0, 0.1);
-    --background-modifier-success: #405E40;
-    --background-modifier-error: #7C423E;
+    --background-modifier-success: #337344;
+    --background-modifier-error: #A43B38;
     --background-modifier-error-rgb: 148, 85, 77;
     --background-modifier-cover: rgba(0, 0, 0, 0.6);
 
     /* Text */
-    --text-normal: #0E0A05;
-    --text-muted: #58554F;
-    --text-faint: #ACAEB1;
-    --text-on-accent: #D1CDC7;
-    --text-error: #7C423E;
-    --text-success: #405E40;
-    --text-warning: #7B5D33;
-    --text-selection: #A1BAD6;
-    --text-accent: #305880;
-    --text-accent-hover: #296B88;
+    --text-normal: #0D0B07;
+    --text-muted: #6B6965;
+    --text-faint: #C5C4C1;
+    --text-on-accent: #FEFDFB;
+    --text-error: #A43B38;
+    --text-success: #337344;
+    --text-warning: #A87600;
+    --text-selection: #9DCDF7;
+    --text-accent: #0068A7;
+    --text-accent-hover: #0064A3;
 
     /* Interactive elements */
-    --interactive-normal: #D1CDC7;
-    --interactive-hover: #C1BDB7;
-    --interactive-accent: #305880;
+    --interactive-normal: #FEFDFB;
+    --interactive-hover: #F1EEE9;
+    --interactive-accent: #0068A7;
     --interactive-accent-rgb: 103, 126, 145;
-    --interactive-accent-hover: #296B88;
-    --interactive-success: #405E40;
+    --interactive-accent-hover: #0064A3;
+    --interactive-success: #337344;
 
     /* Scrollbar */
-    --scrollbar-active-thumb-bg: #58554F;
-    --scrollbar-bg: #C1BDB7;
-    --scrollbar-thumb-bg: #928F88;
+    --scrollbar-active-thumb-bg: #6B6965;
+    --scrollbar-bg: #F1EEE9;
+    --scrollbar-thumb-bg: #CCCAC7;
 
     /* UI elements */
-    --divider-color: #928F88;
-    --divider-color-hover: #58554F;
-    --tab-text-color: #3D3A35;
-    --tab-text-color-focused: #0E0A05;
-    --tab-text-color-focused-active: #305880;
-    --tab-background-active: #D1CDC7;
-    --tab-divider-color: #928F88;
+    --divider-color: #CCCAC7;
+    --divider-color-hover: #6B6965;
+    --tab-text-color: #4A4743;
+    --tab-text-color-focused: #0D0B07;
+    --tab-text-color-focused-active: #0068A7;
+    --tab-background-active: #FEFDFB;
+    --tab-divider-color: #CCCAC7;
 
     /* Headings */
-    --h1-color: #0E0A05;
-    --h2-color: #0E0A05;
-    --h3-color: #0E0A05;
-    --h4-color: #3D3A35;
-    --h5-color: #3D3A35;
-    --h6-color: #58554F;
+    --h1-color: #0D0B07;
+    --h2-color: #0D0B07;
+    --h3-color: #0D0B07;
+    --h4-color: #4A4743;
+    --h5-color: #4A4743;
+    --h6-color: #6B6965;
 
     /* Links */
-    --link-color: #296B88;
-    --link-color-hover: #305880;
-    --link-external-color: #865256;
-    --link-external-color-hover: #305880;
-    --link-unresolved-color: #58554F;
+    --link-color: #0064A3;
+    --link-color-hover: #0068A7;
+    --link-external-color: #AC5154;
+    --link-external-color-hover: #0068A7;
+    --link-unresolved-color: #6B6965;
 
     /* Tags */
-    --tag-color: #305880;
-    --tag-color-hover: #296B88;
-    --tag-background: #A1BAD6;
-    --tag-background-hover: #C1BDB7;
+    --tag-color: #0068A7;
+    --tag-color-hover: #0064A3;
+    --tag-background: #9DCDF7;
+    --tag-background-hover: #F1EEE9;
 
     /* Code */
-    --code-normal: #0E0A05;
-    --code-background: #C1BDB7;
-    --code-comment: #58554F;
+    --code-normal: #0D0B07;
+    --code-background: #F1EEE9;
+    --code-comment: #6B6965;
     --code-keyword: #C5547C;
     --code-type: #8186D7;
     --code-var: #2BA1A7;
@@ -92,45 +92,45 @@
     --code-string: #57914A;
 
     /* Checkbox */
-    --checkbox-color: #305880;
-    --checkbox-color-hover: #296B88;
-    --checkbox-border-color: #928F88;
+    --checkbox-color: #0068A7;
+    --checkbox-color-hover: #0064A3;
+    --checkbox-border-color: #CCCAC7;
 
     /* Blockquote */
-    --blockquote-border-color: #305880;
+    --blockquote-border-color: #0068A7;
 
     /* Table */
-    --table-header-background: #C1BDB7;
-    --table-header-background-hover: #A1BAD6;
-    --table-row-even-background: #B1ADA7;
-    --table-row-odd-background: #C1BDB7;
-    --table-row-background-hover: #A1BAD6;
+    --table-header-background: #F1EEE9;
+    --table-header-background-hover: #9DCDF7;
+    --table-row-even-background: #F8F6F3;
+    --table-row-odd-background: #F1EEE9;
+    --table-row-background-hover: #9DCDF7;
 
     /* Graph */
-    --graph-line: #928F88;
-    --graph-node: #305880;
-    --graph-node-focused: #296B88;
-    --graph-node-tag: #865256;
-    --graph-node-attachment: #405E40;
+    --graph-line: #CCCAC7;
+    --graph-node: #0068A7;
+    --graph-node-focused: #0064A3;
+    --graph-node-tag: #AC5154;
+    --graph-node-attachment: #337344;
 
     /* Icons */
-    --icon-color: #3D3A35;
-    --icon-color-hover: #0E0A05;
-    --icon-color-active: #305880;
-    --icon-color-focused: #305880;
+    --icon-color: #4A4743;
+    --icon-color-hover: #0D0B07;
+    --icon-color-active: #0068A7;
+    --icon-color-focused: #0068A7;
 
     /* Nav */
-    --nav-item-color: #3D3A35;
-    --nav-item-color-hover: #0E0A05;
-    --nav-item-color-active: #305880;
-    --nav-item-background-hover: #C1BDB7;
-    --nav-item-background-active: #A1BAD6;
+    --nav-item-color: #4A4743;
+    --nav-item-color-hover: #0D0B07;
+    --nav-item-color-active: #0068A7;
+    --nav-item-background-hover: #F1EEE9;
+    --nav-item-background-active: #9DCDF7;
 
     /* Prompt/Modal */
-    --prompt-border-color: #928F88;
+    --prompt-border-color: #CCCAC7;
 
     /* Focus */
-    --shadow-focus: 0 0 0 2px #A1BAD6;
+    --shadow-focus: 0 0 0 2px #9DCDF7;
 
     /* Primitive Colors */
     --candi-red: #B54A46;
@@ -155,78 +155,78 @@
 
 .theme-dark {
     /* Backgrounds */
-    --background-primary: #1C2229;
-    --background-primary-alt: #292E34;
-    --background-secondary: #292E34;
-    --background-secondary-alt: #353B42;
-    --background-modifier-border: #44484D;
-    --background-modifier-form-field: #353B42;
-    --background-modifier-form-field-highlighted: #3B5269;
+    --background-primary: #171614;
+    --background-primary-alt: #252421;
+    --background-secondary: #252421;
+    --background-secondary-alt: #34332F;
+    --background-modifier-border: #494745;
+    --background-modifier-form-field: #34332F;
+    --background-modifier-form-field-highlighted: #30597B;
     --background-modifier-box-shadow: rgba(0, 0, 0, 0.3);
-    --background-modifier-success: #A6C9A6;
-    --background-modifier-error: #EDAAA4;
+    --background-modifier-success: #88CA95;
+    --background-modifier-error: #FB9890;
     --background-modifier-error-rgb: 166, 103, 103;
     --background-modifier-cover: rgba(0, 0, 0, 0.8);
 
     /* Text */
-    --text-normal: #C9CED4;
-    --text-muted: #7D8185;
-    --text-faint: #535558;
-    --text-on-accent: #1C2229;
-    --text-error: #EDAAA4;
-    --text-success: #A6C9A6;
-    --text-warning: #E9C89B;
-    --text-selection: #3B5269;
-    --text-accent: #78A3CF;
-    --text-accent-hover: #6993BE;
+    --text-normal: #E0DEDA;
+    --text-muted: #81807D;
+    --text-faint: #565553;
+    --text-on-accent: #171614;
+    --text-error: #FB9890;
+    --text-success: #88CA95;
+    --text-warning: #EDBB64;
+    --text-selection: #30597B;
+    --text-accent: #5EACEB;
+    --text-accent-hover: #2098DB;
 
     /* Interactive elements */
-    --interactive-normal: #353B42;
-    --interactive-hover: #292E34;
-    --interactive-accent: #78A3CF;
+    --interactive-normal: #34332F;
+    --interactive-hover: #252421;
+    --interactive-accent: #5EACEB;
     --interactive-accent-rgb: 127, 153, 179;
-    --interactive-accent-hover: #6993BE;
-    --interactive-success: #A6C9A6;
+    --interactive-accent-hover: #2098DB;
+    --interactive-success: #88CA95;
 
     /* Scrollbar */
-    --scrollbar-active-thumb-bg: #7D8185;
-    --scrollbar-bg: #292E34;
-    --scrollbar-thumb-bg: #44484D;
+    --scrollbar-active-thumb-bg: #81807D;
+    --scrollbar-bg: #252421;
+    --scrollbar-thumb-bg: #494745;
 
     /* UI elements */
-    --divider-color: #44484D;
-    --divider-color-hover: #7D8185;
-    --tab-text-color: #9A9FA5;
-    --tab-text-color-focused: #C9CED4;
-    --tab-text-color-focused-active: #78A3CF;
-    --tab-background-active: #353B42;
-    --tab-divider-color: #44484D;
+    --divider-color: #494745;
+    --divider-color-hover: #81807D;
+    --tab-text-color: #A09E9B;
+    --tab-text-color-focused: #E0DEDA;
+    --tab-text-color-focused-active: #5EACEB;
+    --tab-background-active: #34332F;
+    --tab-divider-color: #494745;
 
     /* Headings */
-    --h1-color: #C9CED4;
-    --h2-color: #C9CED4;
-    --h3-color: #C9CED4;
-    --h4-color: #9A9FA5;
-    --h5-color: #9A9FA5;
-    --h6-color: #7D8185;
+    --h1-color: #E0DEDA;
+    --h2-color: #E0DEDA;
+    --h3-color: #E0DEDA;
+    --h4-color: #A09E9B;
+    --h5-color: #A09E9B;
+    --h6-color: #81807D;
 
     /* Links */
-    --link-color: #6993BE;
-    --link-color-hover: #78A3CF;
-    --link-external-color: #D79CA0;
-    --link-external-color-hover: #78A3CF;
-    --link-unresolved-color: #7D8185;
+    --link-color: #2098DB;
+    --link-color-hover: #5EACEB;
+    --link-external-color: #EB9191;
+    --link-external-color-hover: #5EACEB;
+    --link-unresolved-color: #81807D;
 
     /* Tags */
-    --tag-color: #78A3CF;
-    --tag-color-hover: #6993BE;
-    --tag-background: #3B5269;
-    --tag-background-hover: #292E34;
+    --tag-color: #5EACEB;
+    --tag-color-hover: #2098DB;
+    --tag-background: #30597B;
+    --tag-background-hover: #252421;
 
     /* Code */
-    --code-normal: #C9CED4;
-    --code-background: #292E34;
-    --code-comment: #7D8185;
+    --code-normal: #E0DEDA;
+    --code-background: #252421;
+    --code-comment: #81807D;
     --code-keyword: #E7729B;
     --code-type: #9FA5F9;
     --code-var: #53C1C7;
@@ -235,45 +235,45 @@
     --code-string: #75B168;
 
     /* Checkbox */
-    --checkbox-color: #78A3CF;
-    --checkbox-color-hover: #6993BE;
-    --checkbox-border-color: #44484D;
+    --checkbox-color: #5EACEB;
+    --checkbox-color-hover: #2098DB;
+    --checkbox-border-color: #494745;
 
     /* Blockquote */
-    --blockquote-border-color: #78A3CF;
+    --blockquote-border-color: #5EACEB;
 
     /* Table */
-    --table-header-background: #292E34;
-    --table-header-background-hover: #3B5269;
-    --table-row-even-background: #1C2229;
-    --table-row-odd-background: #292E34;
-    --table-row-background-hover: #3B5269;
+    --table-header-background: #252421;
+    --table-header-background-hover: #30597B;
+    --table-row-even-background: #171614;
+    --table-row-odd-background: #252421;
+    --table-row-background-hover: #30597B;
 
     /* Graph */
-    --graph-line: #44484D;
-    --graph-node: #78A3CF;
-    --graph-node-focused: #6993BE;
-    --graph-node-tag: #D79CA0;
-    --graph-node-attachment: #A6C9A6;
+    --graph-line: #494745;
+    --graph-node: #5EACEB;
+    --graph-node-focused: #2098DB;
+    --graph-node-tag: #EB9191;
+    --graph-node-attachment: #88CA95;
 
     /* Icons */
-    --icon-color: #9A9FA5;
-    --icon-color-hover: #C9CED4;
-    --icon-color-active: #78A3CF;
-    --icon-color-focused: #78A3CF;
+    --icon-color: #A09E9B;
+    --icon-color-hover: #E0DEDA;
+    --icon-color-active: #5EACEB;
+    --icon-color-focused: #5EACEB;
 
     /* Nav */
-    --nav-item-color: #9A9FA5;
-    --nav-item-color-hover: #C9CED4;
-    --nav-item-color-active: #78A3CF;
-    --nav-item-background-hover: #292E34;
-    --nav-item-background-active: #3B5269;
+    --nav-item-color: #A09E9B;
+    --nav-item-color-hover: #E0DEDA;
+    --nav-item-color-active: #5EACEB;
+    --nav-item-background-hover: #252421;
+    --nav-item-background-active: #30597B;
 
     /* Prompt/Modal */
-    --prompt-border-color: #44484D;
+    --prompt-border-color: #494745;
 
     /* Focus */
-    --shadow-focus: 0 0 0 2px #3B5269;
+    --shadow-focus: 0 0 0 2px #30597B;
 
     /* Primitive Colors */
     --candi-red: #DF7F78;

@@ -56,6 +56,7 @@ function generateTheme(name, type, palette) {
             // Terminal
             "terminal.background": palette['bg'],
             "terminal.foreground": palette['text'],
+            "terminal.selectionBackground": palette['accent'] + "40",
             "terminal.ansiBlack": palette['terminal-black'],
             "terminal.ansiRed": palette['terminal-red'],
             "terminal.ansiGreen": palette['terminal-green'],
@@ -64,6 +65,14 @@ function generateTheme(name, type, palette) {
             "terminal.ansiMagenta": palette['terminal-magenta'],
             "terminal.ansiCyan": palette['terminal-cyan'],
             "terminal.ansiWhite": palette['terminal-white'],
+            "terminal.ansiBrightBlack": palette['text-muted'],
+            "terminal.ansiBrightRed": palette['error'],
+            "terminal.ansiBrightGreen": palette['success'],
+            "terminal.ansiBrightYellow": palette['warning'],
+            "terminal.ansiBrightBlue": palette['accent'],
+            "terminal.ansiBrightMagenta": palette['syntax-keyword'],
+            "terminal.ansiBrightCyan": palette['syntax-var'],
+            "terminal.ansiBrightWhite": palette['text'],
             "terminalCursor.background": palette['bg'],
             "terminalCursor.foreground": palette['accent'],
 
@@ -83,6 +92,10 @@ function generateTheme(name, type, palette) {
             "editorCursor.foreground": palette['accent'],
             "editor.selectionBackground": palette['accent'] + "30",
             "editor.inactiveSelectionBackground": palette['accent'] + "15",
+            "editor.findMatchBackground": palette['warning'] + "40",
+            "editor.findMatchHighlightBackground": palette['warning'] + "25",
+            "editor.wordHighlightBackground": palette['accent'] + "20",
+            "editor.wordHighlightStrongBackground": palette['accent'] + "35",
             "editor.lineHighlightBackground": palette['surface'],
             "editor.lineHighlightBorder": palette['divider'] + "00",
             "editorIndentGuide.background1": palette['border'],
@@ -90,6 +103,20 @@ function generateTheme(name, type, palette) {
             "editorWhitespace.foreground": palette['border'],
             "editorRuler.foreground": palette['divider'],
             "editorCodeLens.foreground": palette['text-muted'],
+            "editorLink.activeForeground": palette['accent'],
+            "editorError.foreground": palette['error'],
+            "editorWarning.foreground": palette['warning'],
+            "editorInfo.foreground": palette['info'],
+            "editorGutter.addedBackground": palette['success'],
+            "editorGutter.modifiedBackground": palette['warning'],
+            "editorGutter.deletedBackground": palette['error'],
+            "editorOverviewRuler.errorForeground": palette['error'],
+            "editorOverviewRuler.warningForeground": palette['warning'],
+            "editorOverviewRuler.findMatchForeground": palette['warning'] + "80",
+            "editorMarkerNavigation.background": palette['surface'],
+            "editorMarkerNavigationError.background": palette['error'] + "15",
+            "editorMarkerNavigationWarning.background": palette['warning'] + "15",
+            "editorMarkerNavigationInfo.background": palette['info'] + "15",
 
             // Sidebar
             "sideBar.background": palette['surface'],
@@ -214,6 +241,18 @@ function generateTheme(name, type, palette) {
             "notifications.border": palette['border'],
             "notificationLink.foreground": palette['accent'],
 
+            // Text
+            "textLink.foreground": palette['accent'],
+            "textLink.activeForeground": palette['accent-strong'] || palette['accent'],
+            "textBlockQuote.background": palette['surface'],
+            "textBlockQuote.border": palette['border-strong'],
+            "textCodeBlock.background": palette['surface'],
+
+            // Welcome Page
+            "welcomePage.background": palette['bg'],
+            "welcomePage.tileBackground": palette['surface'],
+            "walkThrough.embeddedEditorBackground": palette['surface'],
+
             // Debug
             "debugIcon.breakpointForeground": palette['error'],
             "debugIcon.breakpointDisabledForeground": palette['disabled'],
@@ -233,6 +272,23 @@ function generateTheme(name, type, palette) {
             "testing.iconUnset": palette['text-muted'],
             "testing.iconSkipped": palette['disabled'],
             "testing.runAction": palette['success'],
+
+            // Debug Toolbar
+            "debugToolBar.background": palette['surface'],
+
+            // Quick Input
+            "quickInput.background": palette['surface'],
+            "quickInput.foreground": palette['text'],
+            "quickInputList.focusBackground": palette['accent'] + "25",
+            "quickInputTitle.background": palette['surface'],
+
+            // Extension Buttons
+            "extensionButton.prominentBackground": palette['accent'],
+            "extensionButton.prominentForeground": palette['on-accent'],
+
+            // Picker Group
+            "pickerGroup.foreground": palette['accent'],
+            "pickerGroup.border": palette['border'],
 
             // Settings
             "settings.headerForeground": palette['text'],

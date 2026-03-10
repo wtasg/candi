@@ -22,13 +22,13 @@ Redefine CSS variables after importing Candi:
 
 | Token | Default | Usage |
 | :--- | :--- | :--- |
-| `--candi-bg` | Warm white | Page background |
-| `--candi-surface` | Soft cream | Cards, sections |
-| `--candi-text` | Charcoal | Primary text |
-| `--candi-accent` | Steel blue | Main actions |
-| `--candi-secondary` | Terracotta | Secondary accent |
-| `--candi-success` | Sage green | Success states |
-| `--candi-error` | Dusty rose | Error states |
+| `--candi-bg` | Bright white | Page background |
+| `--candi-surface` | Warm off-white | Cards, sections |
+| `--candi-text` | Warm charcoal | Primary text |
+| `--candi-accent` | Balanced steel blue | Main actions |
+| `--candi-secondary` | Balanced terracotta | Secondary accent |
+| `--candi-success` | Balanced forest | Success states |
+| `--candi-error` | Balanced brick | Error states |
 
 ## OKLCH Format
 

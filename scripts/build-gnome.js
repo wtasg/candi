@@ -519,10 +519,139 @@ selection {
     color: ${elevated};
 }
 
+/* Focus Indicators */
+*:focus-visible {
+    outline: 2px solid ${accent};
+    outline-offset: -2px;
+}
+
+button:focus-visible,
+entry:focus-visible,
+switch:focus-visible {
+    outline: 2px solid ${accent};
+    outline-offset: 2px;
+}
+
+/* Dialogs */
+messagedialog,
+dialog {
+    background-color: ${surface};
+    color: ${text};
+    border-radius: 12px;
+    border: 1px solid ${border};
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+messagedialog .titlebar,
+dialog .titlebar {
+    background-color: ${surface};
+    border-bottom: 1px solid ${border};
+}
+
+messagedialog .dialog-action-area button,
+dialog .dialog-action-area button {
+    min-height: 32px;
+    min-width: 80px;
+}
+
+/* Calendar */
+calendar {
+    background-color: ${elevated};
+    color: ${text};
+    border: 1px solid ${border};
+    border-radius: 6px;
+    padding: 4px;
+}
+
+calendar:header {
+    background-color: ${surface};
+    color: ${text};
+    border-bottom: 1px solid ${border};
+}
+
+calendar:selected {
+    background-color: ${accent};
+    color: ${elevated};
+    border-radius: 50%;
+}
+
+calendar.highlight {
+    color: ${accent};
+}
+
+calendar:indeterminate {
+    color: ${textMuted};
+}
+
+/* Tree and Column Views */
+treeview {
+    background-color: ${elevated};
+    color: ${text};
+}
+
+treeview:selected {
+    background-color: ${accent};
+    color: ${elevated};
+}
+
+treeview:hover {
+    background-color: ${surface};
+}
+
+treeview header button {
+    background-color: ${surface};
+    color: ${textSubtle};
+    border-bottom: 1px solid ${border};
+    border-right: 1px solid ${border};
+    padding: 4px 8px;
+}
+
 /* Backdrop (Unfocused Windows) */
 *:backdrop {
-    opacity: 0.8;
+    opacity: 0.9;
 }
+
+/* Disabled states */
+*:disabled {
+    opacity: 0.5;
+}
+
+button:disabled,
+entry:disabled {
+    opacity: 1;
+}
+
+/* Libadwaita Recoloring (for compatible apps) */
+@define-color accent_bg_color ${accent};
+@define-color accent_fg_color ${elevated};
+@define-color accent_color ${accent};
+@define-color destructive_bg_color ${error};
+@define-color destructive_fg_color ${elevated};
+@define-color destructive_color ${error};
+@define-color success_bg_color ${success};
+@define-color success_fg_color ${elevated};
+@define-color success_color ${success};
+@define-color warning_bg_color ${warning};
+@define-color warning_fg_color ${elevated};
+@define-color error_bg_color ${error};
+@define-color error_fg_color ${elevated};
+@define-color window_bg_color ${bg};
+@define-color window_fg_color ${text};
+@define-color view_bg_color ${elevated};
+@define-color view_fg_color ${text};
+@define-color headerbar_bg_color ${surface};
+@define-color headerbar_fg_color ${text};
+@define-color headerbar_backdrop_color ${surface};
+@define-color card_bg_color ${elevated};
+@define-color card_fg_color ${text};
+@define-color dialog_bg_color ${surface};
+@define-color dialog_fg_color ${text};
+@define-color popover_bg_color ${elevated};
+@define-color popover_fg_color ${text};
+@define-color sidebar_bg_color ${surface};
+@define-color sidebar_fg_color ${text};
+@define-color shade_color rgba(0, 0, 0, 0.15);
+@define-color scrollbar_outline_color ${border};
 `;
 }
 

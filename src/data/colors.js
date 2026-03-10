@@ -17,31 +17,31 @@ const semantics = generatePalette();
 // Define Hand-Tuned Neutrals & Structure
 const neutrals = {
     light: {
-        bg: { oklch: 'oklch(75% 0.01 80)', name: 'Background', usage: 'Page background' },
-        surface: { oklch: 'oklch(80% 0.01 80)', name: 'Surface', usage: 'Cards, sections' },
-        elevated: { oklch: 'oklch(85% 0.01 80)', name: 'Elevated', usage: 'Elevated surfaces' },
-        text: { oklch: 'oklch(15% 0.015 80)', name: 'Text', usage: 'Primary text' },
-        textSubtle: { oklch: 'oklch(35% 0.01 80)', name: 'Text Subtle', usage: 'Secondary text' },
-        textMuted: { oklch: 'oklch(45% 0.01 80)', name: 'Text Muted', usage: 'Muted text' },
-        border: { oklch: 'oklch(65% 0.01 80)', name: 'Border', usage: 'Borders' },
-        borderStrong: { oklch: 'oklch(60% 0.01 80)', name: 'Border Strong', usage: 'Strong borders' },
-        divider: { oklch: 'oklch(70% 0.01 80)', name: 'Divider', usage: 'Divider lines' },
+        bg: { oklch: 'oklch(97.5% 0.005 80)', name: 'Background', usage: 'Page background' },
+        surface: { oklch: 'oklch(95% 0.008 80)', name: 'Surface', usage: 'Cards, sections' },
+        elevated: { oklch: 'oklch(99.5% 0.003 80)', name: 'Elevated', usage: 'Elevated surfaces' },
+        text: { oklch: 'oklch(15% 0.01 80)', name: 'Text', usage: 'Primary text' },
+        textSubtle: { oklch: 'oklch(40% 0.008 80)', name: 'Text Subtle', usage: 'Secondary text' },
+        textMuted: { oklch: 'oklch(52% 0.006 80)', name: 'Text Muted', usage: 'Muted text' },
+        border: { oklch: 'oklch(84% 0.005 80)', name: 'Border', usage: 'Borders' },
+        borderStrong: { oklch: 'oklch(77% 0.006 80)', name: 'Border Strong', usage: 'Strong borders' },
+        divider: { oklch: 'oklch(90% 0.004 80)', name: 'Divider', usage: 'Divider lines' },
 
-        link: { oklch: 'oklch(50% 0.08 230)', name: 'Link', usage: 'Hyperlinks' },
-        disabled: { oklch: 'oklch(75% 0.005 250)', name: 'Disabled', usage: 'Disabled UI' },
+        link: { oklch: 'oklch(48% 0.14 240)', name: 'Link', usage: 'Hyperlinks' },
+        disabled: { oklch: 'oklch(82% 0.004 80)', name: 'Disabled', usage: 'Disabled UI' },
         overlay: { oklch: 'oklch(0% 0 0 / 0.5)', name: 'Overlay', usage: 'Modal backdrops' },
         scrim: { oklch: 'oklch(0% 0 0 / 0.32)', name: 'Scrim', usage: 'Drawer/sheet scrim' },
 
         // Inverse (for SnackBar, tooltips)
-        inverseSurface: { oklch: 'oklch(25% 0.015 250)', name: 'Inverse Surface', usage: 'SnackBar background' },
-        inverseText: { oklch: 'oklch(92% 0.01 250)', name: 'Inverse Text', usage: 'SnackBar text' },
+        inverseSurface: { oklch: 'oklch(25% 0.005 80)', name: 'Inverse Surface', usage: 'SnackBar background' },
+        inverseText: { oklch: 'oklch(92% 0.005 80)', name: 'Inverse Text', usage: 'SnackBar text' },
 
         // Special
         shadow: { value: '0 2px 8px rgba(45, 50, 57, 0.06)', name: 'Shadow', usage: 'Card shadows' },
         shadowMd: { value: '0 4px 20px rgba(45, 50, 57, 0.1)', name: 'Shadow MD', usage: 'Medium shadows' },
         shadowLg: { value: '0 8px 40px rgba(45, 50, 57, 0.15)', name: 'Shadow LG', usage: 'Large shadows' },
-        shadowColor: { oklch: 'oklch(25% 0.01 250 / 0.15)', name: 'Shadow Color', usage: 'BoxShadow color' },
-        focusRing: { oklch: 'oklch(52% 0.06 230 / 0.4)', name: 'Focus Ring', usage: 'Focus indicators' },
+        shadowColor: { oklch: 'oklch(25% 0.005 80 / 0.15)', name: 'Shadow Color', usage: 'BoxShadow color' },
+        focusRing: { oklch: 'oklch(52% 0.06 240 / 0.4)', name: 'Focus Ring', usage: 'Focus indicators' },
 
         // Extended Syntax
         syntaxKeyword: { oklch: 'oklch(60% 0.15 0)', name: 'Syntax Keyword', usage: 'Language keywords' },
@@ -56,7 +56,7 @@ const neutrals = {
         active: { oklch: 'oklch(0% 0 0 / 0.1)', name: 'Active State', usage: 'Active background' },
 
         // Terminal Colors
-        terminalBlack: { oklch: 'oklch(25% 0.01 250)', name: 'Terminal Black', usage: 'Terminal black' },
+        terminalBlack: { oklch: 'oklch(25% 0.005 80)', name: 'Terminal Black', usage: 'Terminal black' },
         terminalRed: { oklch: 'oklch(58% 0.12 25)', name: 'Terminal Red', usage: 'Terminal red' },
         terminalGreen: { oklch: 'oklch(52% 0.08 145)', name: 'Terminal Green', usage: 'Terminal green' },
         terminalYellow: { oklch: 'oklch(68% 0.13 70)', name: 'Terminal Yellow', usage: 'Terminal yellow' },
@@ -151,31 +151,31 @@ const neutrals = {
         onSilver: { oklch: 'oklch(0% 0 0)', name: 'On Silver', usage: 'Text on silver' },
     },
     dark: {
-        bg: { oklch: 'oklch(25% 0.015 250)', name: 'Background', usage: 'Page background' },
-        surface: { oklch: 'oklch(30% 0.012 250)', name: 'Surface', usage: 'Cards, sections' },
-        elevated: { oklch: 'oklch(35% 0.015 250)', name: 'Elevated', usage: 'Elevated surfaces' },
-        text: { oklch: 'oklch(85% 0.01 250)', name: 'Text', usage: 'Primary text' },
-        textSubtle: { oklch: 'oklch(70% 0.01 250)', name: 'Text Subtle', usage: 'Secondary text' },
-        textMuted: { oklch: 'oklch(60% 0.008 250)', name: 'Text Muted', usage: 'Muted text' },
-        border: { oklch: 'oklch(40% 0.01 250)', name: 'Border', usage: 'Borders' },
-        borderStrong: { oklch: 'oklch(45% 0.012 250)', name: 'Border Strong', usage: 'Strong borders' },
-        divider: { oklch: 'oklch(35% 0.008 250)', name: 'Divider', usage: 'Divider lines' },
+        bg: { oklch: 'oklch(20% 0.005 80)', name: 'Background', usage: 'Page background' },
+        surface: { oklch: 'oklch(26% 0.005 80)', name: 'Surface', usage: 'Cards, sections' },
+        elevated: { oklch: 'oklch(32% 0.006 80)', name: 'Elevated', usage: 'Elevated surfaces' },
+        text: { oklch: 'oklch(90% 0.005 80)', name: 'Text', usage: 'Primary text' },
+        textSubtle: { oklch: 'oklch(70% 0.005 80)', name: 'Text Subtle', usage: 'Secondary text' },
+        textMuted: { oklch: 'oklch(60% 0.004 80)', name: 'Text Muted', usage: 'Muted text' },
+        border: { oklch: 'oklch(40% 0.005 80)', name: 'Border', usage: 'Borders' },
+        borderStrong: { oklch: 'oklch(45% 0.006 80)', name: 'Border Strong', usage: 'Strong borders' },
+        divider: { oklch: 'oklch(35% 0.004 80)', name: 'Divider', usage: 'Divider lines' },
 
-        link: { oklch: 'oklch(65% 0.08 250)', name: 'Link', usage: 'Hyperlinks' },
-        disabled: { oklch: 'oklch(45% 0.005 250)', name: 'Disabled', usage: 'Disabled UI' },
+        link: { oklch: 'oklch(65% 0.14 240)', name: 'Link', usage: 'Hyperlinks' },
+        disabled: { oklch: 'oklch(45% 0.004 80)', name: 'Disabled', usage: 'Disabled UI' },
         overlay: { oklch: 'oklch(0% 0 0 / 0.7)', name: 'Overlay', usage: 'Modal backdrops' },
         scrim: { oklch: 'oklch(0% 0 0 / 0.6)', name: 'Scrim', usage: 'Drawer/sheet scrim' },
 
         // Inverse (for SnackBar, tooltips)
-        inverseSurface: { oklch: 'oklch(92% 0.01 250)', name: 'Inverse Surface', usage: 'SnackBar background' },
-        inverseText: { oklch: 'oklch(25% 0.015 250)', name: 'Inverse Text', usage: 'SnackBar text' },
+        inverseSurface: { oklch: 'oklch(92% 0.005 80)', name: 'Inverse Surface', usage: 'SnackBar background' },
+        inverseText: { oklch: 'oklch(20% 0.005 80)', name: 'Inverse Text', usage: 'SnackBar text' },
 
         // Special
         shadow: { value: '0 2px 8px rgba(0, 0, 0, 0.25)', name: 'Shadow', usage: 'Card shadows' },
         shadowMd: { value: '0 4px 20px rgba(0, 0, 0, 0.35)', name: 'Shadow MD', usage: 'Medium shadows' },
         shadowLg: { value: '0 8px 40px rgba(0, 0, 0, 0.45)', name: 'Shadow LG', usage: 'Large shadows' },
         shadowColor: { oklch: 'oklch(0% 0 0 / 0.4)', name: 'Shadow Color', usage: 'BoxShadow color' },
-        focusRing: { oklch: 'oklch(62% 0.08 275 / 0.5)', name: 'Focus Ring', usage: 'Focus indicators' },
+        focusRing: { oklch: 'oklch(62% 0.08 80 / 0.5)', name: 'Focus Ring', usage: 'Focus indicators' },
 
         // Extended Syntax
         syntaxKeyword: { oklch: 'oklch(70% 0.15 0)', name: 'Syntax Keyword', usage: 'Language keywords' },
@@ -190,14 +190,14 @@ const neutrals = {
         active: { oklch: 'oklch(100% 0 0 / 0.2)', name: 'Active State', usage: 'Active background' },
 
         // Terminal Colors
-        terminalBlack: { oklch: 'oklch(15% 0.01 275)', name: 'Terminal Black', usage: 'Terminal black' },
-        terminalRed: { oklch: 'oklch(65% 0.05 25)', name: 'Terminal Red', usage: 'Terminal red' },
-        terminalGreen: { oklch: 'oklch(65% 0.04 145)', name: 'Terminal Green', usage: 'Terminal green' },
-        terminalYellow: { oklch: 'oklch(75% 0.06 75)', name: 'Terminal Yellow', usage: 'Terminal yellow' },
-        terminalBlue: { oklch: 'oklch(65% 0.13 275)', name: 'Terminal Blue', usage: 'Terminal blue' },
-        terminalMagenta: { oklch: 'oklch(70% 0.10 15)', name: 'Terminal Magenta', usage: 'Terminal magenta' },
-        terminalCyan: { oklch: 'oklch(70% 0.04 225)', name: 'Terminal Cyan', usage: 'Terminal cyan' },
-        terminalWhite: { oklch: 'oklch(92% 0.01 85)', name: 'Terminal White', usage: 'Terminal white' },
+        terminalBlack: { oklch: 'oklch(15% 0.005 80)', name: 'Terminal Black', usage: 'Terminal black' },
+        terminalRed: { oklch: 'oklch(68% 0.11 25)', name: 'Terminal Red', usage: 'Terminal red' },
+        terminalGreen: { oklch: 'oklch(68% 0.09 145)', name: 'Terminal Green', usage: 'Terminal green' },
+        terminalYellow: { oklch: 'oklch(78% 0.11 75)', name: 'Terminal Yellow', usage: 'Terminal yellow' },
+        terminalBlue: { oklch: 'oklch(65% 0.13 245)', name: 'Terminal Blue', usage: 'Terminal blue' },
+        terminalMagenta: { oklch: 'oklch(72% 0.12 330)', name: 'Terminal Magenta', usage: 'Terminal magenta' },
+        terminalCyan: { oklch: 'oklch(72% 0.09 200)', name: 'Terminal Cyan', usage: 'Terminal cyan' },
+        terminalWhite: { oklch: 'oklch(92% 0.005 80)', name: 'Terminal White', usage: 'Terminal white' },
 
         // Primitive Colors with Tailwind-like variations (dark mode)
         // Red (Hue: 25)

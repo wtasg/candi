@@ -45,9 +45,9 @@ function testExtension() {
 
         console.log(`DEBUG_VSCODE: bg='${bg}', cursor='${cursor}', border='${border}'`);
 
-        assert.equal(bg, '#1C2229');
-        assert.equal(cursor, '#78A3CF');
-        assert.equal(border, '#78A3CF');
+        assert.equal(bg, '#171614');
+        assert.equal(cursor, '#5EACEB');
+        assert.equal(border, '#5EACEB');
 
         // Deep Dive Check: Diff Editor (palette['success'] + "15") - roughly #SuccessHex + opacity
         // Just checking existence to avoid fragile hex opacity math in test

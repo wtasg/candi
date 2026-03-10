@@ -12,11 +12,14 @@ const assert = require('assert').strict;
 const kdeDir = path.join(__dirname, '..', 'kde');
 const v4Dir = path.join(kdeDir, 'v4');
 const v5Dir = path.join(kdeDir, 'v5');
+const v6Dir = path.join(kdeDir, 'v6');
 
 const v4LightPath = path.join(v4Dir, 'CandiLight.colors');
 const v4DarkPath = path.join(v4Dir, 'CandiDark.colors');
 const v5LightPath = path.join(v5Dir, 'CandiLight.colors');
 const v5DarkPath = path.join(v5Dir, 'CandiDark.colors');
+const v6LightPath = path.join(v6Dir, 'CandiLight.colors');
+const v6DarkPath = path.join(v6Dir, 'CandiDark.colors');
 
 logger.log('--- KDE Theme Validation ---');
 
@@ -27,6 +30,7 @@ function testKdeTheme() {
         assert.ok(fs.existsSync(kdeDir), 'kde directory should exist');
         assert.ok(fs.existsSync(v4Dir), 'kde/v4 directory should exist');
         assert.ok(fs.existsSync(v5Dir), 'kde/v5 directory should exist');
+        assert.ok(fs.existsSync(v6Dir), 'kde/v6 directory should exist');
         logger.log('[✓] Directory structure verified');
 
         // 2. Check file existence
@@ -34,6 +38,8 @@ function testKdeTheme() {
         assert.ok(fs.existsSync(v4DarkPath), 'kde/v4/CandiDark.colors should exist');
         assert.ok(fs.existsSync(v5LightPath), 'kde/v5/CandiLight.colors should exist');
         assert.ok(fs.existsSync(v5DarkPath), 'kde/v5/CandiDark.colors should exist');
+        assert.ok(fs.existsSync(v6LightPath), 'kde/v6/CandiLight.colors should exist');
+        assert.ok(fs.existsSync(v6DarkPath), 'kde/v6/CandiDark.colors should exist');
         logger.log('[✓] All theme files exist');
 
         // 3. Validate dark theme contents
@@ -123,14 +129,18 @@ function testKdeTheme() {
 
         logger.log('[✓] Light theme color format and semantics verified');
 
-        // 5. Verify v4 and v5 files are identical (same format)
+        // 5. Verify v4, v5, and v6 files are identical (same format)
         const v5DarkContent = fs.readFileSync(v5DarkPath, 'utf8');
         const v5LightContent = fs.readFileSync(v5LightPath, 'utf8');
+        const v6DarkContent = fs.readFileSync(v6DarkPath, 'utf8');
+        const v6LightContent = fs.readFileSync(v6LightPath, 'utf8');
 
         assert.strictEqual(darkContent, v5DarkContent, 'v4 and v5 dark themes should be identical');
         assert.strictEqual(lightContent, v5LightContent, 'v4 and v5 light themes should be identical');
+        assert.strictEqual(darkContent, v6DarkContent, 'v4 and v6 dark themes should be identical');
+        assert.strictEqual(lightContent, v6LightContent, 'v4 and v6 light themes should be identical');
 
-        logger.log('[✓] v4 and v5 themes are identical');
+        logger.log('[✓] v4, v5, and v6 themes are identical');
 
         // All tests passed
         if (logger.isVerbose) {

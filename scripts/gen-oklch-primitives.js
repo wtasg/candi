@@ -18,20 +18,20 @@ const logger = require('./logger');
 // =============================================================================
 const ANCHORS = {
     light: {
-        accent: 'oklch(45% 0.08 250)',    // Muted Identity
-        secondary: 'oklch(50% 0.07 15)',  // Muted Companion
-        success: 'oklch(45% 0.06 145)',   // Muted Moss
-        warning: 'oklch(50% 0.07 75)',    // Muted Ochre
-        error: 'oklch(45% 0.08 25)',      // Muted Brick
-        info: 'oklch(45% 0.06 225)',      // Muted Slate
+        accent: 'oklch(50% 0.13 245)',    // Balanced Steel Blue
+        secondary: 'oklch(55% 0.12 20)',  // Balanced Terracotta
+        success: 'oklch(50% 0.10 150)',   // Balanced Forest
+        warning: 'oklch(60% 0.13 80)',    // Balanced Amber
+        error: 'oklch(50% 0.14 25)',      // Balanced Brick
+        info: 'oklch(50% 0.10 225)',      // Balanced Slate
     },
     dark: {
-        accent: 'oklch(70% 0.08 250)',    // Muted Identity
-        secondary: 'oklch(75% 0.07 15)',  // Muted Companion
-        success: 'oklch(80% 0.06 145)',   // Muted Moss
-        warning: 'oklch(85% 0.07 75)',    // Muted Ochre
-        error: 'oklch(80% 0.08 25)',      // Muted Brick
-        info: 'oklch(80% 0.06 225)',      // Muted Slate
+        accent: 'oklch(72% 0.12 245)',    // Balanced Steel Blue
+        secondary: 'oklch(75% 0.11 20)',  // Balanced Terracotta
+        success: 'oklch(78% 0.10 150)',   // Balanced Forest
+        warning: 'oklch(82% 0.12 80)',    // Balanced Amber
+        error: 'oklch(78% 0.12 25)',      // Balanced Brick
+        info: 'oklch(78% 0.10 225)',      // Balanced Slate
     }
 };
 
