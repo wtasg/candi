@@ -2,6 +2,27 @@
 
 All notable changes to the Candi Design System will be documented in this file.
 
+## 0.0.36
+
+### Changed
+
+- **Palette Refinement**: Reduced neutral chroma (0.015 → 0.005) across all modes
+  - Dark mode: Warm-gray instead of brown (`#171614` vs `#1A150E`)
+  - Light mode: Brighter white (97.5% lightness, `#F8F6F3` vs `#F5F1EA`)
+  - Semantic anchors: Chroma 0.10–0.14 for balanced readability
+
+### Added
+
+- **VS Code**: 44 new workbench colors (279 → 323 total)
+  - Terminal bright ANSI colors (8), find/match highlights (4)
+  - Editor error/warning/info markers, gutter decorations, overview ruler
+  - Text links, welcome page, quick input, debug toolbar, extension buttons
+- **GNOME**: Focus ring indicators, dialog styling, calendar/date picker, treeview
+  - 30+ libadwaita `@define-color` entries for modern GNOME app compatibility
+  - Improved disabled state handling
+- **KDE**: Plasma 6 support (`kde/v6/` directory)
+  - Inactive header color section (`[Colors:Header][Inactive]`)
+
 ## 0.0.33
 
 ### Added

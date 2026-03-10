@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.36
+
+### Changed
+
+- **Palette**: Updated to core v0.0.36 warm-gray neutrals and brighter light mode
+- **Synchronization**: Version bump to align with core design system
+
 ## 0.0.27
 
 ### Added

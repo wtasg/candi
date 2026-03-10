@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.0.36
+
+### Changed
+
+- **Palette Refinement**: Reduced neutral chroma for warm-gray (not brown) dark mode
+  - Light background: 97.5% lightness for brighter, cleaner whites
+  - Dark background: Chroma 0.005 for inviting warmth without brown tint
+- **Synchronization**: Full parity with core design system v0.0.36
+
 ## 0.0.32
 
 - **Synchronization**: Version bump to align with core design system v0.0.32.

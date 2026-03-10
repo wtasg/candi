@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.36
+
+### Changed
+
+- **Palette**: Warm-gray neutrals (not brown), brighter light mode backgrounds
+- **Synchronization**: Regenerated from core v0.0.36
+
 ## 0.0.32
 
 ### Added

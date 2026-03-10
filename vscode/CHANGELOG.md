@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.0.36
+
+### Added
+
+- **44 New Workbench Colors** (279 → 323 total):
+  - Terminal bright ANSI colors (ansiBrightBlack through ansiBrightWhite)
+  - Find/match highlights, word highlights
+  - Editor error/warning/info markers, gutter decorations
+  - Overview ruler markers, marker navigation
+  - Text links, blockquote, code block backgrounds
+  - Welcome page, quick input, debug toolbar
+  - Extension buttons, picker group
+
+### Changed
+
+- **Palette**: Warm-gray neutrals (not brown), brighter light mode
+
 ## 0.0.33
 
 ### Added
