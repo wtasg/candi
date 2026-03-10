@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.38
+
+### Changed
+
+- Barely changed anything
+
 ## 0.0.36
 
 ### Changed
