@@ -5,6 +5,8 @@ This document describes the publishing process for each Candi Design System prod
 ## Table of Contents
 
 - [NPM Package (Core Library)](#npm-package-core-library)
+- [TypeScript Core Library](#typescript-core-library)
+- [Dart Core Library](#dart-core-library)
 - [Flutter Package (pub.dev)](#flutter-package-pubdev)
 - [VSCode Extension](#vscode-extension)
 - [Vim Colorscheme](#vim-colorscheme)
@@ -73,6 +75,51 @@ The core Candi Design System library for Tailwind CSS.
 - `dist/` - Built files
 - `src/` - Source files
 - `README.md`, `LICENSE`, `CHANGELOG.md`
+
+---
+
+## TypeScript Core Library
+
+The TypeScript implementation of Candi utilities.
+
+### Publishing Steps
+
+1. **Update version in `ts/package.json`**
+2. **Build and test**
+
+   ```bash
+   npm run build:ts
+   npm run test:ts
+   ```
+
+3. **Publish to GitHub Packages / NPM**
+
+   ```bash
+   cd ts
+   npm publish
+   ```
+
+---
+
+## Dart Core Library
+
+The Dart implementation of Candi utilities.
+
+### Publishing Steps
+
+1. **Update version in `dart/pubspec.yaml`**
+2. **Build and test**
+
+   ```bash
+   npm run test:dart
+   ```
+
+3. **Publish to pub.dev**
+
+   ```bash
+   cd dart
+   dart pub publish
+   ```
 
 ---
 

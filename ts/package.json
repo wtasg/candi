@@ -1,0 +1,28 @@
+{
+    "name": "@wtasnorg/candi-core",
+    "version": "0.0.38",
+    "description": "Reusable color-science utilities from the Candi design system (OKLCH conversions, gamut mapping, contrast, palette generation)",
+    "private": true,
+    "type": "module",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js"
+        }
+    },
+    "scripts": {
+        "build": "tsc",
+        "typecheck": "tsc --noEmit",
+        "test": "npx tsx test/test.ts"
+    },
+    "devDependencies": {
+        "@types/node": "^25.4.0",
+        "tsx": "^4.19.0",
+        "typescript": "^5.7.0"
+    },
+    "engines": {
+        "node": ">=24.0.0"
+    }
+}

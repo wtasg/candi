@@ -59,6 +59,14 @@ sed -i "s/\"version\": \"[^\"]*\"/\"version\": \"$VERSION\"/" obsidian/manifest.
 log "  - showcase_flutter/pubspec.yaml"
 sed -i "s/^version: .*/version: $VERSION/" showcase_flutter/pubspec.yaml
 
+# TypeScript core (ts/package.json)
+log "  - ts/package.json"
+sed -i "s/\"version\": \"[^\"]*\"/\"version\": \"$VERSION\"/" ts/package.json
+
+# Dart package (dart/pubspec.yaml)
+log "  - dart/pubspec.yaml"
+sed -i "s/^version: .*/version: $VERSION/" dart/pubspec.yaml
+
 log "Done!"
 
 INSTALL_FLAGS=""

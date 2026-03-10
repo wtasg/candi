@@ -20,6 +20,8 @@ Candi provides a unified system for colors using the OKLCH color space, synchron
 | GNOME | Full | GTK3 & GTK4 themes for X11 and Wayland |
 | Obsidian | Full | Light & Dark themes with 60+ CSS variables |
 | Showcase App | Full | Interactive Flutter gallery & playground |
+| TypeScript Core | Full | Color science, OKLCH, and derivation engine APIs |
+| Dart Core | Full | OKLCH and semantic color derivation for Dart |
 
 ---
 
@@ -91,6 +93,8 @@ candi/
 ├── dist/                   # Built output (git-ignored)
 ├── docs/                   # Documentation guides
 ├── website/                # Documentation site (Vite + React)
+├── ts/                     # TypeScript core utilities library
+├── dart/                   # Dart core utilities library
 ├── flutter/                # Flutter package
 ├── vscode/                 # VS Code extension
 ├── vim/                    # Vim colorschemes
@@ -109,7 +113,8 @@ candi/
 | Command | Description |
 | :--- | :--- |
 | `npm run build` | Build npm package (CSS, JS, TypeScript declarations) |
-| `npm run build:all` | Build all platforms (Web, Flutter, VS Code, Vim, KDE, GNOME, Obsidian) |
+| `npm run build:all` | Build all platforms (Web, Flutter, VS Code, Vim, KDE, GNOME, Obsidian, TS) |
+| `npm run build:ts` | Build TypeScript core package only |
 | `npm run build:flutter` | Build Flutter package only |
 | `npm run build:vscode` | Build VS Code extension only |
 | `npm run build:vim` | Build Vim colorschemes only |
@@ -133,6 +138,8 @@ candi/
 | `npm run test:guard-semantics` | Validate palette integrity |
 | `npm run test:scripts` | Regression test all build outputs |
 | `npm run test:package-artifacts` | Test artifact generation |
+| `npm run test:ts` | Test TypeScript core package |
+| `npm run test:dart` | Test Dart core utilities package |
 | `npm run test:flutter` | Test Flutter package |
 | `npm run test:vscode` | Test VS Code extension |
 | `npm run test:vim` | Test Vim colorschemes |

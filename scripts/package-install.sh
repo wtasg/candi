@@ -30,35 +30,49 @@ log "Installing dependencies for all projects..."
 
 # Root project
 log ""
-log "[1/5] Root project"
+log "[1/7] Root project"
 npm install > $REDIRECT_OUT 2>&1
 
 # VS Code
 log ""
-log "[2/5] VS Code"
+log "[2/7] VS Code"
 cd vscode
 npm install > $REDIRECT_OUT 2>&1
 cd ..
 
 # Website
 log ""
-log "[3/5] Website"
+log "[3/7] Website"
 cd website
 npm install > $REDIRECT_OUT 2>&1
 cd ..
 
 # Flutter
 log ""
-log "[4/5] Flutter"
+log "[4/7] Flutter"
 cd flutter
 flutter pub get > $REDIRECT_OUT 2>&1
 cd ..
 
 # Showcase Flutter
 log ""
-log "[5/5] Showcase Flutter"
+log "[5/7] Showcase Flutter"
 cd showcase_flutter
 flutter pub get > $REDIRECT_OUT 2>&1
+cd ..
+
+# TypeScript Core
+log ""
+log "[6/7] TypeScript Core"
+cd ts
+npm install > $REDIRECT_OUT 2>&1
+cd ..
+
+# Dart Package
+log ""
+log "[7/7] Dart Package"
+cd dart
+dart pub get > $REDIRECT_OUT 2>&1
 cd ..
 
 log ""
